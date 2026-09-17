@@ -22,7 +22,7 @@
 
 Para o sistema todo será utilizado duas orientações de programação, a principal sendo por objeto (POO) e a segundo por reuso (OO). Onde a qual a estrutura de pastas será por componentes & features
 
-### Design Pattern que devem ser aplicados:
+### Design Pattern que devem ser aplicados
 
 - Factory Method
 - Abstract factory
