@@ -22,13 +22,11 @@
 
 Para o sistema todo será utilizado duas orientações de programação, a principal sendo por objeto (POO) e a segundo por reuso (OO). Onde a qual a estrutura de pastas será por componentes & features
 
-### Design Pattern que devem ser aplicados
+### Design Patterns que será utilizado
 
-- Factory Method
-- Abstract factory
-- Builder
-- Prototype
-- Singleton
+- [Singleton](https://refactoring.guru/pt-br/design-patterns/singleton)
+- [Template Method](https://refactoring.guru/pt-br/design-patterns/template-method)
+- [Factory Method](https://refactoring.guru/pt-br/design-patterns/factory-method)
 
 ---
 

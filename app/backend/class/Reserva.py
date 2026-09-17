@@ -30,4 +30,15 @@ class Reserva():
         self.taxa_almoco        = taxa_almoco
         self.taxa_jantar        = taxa_jantar
     
-    ...
+    def get(self, varClass: str):
+        match varClass:
+            case "id":              return self.id
+            case "id_reserva":      return self.id_reserva
+            case "id_quarto":       return self.id_quarto
+            case "id_hospede":      return self.id_hospede
+            case "check_in":        return self.check_in
+            case "check_out":       return self.check_out
+            case "qtd_hospedes":    return self.qtd_hospedes
+            case "taxa_pet":        return self.taxa_pet
+            case "taxa_refeicao":   return self.taxa_refeicao
+            case ""
