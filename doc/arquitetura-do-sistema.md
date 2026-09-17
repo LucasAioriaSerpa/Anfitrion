@@ -1,4 +1,4 @@
-# Anfitrion
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh"><img src="img/logo-Anfitrion.png" width=50%></div>
 
 ## Paleta de cores
 
@@ -20,14 +20,25 @@
 
 ## Estrutura de pastas, orientação de programação & Desing pattern
 
-para o sistema todo será utilizado duas orientações de programação, a principal sendo por objeto e a segundo por reuso
+Para o sistema todo será utilizado duas orientações de programação, a principal sendo por objeto (POO) e a segundo por reuso (OO). Onde a qual a estrutura de pastas será por componentes & features
 
-onde a qual a estrutura de pastas será por componentes & features
-
-### Design Pattern
+### Design Pattern que devem ser aplicados:
 
 - Factory Method
 - Abstract factory
 - Builder
 - Prototype
 - Singleton
+
+---
+
+## Interfaces
+
+- Tela principal mostrando as ofertas das reservas
+  - Entretanto, so podera pagar ou visualizar mais detalhes se tiver cadastrado
+- Tela de login (para hospedes & funcionarios)
+  - Contendo email & senha (com icon de olho para esconder ou mostrar a senha inserida)
+- Tela cadastro (para hospedes)
+  - Contendo nome, email, senha e telefone
+  - O cadastro das contas dos funcionarios é feito pelo gerente/sub-gerente/administrador do sistema
+    - Onde contera nome, email, senha, telefone & cargo (que será entre camarera/governanta, recepcionista, assistente de reservas, analista financeiro)
