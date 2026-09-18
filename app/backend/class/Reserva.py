@@ -58,7 +58,7 @@ class Reserva():
             case "taxa_almoco":     return self.taxa_almoco
             case "taxa_jantar":     return self.taxa_jantar
             case _: print("\nError - var não encontrada!\n"); return None
-
+    
     def set(self, varClass: str, newValue: int | float | datetime):
         """_summary_
             \nid_reserva: int,
