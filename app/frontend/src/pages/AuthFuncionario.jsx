@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import '../style/Login.css';
+import '../style/Auth.css';
 import logoAnfitrion from "../assets/logo-Anfitrion.png";
-function LoginFuncionario() {
+function AuthFuncionario() {
   const [formData, setFormData] = useState({
     codigoAcesso: '',
     email: '',

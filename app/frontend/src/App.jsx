@@ -1,8 +1,8 @@
 import "./style/App.css";
-import LoginFuncionario from "./pages/LoginFuncionario";
+import AuthFuncionario from "./pages/AuthFuncionario";
 
 function App() {
-  return <LoginFuncionario />;
+  return <AuthFuncionario />;
 }
 
 export default App;
