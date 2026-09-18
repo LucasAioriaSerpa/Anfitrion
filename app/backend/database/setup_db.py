@@ -1,7 +1,9 @@
 
 import sqlite3
 
-conn = sqlite3.connect("./db_anfitrion.db")
+from config.Config import DATABASE_DIR
+
+conn = sqlite3.connect(DATABASE_DIR)
 cursor = conn.cursor()
 
 cursor.execute("PRAGMA foreign_keys = ON;")

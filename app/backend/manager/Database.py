@@ -1,10 +1,13 @@
 import sqlite3
 import pathlib
 
-class Database:
-    def __init__(self):
-        base_path = pathlib.Path(__file__).parent.parent.parent.parent
-        self.db_path = base_path / "backend" / "database" / "db_ctc.db"
+from meta import Singleton
+from config import Config
+
+class Database(metaclass=Singleton):
+    def __init__(self): self.db_path = Config.DATABASE_DIR
+
+    def __str__(self) -> str: return "Objeto de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
 
     def connect(self):
         return sqlite3.connect(self.db_path)

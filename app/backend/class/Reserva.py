@@ -30,7 +30,20 @@ class Reserva():
         self.taxa_almoco        = taxa_almoco
         self.taxa_jantar        = taxa_jantar
     
-    def get(self, varClass: str):
+    def get(self, varClass: str) -> int | float | datetime | None:
+        """_summary_
+            \nid_reserva: int,
+            \nid_quarto: int,
+            \nid_hospede: int,
+            \ncheck_in: datetime, strftime("%d/%m/%Y")
+            \ncheck_out: datetime,
+            \nqtd_hospedes: int,
+            \ntaxa_pet: float,
+            \ntaxa_refeicao: float,
+            \ntaxa_cafe_manha: float,
+            \ntaxa_almoco: float,
+            \ntaxa_jantar: float
+        """
         match varClass:
             case "id":              return self.id
             case "id_reserva":      return self.id_reserva
@@ -41,4 +54,48 @@ class Reserva():
             case "qtd_hospedes":    return self.qtd_hospedes
             case "taxa_pet":        return self.taxa_pet
             case "taxa_refeicao":   return self.taxa_refeicao
-            case ""
+            case "taxa_cafe_manha": return self.taxa_cafe_manha
+            case "taxa_almoco":     return self.taxa_almoco
+            case "taxa_jantar":     return self.taxa_jantar
+            case _: print("\nError - var não encontrada!\n"); return None
+    
+    def set(self, varClass: str, newValue: int | float | datetime):
+        """_summary_
+            \nid_reserva: int,
+            \nid_quarto: int,
+            \nid_hospede: int,
+            \ncheck_in: datetime, strftime("%d/%m/%Y")
+            \ncheck_out: datetime,
+            \nqtd_hospedes: int,
+            \ntaxa_pet: float,
+            \ntaxa_refeicao: float,
+            \ntaxa_cafe_manha: float,
+            \ntaxa_almoco: float,
+            \ntaxa_jantar: float
+        """
+        match varClass:
+            case "id":          
+                if type(self.id) == type(newValue): self.id = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "id_reserva":  
+                if type(self.id_reserva) == type(newValue): self.id_reserva = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "id_quarto":   
+                if type(self.id_quarto) == type(newValue): self.id_quarto = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "id_hospede":  
+                if type(self.id_hospede) == type(newValue): self.id_hospede = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "check_in":    
+                if type(self.check_in) == type(newValue): self.check_in = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "check_out":   
+                if type(self.check_out) == type(newValue): self.check_out = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "qtd_hospedes":       
+                if type(self.qtd_hospedes) == type(newValue): self.qtd_hospedes = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "taxa_pet":   
+                if type(self.taxa_pet) == type(newValue): self.taxa_pet = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "taxa_refeicao":      
+                if type(self.taxa_refeicao) == type(newValue): self.taxa_refeicao = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "taxa_cafe_manha":    
+                if type(self.taxa_cafe_manha) == type(newValue): self.taxa_cafe_manha = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "taxa_almoco":        
+                if type(self.taxa_almoco) == type(newValue): self.taxa_almoco = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case "taxa_jantar":        
+                if type(self.taxa_jantar) == type(newValue): self.taxa_jantar = newValue; print(f"Valor atualizado: <{varClass}> -> <{newValue}>")
+            case _: return ValueError
