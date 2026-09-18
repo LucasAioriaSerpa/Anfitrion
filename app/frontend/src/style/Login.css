@@ -1,0 +1,314 @@
+/* Reset Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Login Container - Dois Lados */
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* Lado Esquerdo - Logo e Tagline */
+.login-left {
+  flex: 1;
+  background: linear-gradient(135deg, #6b3e3e 0%, #8b5a5a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.logo-section {
+  text-align: center;
+}
+
+.logo-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-circle h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tagline {
+  max-width: 400px;
+}
+
+.tagline p {
+  font-size: 1.8rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Lado Direito - Formulário */
+.login-right {
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.login-header h2 {
+  color: #6b3e3e;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.login-header .subtitle {
+  color: #999;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Mensagens */
+.sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #28a745;
+  font-size: 0.95rem;
+}
+
+.erro {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #f5222d;
+  font-size: 0.95rem;
+}
+
+/* Formulário */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.6rem;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 0.85rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.3s;
+  background-color: #fafafa;
+  color: #000;
+}
+
+.form-group input::placeholder {
+  color: #bbb;
+}
+
+.form-group input::selection {
+  background-color: #6b3e3e;
+  color: #fff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6b3e3e;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(107, 62, 62, 0.15);
+}
+
+/* Botão Entrar */
+.btn-entrar {
+  padding: 0.95rem 1.5rem;
+  background-color: #6b3e3e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.btn-entrar:hover {
+  background-color: #8b4545;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(107, 62, 62, 0.3);
+}
+
+.btn-entrar:active {
+  transform: translateY(0);
+}
+
+/* Toggle Form */
+.toggle-form {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #6b3e3e;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.link-btn:hover {
+  color: #8b4545;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-left {
+    padding: 2rem;
+    min-height: 300px;
+  }
+
+  .logo-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .logo-circle h1 {
+    font-size: 1.8rem;
+  }
+
+  .tagline p {
+    font-size: 1.3rem;
+  }
+
+  .login-right {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .tagline p {
+    font-size: 1.1rem;
+  }
+
+  .form-group input {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    height: auto;
+  }
+
+  .login-left {
+    padding: 1.5rem;
+    min-height: 250px;
+  }
+
+  .logo-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo-circle h1 {
+    font-size: 1.5rem;
+  }
+
+  .tagline p {
+    font-size: 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .login-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .login-form {
+    gap: 1rem;
+  }
+  .logo-img {
+  width: 5px;
+  height: 5px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+}
