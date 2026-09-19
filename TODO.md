@@ -2,7 +2,7 @@
 
 Escolhemos a **opção 1** 👍
 
-- [ ] Singleton - codar 2 exemplos
+- [x] Singleton - codar 2 exemplos
 - [ ] Template method - Codar 3 exemplos
 - [ ] Um novo design pattern (Factory Method) - codar 3 exemplos
 

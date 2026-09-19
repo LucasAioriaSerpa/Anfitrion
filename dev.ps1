@@ -1,4 +1,5 @@
 $wt = Get-Command wt -ErrorAction SilentlyContinue
+
 if (-not $wt) {
     Write-Host "⨉ Windows Terminal (wt.exe) not found." -ForegroundColor Red
     Write-Host "   Install: https://aka.ms/terminal" -ForegroundColor Yellow
