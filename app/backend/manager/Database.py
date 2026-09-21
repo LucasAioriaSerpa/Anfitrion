@@ -1,18 +1,28 @@
 import sqlite3
 import pathlib
 
-from meta import Singleton
-from config import Config
+from meta.Singleton import Singleton
+from config.Config import Config
+from utils.Loggers import Logger
 
 class Database(metaclass=Singleton):
-    def __init__(self): self.db_path = Config.DATABASE_DIR
+    __log = Logger()
+    __config = Config()
+    def __init__(self) -> None:
+        try: self.db_path = self.__db_path_init()
+        except: self.__log.log_error("[ database.py ] - db_path não encontrado em config.py")
 
     def __str__(self) -> str: return "Objeto de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
 
-    def connect(self):
-        return sqlite3.connect(self.db_path)
+    def __db_path_init(self) -> str:
+        db_path = self.__config.get("DATABASE_DIR")
+        if not isinstance(db_path, (str, bytes, pathlib.Path)):
+            raise TypeError("DATABASE_DIR deve ser um caminho válido")
+        return db_path
 
-    def _execute(self, query, values=(), fetch=False):
+    def connect(self): return sqlite3.connect(self.db_path)
+
+    def _execute(self, query: str, values=(), fetch=False):
         with self.connect() as conn:
             conn.row_factory = sqlite3.Row if fetch else None
             cursor = conn.cursor()
@@ -24,14 +34,14 @@ class Database(metaclass=Singleton):
                 conn.commit()
                 return None
 
-    def create(self, table, data: dict):
+    def create(self, table: str, data: dict):
         columns = ", ".join(data.keys())
         placeholders = ", ".join(["?" for _ in data])
         values = tuple(data.values())
         query = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
         self._execute(query, values)
 
-    def read(self, table, conditions: dict):
+    def read(self, table: str, conditions: dict):
         query = f"SELECT * FROM {table}"
         values = ()
         if conditions:
@@ -40,7 +50,7 @@ class Database(metaclass=Singleton):
             values = tuple(conditions.values())
         return self._execute(query, values, fetch=True)
 
-    def update(self, table, data: dict, conditions: dict):
+    def update(self, table: str, data: dict, conditions: dict):
         set_value = ", ".join([f"{col}=?" for col in data.keys()])
         condition = " AND ".join([f"{col}=?" for col in conditions.keys()])
         values = tuple(data.values()) + tuple(conditions.values())
@@ -64,4 +74,3 @@ class Database(metaclass=Singleton):
 
 #! DELETAR
 #! ManagerDatabase().delete("nome_tabela", {"atributo_procurado (ex: nome)": "valor_procurado"})
-

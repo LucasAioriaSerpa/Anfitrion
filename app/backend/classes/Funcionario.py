@@ -42,7 +42,7 @@ class Functionario(Hospede):
             case "cargo":       return self.cargo
             case _: print("\nError - var não encontrada!\n"); return None
     
-    def set(self, varClass: str, newValue: int | float | str):
+    def __set__(self, varClass: str, newValue: int | float | str):
         """_summary_
             \nid: int
             \nnome: str,
