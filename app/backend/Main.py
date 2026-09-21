@@ -30,8 +30,8 @@ class Main:
             except:  self.__log.log_error("[ Main.py ] - Erro ao realizar o setup_db.py em <Anfitrion/app/backend/database/Setup_db.py>"); return None
             finally: self.__log.log_success("[ Main.py ] - SQLite configurado e tabelas inseridas com sucesso")
         while True:
-            self.__log.log_info("[ MAIN ] - running...") #TODO: apos adicionar as funcionalidades que precisam ser processadas e geradas pf remover para não poluir o terminal & logs
-            time.sleep(1)
+            self.__log.log_info("[ MAIN ] - running...") #TODO: apos adicionar as funcionalidades/features que precisam ser processadas e geradas pf remover para não poluir o terminal & logs
+            time.sleep(1) #? 1 Segundo
 
 if "__main__" == __name__:
     log = Logger()

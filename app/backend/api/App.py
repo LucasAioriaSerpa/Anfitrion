@@ -1,7 +1,7 @@
 
 import sys, os
 
-from flask import Flask, Response
+from flask import Flask, jsonify, Response
 
 if getattr(sys, 'frozen', False): BASE_DIR = sys._MEIPASS
 else: BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -23,7 +23,7 @@ class App:
         def index(): return self.__index()
 
     def __index(self):
-        return "Hellor world!"
+        return jsonify(message="Hello world", status=200, mimetype="application/json")
 
     def run(self):
         self.__log.log_info("[ FLASK ] - Inicializando e rodando FLASK")
