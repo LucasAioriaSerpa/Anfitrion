@@ -1,47 +1,70 @@
 import sqlite3
 import pathlib
 
-from meta.Singleton import Singleton
-from config.Config import Config
-from utils.Loggers import Logger
+try:
+    from meta.Singleton import Singleton
+    from config.Config import Config
+    from utils.Loggers import Logger
+except ImportError:
+    from app.backend.meta.Singleton import Singleton
+    from app.backend.config.Config import Config
+    from app.backend.utils.Loggers import Logger
 
 class Database(metaclass=Singleton):
+    """
+    Design Pattern: SINGLETON
+    Gerenciador central de conexão e operações no banco de dados SQLite.
+    Garante instância única com thread-safety provida pelo Singleton metaclass.
+    """
     __log = Logger()
     __config = Config()
-    def __init__(self) -> None:
-        try: self.db_path = self.__db_path_init()
-        except: self.__log.log_error("[ database.py ] - db_path não encontrado em config.py")
 
-    def __str__(self) -> str: return "Objeto de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
+    def __init__(self) -> None:
+        try:
+            self.db_path = self.__db_path_init()
+            self.__log.log_info(f"[ Database.py ] - Instância de Database inicializada: {self.db_path}")
+        except Exception as e:
+            self.__log.log_error(f"[ Database.py ] - Erro ao inicializar db_path: {str(e)}")
+
+    def __str__(self) -> str:
+        return "Objeto Singleton de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
 
     def __db_path_init(self) -> str:
         db_path = self.__config.get("DATABASE_DIR")
         if not isinstance(db_path, (str, bytes, pathlib.Path)):
             raise TypeError("DATABASE_DIR deve ser um caminho válido")
-        return db_path
+        return str(db_path)
 
-    def connect(self): return sqlite3.connect(self.db_path)
+    def connect(self):
+        return sqlite3.connect(self.db_path)
 
     def _execute(self, query: str, values=(), fetch=False):
-        with self.connect() as conn:
-            conn.row_factory = sqlite3.Row if fetch else None
-            cursor = conn.cursor()
-            cursor.execute(query, values)
-            if fetch:
-                rows = cursor.fetchall()
-                return [dict(row) for row in rows]
-            else:
-                conn.commit()
-                return None
+        try:
+            with self.connect() as conn:
+                conn.execute("PRAGMA foreign_keys = ON;")
+                conn.row_factory = sqlite3.Row if fetch else None
+                cursor = conn.cursor()
+                cursor.execute(query, values)
+                if fetch:
+                    rows = cursor.fetchall()
+                    return [dict(row) for row in rows]
+                else:
+                    conn.commit()
+                    return cursor.lastrowid
+        except Exception as e:
+            self.__log.log_error(f"[ Database.py ] - Falha na query SQL: {query} | Erro: {str(e)}")
+            raise e
 
-    def create(self, table: str, data: dict):
+    def create(self, table: str, data: dict) -> int:
         columns = ", ".join(data.keys())
         placeholders = ", ".join(["?" for _ in data])
         values = tuple(data.values())
         query = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
-        self._execute(query, values)
+        last_id = self._execute(query, values)
+        self.__log.log_info(f"[ Database.py ] - Registro criado em <{table}> com ID: {last_id}")
+        return last_id
 
-    def read(self, table: str, conditions: dict):
+    def read(self, table: str, conditions: dict = None) -> list[dict]:
         query = f"SELECT * FROM {table}"
         values = ()
         if conditions:
@@ -50,18 +73,23 @@ class Database(metaclass=Singleton):
             values = tuple(conditions.values())
         return self._execute(query, values, fetch=True)
 
-    def update(self, table: str, data: dict, conditions: dict):
+    def update(self, table: str, data: dict, conditions: dict) -> bool:
         set_value = ", ".join([f"{col}=?" for col in data.keys()])
         condition = " AND ".join([f"{col}=?" for col in conditions.keys()])
         values = tuple(data.values()) + tuple(conditions.values())
         query = f"UPDATE {table} SET {set_value} WHERE {condition}"
         self._execute(query, values)
+        self.__log.log_info(f"[ Database.py ] - Registro atualizado em <{table}> com condições: {conditions}")
+        return True
 
-    def delete(self, table, conditions: dict):
+    def delete(self, table: str, conditions: dict) -> bool:
         condition = " AND ".join([f"{col}=?" for col in conditions.keys()])
         values = tuple(conditions.values())
         query = f"DELETE FROM {table} WHERE {condition}"
         self._execute(query, values)
+        self.__log.log_info(f"[ Database.py ] - Registro excluído de <{table}> com condições: {conditions}")
+        return True
+
 
 #* INSERIR
 #* ManagerDatabase().create("nome_tabela", {"atributo_tabela": "valor_campo", "atributo_tabela": "valor_campo"})

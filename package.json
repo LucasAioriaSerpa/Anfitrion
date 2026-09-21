@@ -1,0 +1,14 @@
+{
+  "name": "anfitrion",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "app/frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=anfitrion-frontend",
+    "build": "npm run build --workspace=anfitrion-frontend",
+    "lint": "npm run lint --workspace=anfitrion-frontend"
+  }
+}

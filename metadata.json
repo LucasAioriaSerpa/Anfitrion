@@ -1,0 +1,6 @@
+{
+  "name": "Anfitrion",
+  "description": "Sistema hoteleiro de re-uso para gerenciamento de reservas, quartos e funcionários.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
