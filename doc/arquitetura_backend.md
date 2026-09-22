@@ -1,3 +1,5 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh"><img src="img/logo-Anfitrion.png"></div>
+
 # Arquitetura do Backend - Sistema Anfitrião
 
 Este documento descreve de forma clara, simples e direta a arquitetura do backend do **Anfitrião**, detalhando a organização estrutural, os padrões de projeto (Design Patterns) implementados e o funcionamento das funcionalidades mais complexas do sistema.
@@ -6,15 +8,15 @@ Este documento descreve de forma clara, simples e direta a arquitetura do backen
 
 ## 1. Visão Geral e Tecnologias
 
-O backend do Anfitrião é construído em **Python 3**, utilizando **Flask** para a exposição de APIs RESTful e **SQLite3** para a persistência relacional. A aplicação adota os princípios de Programação Orientada a Objetos (**POO**) e Orientação a Reuso (**OO**), organizando-se em módulos por responsabilidade e recursos de domínio (*features*).
+O backend do Anfitrião é construído em **Python 3**, utilizando **Flask** para a exposição de APIs "RESTful" e **SQLite3** para a persistência relacional. A aplicação adota os princípios de Programação Orientada a Objetos (**POO**) e Orientação a Reuso (**OO**), organizando-se em módulos por responsabilidade e recursos de domínio (_features_).
 
-| Componente | Tecnologia | Papel |
-| :--- | :--- | :--- |
-| **Linguagem** | Python 3 | Lógica de negócios, modelos de domínio e concorrência |
-| **Web Framework** | Flask (Blueprints) | Endpoints HTTP, roteamento e serialização JSON |
-| **Banco de Dados** | SQLite3 relacional | Armazenamento transacional com integridade referencial ativa |
-| **Concorrência** | `threading` nativo | Separação entre Thread de Background (pesada) e Thread Web (HTTP) |
-| **Design Patterns** | Singleton, Factory Method, Template Method | Modularidade, reuso de código e desacoplamento |
+| Componente          | Tecnologia                                 | Papel                                                             |
+| :------------------ | :----------------------------------------- | :---------------------------------------------------------------- |
+| **Linguagem**       | Python 3                                   | Lógica de negócios, modelos de domínio e concorrência             |
+| **Web Framework**   | Flask (Blueprints)                         | Endpoints HTTP, roteamento e serialização JSON                    |
+| **Banco de Dados**  | SQLite3 relacional                         | Armazenamento transacional com integridade referencial ativa      |
+| **Concorrência**    | `threading` nativo                         | Separação entre Thread de Background (pesada) e Thread Web (HTTP) |
+| **Design Patterns** | Singleton, Factory Method, Template Method | Modularidade, reuso de código e desacoplamento                    |
 
 ---
 
@@ -49,13 +51,17 @@ app/backend/
 ## 3. Padrões de Projeto (Design Patterns)
 
 ### 3.1. Singleton
-- **Onde é aplicado**: `Config` (`config/Config.py`) e `Database` (`manager/Database.py`), via metaclasse `SingletonMeta` (`meta/Singleton.py`).
-- **Como funciona**: A metaclasse `SingletonMeta` intercepta a instanciação das classes e utiliza uma trava de exclusão mútua (`threading.Lock`). Se uma instância já existir na tabela `_instances`, ela é retornada imediatamente.
-- **Por que é essencial**: 
+
+- **Onde é aplicado**:
+  `Config` (`config/Config.py`) e `Database` (`manager/Database.py`), via metaclasse `SingletonMeta` (`meta/Singleton.py`).
+- **Como funciona**:
+  A metaclasse `SingletonMeta` intercepta a instanciação das classes e utiliza uma trava de exclusão mútua (`threading.Lock`). Se uma instância já existir na tabela `_instances`, ela é retornada imediatamente.
+- **Por que é essencial**:
   - Garante que haja apenas uma conexão centralizada com o banco de dados.
-  - Permite que variáveis dinâmicas e métricas sejam compartilhadas de forma síncrona e segura entre threads distintas sem risco de condição de corrida (*race condition*).
+  - Permite que variáveis dinâmicas e métricas sejam compartilhadas de forma síncrona e segura entre threads distintas sem risco de condição de corrida (_race condition_).
 
 ### 3.2. Factory Method
+
 - **Onde é aplicado**: Módulo `api/factories/`.
   - Base: `EntityFactory` (classe abstrata com o método `create_entity(data)`).
   - Concretas: `HospedeFactory`, `HotelFactory`, `QuartoFactory`, `FuncionarioFactory`, `ReservaFactory` e `userFactory`.
@@ -63,6 +69,7 @@ app/backend/
 - **Como funciona**: O chamador não precisa saber como instanciar cada modelo ou lidar com casting de tipos e atributos opcionais. O `ModelFactory` localiza a fábrica correta e produz o objeto correspondente a partir de um dicionário de dados.
 
 ### 3.3. Template Method
+
 - **Onde é aplicado**: Módulo `api/templates/`.
   - Base abstrata: `CrudTemplate` (`crud_template.py`).
   - Especializações: `HospedeCrudTemplate`, `HotelCrudTemplate`, `QuartoCrudTemplate`, `FuncionarioCrudTemplate` e `ReservaCrudTemplate`.
@@ -92,33 +99,37 @@ O sistema opera simultaneamente duas threads independentes gerenciadas pelo `Mai
               ┌────────────────────────┐      ┌────────────────────────┐
               │      Thread MAIN       │      │      Thread FLASK      │
               │  (Background Worker)   │      │       (Web Server)     │
-              └───────────┬────────────┘      └───────────┬────────────┘
-                          │                               │
-            Processamento │                               │ Requisições
-            em segundo    │                               │ HTTP (React)
-            plano contínuo│                               │
-                          ▼                               ▼
-                     ┌─────────┐                     ┌─────────┐
-                     │ Auditoria│                    │  Rotas  │
-                     │ Status  │◄──── Compartilha ──►│  CRUD & │
-                     │ Métricas│      via Config     │  Auth   │
-                     └─────────┘     (Singleton)     └─────────┘
+              └───────────┬────────────┘      └─────────────┬──────────┘
+                          │                                 │
+            Processamento │                                 │ Requisições
+            em segundo    │                                 │ HTTP (React)
+            plano contínuo│                                 │
+                          ▼                                 ▼
+                     ┌───────────┐                     ┌─────────┐
+                     │ Auditoria │                     │  Rotas  │
+                     │ Status    │◄──── Compartilha ──►│  CRUD & │
+                     │ Métricas  │      via Config     │  Auth   │
+                     └───────────┘     (Singleton)     └─────────┘
 ```
 
 #### Como funciona:
+
 1. **Thread MAIN (Worker)**:
    - Executa em laço perpétuo em segundo plano (com intervalo configurável).
    - Realiza auditoria periódica das tabelas para prevenir inconsistências.
-   - **Expiração Automática de Reservas**: Varre todas as reservas cadastradas cuja data `check_out` já passou e atualiza o quarto vinculado para `"Disponível"`.
-   - **Cálculo de Ocupação em Tempo Real**: Calcula quartos totais, quartos ocupados e a taxa percentual de ocupação hoteleira.
-   - **Comunicação Segura**: Armazena as métricas diretamente no repositório `_shared_store` do `Config` (protegido por `Lock`).
+   - **Expiração Automática de Reservas**:
+     Varre todas as reservas cadastradas cuja data `check_out` já passou e atualiza o quarto vinculado para `"Disponível"`.
+   - **Cálculo de Ocupação em Tempo Real**:
+     Calcula quartos totais, quartos ocupados e a taxa percentual de ocupação hoteleira.
+   - **Comunicação Segura**:
+     Armazena as métricas diretamente no repositório `_shared_store` do `Config` (protegido por `Lock`).
 2. **Thread FLASK (Web)**:
    - Fica 100% dedicada a responder às requisições do frontend React sem bloqueios de I/O causados por rotinas pesadas.
    - Ao atender ao endpoint `/api/auth/stats`, o Flask simplesmente lê os dados já processados pelo `Config`, entregando respostas instantâneas.
 
 ---
 
-### 4.2. Ganchos (*Hooks*) e Efeitos Colaterais Automáticos no CRUD
+### 4.2. Ganchos (_Hooks_) e Efeitos Colaterais Automáticos no CRUD
 
 A gestão de reservas exige que a alteração de um registro reflita instantaneamente no inventário de quartos. O `ReservaCrudTemplate` implementa ganchos que eliminam a necessidade de intervenção manual:
 
@@ -151,6 +162,7 @@ No modelo de negócios do Anfitrião, todo funcionário é, por essência, uma e
 ```
 
 #### Como a complexidade é resolvida:
+
 - A classe `Funcionario` herda diretamente de `Hospede` e chama `super().__init__(...)`.
 - No `FuncionarioCrudTemplate`, ao cadastrar um novo funcionário, o sistema verifica se o `email` informado já existe na base de `hospede`. Se não existir, ele **cria a conta de base automaticamente** e vincula o `id_hospede` gerado ao novo registro de funcionário em uma única operação transparente para o frontend.
 
@@ -159,9 +171,13 @@ No modelo de negócios do Anfitrião, todo funcionário é, por essência, uma e
 ### 4.4. Acesso Concorrente Seguro e Integridade Transacional (`Database.py`)
 
 O acesso ao banco SQLite precisa lidar com requisições concorrentes de múltiplas threads:
-- **Foreign Keys Ativas**: A cada conexão aberta, o comando `PRAGMA foreign_keys = ON;` é executado, impedindo que registros filhos fiquem órfãos (ex.: quartos sem hotel ou reservas sem quarto válido).
-- **Isolamento de Conexão**: Cada operação de CRUD abre e fecha sua própria conexão context-managed (`with sqlite3.connect(...)`), garantindo que o SQLite libere os locks de escrita imediatamente após a transação.
-- **Rollback em Exceções**: Se ocorrer qualquer falha durante a execução de inserts ou updates, a transação sofre rollback e uma mensagem padronizada de erro é emitida no logger.
+
+- **Foreign Keys Ativas**:
+  A cada conexão aberta, o comando `PRAGMA foreign_keys = ON;` é executado, impedindo que registros filhos fiquem órfãos (ex.: quartos sem hotel ou reservas sem quarto válido).
+- **Isolamento de Conexão**:
+  Cada operação de CRUD abre e fecha sua própria conexão context-managed (`with sqlite3.connect(...)`), garantindo que o SQLite libere os locks de escrita imediatamente após a transação.
+- **Rollback em Exceções**:
+  Se ocorrer qualquer falha durante a execução de inserts ou updates, a transação sofre rollback e uma mensagem padronizada de erro é emitida no logger.
 
 ---
 
@@ -185,11 +201,11 @@ Abaixo está o ciclo de vida completo de uma requisição típica (exemplo: Cria
 
 ## 6. Sumário dos Endpoints da API
 
-| Módulo | Endpoint Base | Operações Disponíveis |
-| :--- | :--- | :--- |
-| **Hóspedes** | `/api/hospede` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
-| **Hotéis** | `/api/hotel` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
-| **Quartos** | `/api/quarto` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
-| **Funcionários** | `/api/funcionario` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
-| **Reservas** | `/api/reserva` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
-| **Autenticação & Métricas** | `/api/auth` | `POST /login`, `POST /register`, `GET /stats` |
+| Módulo                      | Endpoint Base      | Operações Disponíveis                                                        |
+| :-------------------------- | :----------------- | :--------------------------------------------------------------------------- |
+| **Hóspedes**                | `/api/hospede`     | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
+| **Hotéis**                  | `/api/hotel`       | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
+| **Quartos**                 | `/api/quarto`      | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
+| **Funcionários**            | `/api/funcionario` | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
+| **Reservas**                | `/api/reserva`     | `GET /` (listar/filtrar), `GET /<id>`, `POST /`, `PUT /<id>`, `DELETE /<id>` |
+| **Autenticação & Métricas** | `/api/auth`        | `POST /login`, `POST /register`, `GET /stats`                                |
