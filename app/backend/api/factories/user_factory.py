@@ -25,7 +25,7 @@ class userFactory:
                 email=str(dado.get("email", "")),
                 senha=str(dado.get("senha", "")),
                 telefone=str(dado.get("telefone", "")),
-                id_hospede=dado.get("id_hospede")
+                id_hospede=int(dado.get("id_hospede") or 1)
             )
         except Exception as e:
             log.log_error(f"[ userFactory ] - Falha ao tentar inicializar o obj <Hospede>: {str(e)}")

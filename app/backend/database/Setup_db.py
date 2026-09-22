@@ -1,4 +1,5 @@
 
+from typing import Optional
 import sqlite3
 import os
 
@@ -11,7 +12,7 @@ except ImportError:
 
 log = Logger()
 
-def init_db(db_path: str = None) -> bool:
+def init_db(db_path: Optional[str] = None) -> bool:
     """Inicializa as tabelas do banco de dados SQLite caso ainda não existam."""
     config = Config()
     target_path = db_path or config.get("DATABASE_DIR")

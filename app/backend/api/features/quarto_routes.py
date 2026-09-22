@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 
 try:
-    from api.templates.entity_templates import QuartoCrudTemplate
+    from api.templates.entities.quarto_template import QuartoCrudTemplate
     from utils.Loggers import Logger
 except ImportError:
-    from app.backend.api.templates.entity_templates import QuartoCrudTemplate
+    from app.backend.api.templates.entities.quarto_template import QuartoCrudTemplate
     from app.backend.utils.Loggers import Logger
 
 quarto_bp = Blueprint("quarto", __name__, url_prefix="/api/quarto")

@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 
 try:
-    from api.templates.entity_templates import HotelCrudTemplate
+    from api.templates.entities.hotel_template import HotelCrudTemplate
     from utils.Loggers import Logger
 except ImportError:
-    from app.backend.api.templates.entity_templates import HotelCrudTemplate
+    from app.backend.api.templates.entities.hotel_template import HotelCrudTemplate
     from app.backend.utils.Loggers import Logger
 
 hotel_bp = Blueprint("hotel", __name__, url_prefix="/api/hotel")

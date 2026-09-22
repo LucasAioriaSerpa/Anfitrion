@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 
 try:
-    from api.templates.entity_templates import ReservaCrudTemplate
+    from api.templates.entities.reserva_template import ReservaCrudTemplate
     from utils.Loggers import Logger
 except ImportError:
-    from app.backend.api.templates.entity_templates import ReservaCrudTemplate
+    from app.backend.api.templates.entities.reserva_template import ReservaCrudTemplate
     from app.backend.utils.Loggers import Logger
 
 reserva_bp = Blueprint("reserva", __name__, url_prefix="/api/reserva")

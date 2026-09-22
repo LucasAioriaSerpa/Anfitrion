@@ -2,13 +2,10 @@ import sys, os, time
 from datetime import datetime
 from threading import Thread
 
-if getattr(sys, 'frozen', False):
-    BASE_DIR = sys._MEIPASS
-else:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False): BASE_DIR = sys._MEIPASS
+else: BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-if BASE_DIR not in sys.path:
-    sys.path.insert(0, BASE_DIR)
+if BASE_DIR not in sys.path: sys.path.insert(0, BASE_DIR)
 
 try:
     from manager.Database import Database
@@ -37,7 +34,12 @@ class Main:
         self.__log.log_info("[ Main.py ] - Verificando existência das tabelas")
 
     def __check_tables(self, tables=None) -> bool:
-        target_tables = tables or self.__config.get("TABLES") or ["hospede", "hotel", "quarto", "funcionario", "reserva"]
+        configured_tables = self.__config.get("TABLES")
+        target_tables = tables or (
+            configured_tables
+            if isinstance(configured_tables, (list, tuple, set))
+            else ["hospede", "hotel", "quarto", "funcionario", "reserva"]
+        )
         for table in target_tables:
             try: self.__db.read(table, {})
             except Exception: self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>"); return False

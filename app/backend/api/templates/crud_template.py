@@ -5,12 +5,10 @@ try:
     from manager.Database import Database
     from config.Config import Config
     from utils.Loggers import Logger
-    from api.factories.entity_factory import ModelFactory
 except ImportError:
     from app.backend.manager.Database import Database
     from app.backend.config.Config import Config
     from app.backend.utils.Loggers import Logger
-    from app.backend.api.factories.entity_factory import ModelFactory
 
 
 class CrudTemplate(ABC):
@@ -69,7 +67,7 @@ class CrudTemplate(ABC):
             self._log.log_error(f"[ {self.entity_name}Template ] - Erro interno na criação: {str(e)}")
             return self.format_response(data=None, status=500, message=f"Erro interno: {str(e)}", success=False)
 
-    def process_read_all(self, filters: dict[str, Any] = None) -> tuple[dict[str, Any], int]:
+    def process_read_all(self, filters: dict[str, Any] | None = None) -> tuple[dict[str, Any], int]:
         """
         Template Method para LISTAGEM:
         1. Sanitização dos filtros recebidos da query
@@ -143,6 +141,8 @@ class CrudTemplate(ABC):
 
             self.execute_update(validated_id, prepared_data)
             updated_record = self.execute_select_by_id(validated_id)
+            if not updated_record:
+                raise RuntimeError(f"Registro atualizado em {self.table_name}, mas falha ao recuperar por ID: {validated_id}")
             processed_record = self.after_save(updated_record, is_update=True)
 
             self._log.log_success(f"[ {self.entity_name}Template ] - {self.entity_name} ID: {entity_id} atualizado com sucesso")
@@ -252,7 +252,7 @@ class CrudTemplate(ABC):
         status: int,
         message: str = "",
         success: bool = True,
-        extra: dict = None
+        extra: dict[str, Any] | None = None
     ) -> tuple[dict[str, Any], int]:
         """Formata uma resposta JSON padrão para o React."""
         res = {
