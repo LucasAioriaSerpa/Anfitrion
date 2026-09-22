@@ -1,7 +1,7 @@
 import sys, os
 from flask import Flask, jsonify, request
 
-if getattr(sys, 'frozen', False): BASE_DIR = sys._MEIPASS
+if getattr(sys, 'frozen', False): BASE_DIR = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
 else: BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 try:

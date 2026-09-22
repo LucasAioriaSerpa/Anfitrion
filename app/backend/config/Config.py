@@ -1,5 +1,6 @@
 
 import os, sys
+from typing import Any
 from threading import Lock
 
 try:
@@ -19,7 +20,7 @@ class Config(metaclass=Singleton):
     _OS_PATH = os.path
     _lock = Lock()
 
-    if getattr(sys, 'frozen', False): ROOT_DIR = sys._MEIPASS
+    if getattr(sys, 'frozen', False): ROOT_DIR = getattr(sys, '_MEIPASS', _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))))
     else: ROOT_DIR = _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))) #* Diretório raiz do backend (/app/backend)
 
     DB_NAME = "db_anfitrion.db"
@@ -78,7 +79,7 @@ class Config(metaclass=Singleton):
             self.__log.log_warning(f"[ Config.py ] - Variável <{var_class}> não encontrada!")
             return None
 
-    def set(self, var_class: str, new_value: any) -> None:
+    def set(self, var_class: str, new_value: Any) -> None:
         """Define ou atualiza uma variável compartilhada entre threads com thread safety."""
         with self._lock:
             self._shared_store[var_class] = new_value
