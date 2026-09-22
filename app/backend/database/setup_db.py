@@ -15,8 +15,8 @@ def init_db(db_path: str = None) -> bool:
     """Inicializa as tabelas do banco de dados SQLite caso ainda não existam."""
     config = Config()
     target_path = db_path or config.get("DATABASE_DIR")
+    if not isinstance(target_path, str): raise TypeError("DATABASE_DIR deve ser um caminho de arquivo válido")
     
-    # Garante que o diretório existe
     os.makedirs(os.path.dirname(target_path), exist_ok=True)
     log.log_info(f"[ setup_db.py ] - Conectando ao banco em: {target_path}")
 
@@ -25,8 +25,8 @@ def init_db(db_path: str = None) -> bool:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
 
-        # Tabela hospede
-        cursor.execute("""
+        #? Tabela hospede
+        cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS hospede (
             id_hospede INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
@@ -37,8 +37,8 @@ def init_db(db_path: str = None) -> bool:
         );
         """)
 
-        # Tabela hotel
-        cursor.execute("""
+        #? Tabela hotel
+        cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS hotel (
             id_hotel INTEGER PRIMARY KEY AUTOINCREMENT,
             cnpj TEXT NOT NULL,
@@ -50,8 +50,8 @@ def init_db(db_path: str = None) -> bool:
         );
         """)
 
-        # Tabela quarto
-        cursor.execute("""
+        #? Tabela quarto
+        cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS quarto (
             id_quarto INTEGER PRIMARY KEY AUTOINCREMENT,
             id_hotel INTEGER NOT NULL,
@@ -65,8 +65,8 @@ def init_db(db_path: str = None) -> bool:
         );
         """)
 
-        # Tabela funcionario
-        cursor.execute("""
+        #? Tabela funcionario
+        cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS funcionario (
             id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
             id_hospede INTEGER NOT NULL,
@@ -77,8 +77,8 @@ def init_db(db_path: str = None) -> bool:
         );
         """)
 
-        # Tabela reserva
-        cursor.execute("""
+        #? Tabela reserva
+        cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS reserva (
             id_reserva INTEGER PRIMARY KEY AUTOINCREMENT,
             id_quarto INTEGER NOT NULL,
@@ -96,7 +96,7 @@ def init_db(db_path: str = None) -> bool:
             FOREIGN KEY (id_hospede) REFERENCES hospede(id_hospede)
         );
         """)
-
+        
         conn.commit()
         conn.close()
         log.log_success("[ setup_db.py ] - Banco de dados e tabelas configurados com sucesso!")
@@ -105,6 +105,4 @@ def init_db(db_path: str = None) -> bool:
         log.log_error(f"[ setup_db.py ] - Falha na criação das tabelas: {str(e)}")
         return False
 
-# Executa a inicialização ao ser importado ou executado
 init_db()
-

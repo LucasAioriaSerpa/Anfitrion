@@ -1,10 +1,8 @@
 import sys, os
 from flask import Flask, jsonify, request
 
-if getattr(sys, 'frozen', False):
-    BASE_DIR = sys._MEIPASS
-else:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False): BASE_DIR = sys._MEIPASS
+else: BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 try:
     from config.Config import Config
@@ -30,10 +28,10 @@ except ImportError:
     )
 
 class App:
-    """
-    Design Pattern: Servidor de Aplicação Web Flask.
-    Executado em uma Thread dedicada iniciada por Main.py.
-    Atende às requisições do frontend React com CRUDs e autenticação através de Blueprints.
+    """_summary_
+    # Servidor de Aplicação Web Flask.
+    - Executado em uma Thread dedicada iniciada por Main.py.
+    - Atende às requisições do frontend React com CRUDs e autenticação através de Blueprints.
     """
     __log = Logger()
     __config = Config()
@@ -110,7 +108,7 @@ class App:
         )
 
     def run(self):
-        host = self.__config.get("FLASK_HOST") or "0.0.0.0"
+        host = str(self.__config.get("FLASK_HOST") or "0.0.0.0")
         port = int(self.__config.get("FLASK_PORT") or 5000)
         debug = bool(self.__config.get("FLASK_DEBUG") or False)
         self.__log.log_info(f"[ FLASK ] - Inicializando e rodando FLASK em http://{host}:{port}")

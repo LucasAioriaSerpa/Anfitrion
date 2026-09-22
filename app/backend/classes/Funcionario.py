@@ -20,7 +20,7 @@ class Funcionario(Hospede):
         id_hospede: int,
         id_hotel: int,
         cargo: str,
-        id_funcionario: int = None,
+        id_funcionario: int | None = None,
         criado_em: str = None
     ) -> None:
         super().__init__(nome, email, senha, telefone, id_hospede=id_hospede, criado_em=criado_em)
@@ -38,13 +38,13 @@ class Funcionario(Hospede):
             case "cargo": return self.cargo
             case _: return super().get(varClass)
 
-    def __set__(self, varClass: str, newValue: int | float | str):
+    def set(self, varClass: str, newValue: int | float | str):
         match varClass:
             case "id" | "id_funcionario": self.id = self.id_funcionario = int(newValue)
             case "id_hospede": self.id_hospede = int(newValue)
             case "id_hotel": self.id_hotel = int(newValue)
             case "cargo": self.cargo = str(newValue)
-            case _: return super().__set__(varClass, newValue)
+            case _: return super().set(varClass, newValue)
 
     def to_dict(self, include_senha: bool = False) -> dict:
         base = super().to_dict(include_senha=include_senha)
@@ -58,7 +58,11 @@ class Funcionario(Hospede):
     @classmethod
     def from_dict(cls, data: dict):
         return cls(
-            id_funcionario=data.get("id_funcionario") or data.get("id"),
+            id_funcionario=(
+                int(data.get("id_funcionario") or data.get("id"))
+                if data.get("id_funcionario") is not None or data.get("id") is not None
+                else None
+            ),
             nome=data.get("nome", ""),
             email=data.get("email", ""),
             senha=data.get("senha", ""),
@@ -68,6 +72,3 @@ class Funcionario(Hospede):
             cargo=data.get("cargo", "Recepcionista"),
             criado_em=data.get("criado_em")
         )
-
-# Alias para compatibilidade com código existente
-Functionario = Funcionario

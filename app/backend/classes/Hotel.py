@@ -33,7 +33,7 @@ class Hotel:
             case "criado_em": return self.criado_em
             case _: return None
 
-    def __set__(self, varClass: str, newValue: int | float | str):
+    def set(self, varClass: str, newValue: int | float | str):
         match varClass:
             case "id" | "id_hotel": self.id = self.id_hotel = int(newValue)
             case "cnpj": self.cnpj = str(newValue)

@@ -48,7 +48,7 @@ class Reserva:
             case "criado_em": return self.criado_em
             case _: return None
 
-    def __set__(self, varClass: str, newValue: any):
+    def set(self, varClass: str, newValue: any):
         match varClass:
             case "id" | "id_reserva": self.id = self.id_reserva = int(newValue)
             case "id_quarto": self.id_quarto = int(newValue)

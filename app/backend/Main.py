@@ -7,7 +7,6 @@ if getattr(sys, 'frozen', False):
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Garante que o diretório backend esteja no PYTHONPATH
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
@@ -20,11 +19,10 @@ except ImportError:
     from app.backend.config.Config import Config
     from app.backend.utils.Loggers import Logger
 
-
 class Main:
-    """
-    Design Pattern: SINGLETON / Processador Principal (Thread MAIN).
-    Executa tarefas em segundo plano e processamentos mais pesados:
+    """_summary_
+    # Processador Principal (Thread MAIN).
+    ## Executa tarefas em segundo plano e processamentos mais pesados:
     - Verificação e auditoria de integridade do banco de dados
     - Atualização e expiração automática de reservas
     - Cálculo de métricas e taxa de ocupação hoteleira
@@ -41,11 +39,8 @@ class Main:
     def __check_tables(self, tables=None) -> bool:
         target_tables = tables or self.__config.get("TABLES") or ["hospede", "hotel", "quarto", "funcionario", "reserva"]
         for table in target_tables:
-            try:
-                self.__db.read(table, {})
-            except Exception:
-                self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>")
-                return False
+            try: self.__db.read(table, {})
+            except Exception: self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>"); return False
         return True
 
     def __seed_initial_data(self) -> None:
@@ -54,7 +49,8 @@ class Main:
             hoteis = self.__db.read("hotel", {})
             if not hoteis:
                 self.__log.log_info("[ Main.py ] - Banco vazio detectado. Inserindo dados semente (Seed)...")
-                # 1. Hotel padrão
+                
+                #? 1. Hotel padrão
                 id_hotel = self.__db.create("hotel", {
                     "cnpj": "12.345.678/0001-90",
                     "franquia": "Anfitrião Hotéis & Resorts",
@@ -63,7 +59,7 @@ class Main:
                     "qtd_quartos": 10
                 })
 
-                # 2. Quartos padrão
+                #? 2. Quartos padrão
                 quartos_seed = [
                     {"id_hotel": id_hotel, "tipo": "Standard Solteiro", "status": "Disponível", "andar": 1, "num_quarto": 101, "diaria": 120.0},
                     {"id_hotel": id_hotel, "tipo": "Standard Casal", "status": "Disponível", "andar": 1, "num_quarto": 102, "diaria": 180.0},
@@ -73,7 +69,7 @@ class Main:
                 for q in quartos_seed:
                     self.__db.create("quarto", q)
 
-                # 3. Usuário e Funcionário administrador
+                #? 3. Usuário e Funcionário administrador
                 id_hosp_admin = self.__db.create("hospede", {
                     "nome": "Administrador do Sistema",
                     "email": "admin@anfitrion.com",
@@ -86,7 +82,7 @@ class Main:
                     "cargo": "Gerente Geral"
                 })
 
-                # 4. Funcionário recepcionista
+                #? 4. Funcionário recepcionista
                 id_hosp_recep = self.__db.create("hospede", {
                     "nome": "Lucas Recepcionista",
                     "email": "recepcao@anfitrion.com",
@@ -99,7 +95,7 @@ class Main:
                     "cargo": "Recepcionista"
                 })
 
-                # 5. Hóspede demonstrativo
+                #? 5. Hóspede demonstrativo
                 self.__db.create("hospede", {
                     "nome": "Mariana Silva",
                     "email": "mariana@gmail.com",
@@ -113,7 +109,7 @@ class Main:
 
     def __process_heavy_tasks(self) -> None:
         """
-        Processamentos mais pesados executados pela Thread MAIN:
+        ### Processamentos mais pesados executados pela Thread MAIN:
         - Processamento de expiração de reservas
         - Atualização dos status dos quartos
         - Cálculo de métricas e taxa de ocupação para consulta em tempo real
@@ -121,7 +117,7 @@ class Main:
         try:
             today_str = datetime.now().strftime("%Y-%m-%d")
             
-            # 1. Checa reservas concluídas para liberar quartos
+            #? 1. Checa reservas concluídas para liberar quartos
             reservas = self.__db.read("reserva", {})
             quartos = self.__db.read("quarto", {})
             hospedes = self.__db.read("hospede", {})
@@ -130,11 +126,8 @@ class Main:
             quartos_ocupados_ids = set()
             for r in reservas:
                 check_out = str(r.get("check_out", ""))
-                # Se a data de check-out é anterior a hoje, considera vencida
-                if check_out and check_out < today_str:
-                    pass
-                else:
-                    quartos_ocupados_ids.add(r.get("id_quarto"))
+                if check_out and check_out < today_str: pass
+                else: quartos_ocupados_ids.add(r.get("id_quarto"))
 
             total_quartos = len(quartos)
             quartos_ocupados_count = len([q for q in quartos if q.get("status") == "Ocupado" or q.get("id_quarto") in quartos_ocupados_ids])
@@ -151,9 +144,8 @@ class Main:
                 "ultima_execucao_main": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
 
-            # Armazena as estatísticas no Config compartilhado entre Threads
             self.__config.set("STATS", stats)
-            cycle = (self.__config.get("BACKGROUND_TASKS_COUNTER") or 0) + 1
+            cycle = eval(f"{(self.__config.get("BACKGROUND_TASKS_COUNTER") or 0)} + 1")
             self.__config.set("BACKGROUND_TASKS_COUNTER", cycle)
 
             if cycle % 10 == 1:
@@ -161,8 +153,7 @@ class Main:
                     f"[ MAIN ] - Rotina de background executada (Ciclo {cycle}) | "
                     f"Ocupação: {taxa_ocupacao}% ({quartos_ocupados_count}/{total_quartos} quartos)"
                 )
-        except Exception as e:
-            self.__log.log_error(f"[ MAIN ] - Erro no processamento de rotinas em background: {str(e)}")
+        except Exception as e: self.__log.log_error(f"[ MAIN ] - Erro no processamento de rotinas em background: {str(e)}")
 
     def run(self):
         if not self.__check_tables():
@@ -174,10 +165,9 @@ class Main:
             except Exception as e:
                 self.__log.log_error(f"[ Main.py ] - Erro ao realizar setup do banco: {str(e)}")
                 return None
-
-        # Garante dados semente para testes
+        
         self.__seed_initial_data()
-
+        
         sleep_interval = float(self.__config.get("MAIN_SLEEP_INTERVAL") or 3.0)
         self.__log.log_success("[ MAIN ] - Thread MAIN de processamento pesado iniciada!")
 
@@ -201,10 +191,8 @@ if "__main__" == __name__:
     main.start()
     flask.start()
 
-    # Mantém o processo principal vivo para gerenciar as threads
     try:
-        while True:
-            time.sleep(1)
+        while True: time.sleep(1)
     except KeyboardInterrupt:
         log.log_info("[ Main.py ] - Finalizando aplicação...")
         Config().set("IS_RUNNING", False)

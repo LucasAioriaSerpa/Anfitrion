@@ -1,11 +1,11 @@
 from typing import cast, Any
 
 try:
-    from classes.Funcionario import Funcionario, Functionario
+    from classes.Funcionario import Funcionario
     from classes.Hospede import Hospede
     from utils.Loggers import Logger
 except ImportError:
-    from app.backend.classes.Funcionario import Funcionario, Functionario
+    from app.backend.classes.Funcionario import Funcionario
     from app.backend.classes.Hospede import Hospede
     from app.backend.utils.Loggers import Logger
 

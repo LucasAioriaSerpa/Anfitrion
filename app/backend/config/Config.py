@@ -19,13 +19,9 @@ class Config(metaclass=Singleton):
     _OS_PATH = os.path
     _lock = Lock()
 
-    if getattr(sys, 'frozen', False):
-        ROOT_DIR = sys._MEIPASS
-    else:
-        # Diretório raiz do backend (/app/backend)
-        ROOT_DIR = _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__)))
+    if getattr(sys, 'frozen', False): ROOT_DIR = sys._MEIPASS
+    else: ROOT_DIR = _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))) #* Diretório raiz do backend (/app/backend)
 
-    # Constantes do Sistema
     DB_NAME = "db_anfitrion.db"
     FLASK_HOST = "0.0.0.0"
     FLASK_PORT = 5000
@@ -44,11 +40,10 @@ class Config(metaclass=Singleton):
     CARGOS_FUNCIONARIO = ["Gerente", "Recepcionista", "Camareira", "Governanta", "Concierge"]
 
     def __init__(self) -> None:
-        db_dir = self._OS_PATH.join(self.ROOT_DIR, "database")
-        self._OS_PATH.exists(db_dir) or os.makedirs(db_dir, exist_ok=True)
+        db_dir = self._OS_PATH.join(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__)))), "database") #* /app/database
+        if not self._OS_PATH.exists(db_dir): os.makedirs(db_dir, exist_ok=True)
         self.DATABASE_DIR = self._OS_PATH.join(db_dir, self.DB_NAME)
 
-        # Repositório de variáveis dinâmicas compartilhadas entre Threads
         self._shared_store: dict = {
             "DATABASE_DIR": self.DATABASE_DIR,
             "DB_NAME": self.DB_NAME,
@@ -73,7 +68,7 @@ class Config(metaclass=Singleton):
             "BACKGROUND_TASKS_COUNTER": 0
         }
 
-    def get(self, var_class: str) -> any:
+    def get(self, var_class: str) -> str | int | float | None:
         """Obtém uma variável constante ou compartilhada com segurança entre threads."""
         with self._lock:
             if var_class in self._shared_store:
@@ -90,6 +85,5 @@ class Config(metaclass=Singleton):
             setattr(self, var_class, new_value)
             self.__log.log_info(f"[ Config.py ] - Variável <{var_class}> atualizada entre threads")
 
-# Compatibilidade para importação direta de DATABASE_DIR
 DATABASE_DIR = Config().DATABASE_DIR
 

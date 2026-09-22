@@ -3,8 +3,8 @@
 Escolhemos a **opção 1** 👍
 
 - [x] Singleton - codar 2 exemplos
-- [ ] Template method - Codar 3 exemplos
-- [ ] Um novo design pattern (Factory Method) - codar 3 exemplos
+- [x] Template method - Codar 3 exemplos
+- [x] Um novo design pattern (Factory Method) - codar 3 exemplos
 
 ---
 

@@ -30,7 +30,7 @@ class Hospede:
             case "criado_em": return self.criado_em
             case _: return None
 
-    def __set__(self, varClass: str, newValue: int | float | str):
+    def set(self, varClass: str, newValue: int | float | str):
         match varClass:
             case "id" | "id_hospede":
                 self.id = self.id_hospede = int(newValue)
