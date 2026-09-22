@@ -147,7 +147,7 @@ class Main:
             }
 
             self.__config.set("STATS", stats)
-            cycle = eval(f"{(self.__config.get("BACKGROUND_TASKS_COUNTER") or 0)} + 1")
+            cycle = eval(f"{(self.__config.get('BACKGROUND_TASKS_COUNTER') or 0)} + 1")
             self.__config.set("BACKGROUND_TASKS_COUNTER", cycle)
 
             if cycle % 10 == 1:

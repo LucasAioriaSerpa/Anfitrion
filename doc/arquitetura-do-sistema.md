@@ -30,6 +30,22 @@ Para o sistema todo será utilizado duas orientações de programação, a princ
 
 ---
 
+## Backend (Visão Geral)
+
+O backend foi construído em **Python (Flask + SQLite)** com arquitetura modular baseada em concorrência multi-thread e padrões de projeto GoF:
+
+- **Arquitetura em Duas Threads**:
+  - **Thread MAIN (Worker)**: Processa rotinas pesadas em segundo plano contínuo (auditoria de tabelas, expiração de reservas vencidas e cálculo em tempo real da taxa de ocupação dos hotéis).
+  - **Thread FLASK (API REST)**: Atende de forma ágil e sem bloqueios às requisições do frontend React através de Blueprints organizados por recursos (`/api/hospede`, `/api/hotel`, `/api/quarto`, `/api/funcionario`, `/api/reserva`, `/api/auth`).
+- **Comunicação Inter-Threads**: Feita com segurança (*thread-safe*) via repositório em memória na classe `Config` (Singleton com `Lock`).
+- **Padrões de Projeto Aplicados**:
+  - **Singleton**: Garante instância única e controle de concorrência no `Config` e na camada de dados `Database`.
+  - **Factory Method**: Criação padronizada e desacoplada das entidades de domínio (`ModelFactory` e classes filhas de `EntityFactory`).
+  - **Template Method**: Padronização invariante do ciclo de vida das operações CRUD (`CrudTemplate`), permitindo validações, ganchos automáticos de atualização de status dos quartos e pós-processamento.
+- **Documentação Detalhada**: Para a especificação técnica completa, consulte o documento [`doc/arquitetura_backend.md`](arquitetura_backend.md).
+
+---
+
 ## Interfaces
 
 - Tela principal mostrando as ofertas das reservas
