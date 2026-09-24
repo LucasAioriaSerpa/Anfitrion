@@ -10,8 +10,8 @@ Escolhemos a **opção 1** 👍
 
 - [ ] Minimo de 2 telas (CRUD) por integrante com a devida conexão com o banco de dados
   - Alyson Ferreira de Souza
-    - [ ] Tela - 1
-    - [ ] Tela - 2
+    - [x] Autenticação
+    - [ ] Cadastro de hotel
   - Flavia Cristina Fagundes
     - [ ] RESERVA (PELO HOSPEDE)
     - [ ] HOSPEDE - MUDAR RESERVA
