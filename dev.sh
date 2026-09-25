@@ -17,6 +17,6 @@ tmux new-session -d -s "$SESSION" -n "flask" -c "$BACKEND_DIR"
 tmux send-keys -t "$SESSION:flask" "py Main.py" C-m
 
 tmux split-window -h -t "$SESSION:flask" -c "$FRONTEND_DIR"
-tmux send-keys -t "$SESSION:flask.1" "npm start" C-m
+tmux send-keys -t "$SESSION:flask.1" "npm run build && npx serve -s build" C-m
 
 tmux attach-session -t "$SESSION"

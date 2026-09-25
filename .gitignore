@@ -11,10 +11,12 @@ lerna-debug.log*
 __pycache__/*
 *.pyc
 
+package-lock.json
 node_modules
 dist*
 dist-ssr*
 *.local
+Anfitrion-App-Build
 
 # Editor directories and files
 .vscode/*

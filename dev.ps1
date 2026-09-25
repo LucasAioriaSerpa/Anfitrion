@@ -1,3 +1,6 @@
+
+clear
+
 $wt = Get-Command wt -ErrorAction SilentlyContinue
 
 if (-not $wt) {
@@ -9,4 +12,4 @@ if (-not $wt) {
 $backendDir  = "$PSScriptRoot\app\backend"
 $frontendDir = "$PSScriptRoot\app\frontend"
 
-wt -d $backendDir pwsh -NoExit -Command "py Main.py" `; split-pane -H -d $frontendDir pwsh -NoExit -Command "npm run dev"
+wt -d $backendDir pwsh -NoExit -Command "py Main.py" `; split-pane -H -d $frontendDir pwsh -NoExit -Command "npm run build && npx serve -s build"
