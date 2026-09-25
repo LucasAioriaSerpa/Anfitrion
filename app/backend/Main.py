@@ -45,69 +45,6 @@ class Main:
             except Exception: self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>"); return False
         return True
 
-    def __seed_initial_data(self) -> None:
-        """Popula o banco com dados iniciais se estiver vazio para facilitar testes pelo React."""
-        try:
-            hoteis = self.__db.read("hotel", {})
-            if not hoteis:
-                self.__log.log_info("[ Main.py ] - Banco vazio detectado. Inserindo dados semente (Seed)...")
-                
-                #? 1. Hotel padrão
-                id_hotel = self.__db.create("hotel", {
-                    "cnpj": "12.345.678/0001-90",
-                    "franquia": "Anfitrião Hotéis & Resorts",
-                    "nome": "Anfitrião Grand Hotel",
-                    "endereso": "Avenida Atlântica, 1500 - Copacabana",
-                    "qtd_quartos": 10
-                })
-
-                #? 2. Quartos padrão
-                quartos_seed = [
-                    {"id_hotel": id_hotel, "tipo": "Standard Solteiro", "status": "Disponível", "andar": 1, "num_quarto": 101, "diaria": 120.0},
-                    {"id_hotel": id_hotel, "tipo": "Standard Casal", "status": "Disponível", "andar": 1, "num_quarto": 102, "diaria": 180.0},
-                    {"id_hotel": id_hotel, "tipo": "Suíte Luxo", "status": "Disponível", "andar": 2, "num_quarto": 201, "diaria": 320.0},
-                    {"id_hotel": id_hotel, "tipo": "Suíte Presidencial", "status": "Disponível", "andar": 3, "num_quarto": 301, "diaria": 650.0}
-                ]
-                for q in quartos_seed:
-                    self.__db.create("quarto", q)
-
-                #? 3. Usuário e Funcionário administrador
-                id_hosp_admin = self.__db.create("hospede", {
-                    "nome": "Administrador do Sistema",
-                    "email": "admin@anfitrion.com",
-                    "senha": "admin",
-                    "telefone": "(11) 98888-7777"
-                })
-                self.__db.create("funcionario", {
-                    "id_hospede": id_hosp_admin,
-                    "id_hotel": id_hotel,
-                    "cargo": "Gerente Geral"
-                })
-
-                #? 4. Funcionário recepcionista
-                id_hosp_recep = self.__db.create("hospede", {
-                    "nome": "Lucas Recepcionista",
-                    "email": "recepcao@anfitrion.com",
-                    "senha": "123",
-                    "telefone": "(11) 97777-6666"
-                })
-                self.__db.create("funcionario", {
-                    "id_hospede": id_hosp_recep,
-                    "id_hotel": id_hotel,
-                    "cargo": "Recepcionista"
-                })
-
-                #? 5. Hóspede demonstrativo
-                self.__db.create("hospede", {
-                    "nome": "Mariana Silva",
-                    "email": "mariana@gmail.com",
-                    "senha": "123",
-                    "telefone": "(21) 99999-1234"
-                })
-
-                self.__log.log_success("[ Main.py ] - Dados semente inseridos com sucesso!")
-        except Exception as e:
-            self.__log.log_warning(f"[ Main.py ] - Aviso ao verificar dados semente: {str(e)}")
 
     def __process_heavy_tasks(self) -> None:
         """
@@ -167,8 +104,6 @@ class Main:
             except Exception as e:
                 self.__log.log_error(f"[ Main.py ] - Erro ao realizar setup do banco: {str(e)}")
                 return None
-        
-        self.__seed_initial_data()
         
         sleep_interval = float(self.__config.get("MAIN_SLEEP_INTERVAL") or 3.0)
         self.__log.log_success("[ MAIN ] - Thread MAIN de processamento pesado iniciada!")

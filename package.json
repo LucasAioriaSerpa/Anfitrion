@@ -10,5 +10,9 @@
     "dev": "npm run dev --workspace=anfitrion-frontend",
     "build": "npm run build --workspace=anfitrion-frontend",
     "lint": "npm run lint --workspace=anfitrion-frontend"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
   }
 }

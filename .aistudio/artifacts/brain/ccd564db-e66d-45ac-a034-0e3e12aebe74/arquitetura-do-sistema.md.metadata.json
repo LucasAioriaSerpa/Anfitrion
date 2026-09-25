@@ -1,0 +1,5 @@
+{
+  "summary":  "Documento de visão geral da arquitetura do sistema Anfitrião, apresentando a paleta de cores, a stack completa (React, Flask, SQLite), os padrões de projeto GoF adotados e o resumo das interfaces de usuário (Hóspedes e Funcionários).",
+  "updatedAt":  "2026-09-25T19:17:20.613859176Z",
+  "userFacing":  true
+}

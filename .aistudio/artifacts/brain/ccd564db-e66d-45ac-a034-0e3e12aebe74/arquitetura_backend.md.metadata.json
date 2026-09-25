@@ -1,0 +1,5 @@
+{
+  "summary":  "Documento técnico detalhado da arquitetura do backend em Python/Flask, abordando o modelo de concorrência multi-thread (Worker MAIN + Flask Web), os padrões de projeto GoF (Singleton, Factory Method, Template Method), integridade transacional no SQLite e o ciclo de vida completo das requisições RESTful.",
+  "updatedAt":  "2026-09-25T19:17:16.145267392Z",
+  "userFacing":  true
+}

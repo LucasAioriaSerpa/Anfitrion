@@ -67,14 +67,21 @@ def login():
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    """Registra um novo usuário (hóspede ou funcionário) utilizando o userFactory."""
+    """Registra um novo hóspede. Somente hóspedes podem criar suas próprias contas."""
     data = request.get_json(silent=True) or {}
     email = str(data.get("email", "")).strip().lower()
     senha = str(data.get("senha", ""))
     nome = str(data.get("nome", "")).strip() or email.split("@")[0]
     telefone = str(data.get("telefone", "0000000000"))
-    codigo_acesso = str(data.get("codigoAcesso", "")).strip()
-    role = "funcionario" if codigo_acesso else data.get("role", "hospede")
+    requested_role = str(data.get("role", "hospede")).strip().lower()
+
+    if requested_role == "funcionario" or data.get("codigoAcesso"):
+        return jsonify({
+            "success": False,
+            "message": "Apenas hóspedes podem criar suas próprias contas. Contas de funcionários são cadastradas pela administração do hotel."
+        }), 403
+
+    role = "hospede"
 
     if not email or not senha:
         return jsonify({"success": False, "message": "E-mail e senha são obrigatórios"}), 400
