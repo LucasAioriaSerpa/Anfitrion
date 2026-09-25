@@ -1,3 +1,4 @@
+from typing import Optional, cast, Any
 import sqlite3
 import pathlib
 
@@ -23,16 +24,13 @@ class Database(metaclass=Singleton):
         try:
             self.db_path = self.__db_path_init()
             self.__log.log_info(f"[ Database.py ] - Instância de Database inicializada: {self.db_path}")
-        except Exception as e:
-            self.__log.log_error(f"[ Database.py ] - Erro ao inicializar db_path: {str(e)}")
+        except Exception as e: self.__log.log_error(f"[ Database.py ] - Erro ao inicializar db_path: {str(e)}")
 
-    def __str__(self) -> str:
-        return "Objeto Singleton de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
+    def __str__(self) -> str: return "Objeto Singleton de conexão, inserção, atualização, visualização e remoção do banco de dados SQLite"
 
     def __db_path_init(self) -> str:
         db_path = self.__config.get("DATABASE_DIR")
-        if not isinstance(db_path, (str, bytes, pathlib.Path)):
-            raise TypeError("DATABASE_DIR deve ser um caminho válido")
+        if not isinstance(db_path, (str, bytes, pathlib.Path)): raise TypeError("DATABASE_DIR deve ser um caminho válido")
         return str(db_path)
 
     def connect(self):
@@ -60,18 +58,21 @@ class Database(metaclass=Singleton):
         placeholders = ", ".join(["?" for _ in data])
         values = tuple(data.values())
         query = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
-        last_id = self._execute(query, values)
+        try:  last_id = cast(int, self._execute(query, values))
+        except Exception as e: last_id = -1
         self.__log.log_info(f"[ Database.py ] - Registro criado em <{table}> com ID: {last_id}")
         return last_id
 
-    def read(self, table: str, conditions: dict = None) -> list[dict]:
+    def read(self, table: str, conditions: Optional[dict] = None) -> list[dict[Any, Any]]:
         query = f"SELECT * FROM {table}"
         values = ()
         if conditions:
             condition = " AND ".join([f"{col}=?" for col in conditions.keys()])
             query += f" WHERE {condition}"
             values = tuple(conditions.values())
-        return self._execute(query, values, fetch=True)
+        try: reading = cast(list[dict[Any, Any]], self._execute(query, values, fetch=True))
+        except Exception as e: reading = [{}]
+        return reading
 
     def update(self, table: str, data: dict, conditions: dict) -> bool:
         set_value = ", ".join([f"{col}=?" for col in data.keys()])

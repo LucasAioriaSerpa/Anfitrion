@@ -16,8 +16,8 @@ class Config(metaclass=Singleton):
     Classe central de configurações do sistema Anfitrião.
     Armazena constantes, caminhos e variáveis compartilhadas entre Threads (MAIN e FLASK).
     """
-    __log = Logger()
     _OS_PATH = os.path
+    __log = Logger()
     _lock = Lock()
 
     if getattr(sys, 'frozen', False): ROOT_DIR = getattr(sys, '_MEIPASS', _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))))
@@ -41,7 +41,8 @@ class Config(metaclass=Singleton):
     CARGOS_FUNCIONARIO = ["Gerente", "Recepcionista", "Camareira", "Governanta", "Concierge"]
 
     def __init__(self) -> None:
-        db_dir = self._OS_PATH.join(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__)))), "database") #* /app/database
+        app_dir = self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__))))
+        db_dir = self._OS_PATH.join(app_dir, "database") #* /app/database
         if not self._OS_PATH.exists(db_dir): os.makedirs(db_dir, exist_ok=True)
         self.DATABASE_DIR = self._OS_PATH.join(db_dir, self.DB_NAME)
 
