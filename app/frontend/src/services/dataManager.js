@@ -1,6 +1,17 @@
-import { Quarto, Reserva, Funcionario, Hospede, Hotel } from '../models/index.js';
-import { initialQuartos, initialReservas, allMockUsers, mockHoteis } from '../data/mockData.js';
-import { quartoApi, reservaApi } from './apiService.js';
+import {
+  Quarto,
+  Reserva,
+  Funcionario,
+  Hospede,
+  Hotel,
+} from "../models/index.js";
+import {
+  initialQuartos,
+  initialReservas,
+  allMockUsers,
+  mockHoteis,
+} from "../data/mockData.js";
+import { quartoApi, reservaApi } from "./apiService.js";
 
 /**
  * DataManager (Padrão Singleton / Facade & Observer OO)
@@ -28,7 +39,7 @@ class HotelDataManager {
       try {
         listener(this);
       } catch (err) {
-        console.error('Erro no listener do DataManager:', err);
+        console.error("Erro no listener do DataManager:", err);
       }
     }
   }
@@ -47,7 +58,7 @@ class HotelDataManager {
 
       // 2. Quartos do Storage ou API
       let rawQuartos = [];
-      const savedQuartos = localStorage.getItem('anfitrion_quartos_db');
+      const savedQuartos = localStorage.getItem("anfitrion_quartos_db");
       if (savedQuartos) {
         try {
           rawQuartos = JSON.parse(savedQuartos);
@@ -61,13 +72,16 @@ class HotelDataManager {
         } else {
           rawQuartos = initialQuartos;
         }
-        localStorage.setItem('anfitrion_quartos_db', JSON.stringify(rawQuartos));
+        localStorage.setItem(
+          "anfitrion_quartos_db",
+          JSON.stringify(rawQuartos),
+        );
       }
       this._quartos = rawQuartos.map((q) => new Quarto(q));
 
       // 3. Usuários (Funcionários e Hóspedes)
       let rawUsers = [];
-      const savedUsers = localStorage.getItem('anfitrion_registered_users');
+      const savedUsers = localStorage.getItem("anfitrion_registered_users");
       if (savedUsers) {
         try {
           rawUsers = JSON.parse(savedUsers);
@@ -76,20 +90,23 @@ class HotelDataManager {
         }
       } else {
         rawUsers = allMockUsers;
-        localStorage.setItem('anfitrion_registered_users', JSON.stringify(rawUsers));
+        localStorage.setItem(
+          "anfitrion_registered_users",
+          JSON.stringify(rawUsers),
+        );
       }
 
       this._funcionarios = rawUsers
-        .filter((u) => u.role === 'funcionario' || u.cargo)
+        .filter((u) => u.role === "funcionario" || u.cargo)
         .map((u) => new Funcionario(u));
 
       this._hospedes = rawUsers
-        .filter((u) => u.role === 'hospede' || !u.cargo)
+        .filter((u) => u.role === "hospede" || !u.cargo)
         .map((u) => new Hospede(u));
 
       // 4. Reservas
       let rawReservas = [];
-      const savedReservas = localStorage.getItem('anfitrion_reservas_db');
+      const savedReservas = localStorage.getItem("anfitrion_reservas_db");
       if (savedReservas) {
         try {
           rawReservas = JSON.parse(savedReservas);
@@ -103,7 +120,10 @@ class HotelDataManager {
         } else {
           rawReservas = initialReservas;
         }
-        localStorage.setItem('anfitrion_reservas_db', JSON.stringify(rawReservas));
+        localStorage.setItem(
+          "anfitrion_reservas_db",
+          JSON.stringify(rawReservas),
+        );
       }
 
       this._reservas = rawReservas.map((r) => {
@@ -116,12 +136,16 @@ class HotelDataManager {
       this._initialized = true;
       this._notify();
     } catch (e) {
-      console.warn('Fallback na inicialização do DataManager:', e);
+      console.warn("Fallback na inicialização do DataManager:", e);
       this._hotel = new Hotel(mockHoteis[0]);
       this._quartos = initialQuartos.map((q) => new Quarto(q));
       this._reservas = initialReservas.map((r) => new Reserva(r));
-      this._funcionarios = allMockUsers.filter((u) => u.cargo).map((u) => new Funcionario(u));
-      this._hospedes = allMockUsers.filter((u) => !u.cargo).map((u) => new Hospede(u));
+      this._funcionarios = allMockUsers
+        .filter((u) => u.cargo)
+        .map((u) => new Funcionario(u));
+      this._hospedes = allMockUsers
+        .filter((u) => !u.cargo)
+        .map((u) => new Hospede(u));
       this._initialized = true;
       this._notify();
     }
@@ -151,24 +175,24 @@ class HotelDataManager {
   // Métodos de Persistência Local
   _persistirQuartos() {
     localStorage.setItem(
-      'anfitrion_quartos_db',
-      JSON.stringify(this._quartos.map((q) => q.toDict()))
+      "anfitrion_quartos_db",
+      JSON.stringify(this._quartos.map((q) => q.toDict())),
     );
   }
 
   _persistirReservas() {
     localStorage.setItem(
-      'anfitrion_reservas_db',
-      JSON.stringify(this._reservas.map((r) => r.toDict()))
+      "anfitrion_reservas_db",
+      JSON.stringify(this._reservas.map((r) => r.toDict())),
     );
   }
 
   _persistirUsuarios() {
     const todos = [
       ...this._funcionarios.map((f) => f.toDict(true)),
-      ...this._hospedes.map((h) => h.toDict(true))
+      ...this._hospedes.map((h) => h.toDict(true)),
     ];
-    localStorage.setItem('anfitrion_registered_users', JSON.stringify(todos));
+    localStorage.setItem("anfitrion_registered_users", JSON.stringify(todos));
   }
 
   // =========================================================================
@@ -207,7 +231,15 @@ class HotelDataManager {
     return true;
   }
 
-  async criarReserva({ idQuarto, idHospede, dataCheckin, dataCheckout, cafeDaManha, pet, almoco }) {
+  async criarReserva({
+    idQuarto,
+    idHospede,
+    dataCheckin,
+    dataCheckout,
+    cafeDaManha,
+    pet,
+    almoco,
+  }) {
     const quarto = this._quartos.find((q) => q.id === Number(idQuarto));
     const hospede = this._hospedes.find((h) => h.id === Number(idHospede));
 
@@ -217,20 +249,20 @@ class HotelDataManager {
       id_hospede: Number(idHospede),
       data_checkin: dataCheckin,
       data_checkout: dataCheckout,
-      status: 'Confirmada',
+      status: "Confirmada",
       cafe_da_manha: cafeDaManha,
       pet: pet,
       almoco: almoco,
       criado_em: new Date().toISOString(),
       quarto: quarto,
-      hospede: hospede
+      hospede: hospede,
     });
 
     novaReserva.recalcularTotal(quarto ? quarto.diaria : 150);
 
     this._reservas.unshift(novaReserva);
     if (quarto) {
-      quarto.status = 'Ocupado';
+      quarto.status = "Ocupado";
       this._persistirQuartos();
     }
 
@@ -250,10 +282,10 @@ class HotelDataManager {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
 
-    reserva.status = 'Cancelada';
+    reserva.status = "Cancelada";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
     if (quarto) {
-      quarto.status = 'Disponível';
+      quarto.status = "Disponível";
       this._persistirQuartos();
     }
 
@@ -266,10 +298,10 @@ class HotelDataManager {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
 
-    reserva.status = 'Check-in Realizado';
+    reserva.status = "Check-in Realizado";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
     if (quarto) {
-      quarto.status = 'Ocupado';
+      quarto.status = "Ocupado";
       this._persistirQuartos();
     }
 
@@ -282,10 +314,10 @@ class HotelDataManager {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
 
-    reserva.status = 'Check-out Finalizado';
+    reserva.status = "Check-out Finalizado";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
     if (quarto) {
-      quarto.status = 'Em Limpeza';
+      quarto.status = "Em Limpeza";
       this._persistirQuartos();
     }
 
@@ -301,10 +333,10 @@ class HotelDataManager {
       id_hospede: Date.now(),
       nome: dados.nome,
       email: dados.email,
-      senha: dados.senha || '123',
-      telefone: dados.telefone || '',
+      senha: dados.senha || "123",
+      telefone: dados.telefone || "",
       cargo: dados.cargo,
-      id_hotel: 1
+      id_hotel: 1,
     });
 
     this._funcionarios.push(novoFunc);
@@ -319,10 +351,10 @@ class HotelDataManager {
       id_quarto: Date.now(),
       id_hotel: 1,
       tipo: dados.tipo,
-      status: 'Disponível',
+      status: "Disponível",
       andar: Number(dados.andar),
       num_quarto: Number(dados.num_quarto),
-      diaria: Number(dados.diaria)
+      diaria: Number(dados.diaria),
     });
 
     this._quartos.push(novoQuarto);
