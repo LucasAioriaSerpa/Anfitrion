@@ -9,7 +9,10 @@ function AuthFuncionario({ onEnterDashboard }) {
     email: '',
     telefone: '',
     senha: '',
-    confirmarSenha: ''
+    confirmarSenha: '',
+    role: 'hospede',
+    codigoAcesso: '',
+    cargo: 'Recepcionista'
   });
 
   const [usuarioLogado, setUsuarioLogado] = useState(() => {
@@ -33,11 +36,14 @@ function AuthFuncionario({ onEnterDashboard }) {
     }));
   };
 
-  const handleQuickFill = (email, senha) => {
+  const handleQuickFill = (email, senha, role = 'hospede', codigoAcesso = '') => {
     setFormData((prev) => ({
       ...prev,
       email,
-      senha
+      senha,
+      role,
+      codigoAcesso,
+      cargo: role === 'hospede' ? 'Hóspede' : (prev.cargo || 'Recepcionista')
     }));
     setErro('');
     setMensagem('');
@@ -57,6 +63,12 @@ function AuthFuncionario({ onEnterDashboard }) {
 
     if (!formData.email || !formData.senha) {
       setErro('Preencha e-mail e senha!');
+      return;
+    }
+
+    const role = (formData.role || 'hospede').toLowerCase();
+    if (role !== 'hospede' && !formData.codigoAcesso.trim()) {
+      setErro('Informe o código de acesso do funcionário para continuar.');
       return;
     }
 
@@ -85,7 +97,9 @@ function AuthFuncionario({ onEnterDashboard }) {
           email: formData.email.trim(),
           senha: formData.senha,
           telefone: formData.telefone.trim(),
-          role: 'hospede'
+          role: (formData.role || 'hospede').toLowerCase(),
+          codigoAcesso: formData.codigoAcesso.trim(),
+          cargo: formData.cargo || 'Recepcionista'
         });
 
         if (res.ok && res.data?.success) {
@@ -105,7 +119,9 @@ function AuthFuncionario({ onEnterDashboard }) {
         // LOGIN: Serve tanto para funcionários quanto para hóspedes
         const res = await authApi.login({
           email: formData.email.trim(),
-          senha: formData.senha
+          senha: formData.senha,
+          role: (formData.role || 'hospede').toLowerCase(),
+          codigoAcesso: formData.codigoAcesso.trim()
         });
 
         if (res.ok && res.data?.success) {
@@ -118,6 +134,9 @@ function AuthFuncionario({ onEnterDashboard }) {
           setMensagem(`Bem-vindo(a), ${userName}! Conectado como ${userRole}. ✅`);
           setUsuarioLogado(user);
           localStorage.setItem('anfitrion_user', JSON.stringify(user));
+          if (onEnterDashboard) {
+            onEnterDashboard(user);
+          }
         } else {
           setErro(res.data?.message || 'E-mail ou senha incorretos.');
         }
@@ -217,19 +236,18 @@ function AuthFuncionario({ onEnterDashboard }) {
             /* Formulário de Login / Cadastro */
             <>
               <div className="login-header">
-                <h2>{isSignUp ? 'Criar Conta de Hóspede' : 'Bem-vindo'}</h2>
+                <h2>{isSignUp ? 'Criar Conta' : 'Bem-vindo'}</h2>
                 <p className="subtitle">
                   {isSignUp
-                    ? 'Preencha seus dados para gerenciar suas estadias'
+                    ? 'Preencha seus dados para criar uma conta de acesso'
                     : 'Acesse sua conta para continuar (Funcionários & Hóspedes)'}
                 </p>
               </div>
 
-              {/* Aviso explícito de que cadastro é exclusivo para hóspedes */}
               {isSignUp && (
                 <div className="auth-notice">
-                  <strong>ℹ️ Cadastro exclusivo para hóspedes</strong>
-                  Contas de funcionários são gerenciadas e cadastradas exclusivamente pela administração do hotel.
+                  <strong>ℹ️ Cadastro por perfil</strong>
+                  Hóspedes podem se cadastrar livremente. Funcionários devem informar o código de acesso.
                 </div>
               )}
 
@@ -237,6 +255,19 @@ function AuthFuncionario({ onEnterDashboard }) {
               {erro && <div id="auth-error-msg" className="erro">{erro}</div>}
 
               <form id="auth-form" onSubmit={handleSubmit} className="login-form">
+                <div className="form-group">
+                  <label htmlFor="role">Tipo da conta</label>
+                  <select
+                    id="role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                  >
+                    <option value="hospede">Hóspede</option>
+                    <option value="funcionario">Funcionário</option>
+                  </select>
+                </div>
+
                 {isSignUp && (
                   <div className="form-group">
                     <label htmlFor="nome">Nome Completo</label>
@@ -279,6 +310,21 @@ function AuthFuncionario({ onEnterDashboard }) {
                   </div>
                 )}
 
+                {(formData.role || 'hospede') !== 'hospede' && (
+                  <div className="form-group">
+                    <label htmlFor="codigoAcesso">Código de acesso do funcionário</label>
+                    <input
+                      type="text"
+                      id="codigoAcesso"
+                      name="codigoAcesso"
+                      value={formData.codigoAcesso}
+                      onChange={handleChange}
+                      placeholder="Digite o código do funcionário"
+                      required
+                    />
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label htmlFor="senha">Senha</label>
                   <input
@@ -315,11 +361,11 @@ function AuthFuncionario({ onEnterDashboard }) {
                 >
                   {carregando
                     ? 'Processando...'
-                    : (isSignUp ? 'Criar Conta de Hóspede' : 'Entrar')}
+                    : (isSignUp ? 'Criar Conta' : 'Entrar')}
                 </button>
               </form>
 
-              {/* Botão de Alternância entre Login e Cadastro de Hóspede */}
+              {/* Botão de Alternância entre Login e Cadastro */}
               <div className="toggle-form">
                 <button
                   id="auth-toggle-mode-btn"
@@ -333,7 +379,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                 >
                   {isSignUp
                     ? 'Já tem conta? Fazer login'
-                    : 'Não tem conta? Cadastre-se como hóspede'}
+                    : 'Não tem conta? Cadastre-se'}
                 </button>
               </div>
 
@@ -345,7 +391,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('mariana@gmail.com', '123')}
+                      onClick={() => handleQuickFill('mariana@gmail.com', '123', 'hospede')}
                       title="Conta de hóspede existente"
                     >
                       🧳 Hóspede (Mariana)
@@ -353,7 +399,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('admin@anfitrion.com', 'admin')}
+                      onClick={() => handleQuickFill('admin@anfitrion.com', 'admin', 'funcionario', 'ADMIN2024')}
                       title="Administrador Geral"
                     >
                       🛡️ Administrador
@@ -361,7 +407,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('gerente@anfitrion.com', '123')}
+                      onClick={() => handleQuickFill('gerente@anfitrion.com', '123', 'funcionario', 'GERENTE2024')}
                       title="Gerente Geral"
                     >
                       👔 Gerente Geral
@@ -369,7 +415,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('subgerente@anfitrion.com', '123')}
+                      onClick={() => handleQuickFill('subgerente@anfitrion.com', '123', 'funcionario', 'SUBGERENTE2024')}
                       title="Subgerente Operacional"
                     >
                       📋 Subgerente
@@ -377,7 +423,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('recepcao@anfitrion.com', '123')}
+                      onClick={() => handleQuickFill('recepcao@anfitrion.com', '123', 'funcionario', 'RECEPCAO2024')}
                       title="Recepcionista"
                     >
                       🛎️ Recepcionista
@@ -385,7 +431,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('governanta@anfitrion.com', '123')}
+                      onClick={() => handleQuickFill('governanta@anfitrion.com', '123', 'funcionario', 'GOVERNANTA2024')}
                       title="Governanta Chefe"
                     >
                       🗝️ Governanta
@@ -393,7 +439,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('camareira@anfitrion.com', '123')}
+                      onClick={() => handleQuickFill('camareira@anfitrion.com', '123', 'funcionario', 'CAMAREIRA2024')}
                       title="Camareira Sênior"
                     >
                       🧹 Camareira

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Auth from './pages/Auth';
+import Rooms from './pages/Rooms';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import RoleViewFactory from './components/views/RoleViewFactory';
@@ -16,9 +17,15 @@ function App() {
     }
   });
 
-  // viewMode: 'auth' | 'dashboard'
-  // Inicia em 'auth' para garantir a visualização original do Login & Sign-up
-  const [viewMode, setViewMode] = useState('auth');
+  // viewMode: 'auth' | 'rooms'
+  // Mantém a sessão ativa na tela de quartos até o usuário sair explicitamente.
+  const [viewMode, setViewMode] = useState(() => {
+    try {
+      return localStorage.getItem('anfitrion_user') ? 'rooms' : 'auth';
+    } catch {
+      return 'auth';
+    }
+  });
   const [activeRole, setActiveRole] = useState('auto');
 
   useEffect(() => {
@@ -28,7 +35,12 @@ function App() {
   const handleEnterDashboard = (userRaw) => {
     const usuarioModel = criarUsuario(userRaw);
     setCurrentUser(usuarioModel);
-    setViewMode('dashboard');
+    setViewMode('rooms');
+    try {
+      localStorage.setItem('anfitrion_user', JSON.stringify(userRaw));
+    } catch {
+      // ignore
+    }
   };
 
   const handleLogout = () => {
@@ -54,6 +66,10 @@ function App() {
   // MODO AUTENTICAÇÃO: Preserva 100% o layout e CSS original do Login & Cadastro
   if (viewMode === 'auth') {
     return <Auth onEnterDashboard={handleEnterDashboard} />;
+  }
+
+  if (viewMode === 'rooms') {
+    return <Rooms onLogout={handleLogout} />;
   }
 
   // MODO PAINEL: Apresenta o painel de variabilidade POO/OO

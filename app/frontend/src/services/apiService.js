@@ -166,14 +166,23 @@ export const authApi = {
   login: async (credentials) => {
     const email = String(credentials.email || '').trim().toLowerCase();
     const senha = String(credentials.senha || '');
+    const role = String(credentials.role || 'hospede').toLowerCase();
+    const codigoAcesso = String(credentials.codigoAcesso || '').trim();
 
     // Tenta primeiro no backend real
     try {
-      const res = await request('/auth/login', { method: 'POST', body: credentials });
+      const res = await request('/auth/login', {
+        method: 'POST',
+        body: {
+          ...credentials,
+          role,
+          codigoAcesso
+        }
+      });
       if (res.ok && res.data?.success) {
         return res;
       }
-      if (res.status === 400 || res.status === 401) {
+      if (res.status === 400 || res.status === 401 || res.status === 403) {
         return res;
       }
     } catch {
@@ -190,6 +199,24 @@ export const authApi = {
         status: 401,
         data: { success: false, message: 'E-mail ou senha incorretos.' }
       };
+    }
+
+    if (role !== 'hospede') {
+      const storedAccessCode = String(user.codigoAcesso || user.codigo_acesso || '').trim();
+      if (!codigoAcesso || (storedAccessCode && codigoAcesso !== storedAccessCode)) {
+        return {
+          ok: false,
+          status: 403,
+          data: { success: false, message: 'Código de acesso do funcionário inválido.' }
+        };
+      }
+      if (!storedAccessCode && !codigoAcesso) {
+        return {
+          ok: false,
+          status: 403,
+          data: { success: false, message: 'Informe o código de acesso do funcionário.' }
+        };
+      }
     }
 
     const userData = {
@@ -220,15 +247,15 @@ export const authApi = {
     const nome = String(userData.nome || '').trim() || email.split('@')[0];
     const telefone = String(userData.telefone || '');
     const role = String(userData.role || 'hospede').toLowerCase();
+    const codigoAcesso = String(userData.codigoAcesso || '').trim();
 
-    // REGRA DE NEGÓCIO: Somente hóspedes podem criar suas próprias contas
-    if (role === 'funcionario' || userData.codigoAcesso) {
+    if (role !== 'hospede' && !codigoAcesso) {
       return {
         ok: false,
         status: 403,
         data: {
           success: false,
-          message: 'Apenas hóspedes podem criar suas próprias contas. Contas de funcionários são cadastradas pela administração.'
+          message: 'Informe o código de acesso do funcionário para continuar.'
         }
       };
     }
@@ -242,7 +269,9 @@ export const authApi = {
           email,
           senha,
           telefone,
-          role: 'hospede'
+          role,
+          codigoAcesso,
+          cargo: userData.cargo || (role === 'hospede' ? 'Hóspede' : role)
         }
       });
       if (res.ok && res.data?.success) {
@@ -266,16 +295,20 @@ export const authApi = {
       };
     }
 
-    const newHospede = {
+    const newUser = {
       id_hospede: Date.now(),
       nome,
       email,
       senha,
       telefone: telefone || '(00) 00000-0000',
-      role: 'hospede'
+      role,
+      cargo: userData.cargo || (role === 'hospede' ? 'Hóspede' : role),
+      id_hotel: 1,
+      id_funcionario: role === 'hospede' ? null : Date.now() + 1,
+      codigoAcesso: role === 'hospede' ? null : codigoAcesso
     };
 
-    users.push(newHospede);
+    users.push(newUser);
     saveStoredUsers(users);
 
     return {
@@ -283,12 +316,15 @@ export const authApi = {
       status: 201,
       data: {
         success: true,
-        message: 'Conta de hóspede criada com sucesso!',
+        message: role === 'hospede' ? 'Conta de hóspede criada com sucesso!' : 'Conta de funcionário criada com sucesso!',
         user: {
-          id_hospede: newHospede.id_hospede,
-          nome: newHospede.nome,
-          email: newHospede.email,
-          role: 'hospede'
+          id_hospede: newUser.id_hospede,
+          nome: newUser.nome,
+          email: newUser.email,
+          role,
+          cargo: newUser.cargo,
+          id_hotel: 1,
+          id_funcionario: newUser.id_funcionario
         }
       }
     };
