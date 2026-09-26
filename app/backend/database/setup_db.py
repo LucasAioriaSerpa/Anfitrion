@@ -51,6 +51,13 @@ def init_db(db_path: Optional[str] = None) -> bool:
         );
         """)
 
+        hotel_count = cursor.execute("SELECT COUNT(*) FROM hotel").fetchone()[0]
+        if hotel_count == 0:
+            cursor.execute("""--sql
+            INSERT INTO hotel (cnpj, franquia, nome, endereso, qtd_quartos)
+            VALUES (?, ?, ?, ?, ?)
+            """, ("00.000.000/0001-00", "Anfitrião", "Hotel Padrão", "Endereço padrão do sistema", 0))
+
         #? Tabela quarto
         cursor.execute("""--sql
         CREATE TABLE IF NOT EXISTS quarto (
@@ -73,10 +80,15 @@ def init_db(db_path: Optional[str] = None) -> bool:
             id_hospede INTEGER NOT NULL,
             id_hotel INTEGER NOT NULL,
             cargo TEXT NOT NULL,
+            codigo_acesso TEXT,
             FOREIGN KEY (id_hospede) REFERENCES hospede(id_hospede),
             FOREIGN KEY (id_hotel) REFERENCES hotel(id_hotel)
         );
         """)
+
+        funcionario_columns = [row[1] for row in cursor.execute("PRAGMA table_info(funcionario)").fetchall()]
+        if 'codigo_acesso' not in funcionario_columns:
+            cursor.execute("ALTER TABLE funcionario ADD COLUMN codigo_acesso TEXT;")
 
         #? Tabela reserva
         cursor.execute("""--sql

@@ -190,7 +190,7 @@ export const authApi = {
       if (res.ok && res.data?.success) {
         return res;
       }
-      if (res.status === 400 || res.status === 401) {
+      if (res.status === 400 || res.status === 401 || res.status === 403) {
         return res;
       }
     } catch {
@@ -286,7 +286,7 @@ export const authApi = {
       };
     }
 
-    const newHospede = {
+    const newUser = {
       id_hospede: Date.now(),
       nome,
       email,
@@ -295,7 +295,7 @@ export const authApi = {
       role: "hospede",
     };
 
-    users.push(newHospede);
+    users.push(newUser);
     saveStoredUsers(users);
 
     return {
