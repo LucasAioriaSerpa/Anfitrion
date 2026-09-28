@@ -1,7 +1,4 @@
 """
-Script isolado de Seed / Mock de dados para o Anfitrião Hotel Management System.
-Substitui o antigo 'seed_initial_data' que residia dentro do Main.py.
-
 Contém entidades completas para testes e desenvolvimento:
 - Hotéis (Matriz e Filial)
 - Funcionários com hierarquia e cargos:
@@ -27,8 +24,8 @@ from datetime import datetime
 # Garante que o diretório raiz do backend esteja no sys.path para importações
 CURRENT_DIR = Path(__file__).resolve().parent
 BACKEND_DIR = CURRENT_DIR.parent
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
+
+if str(BACKEND_DIR) not in sys.path: sys.path.insert(0, str(BACKEND_DIR))
 
 def get_mock_data():
     """Retorna os dados mock estruturados para semente do sistema."""

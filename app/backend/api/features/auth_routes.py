@@ -13,17 +13,17 @@ except ImportError:
     from app.backend.api.factories.user_factory import userFactory
 
 try:
-    from database.Setup_db import init_db
+    from database.setup_db import init_db
 except ImportError:
-    from app.backend.database.Setup_db import init_db
+    from app.backend.database.setup_db import init_db
 
 
 def ensure_funcionario_access_code_column() -> None:
     """Garante compatibilidade com bancos já existentes sem a coluna codigo_acesso."""
     try:
-        db_path = Config().get("DATABASE_DIR")
-        if not db_path:
-            return
+        db_path_value = Config().get("DATABASE_DIR")
+        if not db_path_value: return
+        db_path = str(db_path_value)
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         columns = [row[1] for row in cursor.execute("PRAGMA table_info(funcionario)").fetchall()]
@@ -130,20 +130,16 @@ def register():
     requested_role = str(data.get("role", "hospede")).strip().lower()
     codigo_acesso = str(data.get("codigoAcesso", "") or data.get("codigo_acesso", "")).strip()
 
-    if not email or not senha:
-        return jsonify({"success": False, "message": "E-mail e senha são obrigatórios"}), 400
+    if not email or not senha: return jsonify({"success": False, "message": "E-mail e senha são obrigatórios"}), 400
 
-    if requested_role == "hospede":
-        role = "hospede"
+    if requested_role == "hospede": role = "hospede"
     else:
         role = requested_role or "funcionario"
-        if not codigo_acesso:
-            return jsonify({"success": False, "message": "Informe o código de acesso do funcionário"}), 403
+        if not codigo_acesso: return jsonify({"success": False, "message": "Informe o código de acesso do funcionário"}), 403
 
     # Verifica se já existe
     existing = db.read("hospede", {"email": email})
-    if existing:
-        return jsonify({"success": False, "message": "Este e-mail já está cadastrado"}), 409
+    if existing: return jsonify({"success": False, "message": "Este e-mail já está cadastrado"}), 409
 
     user_obj = userFactory.registrar_user({
         "role": role,
