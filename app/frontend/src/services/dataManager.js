@@ -195,10 +195,6 @@ class HotelDataManager {
     localStorage.setItem("anfitrion_registered_users", JSON.stringify(todos));
   }
 
-  // =========================================================================
-  // Operações de Domínio (OO / POO)
-  // =========================================================================
-
   async atualizarStatusQuarto(idQuarto, novoStatus) {
     const quarto = this._quartos.find((q) => q.id === idQuarto);
     if (!quarto) return false;
@@ -210,7 +206,7 @@ class HotelDataManager {
     try {
       await quartoApi.update(idQuarto, { status: novoStatus });
     } catch {
-      // offline fallback
+      /* offline fallback */
     }
     return true;
   }

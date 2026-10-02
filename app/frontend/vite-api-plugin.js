@@ -14,7 +14,10 @@ import {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const STORAGE_PATH = path.resolve(__dirname, "src/data/dev-persisted-state.json");
+const STORAGE_PATH = path.resolve(
+  __dirname,
+  "src/data/dev-persisted-state.json",
+);
 
 function createSeedState() {
   return {
@@ -39,7 +42,10 @@ function loadPersistedState() {
       return parsed;
     }
   } catch (error) {
-    console.warn("[vite-api-plugin] Falha ao carregar estado persistido, usando seed inicial.", error);
+    console.warn(
+      "[vite-api-plugin] Falha ao carregar estado persistido, usando seed inicial.",
+      error,
+    );
   }
 
   const seed = createSeedState();
@@ -149,7 +155,7 @@ export function apiDevPlugin() {
           const requestedRole = String(body.role || "hospede").toLowerCase();
 
           // Regra de negócio: Apenas hóspedes podem criar conta própria
-          if (requestedRole === "funcionario" || body.codigoAcesso) {
+          if (requestedRole === "funcionario") {
             return sendJson(res, 403, {
               success: false,
               message:

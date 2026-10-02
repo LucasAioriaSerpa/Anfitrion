@@ -80,15 +80,14 @@ def init_db(db_path: Optional[str] = None) -> bool:
             id_hospede INTEGER NOT NULL,
             id_hotel INTEGER NOT NULL,
             cargo TEXT NOT NULL,
-            codigo_acesso TEXT,
             FOREIGN KEY (id_hospede) REFERENCES hospede(id_hospede),
             FOREIGN KEY (id_hotel) REFERENCES hotel(id_hotel)
         );
         """)
 
         funcionario_columns = [row[1] for row in cursor.execute("PRAGMA table_info(funcionario)").fetchall()]
-        if 'codigo_acesso' not in funcionario_columns:
-            cursor.execute("ALTER TABLE funcionario ADD COLUMN codigo_acesso TEXT;")
+        if "codigo_acesso" in funcionario_columns:
+            cursor.execute("ALTER TABLE funcionario DROP COLUMN codigo_acesso;")
 
         #? Tabela reserva
         cursor.execute("""--sql

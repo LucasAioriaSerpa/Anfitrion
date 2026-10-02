@@ -1,30 +1,29 @@
-import { useState } from 'react';
-import '../style/Auth.css';
+import { useState } from "react";
+import "../style/Auth.css";
 import logoAnfitrion from "../assets/logo-Anfitrion.png";
-import { authApi } from '../services/apiService';
+import { authApi } from "../services/apiService";
 
 function AuthFuncionario({ onEnterDashboard }) {
   const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    telefone: '',
-    senha: '',
-    confirmarSenha: '',
-    role: 'hospede',
-    codigoAcesso: '',
-    cargo: 'Recepcionista'
+    nome: "",
+    email: "",
+    telefone: "",
+    senha: "",
+    confirmarSenha: "",
+    role: "hospede",
+    cargo: "Recepcionista",
   });
 
   const [usuarioLogado, setUsuarioLogado] = useState(() => {
     try {
-      const savedUser = localStorage.getItem('anfitrion_user');
+      const savedUser = localStorage.getItem("anfitrion_user");
       return savedUser ? JSON.parse(savedUser) : null;
     } catch {
       return null;
     }
   });
-  const [mensagem, setMensagem] = useState('');
-  const [erro, setErro] = useState('');
+  const [mensagem, setMensagem] = useState("");
+  const [erro, setErro] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [carregando, setCarregando] = useState(false);
 
@@ -32,57 +31,50 @@ function AuthFuncionario({ onEnterDashboard }) {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleQuickFill = (email, senha, role = 'hospede', codigoAcesso = '') => {
+  const handleQuickFill = (email, senha, role = "hospede") => {
     setFormData((prev) => ({
       ...prev,
       email,
       senha,
       role,
-      codigoAcesso,
-      cargo: role === 'hospede' ? 'Hóspede' : (prev.cargo || 'Recepcionista')
+      cargo: role === "hospede" ? "Hóspede" : prev.cargo || "Recepcionista",
     }));
-    setErro('');
-    setMensagem('');
+    setErro("");
+    setMensagem("");
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('anfitrion_user');
+    localStorage.removeItem("anfitrion_user");
     setUsuarioLogado(null);
-    setMensagem('Sessão encerrada com sucesso.');
-    setTimeout(() => setMensagem(''), 4000);
+    setMensagem("Sessão encerrada com sucesso.");
+    setTimeout(() => setMensagem(""), 4000);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro('');
-    setMensagem('');
+    setErro("");
+    setMensagem("");
 
     if (!formData.email || !formData.senha) {
-      setErro('Preencha e-mail e senha!');
-      return;
-    }
-
-    const role = (formData.role || 'hospede').toLowerCase();
-    if (role !== 'hospede' && !formData.codigoAcesso.trim()) {
-      setErro('Informe o código de acesso do funcionário para continuar.');
+      setErro("Preencha e-mail e senha!");
       return;
     }
 
     if (isSignUp) {
       if (!formData.nome.trim()) {
-        setErro('Por favor, informe seu nome completo.');
+        setErro("Por favor, informe seu nome completo.");
         return;
       }
       if (formData.senha !== formData.confirmarSenha) {
-        setErro('As senhas não coincidem. Verifique e tente novamente.');
+        setErro("As senhas não coincidem. Verifique e tente novamente.");
         return;
       }
       if (formData.senha.length < 3) {
-        setErro('A senha deve ter pelo menos 3 caracteres.');
+        setErro("A senha deve ter pelo menos 3 caracteres.");
         return;
       }
     }
@@ -97,48 +89,54 @@ function AuthFuncionario({ onEnterDashboard }) {
           email: formData.email.trim(),
           senha: formData.senha,
           telefone: formData.telefone.trim(),
-          role: (formData.role || 'hospede').toLowerCase(),
-          codigoAcesso: formData.codigoAcesso.trim(),
-          cargo: formData.cargo || 'Recepcionista'
+          role: (formData.role || "hospede").toLowerCase(),
+          cargo: formData.cargo || "Recepcionista",
         });
 
         if (res.ok && res.data?.success) {
-          setMensagem(res.data.message || 'Conta de hóspede criada com sucesso! Faça login para continuar. ✅');
+          setMensagem(
+            res.data.message ||
+              "Conta de hóspede criada com sucesso! Faça login para continuar. ✅",
+          );
           setIsSignUp(false);
           setFormData({
-            nome: '',
+            nome: "",
             email: formData.email,
-            telefone: '',
-            senha: '',
-            confirmarSenha: ''
+            telefone: "",
+            senha: "",
+            confirmarSenha: "",
           });
         } else {
-          setErro(res.data?.message || 'Falha ao registrar conta de hóspede.');
+          setErro(res.data?.message || "Falha ao registrar conta de hóspede.");
         }
       } else {
         // LOGIN: Serve tanto para funcionários quanto para hóspedes
         const res = await authApi.login({
           email: formData.email.trim(),
           senha: formData.senha,
-          role: (formData.role || 'hospede').toLowerCase(),
-          codigoAcesso: formData.codigoAcesso.trim()
+          role: (formData.role || "hospede").toLowerCase(),
         });
 
         if (res.ok && res.data?.success) {
           const user = res.data?.user;
-          const userName = user?.nome || 'Usuário';
-          const userRole = user?.role === 'funcionario' 
-            ? (user?.cargo ? `Funcionário (${user.cargo})` : 'Funcionário') 
-            : 'Hóspede';
+          const userName = user?.nome || "Usuário";
+          const userRole =
+            user?.role === "funcionario"
+              ? user?.cargo
+                ? `Funcionário (${user.cargo})`
+                : "Funcionário"
+              : "Hóspede";
 
-          setMensagem(`Bem-vindo(a), ${userName}! Conectado como ${userRole}. ✅`);
+          setMensagem(
+            `Bem-vindo(a), ${userName}! Conectado como ${userRole}. ✅`,
+          );
           setUsuarioLogado(user);
-          localStorage.setItem('anfitrion_user', JSON.stringify(user));
+          localStorage.setItem("anfitrion_user", JSON.stringify(user));
           if (onEnterDashboard) {
             onEnterDashboard(user);
           }
         } else {
-          setErro(res.data?.message || 'E-mail ou senha incorretos.');
+          setErro(res.data?.message || "E-mail ou senha incorretos.");
         }
       }
     } catch (err) {
@@ -146,8 +144,8 @@ function AuthFuncionario({ onEnterDashboard }) {
     } finally {
       setCarregando(false);
       setTimeout(() => {
-        setMensagem((prev) => (prev.includes('Bem-vindo') ? prev : ''));
-        setErro('');
+        setMensagem((prev) => (prev.includes("Bem-vindo") ? prev : ""));
+        setErro("");
       }, 6000);
     }
   };
@@ -158,10 +156,16 @@ function AuthFuncionario({ onEnterDashboard }) {
       <div id="auth-left-section" className="login-left">
         <div className="logo-section">
           <div className="logo-circle">
-            <img src={logoAnfitrion} alt="Logo Anfitrião" className="logo-img" />
+            <img
+              src={logoAnfitrion}
+              alt="Logo Anfitrião"
+              className="logo-img"
+            />
           </div>
           <div className="tagline">
-            <p>"A hospitalidade é a arte de fazer o hóspede sentir-se em casa."</p>
+            <p>
+              "A hospitalidade é a arte de fazer o hóspede sentir-se em casa."
+            </p>
           </div>
         </div>
       </div>
@@ -169,47 +173,67 @@ function AuthFuncionario({ onEnterDashboard }) {
       {/* Lado Direito - Formulário */}
       <div id="auth-right-section" className="login-right">
         <div id="auth-card" className="login-card">
-          
           {usuarioLogado ? (
             /* Visualização de Sessão Ativa */
             <div className="user-session-card">
               <div className="user-session-avatar">
-                {usuarioLogado.nome ? usuarioLogado.nome.charAt(0).toUpperCase() : 'U'}
+                {usuarioLogado.nome
+                  ? usuarioLogado.nome.charAt(0).toUpperCase()
+                  : "U"}
               </div>
-              
+
               <h2 className="user-session-name">{usuarioLogado.nome}</h2>
               <p className="user-session-email">{usuarioLogado.email}</p>
-              
-              <div style={{ marginBottom: '1rem' }}>
-                <span className={`role-badge ${usuarioLogado.role === 'funcionario' ? 'role-badge-funcionario' : 'role-badge-hospede'}`}>
-                  {usuarioLogado.role === 'funcionario' ? '👔 Funcionário' : '🧳 Hóspede'}
+
+              <div style={{ marginBottom: "1rem" }}>
+                <span
+                  className={`role-badge ${usuarioLogado.role === "funcionario" ? "role-badge-funcionario" : "role-badge-hospede"}`}
+                >
+                  {usuarioLogado.role === "funcionario"
+                    ? "👔 Funcionário"
+                    : "🧳 Hóspede"}
                 </span>
               </div>
 
-              {mensagem && <div id="auth-success-msg" className="sucesso">{mensagem}</div>}
+              {mensagem && (
+                <div id="auth-success-msg" className="sucesso">
+                  {mensagem}
+                </div>
+              )}
 
               <div className="user-details-list">
                 <div className="user-details-row">
                   <span className="user-details-label">Perfil de Acesso:</span>
                   <span className="user-details-value">
-                    {usuarioLogado.role === 'funcionario' ? 'Equipe Interna' : 'Hóspede'}
+                    {usuarioLogado.role === "funcionario"
+                      ? "Equipe Interna"
+                      : "Hóspede"}
                   </span>
                 </div>
                 {usuarioLogado.cargo && (
                   <div className="user-details-row">
                     <span className="user-details-label">Cargo:</span>
-                    <span className="user-details-value">{usuarioLogado.cargo}</span>
+                    <span className="user-details-value">
+                      {usuarioLogado.cargo}
+                    </span>
                   </div>
                 )}
                 {usuarioLogado.telefone && (
                   <div className="user-details-row">
                     <span className="user-details-label">Telefone:</span>
-                    <span className="user-details-value">{usuarioLogado.telefone}</span>
+                    <span className="user-details-value">
+                      {usuarioLogado.telefone}
+                    </span>
                   </div>
                 )}
                 <div className="user-details-row">
                   <span className="user-details-label">Status da Conta:</span>
-                  <span className="user-details-value" style={{ color: '#28a745' }}>Ativa</span>
+                  <span
+                    className="user-details-value"
+                    style={{ color: "#28a745" }}
+                  >
+                    Ativa
+                  </span>
                 </div>
               </div>
 
@@ -217,18 +241,14 @@ function AuthFuncionario({ onEnterDashboard }) {
                 <button
                   type="button"
                   className="btn-entrar"
-                  style={{ width: '100%', marginBottom: '0.75rem' }}
+                  style={{ width: "100%", marginBottom: "0.75rem" }}
                   onClick={() => onEnterDashboard(usuarioLogado)}
                 >
                   Acessar Painel do Hotel ➔
                 </button>
               )}
 
-              <button
-                type="button"
-                className="btn-sair"
-                onClick={handleLogout}
-              >
+              <button type="button" className="btn-sair" onClick={handleLogout}>
                 Desconectar / Trocar de Conta
               </button>
             </div>
@@ -236,25 +256,37 @@ function AuthFuncionario({ onEnterDashboard }) {
             /* Formulário de Login / Cadastro */
             <>
               <div className="login-header">
-                <h2>{isSignUp ? 'Criar Conta' : 'Bem-vindo'}</h2>
+                <h2>{isSignUp ? "Criar Conta" : "Bem-vindo"}</h2>
                 <p className="subtitle">
                   {isSignUp
-                    ? 'Preencha seus dados para criar uma conta de acesso'
-                    : 'Acesse sua conta para continuar (Funcionários & Hóspedes)'}
+                    ? "Preencha seus dados para criar uma conta de acesso"
+                    : "Acesse sua conta para continuar (Funcionários & Hóspedes)"}
                 </p>
               </div>
 
               {isSignUp && (
                 <div className="auth-notice">
                   <strong>ℹ️ Cadastro por perfil</strong>
-                  Hóspedes podem se cadastrar livremente. Funcionários devem informar o código de acesso.
+                  Hóspedes e funcionários podem se cadastrar com e-mail e senha.
                 </div>
               )}
 
-              {mensagem && <div id="auth-success-msg" className="sucesso">{mensagem}</div>}
-              {erro && <div id="auth-error-msg" className="erro">{erro}</div>}
+              {mensagem && (
+                <div id="auth-success-msg" className="sucesso">
+                  {mensagem}
+                </div>
+              )}
+              {erro && (
+                <div id="auth-error-msg" className="erro">
+                  {erro}
+                </div>
+              )}
 
-              <form id="auth-form" onSubmit={handleSubmit} className="login-form">
+              <form
+                id="auth-form"
+                onSubmit={handleSubmit}
+                className="login-form"
+              >
                 <div className="form-group">
                   <label htmlFor="role">Tipo da conta</label>
                   <select
@@ -310,21 +342,6 @@ function AuthFuncionario({ onEnterDashboard }) {
                   </div>
                 )}
 
-                {(formData.role || 'hospede') !== 'hospede' && (
-                  <div className="form-group">
-                    <label htmlFor="codigoAcesso">Código de acesso do funcionário</label>
-                    <input
-                      type="text"
-                      id="codigoAcesso"
-                      name="codigoAcesso"
-                      value={formData.codigoAcesso}
-                      onChange={handleChange}
-                      placeholder="Digite o código do funcionário"
-                      required
-                    />
-                  </div>
-                )}
-
                 <div className="form-group">
                   <label htmlFor="senha">Senha</label>
                   <input
@@ -360,8 +377,10 @@ function AuthFuncionario({ onEnterDashboard }) {
                   disabled={carregando}
                 >
                   {carregando
-                    ? 'Processando...'
-                    : (isSignUp ? 'Criar Conta' : 'Entrar')}
+                    ? "Processando..."
+                    : isSignUp
+                      ? "Criar Conta"
+                      : "Entrar"}
                 </button>
               </form>
 
@@ -373,25 +392,29 @@ function AuthFuncionario({ onEnterDashboard }) {
                   className="link-btn"
                   onClick={() => {
                     setIsSignUp(!isSignUp);
-                    setErro('');
-                    setMensagem('');
+                    setErro("");
+                    setMensagem("");
                   }}
                 >
                   {isSignUp
-                    ? 'Já tem conta? Fazer login'
-                    : 'Não tem conta? Cadastre-se'}
+                    ? "Já tem conta? Fazer login"
+                    : "Não tem conta? Cadastre-se"}
                 </button>
               </div>
 
               {/* Acesso rápido com contas de demonstração (Hóspede e todos os cargos) */}
               {!isSignUp && (
                 <div className="quick-test-box">
-                  <div className="quick-test-title">Contas seed para teste rápido:</div>
+                  <div className="quick-test-title">
+                    Contas seed para teste rápido:
+                  </div>
                   <div className="quick-test-chips">
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('mariana@gmail.com', '123', 'hospede')}
+                      onClick={() =>
+                        handleQuickFill("mariana@gmail.com", "123", "hospede")
+                      }
                       title="Conta de hóspede existente"
                     >
                       🧳 Hóspede (Mariana)
@@ -399,7 +422,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('admin@anfitrion.com', 'admin', 'funcionario', 'ADMIN2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "admin@anfitrion.com",
+                          "admin",
+                          "funcionario",
+                        )
+                      }
                       title="Administrador Geral"
                     >
                       🛡️ Administrador
@@ -407,7 +436,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('gerente@anfitrion.com', '123', 'funcionario', 'GERENTE2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "gerente@anfitrion.com",
+                          "123",
+                          "funcionario",
+                        )
+                      }
                       title="Gerente Geral"
                     >
                       👔 Gerente Geral
@@ -415,7 +450,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('subgerente@anfitrion.com', '123', 'funcionario', 'SUBGERENTE2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "subgerente@anfitrion.com",
+                          "123",
+                          "funcionario",
+                        )
+                      }
                       title="Subgerente Operacional"
                     >
                       📋 Subgerente
@@ -423,7 +464,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('recepcao@anfitrion.com', '123', 'funcionario', 'RECEPCAO2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "recepcao@anfitrion.com",
+                          "123",
+                          "funcionario",
+                        )
+                      }
                       title="Recepcionista"
                     >
                       🛎️ Recepcionista
@@ -431,7 +478,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('governanta@anfitrion.com', '123', 'funcionario', 'GOVERNANTA2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "governanta@anfitrion.com",
+                          "123",
+                          "funcionario",
+                        )
+                      }
                       title="Governanta Chefe"
                     >
                       🗝️ Governanta
@@ -439,7 +492,13 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <button
                       type="button"
                       className="quick-test-chip"
-                      onClick={() => handleQuickFill('camareira@anfitrion.com', '123', 'funcionario', 'CAMAREIRA2024')}
+                      onClick={() =>
+                        handleQuickFill(
+                          "camareira@anfitrion.com",
+                          "123",
+                          "funcionario",
+                        )
+                      }
                       title="Camareira Sênior"
                     >
                       🧹 Camareira
@@ -449,7 +508,6 @@ function AuthFuncionario({ onEnterDashboard }) {
               )}
             </>
           )}
-
         </div>
       </div>
     </div>

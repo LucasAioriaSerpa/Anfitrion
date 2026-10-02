@@ -241,7 +241,7 @@ export const authApi = {
     const role = String(userData.role || "hospede").toLowerCase();
 
     // REGRA DE NEGÓCIO: Somente hóspedes podem criar suas próprias contas
-    if (role === "funcionario" || userData.codigoAcesso) {
+    if (role === "funcionario") {
       return {
         ok: false,
         status: 403,

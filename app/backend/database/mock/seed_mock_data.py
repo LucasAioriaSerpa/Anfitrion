@@ -21,7 +21,6 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 
-# Garante que o diretório raiz do backend esteja no sys.path para importações
 CURRENT_DIR = Path(__file__).resolve().parent
 BACKEND_DIR = CURRENT_DIR.parent
 
@@ -262,7 +261,7 @@ def seed_database(db_path=None, force=False):
     cursor.execute("PRAGMA foreign_keys = ON;")
 
     # Garante que as tabelas básicas existam
-    cursor.execute("""
+    cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS hospede (
         id_hospede INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
@@ -272,7 +271,7 @@ def seed_database(db_path=None, force=False):
         criado_em TEXT DEFAULT CURRENT_TIMESTAMP
     );
     """)
-    cursor.execute("""
+    cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS hotel (
         id_hotel INTEGER PRIMARY KEY AUTOINCREMENT,
         cnpj TEXT NOT NULL,
@@ -283,7 +282,7 @@ def seed_database(db_path=None, force=False):
         criado_em TEXT DEFAULT CURRENT_TIMESTAMP
     );
     """)
-    cursor.execute("""
+    cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS quarto (
         id_quarto INTEGER PRIMARY KEY AUTOINCREMENT,
         id_hotel INTEGER NOT NULL,
@@ -296,7 +295,7 @@ def seed_database(db_path=None, force=False):
         FOREIGN KEY (id_hotel) REFERENCES hotel(id_hotel)
     );
     """)
-    cursor.execute("""
+    cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS funcionario (
         id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
         id_hospede INTEGER NOT NULL,
@@ -306,7 +305,7 @@ def seed_database(db_path=None, force=False):
         FOREIGN KEY (id_hotel) REFERENCES hotel(id_hotel)
     );
     """)
-    cursor.execute("""
+    cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS reserva (
         id_reserva INTEGER PRIMARY KEY AUTOINCREMENT,
         id_quarto INTEGER NOT NULL,
@@ -335,7 +334,7 @@ def seed_database(db_path=None, force=False):
         conn.commit()
         print("[ Seed ] - Dados anteriores excluídos para inserção forçada.")
 
-    # Verifica se já há dados inseridos
+    #? Verifica se já há dados inseridos
     cursor.execute("SELECT COUNT(*) FROM hotel;")
     hoteis_count = cursor.fetchone()[0]
     if hoteis_count > 0 and not force:
@@ -345,7 +344,7 @@ def seed_database(db_path=None, force=False):
 
     data = get_mock_data()
 
-    # 1. Hotéis
+    #* 1. Hotéis
     hotel_id_map = {}
     for h in data["hoteis"]:
         cursor.execute(
@@ -354,7 +353,7 @@ def seed_database(db_path=None, force=False):
         )
         hotel_id_map[h["id_hotel"]] = cursor.lastrowid
 
-    # 2. Quartos (com Diárias)
+    #* 2. Quartos (com Diárias)
     quarto_num_map = {}
     for q in data["quartos"]:
         real_hotel_id = hotel_id_map.get(q["id_hotel"], 1)
@@ -364,7 +363,7 @@ def seed_database(db_path=None, force=False):
         )
         quarto_num_map[q["num_quarto"]] = cursor.lastrowid
 
-    # 3. Funcionários (Administrador, Gerente, Subgerente, Recepcionista, Governanta, Camareira)
+    #* 3. Funcionários (Administrador, Gerente, Subgerente, Recepcionista, Governanta, Camareira)
     for f in data["funcionarios"]:
         cursor.execute(
             "INSERT OR IGNORE INTO hospede (nome, email, senha, telefone) VALUES (?, ?, ?, ?)",
@@ -380,7 +379,7 @@ def seed_database(db_path=None, force=False):
             (id_hosp, real_hotel_id, f["cargo"])
         )
 
-    # 4. Hóspedes
+    #* 4. Hóspedes
     hospede_email_map = {}
     for h in data["hospedes"]:
         cursor.execute(
@@ -390,7 +389,7 @@ def seed_database(db_path=None, force=False):
         cursor.execute("SELECT id_hospede FROM hospede WHERE email = ?", (h["email"],))
         hospede_email_map[h["email"]] = cursor.fetchone()[0]
 
-    # 5. Reservas
+    #* 5. Reservas
     for r in data["reservas"]:
         id_quarto = quarto_num_map.get(r["quarto_num"])
         id_hospede = hospede_email_map.get(r["hospede_email"])

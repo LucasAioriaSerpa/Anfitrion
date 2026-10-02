@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-import sqlite3
 
 try:
     from manager.Database import Database
@@ -18,26 +17,7 @@ except ImportError:
     from app.backend.database.setup_db import init_db
 
 
-def ensure_funcionario_access_code_column() -> None:
-    """Garante compatibilidade com bancos já existentes sem a coluna codigo_acesso."""
-    try:
-        db_path_value = Config().get("DATABASE_DIR")
-        if not db_path_value: return
-        db_path = str(db_path_value)
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        columns = [row[1] for row in cursor.execute("PRAGMA table_info(funcionario)").fetchall()]
-        if "codigo_acesso" not in columns:
-            cursor.execute("ALTER TABLE funcionario ADD COLUMN codigo_acesso TEXT;")
-            conn.commit()
-            log.log_info("[ auth_routes ] - Coluna codigo_acesso adicionada na tabela funcionario")
-        conn.close()
-    except Exception as exc:
-        log.log_warning(f"[ auth_routes ] - Não foi possível validar a coluna codigo_acesso: {exc}")
-
-
 init_db()
-ensure_funcionario_access_code_column()
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 db = Database()
@@ -67,7 +47,6 @@ def login():
     email = str(data.get("email", "")).strip().lower()
     senha = str(data.get("senha", ""))
     requested_role = str(data.get("role", "hospede")).strip().lower()
-    codigo_acesso = str(data.get("codigoAcesso", "") or data.get("codigo_acesso", "")).strip()
 
     if not email or not senha:
         log.log_warning("[ auth_routes ] - Tentativa de login sem e-mail ou senha")
@@ -93,13 +72,6 @@ def login():
         role = "funcionario"
         funcionario_data = funcionarios[0]
 
-    if requested_role != "hospede":
-        codigo_armazenado = str((funcionario_data or {}).get("codigo_acesso") or "").strip()
-        if not codigo_acesso:
-            return jsonify({"success": False, "message": "Informe o código de acesso do funcionário"}), 403
-        if codigo_armazenado and codigo_acesso != codigo_armazenado:
-            return jsonify({"success": False, "message": "Código de acesso do funcionário inválido"}), 403
-
     if funcionario_data and requested_role != "hospede":
         role = "funcionario"
 
@@ -121,21 +93,17 @@ def login():
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    """Registra um novo hóspede ou funcionário com código de acesso quando necessário."""
+    """Registra um novo hóspede ou funcionário."""
     data = request.get_json(silent=True) or {}
     email = str(data.get("email", "")).strip().lower()
     senha = str(data.get("senha", ""))
     nome = str(data.get("nome", "")).strip() or email.split("@")[0]
     telefone = str(data.get("telefone", "0000000000"))
     requested_role = str(data.get("role", "hospede")).strip().lower()
-    codigo_acesso = str(data.get("codigoAcesso", "") or data.get("codigo_acesso", "")).strip()
 
     if not email or not senha: return jsonify({"success": False, "message": "E-mail e senha são obrigatórios"}), 400
 
-    if requested_role == "hospede": role = "hospede"
-    else:
-        role = requested_role or "funcionario"
-        if not codigo_acesso: return jsonify({"success": False, "message": "Informe o código de acesso do funcionário"}), 403
+    role = requested_role or "hospede"
 
     # Verifica se já existe
     existing = db.read("hospede", {"email": email})
@@ -168,7 +136,6 @@ def register():
             "id_hospede": new_hospede_id,
             "id_hotel": hotel_id,
             "cargo": data.get("cargo", "Recepcionista"),
-            "codigo_acesso": codigo_acesso
         })
 
     log.log_success(f"[ auth_routes ] - Conta criada com sucesso para: {email} (ID Hóspede: {new_hospede_id})")
