@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import '../style/App.css';
-import '../style/Auth.css';
-import logoAnfitrion from '../assets/logo-Anfitrion.png';
-import { quartoApi } from '../services/apiService';
+import { useEffect, useState } from "react";
+import "../style/App.css";
+import "../style/Auth.css";
+import logoAnfitrion from "../assets/logo-Anfitrion.png";
+import { quartoApi } from "../services/apiService";
 
-const STATUSES = ['Limpo', 'Disponível', 'Bloqueado', 'Ocupado', 'Sujo'];
+const STATUSES = ["Limpo", "Disponível", "Bloqueado", "Ocupado", "Sujo"];
 
 function UserIcon() {
   return (
@@ -17,23 +17,35 @@ function UserIcon() {
 function Rooms({ onLogout }) {
   const [rooms, setRooms] = useState([]);
   const [editing, setEditing] = useState(null);
-  const [newStatus, setNewStatus] = useState('');
-  const [erro, setErro] = useState('');
-  const [userEmail, setUserEmail] = useState('');
+  const [newStatus, setNewStatus] = useState("");
+  const [erro, setErro] = useState("");
+  const [userEmail] = useState(() => {
+    const storedUser = localStorage.getItem("anfitrion_user");
+    if (!storedUser) return "";
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('anfitrion_user');
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUserEmail(parsedUser.email || '');
-      } catch (error) {
-        setUserEmail('');
+    try {
+      const parsedUser = JSON.parse(storedUser);
+      return parsedUser.email || "";
+    } catch {
+      return "";
+    }
+  });
+
+  const generateSampleRooms = () => {
+    const sample = [];
+    for (let floor = 1; floor <= 3; floor++) {
+      for (let i = 1; i <= 4; i++) {
+        const num = floor * 100 + i;
+        sample.push({
+          id_quarto: num,
+          num_quarto: num,
+          descricao: `Standard · ${floor}º andar`,
+          status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
+        });
       }
     }
-
-    fetchRooms();
-  }, []);
+    return sample;
+  };
 
   const fetchRooms = async () => {
     try {
@@ -41,16 +53,19 @@ function Rooms({ onLogout }) {
       if (res.ok && res.data?.success) {
         setRooms(res.data.data || []);
         if (Array.isArray(res.data.data) && res.data.data.length > 0) {
-          localStorage.setItem('anfitrion_quartos', JSON.stringify(res.data.data));
+          localStorage.setItem(
+            "anfitrion_quartos",
+            JSON.stringify(res.data.data),
+          );
         }
         return;
       }
-    } catch (e) {
+    } catch {
       // fallback silencioso para preservar o estado atualizado no navegador
     }
 
     try {
-      const savedRooms = localStorage.getItem('anfitrion_quartos');
+      const savedRooms = localStorage.getItem("anfitrion_quartos");
       if (savedRooms) {
         const parsed = JSON.parse(savedRooms);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -65,16 +80,9 @@ function Rooms({ onLogout }) {
     setRooms(generateSampleRooms());
   };
 
-  const generateSampleRooms = () => {
-    const sample = [];
-    for (let floor = 1; floor <= 3; floor++) {
-      for (let i = 1; i <= 4; i++) {
-        const num = floor * 100 + i;
-        sample.push({ id_quarto: num, num_quarto: num, descricao: `Standard · ${floor}º andar`, status: STATUSES[Math.floor(Math.random() * STATUSES.length)] });
-      }
-    }
-    return sample;
-  };
+  useEffect(() => {
+    fetchRooms();
+  }, []);
 
   const openEdit = (room) => {
     setEditing(room.id_quarto ?? room.id);
@@ -87,23 +95,25 @@ function Rooms({ onLogout }) {
       const payload = { status: newStatus };
       const res = await quartoApi.update(id, payload);
       if (res.ok && res.data?.success) {
-        const nextRooms = rooms.map(r => (r.id_quarto ?? r.id) === id ? { ...r, status: newStatus } : r);
+        const nextRooms = rooms.map((r) =>
+          (r.id_quarto ?? r.id) === id ? { ...r, status: newStatus } : r,
+        );
         setRooms(nextRooms);
-        localStorage.setItem('anfitrion_quartos', JSON.stringify(nextRooms));
+        localStorage.setItem("anfitrion_quartos", JSON.stringify(nextRooms));
         setEditing(null);
-        setErro('');
+        setErro("");
         return;
       }
 
-      setErro(res.data?.message || 'Falha ao atualizar status');
+      setErro(res.data?.message || "Falha ao atualizar status");
     } catch (e) {
-      setErro(e.message || 'Erro ao conectar com servidor');
+      setErro(e.message || "Erro ao conectar com servidor");
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('anfitrion_user');
-    localStorage.removeItem('anfitrion_quartos');
+    localStorage.removeItem("anfitrion_user");
+    localStorage.removeItem("anfitrion_quartos");
     if (onLogout) {
       onLogout();
     }
@@ -114,17 +124,23 @@ function Rooms({ onLogout }) {
       <header className="rooms-header">
         <div className="brand-block">
           <div className="brand-logo">
-            <img src={logoAnfitrion} alt="Logo Anfitrião" className="brand-logo-image" />
+            <img
+              src={logoAnfitrion}
+              alt="Logo Anfitrião"
+              className="brand-logo-image"
+            />
           </div>
           <div className="brand-title">Quartos</div>
         </div>
 
         <div className="header-actions">
-          <span className="header-email">{userEmail || 'Funcionário'}</span>
+          <span className="header-email">{userEmail || "Funcionário"}</span>
           <div className="header-avatar" aria-label="Usuário">
             <UserIcon />
           </div>
-          <button type="button" className="header-menu" aria-label="Menu">☰</button>
+          <button type="button" className="header-menu" aria-label="Menu">
+            ☰
+          </button>
         </div>
       </header>
 
@@ -138,7 +154,7 @@ function Rooms({ onLogout }) {
             type="button"
             className="refresh-button"
             onClick={handleLogout}
-            style={{ background: '#7b2d2d' }}
+            style={{ background: "#7b2d2d" }}
           >
             Sair
           </button>
@@ -147,30 +163,63 @@ function Rooms({ onLogout }) {
         {erro && <div className="rooms-error">{erro}</div>}
 
         <div className="rooms-actions">
-          <button type="button" className="refresh-button" onClick={() => fetchRooms()}>Atualizar</button>
+          <button
+            type="button"
+            className="refresh-button"
+            onClick={() => fetchRooms()}
+          >
+            Atualizar
+          </button>
         </div>
 
         <div className="room-grid">
-          {rooms.map(room => (
+          {rooms.map((room) => (
             <div key={room.id_quarto ?? room.id} className="room-card">
               <div className="room-card-header">
-                <div className="room-number">Nº {room.num_quarto ?? room.numero}</div>
+                <div className="room-number">
+                  Nº {room.num_quarto ?? room.numero}
+                </div>
                 <div className="room-status">{room.status}</div>
               </div>
-              <div className="room-description">{room.descricao ?? ''}</div>
+              <div className="room-description">{room.descricao ?? ""}</div>
 
               {editing === (room.id_quarto ?? room.id) ? (
                 <div className="room-editor">
-                  <select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
-                    {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
+                  <select
+                    value={newStatus}
+                    onChange={(e) => setNewStatus(e.target.value)}
+                  >
+                    {STATUSES.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
                   </select>
                   <div className="editor-actions">
-                    <button type="button" className="save-button" onClick={() => saveStatus(room)}>Salvar</button>
-                    <button type="button" className="cancel-button" onClick={() => setEditing(null)}>Cancelar</button>
+                    <button
+                      type="button"
+                      className="save-button"
+                      onClick={() => saveStatus(room)}
+                    >
+                      Salvar
+                    </button>
+                    <button
+                      type="button"
+                      className="cancel-button"
+                      onClick={() => setEditing(null)}
+                    >
+                      Cancelar
+                    </button>
                   </div>
                 </div>
               ) : (
-                <button type="button" className="edit-button" onClick={() => openEdit(room)}>Editar</button>
+                <button
+                  type="button"
+                  className="edit-button"
+                  onClick={() => openEdit(room)}
+                >
+                  Editar
+                </button>
               )}
             </div>
           ))}

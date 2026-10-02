@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
+import { useState, useMemo } from "react";
+import { Search } from "lucide-react";
 
 /**
  * DataTable Reutilizável (OO - Abstração de listagens e coleções)
@@ -8,14 +8,14 @@ import { Search } from 'lucide-react';
 export default function DataTable({
   data = [],
   columns = [],
-  searchPlaceholder = 'Buscar registros...',
-  searchKeys = ['nome', 'email', 'numQuarto', 'tipo'],
-  emptyMessage = 'Nenhum registro encontrado.',
+  searchPlaceholder = "Buscar registros...",
+  searchKeys = ["nome", "email", "numQuarto", "tipo"],
+  emptyMessage = "Nenhum registro encontrado.",
   actions = null,
   toolbar = null,
-  className = ''
+  className = "",
 }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = useMemo(() => {
     if (!searchTerm.trim()) return data;
@@ -24,7 +24,7 @@ export default function DataTable({
     return data.filter((item) => {
       return searchKeys.some((key) => {
         // Suporta tanto métodos de classe POO quanto propriedades
-        const val = typeof item[key] === 'function' ? item[key]() : item[key];
+        const val = typeof item[key] === "function" ? item[key]() : item[key];
         if (val === undefined || val === null) return false;
         return String(val).toLowerCase().includes(term);
       });
@@ -47,7 +47,9 @@ export default function DataTable({
         </div>
 
         <div className="flex items-center gap-2 text-xs text-stone-500 justify-between sm:justify-end">
-          <span>{filteredData.length} {filteredData.length === 1 ? 'item' : 'itens'}</span>
+          <span>
+            {filteredData.length} {filteredData.length === 1 ? "item" : "itens"}
+          </span>
           {toolbar}
         </div>
       </div>
@@ -59,7 +61,10 @@ export default function DataTable({
             <thead className="bg-stone-50 text-stone-500 uppercase tracking-wider text-[11px] border-b border-stone-200/80">
               <tr>
                 {columns.map((col, idx) => (
-                  <th key={idx} className={`py-3 px-4 font-semibold ${col.align === 'right' ? 'text-right' : 'text-left'} ${col.className || ''}`}>
+                  <th
+                    key={idx}
+                    className={`py-3 px-4 font-semibold ${col.align === "right" ? "text-right" : "text-left"} ${col.className || ""}`}
+                  >
                     {col.header}
                   </th>
                 ))}
@@ -80,22 +85,29 @@ export default function DataTable({
                 </tr>
               ) : (
                 filteredData.map((row, rowIdx) => (
-                  <tr key={row.id || rowIdx} className="hover:bg-stone-50/70 transition-colors">
+                  <tr
+                    key={row.id || rowIdx}
+                    className="hover:bg-stone-50/70 transition-colors"
+                  >
                     {columns.map((col, colIdx) => {
-                      const cellValue = typeof col.accessor === 'function'
-                        ? col.accessor(row)
-                        : row[col.accessor];
+                      const cellValue =
+                        typeof col.accessor === "function"
+                          ? col.accessor(row)
+                          : row[col.accessor];
 
                       return (
-                        <td key={colIdx} className={`py-3.5 px-4 ${col.align === 'right' ? 'text-right' : 'text-left'} ${col.className || ''}`}>
-                          {col.render ? col.render(cellValue, row) : (cellValue ?? '-')}
+                        <td
+                          key={colIdx}
+                          className={`py-3.5 px-4 ${col.align === "right" ? "text-right" : "text-left"} ${col.className || ""}`}
+                        >
+                          {col.render
+                            ? col.render(cellValue, row)
+                            : (cellValue ?? "-")}
                         </td>
                       );
                     })}
                     {actions && (
-                      <td className="py-3.5 px-4 text-right">
-                        {actions(row)}
-                      </td>
+                      <td className="py-3.5 px-4 text-right">{actions(row)}</td>
                     )}
                   </tr>
                 ))

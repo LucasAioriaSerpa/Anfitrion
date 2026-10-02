@@ -3,73 +3,251 @@
     {
       "id_hotel": 1,
       "cnpj": "12.345.678/0001-90",
-      "franquia": "Anfitrião Hotéis & Resorts",
-      "nome": "Anfitrião Grand Hotel & Resort",
-      "endereso": "Avenida Atlântica, 1500 - Copacabana, Rio de Janeiro - RJ",
-      "qtd_quartos": 30
+      "franquia": "Anfitriao Hoteis & Resorts",
+      "nome": "Anfitriao Grand Hotel",
+      "endereso": "Avenida Atlantica, 1500 - Rio de Janeiro - RJ",
+      "qtd_quartos": 12
     },
     {
       "id_hotel": 2,
       "cnpj": "98.765.432/0001-10",
-      "franquia": "Anfitrião Hotéis & Resorts",
-      "nome": "Anfitrião Boutique Hotel Jardins",
-      "endereso": "Alameda Santos, 850 - Cerqueira César, São Paulo - SP",
-      "qtd_quartos": 15
+      "franquia": "Anfitriao Hoteis & Resorts",
+      "nome": "Anfitriao Boutique Hotel",
+      "endereso": "Alameda Santos, 850 - Sao Paulo - SP",
+      "qtd_quartos": 12
+    },
+    {
+      "id_hotel": 3,
+      "cnpj": "45.678.901/0001-22",
+      "franquia": "Anfitriao Hoteis & Resorts",
+      "nome": "Anfitriao Serra Hotel",
+      "endereso": "Rua das Hortensias, 220 - Gramado - RS",
+      "qtd_quartos": 12
+    },
+    {
+      "id_hotel": 4,
+      "cnpj": "67.890.123/0001-34",
+      "franquia": "Anfitriao Hoteis & Resorts",
+      "nome": "Anfitriao Eco Resort",
+      "endereso": "Rodovia das Dunas, 500 - Praia do Forte - BA",
+      "qtd_quartos": 12
     }
   ],
   "funcionarios": [
     {
-      "nome": "Administrador Geral",
+      "nome": "Administrador Geral Hotel 1",
       "email": "admin@anfitrion.com",
       "senha": "admin",
-      "telefone": "(11) 98888-7777",
+      "telefone": "(11) 901000-0001",
       "cargo": "Administrador",
       "id_hotel": 1,
       "role": "funcionario"
     },
     {
-      "nome": "Roberto Silva",
+      "nome": "Gerente Hotel 1",
       "email": "gerente@anfitrion.com",
       "senha": "123",
-      "telefone": "(11) 98111-2222",
+      "telefone": "(11) 901000-0002",
       "cargo": "Gerente Geral",
       "id_hotel": 1,
       "role": "funcionario"
     },
     {
-      "nome": "Fernanda Lima",
+      "nome": "Subgerente Hotel 1",
       "email": "subgerente@anfitrion.com",
       "senha": "123",
-      "telefone": "(11) 98222-3333",
+      "telefone": "(11) 901000-0003",
       "cargo": "Subgerente",
       "id_hotel": 1,
       "role": "funcionario"
     },
     {
-      "nome": "Lucas Martins",
+      "nome": "Recepcionista Hotel 1",
       "email": "recepcao@anfitrion.com",
       "senha": "123",
-      "telefone": "(11) 97777-6666",
+      "telefone": "(11) 901000-0004",
       "cargo": "Recepcionista",
       "id_hotel": 1,
       "role": "funcionario"
     },
     {
-      "nome": "Clara Mendes",
+      "nome": "Governanta Hotel 1",
       "email": "governanta@anfitrion.com",
       "senha": "123",
-      "telefone": "(11) 97555-4444",
+      "telefone": "(11) 901000-0005",
       "cargo": "Governanta",
       "id_hotel": 1,
       "role": "funcionario"
     },
     {
-      "nome": "Rosa Santos",
+      "nome": "Camareira Hotel 1",
       "email": "camareira@anfitrion.com",
       "senha": "123",
-      "telefone": "(11) 97444-3333",
+      "telefone": "(11) 901000-0006",
       "cargo": "Camareira",
       "id_hotel": 1,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Administrador Geral Hotel 2",
+      "email": "admin2@anfitrion.com",
+      "senha": "admin",
+      "telefone": "(11) 902000-0001",
+      "cargo": "Administrador",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Gerente Hotel 2",
+      "email": "gerente2@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 902000-0002",
+      "cargo": "Gerente Geral",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Subgerente Hotel 2",
+      "email": "subgerente2@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 902000-0003",
+      "cargo": "Subgerente",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Recepcionista Hotel 2",
+      "email": "recepcao2@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 902000-0004",
+      "cargo": "Recepcionista",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Governanta Hotel 2",
+      "email": "governanta2@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 902000-0005",
+      "cargo": "Governanta",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Camareira Hotel 2",
+      "email": "camareira2@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 902000-0006",
+      "cargo": "Camareira",
+      "id_hotel": 2,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Administrador Geral Hotel 3",
+      "email": "admin3@anfitrion.com",
+      "senha": "admin",
+      "telefone": "(11) 903000-0001",
+      "cargo": "Administrador",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Gerente Hotel 3",
+      "email": "gerente3@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 903000-0002",
+      "cargo": "Gerente Geral",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Subgerente Hotel 3",
+      "email": "subgerente3@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 903000-0003",
+      "cargo": "Subgerente",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Recepcionista Hotel 3",
+      "email": "recepcao3@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 903000-0004",
+      "cargo": "Recepcionista",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Governanta Hotel 3",
+      "email": "governanta3@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 903000-0005",
+      "cargo": "Governanta",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Camareira Hotel 3",
+      "email": "camareira3@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 903000-0006",
+      "cargo": "Camareira",
+      "id_hotel": 3,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Administrador Geral Hotel 4",
+      "email": "admin4@anfitrion.com",
+      "senha": "admin",
+      "telefone": "(11) 904000-0001",
+      "cargo": "Administrador",
+      "id_hotel": 4,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Gerente Hotel 4",
+      "email": "gerente4@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 904000-0002",
+      "cargo": "Gerente Geral",
+      "id_hotel": 4,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Subgerente Hotel 4",
+      "email": "subgerente4@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 904000-0003",
+      "cargo": "Subgerente",
+      "id_hotel": 4,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Recepcionista Hotel 4",
+      "email": "recepcao4@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 904000-0004",
+      "cargo": "Recepcionista",
+      "id_hotel": 4,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Governanta Hotel 4",
+      "email": "governanta4@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 904000-0005",
+      "cargo": "Governanta",
+      "id_hotel": 4,
+      "role": "funcionario"
+    },
+    {
+      "nome": "Camareira Hotel 4",
+      "email": "camareira4@anfitrion.com",
+      "senha": "123",
+      "telefone": "(11) 904000-0006",
+      "cargo": "Camareira",
+      "id_hotel": 4,
       "role": "funcionario"
     }
   ],
@@ -96,10 +274,38 @@
       "role": "hospede"
     },
     {
-      "nome": "João Pedro Almeida",
+      "nome": "Joao Pedro Almeida",
       "email": "joao@gmail.com",
       "senha": "123",
       "telefone": "(41) 99111-2233",
+      "role": "hospede"
+    },
+    {
+      "nome": "Ana Souza",
+      "email": "ana@gmail.com",
+      "senha": "123",
+      "telefone": "(51) 99222-3344",
+      "role": "hospede"
+    },
+    {
+      "nome": "Bruno Martins",
+      "email": "bruno@gmail.com",
+      "senha": "123",
+      "telefone": "(61) 99333-4455",
+      "role": "hospede"
+    },
+    {
+      "nome": "Camila Rocha",
+      "email": "camila@gmail.com",
+      "senha": "123",
+      "telefone": "(71) 99444-5566",
+      "role": "hospede"
+    },
+    {
+      "nome": "Diego Santos",
+      "email": "diego@gmail.com",
+      "senha": "123",
+      "telefone": "(81) 99555-6677",
       "role": "hospede"
     }
   ],
@@ -125,87 +331,594 @@
     {
       "id_quarto": 3,
       "id_hotel": 1,
-      "num_quarto": 201,
-      "andar": 2,
-      "tipo": "Suíte Luxo",
-      "diaria": 380.0,
+      "num_quarto": 103,
+      "andar": 1,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
       "status": "Disponível"
     },
     {
       "id_quarto": 4,
       "id_hotel": 1,
-      "num_quarto": 202,
-      "andar": 2,
-      "tipo": "Suíte Executiva",
-      "diaria": 450.0,
-      "status": "Ocupado"
-    },
-    {
-      "id_quarto": 5,
-      "id_hotel": 1,
-      "num_quarto": 301,
-      "andar": 3,
-      "tipo": "Suíte Master Presidencial",
-      "diaria": 750.0,
-      "status": "Disponível"
-    },
-    {
-      "id_quarto": 6,
-      "id_hotel": 2,
-      "num_quarto": 101,
+      "num_quarto": 104,
       "andar": 1,
-      "tipo": "Boutique Casal Charm",
+      "tipo": "Standard Premium",
       "diaria": 320.0,
       "status": "Disponível"
     },
     {
+      "id_quarto": 5,
+      "id_hotel": 1,
+      "num_quarto": 201,
+      "andar": 2,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 6,
+      "id_hotel": 1,
+      "num_quarto": 202,
+      "andar": 2,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
       "id_quarto": 7,
+      "id_hotel": 1,
+      "num_quarto": 203,
+      "andar": 2,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 8,
+      "id_hotel": 1,
+      "num_quarto": 204,
+      "andar": 2,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 9,
+      "id_hotel": 1,
+      "num_quarto": 301,
+      "andar": 3,
+      "tipo": "Standard Solteiro",
+      "diaria": 150.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 10,
+      "id_hotel": 1,
+      "num_quarto": 302,
+      "andar": 3,
+      "tipo": "Standard Casal",
+      "diaria": 220.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 11,
+      "id_hotel": 1,
+      "num_quarto": 303,
+      "andar": 3,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 12,
+      "id_hotel": 1,
+      "num_quarto": 304,
+      "andar": 3,
+      "tipo": "Standard Premium",
+      "diaria": 320.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 13,
+      "id_hotel": 2,
+      "num_quarto": 101,
+      "andar": 1,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 14,
+      "id_hotel": 2,
+      "num_quarto": 102,
+      "andar": 1,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 15,
+      "id_hotel": 2,
+      "num_quarto": 103,
+      "andar": 1,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 16,
+      "id_hotel": 2,
+      "num_quarto": 104,
+      "andar": 1,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 17,
       "id_hotel": 2,
       "num_quarto": 201,
       "andar": 2,
-      "tipo": "Boutique Executive Suite",
-      "diaria": 520.0,
+      "tipo": "Standard Solteiro",
+      "diaria": 150.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 18,
+      "id_hotel": 2,
+      "num_quarto": 202,
+      "andar": 2,
+      "tipo": "Standard Casal",
+      "diaria": 220.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 19,
+      "id_hotel": 2,
+      "num_quarto": 203,
+      "andar": 2,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 20,
+      "id_hotel": 2,
+      "num_quarto": 204,
+      "andar": 2,
+      "tipo": "Standard Premium",
+      "diaria": 320.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 21,
+      "id_hotel": 2,
+      "num_quarto": 301,
+      "andar": 3,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 22,
+      "id_hotel": 2,
+      "num_quarto": 302,
+      "andar": 3,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 23,
+      "id_hotel": 2,
+      "num_quarto": 303,
+      "andar": 3,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 24,
+      "id_hotel": 2,
+      "num_quarto": 304,
+      "andar": 3,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 25,
+      "id_hotel": 3,
+      "num_quarto": 101,
+      "andar": 1,
+      "tipo": "Standard Solteiro",
+      "diaria": 150.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 26,
+      "id_hotel": 3,
+      "num_quarto": 102,
+      "andar": 1,
+      "tipo": "Standard Casal",
+      "diaria": 220.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 27,
+      "id_hotel": 3,
+      "num_quarto": 103,
+      "andar": 1,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 28,
+      "id_hotel": 3,
+      "num_quarto": 104,
+      "andar": 1,
+      "tipo": "Standard Premium",
+      "diaria": 320.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 29,
+      "id_hotel": 3,
+      "num_quarto": 201,
+      "andar": 2,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 30,
+      "id_hotel": 3,
+      "num_quarto": 202,
+      "andar": 2,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 31,
+      "id_hotel": 3,
+      "num_quarto": 203,
+      "andar": 2,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 32,
+      "id_hotel": 3,
+      "num_quarto": 204,
+      "andar": 2,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 33,
+      "id_hotel": 3,
+      "num_quarto": 301,
+      "andar": 3,
+      "tipo": "Standard Solteiro",
+      "diaria": 150.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 34,
+      "id_hotel": 3,
+      "num_quarto": 302,
+      "andar": 3,
+      "tipo": "Standard Casal",
+      "diaria": 220.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 35,
+      "id_hotel": 3,
+      "num_quarto": 303,
+      "andar": 3,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 36,
+      "id_hotel": 3,
+      "num_quarto": 304,
+      "andar": 3,
+      "tipo": "Standard Premium",
+      "diaria": 320.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 37,
+      "id_hotel": 4,
+      "num_quarto": 101,
+      "andar": 1,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 38,
+      "id_hotel": 4,
+      "num_quarto": 102,
+      "andar": 1,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 39,
+      "id_hotel": 4,
+      "num_quarto": 103,
+      "andar": 1,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 40,
+      "id_hotel": 4,
+      "num_quarto": 104,
+      "andar": 1,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 41,
+      "id_hotel": 4,
+      "num_quarto": 201,
+      "andar": 2,
+      "tipo": "Standard Solteiro",
+      "diaria": 150.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 42,
+      "id_hotel": 4,
+      "num_quarto": 202,
+      "andar": 2,
+      "tipo": "Standard Casal",
+      "diaria": 220.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 43,
+      "id_hotel": 4,
+      "num_quarto": 203,
+      "andar": 2,
+      "tipo": "Standard Familia",
+      "diaria": 280.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 44,
+      "id_hotel": 4,
+      "num_quarto": 204,
+      "andar": 2,
+      "tipo": "Standard Premium",
+      "diaria": 320.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 45,
+      "id_hotel": 4,
+      "num_quarto": 301,
+      "andar": 3,
+      "tipo": "Suite Luxo",
+      "diaria": 380.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 46,
+      "id_hotel": 4,
+      "num_quarto": 302,
+      "andar": 3,
+      "tipo": "Suite Executiva",
+      "diaria": 450.0,
+      "status": "Ocupado"
+    },
+    {
+      "id_quarto": 47,
+      "id_hotel": 4,
+      "num_quarto": 303,
+      "andar": 3,
+      "tipo": "Suite Master",
+      "diaria": 550.0,
+      "status": "Disponível"
+    },
+    {
+      "id_quarto": 48,
+      "id_hotel": 4,
+      "num_quarto": 304,
+      "andar": 3,
+      "tipo": "Suite Presidencial",
+      "diaria": 750.0,
       "status": "Disponível"
     }
   ],
   "reservas": [
     {
       "id_reserva": 1,
+      "id_hotel": 1,
       "quarto_num": 102,
       "hospede_email": "mariana@gmail.com",
-      "check_in": "2026-09-24",
-      "check_out": "2026-09-28",
-      "qtd_hospedes": 2,
+      "check_in": "2026-10-01",
+      "check_out": "2026-10-04",
+      "qtd_hospedes": 1,
       "diaria": 220.0,
       "taxa_cafe_manha": 35.0,
       "taxa_pet": 0.0,
-      "taxa_refeicao": 50.0,
+      "taxa_refeicao": 0.0,
       "taxa_almoco": 0.0,
       "taxa_jantar": 0.0
     },
     {
       "id_reserva": 2,
+      "id_hotel": 1,
       "quarto_num": 202,
       "hospede_email": "carlos@gmail.com",
-      "check_in": "2026-09-22",
-      "check_out": "2026-09-27",
-      "qtd_hospedes": 1,
+      "check_in": "2026-10-02",
+      "check_out": "2026-10-05",
+      "qtd_hospedes": 2,
       "diaria": 450.0,
-      "taxa_cafe_manha": 35.0,
-      "taxa_pet": 40.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
       "taxa_refeicao": 0.0,
       "taxa_almoco": 0.0,
       "taxa_jantar": 0.0
     },
     {
       "id_reserva": 3,
-      "quarto_num": 201,
+      "id_hotel": 1,
+      "quarto_num": 302,
+      "hospede_email": "mariana@gmail.com",
+      "check_in": "2026-10-03",
+      "check_out": "2026-10-06",
+      "qtd_hospedes": 1,
+      "diaria": 220.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 4,
+      "id_hotel": 2,
+      "quarto_num": 102,
       "hospede_email": "beatriz@gmail.com",
-      "check_in": "2026-10-01",
+      "check_in": "2026-10-02",
       "check_out": "2026-10-05",
+      "qtd_hospedes": 1,
+      "diaria": 450.0,
+      "taxa_cafe_manha": 35.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 5,
+      "id_hotel": 2,
+      "quarto_num": 202,
+      "hospede_email": "joao@gmail.com",
+      "check_in": "2026-10-03",
+      "check_out": "2026-10-06",
       "qtd_hospedes": 2,
-      "diaria": 380.0,
-      "taxa_cafe_manha": 70.0,
+      "diaria": 220.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 6,
+      "id_hotel": 2,
+      "quarto_num": 302,
+      "hospede_email": "beatriz@gmail.com",
+      "check_in": "2026-10-04",
+      "check_out": "2026-10-07",
+      "qtd_hospedes": 1,
+      "diaria": 450.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 7,
+      "id_hotel": 3,
+      "quarto_num": 102,
+      "hospede_email": "ana@gmail.com",
+      "check_in": "2026-10-03",
+      "check_out": "2026-10-06",
+      "qtd_hospedes": 1,
+      "diaria": 220.0,
+      "taxa_cafe_manha": 35.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 8,
+      "id_hotel": 3,
+      "quarto_num": 202,
+      "hospede_email": "bruno@gmail.com",
+      "check_in": "2026-10-04",
+      "check_out": "2026-10-07",
+      "qtd_hospedes": 2,
+      "diaria": 450.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 9,
+      "id_hotel": 3,
+      "quarto_num": 302,
+      "hospede_email": "ana@gmail.com",
+      "check_in": "2026-10-05",
+      "check_out": "2026-10-08",
+      "qtd_hospedes": 1,
+      "diaria": 220.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 10,
+      "id_hotel": 4,
+      "quarto_num": 102,
+      "hospede_email": "camila@gmail.com",
+      "check_in": "2026-10-04",
+      "check_out": "2026-10-07",
+      "qtd_hospedes": 1,
+      "diaria": 450.0,
+      "taxa_cafe_manha": 35.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 11,
+      "id_hotel": 4,
+      "quarto_num": 202,
+      "hospede_email": "diego@gmail.com",
+      "check_in": "2026-10-05",
+      "check_out": "2026-10-08",
+      "qtd_hospedes": 2,
+      "diaria": 220.0,
+      "taxa_cafe_manha": 0.0,
+      "taxa_pet": 0.0,
+      "taxa_refeicao": 0.0,
+      "taxa_almoco": 0.0,
+      "taxa_jantar": 0.0
+    },
+    {
+      "id_reserva": 12,
+      "id_hotel": 4,
+      "quarto_num": 302,
+      "hospede_email": "camila@gmail.com",
+      "check_in": "2026-10-06",
+      "check_out": "2026-10-09",
+      "qtd_hospedes": 1,
+      "diaria": 450.0,
+      "taxa_cafe_manha": 0.0,
       "taxa_pet": 0.0,
       "taxa_refeicao": 0.0,
       "taxa_almoco": 0.0,

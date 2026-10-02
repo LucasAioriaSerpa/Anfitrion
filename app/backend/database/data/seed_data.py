@@ -1,5 +1,5 @@
 """
-Módulo seed_data em app/backend/data/
+Módulo seed_data em app/backend/database/data/
 Permite execução e acesso aos dados mock a partir do diretório data.
 """
 

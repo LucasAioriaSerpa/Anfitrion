@@ -287,7 +287,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                 onSubmit={handleSubmit}
                 className="login-form"
               >
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="role">Tipo da conta</label>
                   <select
                     id="role"
@@ -298,7 +298,7 @@ function AuthFuncionario({ onEnterDashboard }) {
                     <option value="hospede">Hóspede</option>
                     <option value="funcionario">Funcionário</option>
                   </select>
-                </div>
+                </div> */}
 
                 {isSignUp && (
                   <div className="form-group">

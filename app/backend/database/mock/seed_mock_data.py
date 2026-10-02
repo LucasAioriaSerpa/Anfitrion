@@ -19,16 +19,142 @@ import sys
 import json
 import sqlite3
 from pathlib import Path
-from datetime import datetime
 
 CURRENT_DIR = Path(__file__).resolve().parent
-BACKEND_DIR = CURRENT_DIR.parent
+DATABASE_DIR = CURRENT_DIR.parent
+BACKEND_DIR = DATABASE_DIR.parent
+MOCK_DATA_PATH = DATABASE_DIR / "data" / "mock_data.json"
 
 if str(BACKEND_DIR) not in sys.path: sys.path.insert(0, str(BACKEND_DIR))
 
+try:
+    from config.Config import Config
+    from database.setup_db import init_db
+except ImportError:
+    from app.backend.config.Config import Config
+    from app.backend.database.setup_db import init_db
+
+
+def _expand_mock_data(data):
+    """Normaliza os dados mock para a topologia completa do ambiente."""
+    hotel_specs = [
+        (1, "12.345.678/0001-90", "Anfitriao Grand Hotel", "Avenida Atlantica, 1500 - Rio de Janeiro - RJ"),
+        (2, "98.765.432/0001-10", "Anfitriao Boutique Hotel", "Alameda Santos, 850 - Sao Paulo - SP"),
+        (3, "45.678.901/0001-22", "Anfitriao Serra Hotel", "Rua das Hortensias, 220 - Gramado - RS"),
+        (4, "67.890.123/0001-34", "Anfitriao Eco Resort", "Rodovia das Dunas, 500 - Praia do Forte - BA"),
+    ]
+    data["hoteis"] = [
+        {
+            "id_hotel": hotel_id,
+            "cnpj": cnpj,
+            "franquia": "Anfitriao Hoteis & Resorts",
+            "nome": name,
+            "endereso": address,
+            "qtd_quartos": 12,
+        }
+        for hotel_id, cnpj, name, address in hotel_specs
+    ]
+
+    roles = [
+        ("Administrador", "Administrador Geral", "admin"),
+        ("Gerente Geral", "Gerente", "gerente"),
+        ("Subgerente", "Subgerente", "subgerente"),
+        ("Recepcionista", "Recepcionista", "recepcao"),
+        ("Governanta", "Governanta", "governanta"),
+        ("Camareira", "Camareira", "camareira"),
+    ]
+    data["funcionarios"] = [
+        {
+            "nome": f"{label} Hotel {hotel_id}",
+            "email": f"{slug}@anfitrion.com" if hotel_id == 1 else f"{slug}{hotel_id}@anfitrion.com",
+            "senha": password,
+            "telefone": f"(11) 9{hotel_id:02d}000-000{index}",
+            "cargo": cargo,
+            "id_hotel": hotel_id,
+            "role": "funcionario",
+        }
+        for hotel_id, _, _, _ in hotel_specs
+        for index, (cargo, label, slug) in enumerate(roles, start=1)
+        for password in ["admin" if cargo == "Administrador" else "123"]
+    ]
+
+    guest_names = [
+        ("Mariana Silva", "mariana@gmail.com", "(21) 99999-1234"),
+        ("Carlos Oliveira", "carlos@gmail.com", "(11) 98888-0000"),
+        ("Beatriz Costa", "beatriz@gmail.com", "(31) 97777-8888"),
+        ("Joao Pedro Almeida", "joao@gmail.com", "(41) 99111-2233"),
+        ("Ana Souza", "ana@gmail.com", "(51) 99222-3344"),
+        ("Bruno Martins", "bruno@gmail.com", "(61) 99333-4455"),
+        ("Camila Rocha", "camila@gmail.com", "(71) 99444-5566"),
+        ("Diego Santos", "diego@gmail.com", "(81) 99555-6677"),
+    ]
+    data["hospedes"] = [
+        {"nome": name, "email": email, "senha": "123", "telefone": phone, "role": "hospede"}
+        for name, email, phone in guest_names
+    ]
+
+    room_types = [
+        ("Standard Solteiro", 150.0),
+        ("Standard Casal", 220.0),
+        ("Standard Familia", 280.0),
+        ("Standard Premium", 320.0),
+        ("Suite Luxo", 380.0),
+        ("Suite Executiva", 450.0),
+        ("Suite Master", 550.0),
+        ("Suite Presidencial", 750.0),
+    ]
+    data["quartos"] = []
+    room_id = 1
+    for hotel_id, _, _, _ in hotel_specs:
+        for floor in (1, 2, 3):
+            for room_index in range(1, 5):
+                room_number = floor * 100 + room_index
+                room_type, daily_rate = room_types[(room_id - 1) % len(room_types)]
+                data["quartos"].append({
+                    "id_quarto": room_id,
+                    "id_hotel": hotel_id,
+                    "num_quarto": room_number,
+                    "andar": floor,
+                    "tipo": room_type,
+                    "diaria": daily_rate,
+                    "status": "Ocupado" if room_index == 2 else "Disponível",
+                })
+                room_id += 1
+
+    data["reservas"] = []
+    guest_emails = [guest[1] for guest in guest_names]
+    reservation_id = 1
+    for hotel_id, _, _, _ in hotel_specs:
+        for room_number, guest_index in ((102, 0), (202, 1), (302, 2)):
+            room = next(room for room in data["quartos"] if room["id_hotel"] == hotel_id and room["num_quarto"] == room_number)
+            data["reservas"].append({
+                "id_reserva": reservation_id,
+                "id_hotel": hotel_id,
+                "quarto_num": room_number,
+                "hospede_email": guest_emails[(hotel_id - 1) * 2 + guest_index % 2],
+                "check_in": f"2026-10-{hotel_id + guest_index:02d}",
+                "check_out": f"2026-10-{hotel_id + guest_index + 3:02d}",
+                "qtd_hospedes": 1 + (guest_index % 2),
+                "diaria": room["diaria"],
+                "taxa_cafe_manha": 35.0 if guest_index == 0 else 0.0,
+                "taxa_pet": 0.0,
+                "taxa_refeicao": 0.0,
+                "taxa_almoco": 0.0,
+                "taxa_jantar": 0.0,
+            })
+            reservation_id += 1
+
+    return data
+
+
 def get_mock_data():
     """Retorna os dados mock estruturados para semente do sistema."""
-    return {
+    if MOCK_DATA_PATH.exists():
+        try:
+            with MOCK_DATA_PATH.open("r", encoding="utf-8") as mock_file: 
+                return _expand_mock_data(json.load(mock_file))
+        except (OSError, json.JSONDecodeError): pass
+    return _expand_mock_data({
         "hoteis": [
             {
                 "id_hotel": 1,
@@ -242,25 +368,27 @@ def get_mock_data():
                 "taxa_jantar": 0.0
             }
         ]
-    }
+    })
 
 def seed_database(db_path=None, force=False):
     """
     Insere os dados semente no banco de dados SQLite.
     Se force=True, limpa os dados anteriores antes de reinserir.
     """
-    if db_path is None:
-        db_path = BACKEND_DIR.parent / "database" / "db_anfitrion.db"
+    if db_path is None: db_path = Config().get("DATABASE_DIR")
+    
+    if not isinstance(db_path, (str, Path)): raise TypeError("DATABASE_DIR deve ser um caminho de arquivo válido")
 
     db_path = Path(db_path)
     db_path.parent.mkdir(parents=True, exist_ok=True)
+    init_db(str(db_path))
 
     print(f"[ Seed ] - Conectando ao banco SQLite: {db_path}")
     conn = sqlite3.connect(str(db_path))
     cursor = conn.cursor()
     cursor.execute("PRAGMA foreign_keys = ON;")
 
-    # Garante que as tabelas básicas existam
+    #? Garante que as tabelas básicas existam
     cursor.execute("""--sql
     CREATE TABLE IF NOT EXISTS hospede (
         id_hospede INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -331,16 +459,23 @@ def seed_database(db_path=None, force=False):
         cursor.execute("DELETE FROM quarto;")
         cursor.execute("DELETE FROM hotel;")
         cursor.execute("DELETE FROM hospede;")
+        cursor.execute("DELETE FROM sqlite_sequence;")
         conn.commit()
         print("[ Seed ] - Dados anteriores excluídos para inserção forçada.")
 
     #? Verifica se já há dados inseridos
-    cursor.execute("SELECT COUNT(*) FROM hotel;")
-    hoteis_count = cursor.fetchone()[0]
-    if hoteis_count > 0 and not force:
+    counts = {
+        table: cursor.execute(f"SELECT COUNT(*) FROM {table};").fetchone()[0]
+        for table in ("hotel", "quarto", "funcionario", "hospede", "reserva")
+    }
+    if not force and any(counts[table] > 0 for table in ("quarto", "funcionario", "hospede", "reserva")):
         print("[ Seed ] - O banco já possui dados. Use force=True para sobrescrever.")
         conn.close()
         return False
+
+    if not force and counts["hotel"] == 1:
+        cursor.execute("DELETE FROM hotel;")
+        conn.commit()
 
     data = get_mock_data()
 
@@ -361,7 +496,7 @@ def seed_database(db_path=None, force=False):
             "INSERT INTO quarto (id_hotel, tipo, status, andar, num_quarto, diaria) VALUES (?, ?, ?, ?, ?, ?)",
             (real_hotel_id, q["tipo"], q["status"], q["andar"], q["num_quarto"], q["diaria"])
         )
-        quarto_num_map[q["num_quarto"]] = cursor.lastrowid
+        quarto_num_map[(q["id_hotel"], q["num_quarto"])] = cursor.lastrowid
 
     #* 3. Funcionários (Administrador, Gerente, Subgerente, Recepcionista, Governanta, Camareira)
     for f in data["funcionarios"]:
@@ -369,7 +504,6 @@ def seed_database(db_path=None, force=False):
             "INSERT OR IGNORE INTO hospede (nome, email, senha, telefone) VALUES (?, ?, ?, ?)",
             (f["nome"], f["email"], f["senha"], f["telefone"])
         )
-        # Recupera o id_hospede
         cursor.execute("SELECT id_hospede FROM hospede WHERE email = ?", (f["email"],))
         id_hosp = cursor.fetchone()[0]
 
@@ -391,7 +525,7 @@ def seed_database(db_path=None, force=False):
 
     #* 5. Reservas
     for r in data["reservas"]:
-        id_quarto = quarto_num_map.get(r["quarto_num"])
+        id_quarto = quarto_num_map.get((r.get("id_hotel"), r["quarto_num"]))
         id_hospede = hospede_email_map.get(r["hospede_email"])
         if id_quarto and id_hospede:
             cursor.execute("""
@@ -412,8 +546,7 @@ def seed_database(db_path=None, force=False):
 
 def export_json(output_path=None):
     """Exporta os dados mock em JSON para integração cruzada."""
-    if output_path is None:
-        output_path = BACKEND_DIR / "data" / "mock_data.json"
+    if output_path is None: output_path = MOCK_DATA_PATH
     
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
