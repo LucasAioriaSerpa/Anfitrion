@@ -28,12 +28,15 @@ MOCK_DATA_PATH = DATABASE_DIR / "data" / "mock_data.json"
 if str(BACKEND_DIR) not in sys.path: sys.path.insert(0, str(BACKEND_DIR))
 
 try:
+    from utils.Loggers import Logger
     from config.Config import Config
     from database.setup_db import init_db
 except ImportError:
+    from app.backend.utils.Loggers import Logger
     from app.backend.config.Config import Config
     from app.backend.database.setup_db import init_db
 
+log = Logger()
 
 def _expand_mock_data(data):
     """Normaliza os dados mock para a topologia completa do ambiente."""
@@ -145,7 +148,6 @@ def _expand_mock_data(data):
             reservation_id += 1
 
     return data
-
 
 def get_mock_data():
     """Retorna os dados mock estruturados para semente do sistema."""
@@ -383,7 +385,7 @@ def seed_database(db_path=None, force=False):
     db_path.parent.mkdir(parents=True, exist_ok=True)
     init_db(str(db_path))
 
-    print(f"[ Seed ] - Conectando ao banco SQLite: {db_path}")
+    log.log_info(f"[ Seed ] - Conectando ao banco SQLite: {db_path}")
     conn = sqlite3.connect(str(db_path))
     cursor = conn.cursor()
     cursor.execute("PRAGMA foreign_keys = ON;")
@@ -461,7 +463,7 @@ def seed_database(db_path=None, force=False):
         cursor.execute("DELETE FROM hospede;")
         cursor.execute("DELETE FROM sqlite_sequence;")
         conn.commit()
-        print("[ Seed ] - Dados anteriores excluídos para inserção forçada.")
+        log.log_info("[ Seed ] - Dados anteriores excluídos para inserção forçada.")
 
     #? Verifica se já há dados inseridos
     counts = {
@@ -469,7 +471,7 @@ def seed_database(db_path=None, force=False):
         for table in ("hotel", "quarto", "funcionario", "hospede", "reserva")
     }
     if not force and any(counts[table] > 0 for table in ("quarto", "funcionario", "hospede", "reserva")):
-        print("[ Seed ] - O banco já possui dados. Use force=True para sobrescrever.")
+        log.log_warning("[ Seed ] - O banco já possui dados. Use force=True para sobrescrever.")
         conn.close()
         return False
 
@@ -541,18 +543,16 @@ def seed_database(db_path=None, force=False):
 
     conn.commit()
     conn.close()
-    print("[ Seed ] - Banco de dados populado com sucesso com mock completo!")
+    log.log_success("[ Seed ] - Banco de dados populado com sucesso com mock completo!")
     return True
 
 def export_json(output_path=None):
     """Exporta os dados mock em JSON para integração cruzada."""
     if output_path is None: output_path = MOCK_DATA_PATH
-    
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(get_mock_data(), f, ensure_ascii=False, indent=2)
-    print(f"[ Seed ] - Arquivo JSON gerado em: {path}")
+    with open(path, "w", encoding="utf-8") as f: json.dump(get_mock_data(), f, ensure_ascii=False, indent=2)
+    log.log_info(f"[ Seed ] - Arquivo JSON gerado em: {path}")
 
 if __name__ == "__main__":
     force_run = "--force" in sys.argv

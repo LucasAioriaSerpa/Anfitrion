@@ -114,10 +114,10 @@ class Main:
 
 
 if "__main__" == __name__:
+    from api.App import App
     log = Logger()
     log.log_info("[ Main.py ] - Configurando as Threads")
     try:
-        from api.App import App
         main = Thread(target=Main().run, name="Thread-MAIN", daemon=True)
         flask = Thread(target=App().run, name="Thread-FLASK", daemon=True)
     except Exception as e:

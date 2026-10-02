@@ -3,6 +3,7 @@ import Auth from "./pages/Auth";
 import Rooms from "./pages/Rooms";
 import Wip from "./pages/Wip";
 import { criarUsuario } from "./models";
+import { clearAccessToken } from "./services/apiService";
 
 function getLandingView(usuario) {
   if (!usuario || !usuario.isFuncionario || !usuario.isFuncionario()) {
@@ -37,6 +38,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("anfitrion_user");
+    clearAccessToken();
     setViewMode("auth");
   };
 

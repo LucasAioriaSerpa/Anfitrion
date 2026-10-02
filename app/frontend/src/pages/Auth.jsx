@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style/Auth.css";
 import logoAnfitrion from "../assets/logo-Anfitrion.png";
-import { authApi } from "../services/apiService";
+import { authApi, clearAccessToken } from "../services/apiService";
 
 function AuthFuncionario({ onEnterDashboard }) {
   const [formData, setFormData] = useState({
@@ -49,6 +49,7 @@ function AuthFuncionario({ onEnterDashboard }) {
 
   const handleLogout = () => {
     localStorage.removeItem("anfitrion_user");
+    clearAccessToken();
     setUsuarioLogado(null);
     setMensagem("Sessão encerrada com sucesso.");
     setTimeout(() => setMensagem(""), 4000);
@@ -264,13 +265,6 @@ function AuthFuncionario({ onEnterDashboard }) {
                 </p>
               </div>
 
-              {isSignUp && (
-                <div className="auth-notice">
-                  <strong>ℹ️ Cadastro por perfil</strong>
-                  Hóspedes e funcionários podem se cadastrar com e-mail e senha.
-                </div>
-              )}
-
               {mensagem && (
                 <div id="auth-success-msg" className="sucesso">
                   {mensagem}
@@ -287,19 +281,6 @@ function AuthFuncionario({ onEnterDashboard }) {
                 onSubmit={handleSubmit}
                 className="login-form"
               >
-                {/* <div className="form-group">
-                  <label htmlFor="role">Tipo da conta</label>
-                  <select
-                    id="role"
-                    name="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                  >
-                    <option value="hospede">Hóspede</option>
-                    <option value="funcionario">Funcionário</option>
-                  </select>
-                </div> */}
-
                 {isSignUp && (
                   <div className="form-group">
                     <label htmlFor="nome">Nome Completo</label>

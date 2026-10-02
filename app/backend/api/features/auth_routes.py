@@ -5,11 +5,13 @@ try:
     from config.Config import Config
     from utils.Loggers import Logger
     from api.factories.user_factory import userFactory
-except ImportError:
+    from api.features.auth_context import current_user, filter_records, issue_access_token, require_auth
+except ImportError or ModuleNotFoundErro:
     from app.backend.manager.Database import Database
     from app.backend.config.Config import Config
     from app.backend.utils.Loggers import Logger
     from app.backend.api.factories.user_factory import userFactory
+    from app.backend.api.features.auth_context import current_user, filter_records, issue_access_token, require_auth
 
 try:
     from database.setup_db import init_db
@@ -75,20 +77,23 @@ def login():
     if funcionario_data and requested_role != "hospede":
         role = "funcionario"
 
+    user_data = {
+        "id_hospede": user["id_hospede"],
+        "nome": user["nome"],
+        "email": user["email"],
+        "telefone": user["telefone"],
+        "role": role,
+        "cargo": funcionario_data.get("cargo") if funcionario_data else None,
+        "id_hotel": funcionario_data.get("id_hotel") if funcionario_data else None,
+        "id_funcionario": funcionario_data.get("id_funcionario") if funcionario_data else None,
+    }
+
     log.log_success(f"[ auth_routes ] - Login realizado com sucesso para: {email} (Role: {role})")
     return jsonify({
         "success": True,
         "message": "Login realizado com sucesso!",
-        "user": {
-            "id_hospede": user["id_hospede"],
-            "nome": user["nome"],
-            "email": user["email"],
-            "telefone": user["telefone"],
-            "role": role,
-            "cargo": funcionario_data.get("cargo") if funcionario_data else None,
-            "id_hotel": funcionario_data.get("id_hotel") if funcionario_data else None,
-            "id_funcionario": funcionario_data.get("id_funcionario") if funcionario_data else None
-        }
+        "access_token": issue_access_token(user_data) if role == "funcionario" else None,
+        "user": user_data,
     }), 200
 
 @auth_bp.route("/register", methods=["POST"])
@@ -153,7 +158,21 @@ def register():
     }), 201
 
 @auth_bp.route("/stats", methods=["GET"])
+@require_auth
 def get_stats():
     """Retorna estatísticas operacionais computadas pela Thread MAIN."""
-    stats = config.get("STATS") or {}
+    user = current_user()
+    hotel_id = user.get("id_hotel")
+    funcionarios = db.read("funcionario", {"id_hotel": hotel_id})
+    quartos = db.read("quarto", {"id_hotel": hotel_id})
+    reservas = filter_records("reserva", db.read("reserva", {}), user)
+    hospedes = filter_records("hospede", db.read("hospede", {}), user)
+    stats = {
+        "total_hospedes": len(hospedes),
+        "total_funcionarios": len(funcionarios),
+        "total_hoteis": 1,
+        "total_quartos": len(quartos),
+        "total_reservas": len(reservas),
+        "total_usuarios": len(hospedes) + len(funcionarios),
+    }
     return jsonify({"success": True, "stats": stats}), 200

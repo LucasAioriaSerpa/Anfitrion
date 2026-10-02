@@ -12,8 +12,23 @@
 import { allMockUsers } from "../data/mockData.js";
 
 const BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const ACCESS_TOKEN_KEY = "anfitrion_access_token";
 
 console.log(BASE_URL);
+
+export function clearAccessToken() {
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+}
+
+function saveAccessToken(token) {
+  if (token) {
+    localStorage.setItem(ACCESS_TOKEN_KEY, token);
+  }
+}
+
+function getAccessToken() {
+  return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
 
 async function request(endpoint, options = {}) {
   const url = `${BASE_URL}${endpoint}`;
@@ -21,6 +36,10 @@ async function request(endpoint, options = {}) {
     "Content-Type": "application/json",
     Accept: "application/json",
   };
+  const accessToken = getAccessToken();
+  if (accessToken) {
+    defaultHeaders.Authorization = `Bearer ${accessToken}`;
+  }
 
   const config = {
     ...options,
@@ -188,6 +207,7 @@ export const authApi = {
         body: credentials,
       });
       if (res.ok && res.data?.success) {
+        saveAccessToken(res.data.access_token);
         return res;
       }
       if (res.status === 400 || res.status === 401 || res.status === 403) {
@@ -219,6 +239,8 @@ export const authApi = {
       id_hotel: user.id_hotel || null,
       id_funcionario: user.id_funcionario || null,
     };
+    const accessToken = `dev:${encodeURIComponent(user.email)}`;
+    saveAccessToken(accessToken);
 
     return {
       ok: true,
@@ -226,6 +248,7 @@ export const authApi = {
       data: {
         success: true,
         message: "Login realizado com sucesso!",
+        access_token: accessToken,
         user: userData,
       },
     };
@@ -305,9 +328,9 @@ export const authApi = {
         success: true,
         message: "Conta de hóspede criada com sucesso!",
         user: {
-          id_hospede: newHospede.id_hospede,
-          nome: newHospede.nome,
-          email: newHospede.email,
+          id_hospede: newUser.id_hospede,
+          nome: newUser.nome,
+          email: newUser.email,
           role: "hospede",
         },
       },
@@ -315,6 +338,13 @@ export const authApi = {
   },
 
   getStats: () => request("/auth/stats"),
+  logout: async () => {
+    try {
+      await request("/auth/logout", { method: "POST" });
+    } finally {
+      clearAccessToken();
+    }
+  },
 };
 
 export default {

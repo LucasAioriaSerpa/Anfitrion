@@ -40,6 +40,9 @@ class Config(metaclass=Singleton):
     }
     STATUS_QUARTO = ["Disponível", "Ocupado", "Manutenção", "Limpeza"]
     CARGOS_FUNCIONARIO = ["Gerente", "Recepcionista", "Camareira", "Governanta", "Concierge"]
+    AUTH_SECRET = os.getenv("ANFITRION_AUTH_SECRET", "anfitrion-development-secret")
+    AUTH_TOKEN_MAX_AGE = 60 * 60 * 8
+    AUTH_TOKEN_SALT = "anfitrion-auth"
 
     def __init__(self) -> None:
         app_dir = self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__))))
@@ -59,6 +62,9 @@ class Config(metaclass=Singleton):
             "TABLE_PRIMARY_KEYS": self.TABLE_PRIMARY_KEYS,
             "STATUS_QUARTO": self.STATUS_QUARTO,
             "CARGOS_FUNCIONARIO": self.CARGOS_FUNCIONARIO,
+            "AUTH_SECRET": self.AUTH_SECRET,
+            "AUTH_TOKEN_MAX_AGE": self.AUTH_TOKEN_MAX_AGE,
+            "AUTH_TOKEN_SALT": self.AUTH_TOKEN_SALT,
             "IS_RUNNING": True,
             "STATS": {
                 "total_hospedes": 0,

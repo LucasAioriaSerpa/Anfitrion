@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../style/App.css";
 import "../style/Auth.css";
 import logoAnfitrion from "../assets/logo-Anfitrion.png";
-import { quartoApi } from "../services/apiService";
+import { clearAccessToken, quartoApi } from "../services/apiService";
 
 const STATUSES = ["Limpo", "Disponível", "Bloqueado", "Ocupado", "Sujo"];
 
@@ -19,17 +19,18 @@ function Rooms({ onLogout }) {
   const [editing, setEditing] = useState(null);
   const [newStatus, setNewStatus] = useState("");
   const [erro, setErro] = useState("");
-  const [userEmail] = useState(() => {
+  const [sessionUser] = useState(() => {
     const storedUser = localStorage.getItem("anfitrion_user");
-    if (!storedUser) return "";
+    if (!storedUser) return null;
 
     try {
-      const parsedUser = JSON.parse(storedUser);
-      return parsedUser.email || "";
+      return JSON.parse(storedUser);
     } catch {
-      return "";
+      return null;
     }
   });
+  const userEmail = sessionUser?.email || "";
+  const roomsStorageKey = `anfitrion_quartos_${sessionUser?.id_hotel || "sem-hotel"}`;
 
   const generateSampleRooms = () => {
     const sample = [];
@@ -53,10 +54,7 @@ function Rooms({ onLogout }) {
       if (res.ok && res.data?.success) {
         setRooms(res.data.data || []);
         if (Array.isArray(res.data.data) && res.data.data.length > 0) {
-          localStorage.setItem(
-            "anfitrion_quartos",
-            JSON.stringify(res.data.data),
-          );
+          localStorage.setItem(roomsStorageKey, JSON.stringify(res.data.data));
         }
         return;
       }
@@ -65,7 +63,7 @@ function Rooms({ onLogout }) {
     }
 
     try {
-      const savedRooms = localStorage.getItem("anfitrion_quartos");
+      const savedRooms = localStorage.getItem(roomsStorageKey);
       if (savedRooms) {
         const parsed = JSON.parse(savedRooms);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -99,7 +97,7 @@ function Rooms({ onLogout }) {
           (r.id_quarto ?? r.id) === id ? { ...r, status: newStatus } : r,
         );
         setRooms(nextRooms);
-        localStorage.setItem("anfitrion_quartos", JSON.stringify(nextRooms));
+        localStorage.setItem(roomsStorageKey, JSON.stringify(nextRooms));
         setEditing(null);
         setErro("");
         return;
@@ -113,7 +111,8 @@ function Rooms({ onLogout }) {
 
   const handleLogout = () => {
     localStorage.removeItem("anfitrion_user");
-    localStorage.removeItem("anfitrion_quartos");
+    localStorage.removeItem(roomsStorageKey);
+    clearAccessToken();
     if (onLogout) {
       onLogout();
     }

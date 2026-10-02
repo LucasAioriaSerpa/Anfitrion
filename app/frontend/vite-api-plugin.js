@@ -61,6 +61,46 @@ function savePersistedState(state) {
   }
 }
 
+function getDevEmployee(req, users) {
+  const authorization = req.headers.authorization || "";
+  if (!authorization.startsWith("Bearer dev:")) {
+    return null;
+  }
+
+  let email;
+  try {
+    email = decodeURIComponent(
+      authorization.slice("Bearer dev:".length),
+    ).toLowerCase();
+  } catch {
+    return null;
+  }
+
+  return users.find(
+    (user) => user.role === "funcionario" && user.email.toLowerCase() === email,
+  );
+}
+
+function belongsToEmployeeHotel(entity, record, employee, quartos, reservas) {
+  const hotelId = Number(employee.id_hotel);
+  if (entity === "reserva") {
+    const room = quartos.find(
+      (quarto) => Number(quarto.id_quarto) === Number(record.id_quarto),
+    );
+    return Number(room?.id_hotel) === hotelId;
+  }
+
+  if (entity === "hospede") {
+    return reservas.some(
+      (reserva) =>
+        Number(reserva.id_hospede) === Number(record.id_hospede) &&
+        belongsToEmployeeHotel("reserva", reserva, employee, quartos, reservas),
+    );
+  }
+
+  return Number(record.id_hotel) === hotelId;
+}
+
 export function apiDevPlugin() {
   const state = loadPersistedState();
   const users = state.users;
@@ -104,6 +144,15 @@ export function apiDevPlugin() {
 
         const method = (req.method || "GET").toUpperCase();
 
+        const isAuthRoute = pathname.startsWith("/api/auth/");
+        const employee = isAuthRoute ? null : getDevEmployee(req, users);
+        if (!isAuthRoute && !employee) {
+          return sendJson(res, 401, {
+            success: false,
+            message: "Autenticação de funcionário obrigatória",
+          });
+        }
+
         // 1. Auth: Login
         if (pathname === "/api/auth/login" && method === "POST") {
           const body = await readBody(req);
@@ -130,6 +179,7 @@ export function apiDevPlugin() {
           return sendJson(res, 200, {
             success: true,
             message: "Login realizado com sucesso!",
+            access_token: `dev:${encodeURIComponent(user.email)}`,
             user: {
               id_hospede: user.id_hospede,
               nome: user.nome,
@@ -214,21 +264,62 @@ export function apiDevPlugin() {
           pathname === "/api/auth/stats" ||
           pathname === "/api/auth/estatisticas"
         ) {
+          const statsEmployee = getDevEmployee(req, users);
+          if (!statsEmployee) {
+            return sendJson(res, 401, {
+              success: false,
+              message: "Autenticação de funcionário obrigatória",
+            });
+          }
+          const hotelRooms = quartos.filter((room) =>
+            belongsToEmployeeHotel(
+              "quarto",
+              room,
+              statsEmployee,
+              quartos,
+              reservas,
+            ),
+          );
+          const hotelReservations = reservas.filter((reserva) =>
+            belongsToEmployeeHotel(
+              "reserva",
+              reserva,
+              statsEmployee,
+              quartos,
+              reservas,
+            ),
+          );
           const totalHospedes = users.filter(
-            (u) => u.role === "hospede",
+            (user) =>
+              user.role === "hospede" &&
+              belongsToEmployeeHotel(
+                "hospede",
+                user,
+                statsEmployee,
+                quartos,
+                reservas,
+              ),
           ).length;
           const totalFuncionarios = users.filter(
-            (u) => u.role === "funcionario",
+            (user) =>
+              user.role === "funcionario" &&
+              belongsToEmployeeHotel(
+                "funcionario",
+                user,
+                statsEmployee,
+                quartos,
+                reservas,
+              ),
           ).length;
           return sendJson(res, 200, {
             success: true,
             stats: {
               totalHospedes,
               totalFuncionarios,
-              totalHoteis: hoteis.length,
-              totalQuartos: quartos.length,
-              totalReservas: reservas.length,
-              totalUsuarios: users.length,
+              totalHoteis: 1,
+              totalQuartos: hotelRooms.length,
+              totalReservas: hotelReservations.length,
+              totalUsuarios: totalHospedes + totalFuncionarios,
             },
           });
         }
@@ -239,7 +330,17 @@ export function apiDevPlugin() {
             return sendJson(
               res,
               200,
-              users.filter((u) => u.role === "hospede"),
+              users.filter(
+                (user) =>
+                  user.role === "hospede" &&
+                  belongsToEmployeeHotel(
+                    "hospede",
+                    user,
+                    employee,
+                    quartos,
+                    reservas,
+                  ),
+              ),
             );
           }
           if (method === "POST") {
@@ -256,14 +357,34 @@ export function apiDevPlugin() {
 
         // 6. CRUD Hotel
         if (pathname === "/api/hotel") {
-          return sendJson(res, 200, hoteis);
+          return sendJson(
+            res,
+            200,
+            hoteis.filter((hotel) =>
+              belongsToEmployeeHotel(
+                "hotel",
+                hotel,
+                employee,
+                quartos,
+                reservas,
+              ),
+            ),
+          );
         }
 
         // 7. CRUD Quarto (com Diárias)
         if (pathname === "/api/quarto" && method === "GET") {
           return sendJson(res, 200, {
             success: true,
-            data: quartos,
+            data: quartos.filter((room) =>
+              belongsToEmployeeHotel(
+                "quarto",
+                room,
+                employee,
+                quartos,
+                reservas,
+              ),
+            ),
           });
         }
 
@@ -273,7 +394,10 @@ export function apiDevPlugin() {
             (q) => Number(q.id_quarto ?? q.id) === roomId,
           );
 
-          if (!room) {
+          if (
+            !room ||
+            !belongsToEmployeeHotel("quarto", room, employee, quartos, reservas)
+          ) {
             return sendJson(res, 404, {
               success: false,
               message: "Quarto não encontrado",
@@ -308,13 +432,35 @@ export function apiDevPlugin() {
           return sendJson(
             res,
             200,
-            users.filter((u) => u.role === "funcionario"),
+            users.filter(
+              (user) =>
+                user.role === "funcionario" &&
+                belongsToEmployeeHotel(
+                  "funcionario",
+                  user,
+                  employee,
+                  quartos,
+                  reservas,
+                ),
+            ),
           );
         }
 
         // 9. CRUD Reserva
         if (pathname === "/api/reserva") {
-          return sendJson(res, 200, reservas);
+          return sendJson(
+            res,
+            200,
+            reservas.filter((reserva) =>
+              belongsToEmployeeHotel(
+                "reserva",
+                reserva,
+                employee,
+                quartos,
+                reservas,
+              ),
+            ),
+          );
         }
 
         // Rota padrão para /api não mapeada
