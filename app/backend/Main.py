@@ -1,4 +1,5 @@
 import sys, os, time
+from typing import Any
 from datetime import datetime
 from threading import Thread
 
@@ -45,6 +46,50 @@ class Main:
             except Exception: self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>"); return False
         return True
 
+    def __get_rate_of_occupancy(
+        self,
+        hoteis: list[dict[Any, Any]],
+        quartos: list[dict[Any, Any]],
+        quartos_ocupados_ids: set[Any]
+    ) -> list[dict[str, Any]]:
+        """_summary_
+        
+        ### Calculo da taxa de ocupação por hotel
+        - Calcula a taxa de ocupação de cada hotel com base nos quartos ocupados e disponíveis.
+        - Retorna uma lista de dicionários contendo informações sobre cada hotel e sua taxa de ocupação.
+        
+        Args:
+            hoteis (list[dict[Any, Any]]): lista de dicionários dos hoteis pegos pelo banco de dados
+            quartos (list[dict[Any, Any]]): lista de dicionários dos quartos pegos pelo banco de dados
+            quartos_ocupados_ids (set[Any]): conjunto de IDs dos quartos ocupados, baseado nas reservas ativas
+
+        Returns:
+            list[dict[str, Any]]: lista de dicionários contendo informações sobre cada hotel e sua taxa de ocupação
+        """
+        taxas_ocupacao_hoteis = []
+        for hotel in hoteis:
+            hotel_id = hotel.get("id_hotel", hotel.get("id"))
+            quartos_hotel = [
+                quarto for quarto in quartos
+                if quarto.get("id_hotel") == hotel_id
+            ]
+            quartos_ocupados_hotel = sum(
+                quarto.get("status") == "Ocupado"
+                or quarto.get("id_quarto") in quartos_ocupados_ids
+                for quarto in quartos_hotel
+            )
+            total_quartos_hotel = len(quartos_hotel)
+            taxa_hotel = round(
+                quartos_ocupados_hotel / total_quartos_hotel * 100, 2
+            ) if total_quartos_hotel else 0.0
+            taxas_ocupacao_hoteis.append({
+                "id_hotel": hotel_id,
+                "nome": hotel.get("nome", hotel.get("name", str(hotel_id))),
+                "taxa_ocupacao": taxa_hotel,
+                "quartos_ocupados": quartos_ocupados_hotel,
+                "total_quartos": total_quartos_hotel
+            })
+        return taxas_ocupacao_hoteis
 
     def __process_heavy_tasks(self) -> None:
         """
@@ -72,6 +117,8 @@ class Main:
             quartos_ocupados_count = len([q for q in quartos if q.get("status") == "Ocupado" or q.get("id_quarto") in quartos_ocupados_ids])
             taxa_ocupacao = round((quartos_ocupados_count / total_quartos * 100), 2) if total_quartos > 0 else 0.0
 
+            taxas_ocupacao_hoteis = self.__get_rate_of_occupancy(hoteis, quartos, quartos_ocupados_ids)
+
             stats = {
                 "total_hospedes": len(hospedes),
                 "total_hoteis": len(hoteis),
@@ -80,6 +127,7 @@ class Main:
                 "quartos_disponiveis": max(0, total_quartos - quartos_ocupados_count),
                 "total_reservas": len(reservas),
                 "taxa_ocupacao": taxa_ocupacao,
+                "taxa_ocupacao_por_hotel": taxas_ocupacao_hoteis,
                 "ultima_execucao_main": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
 
@@ -88,9 +136,23 @@ class Main:
             self.__config.set("BACKGROUND_TASKS_COUNTER", cycle)
 
             if cycle % 10 == 1:
+                maiorValor = max(map(len, Textos := [f"{hoteis.get('nome')} - {hoteis.get('taxa_ocupacao')}% ({hoteis.get('quartos_ocupados')}/{hoteis.get('total_quartos')} quartos ocupados)" for hoteis in taxas_ocupacao_hoteis]))
                 self.__log.log_info(
-                    f"[ MAIN ] - Rotina de background executada (Ciclo {cycle}) | "
-                    f"Ocupação: {taxa_ocupacao}% ({quartos_ocupados_count}/{total_quartos} quartos)"
+                    f"""[ MAIN ] - Rotina de background executada (Ciclo {cycle})
+<| STATUS DO SISTEMA
+    • Hoteis {stats.get('total_hoteis')} totais
+    • Quartos {stats.get('total_quartos')} totais
+    • Hospedes {stats.get('total_hospedes')} totais
+    • Reservas {stats.get('total_reservas')} totais
+    • Ocupação total:  {taxa_ocupacao}% ({quartos_ocupados_count}/{total_quartos} quartos de todos os hoteis ocupados)
+    <| OCUPAÇÃO POR HOTEL:
+        {'-'*(maiorValor + 4)}
+        {f"\n{'':>8}".join(f"| {linha:<{maiorValor}} |" for linha in Textos)}
+        {'-'*(maiorValor + 4)}
+    |>
+    • Última execução: {stats.get('ultima_execucao_main')}
+|>
+                    """
                 )
         except Exception as e: self.__log.log_error(f"[ MAIN ] - Erro no processamento de rotinas em background: {str(e)}")
 
@@ -128,7 +190,7 @@ if "__main__" == __name__:
     main.start()
     flask.start()
 
-    try:
+    try: 
         while True: time.sleep(1)
     except KeyboardInterrupt:
         log.log_info("[ Main.py ] - Finalizando aplicação...")
