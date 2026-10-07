@@ -1,39 +1,74 @@
 :root {
-  /** COLLOR PALLET - LIGHT */
+  /** 1. Shared design tokens (Base Palette) */
   --color-light: #e8f7ee;
   --color-midlight: #b8c4bb;
   --color-dark: #663f46;
   --color-darker: #3c362a;
   --color-backlight: #c9d6ea;
 
+  /** 2. Light Theme Semantics */
+  --text: var(--color-darker);
+  --text-muted: var(--color-dark);
+  --border: var(--color-midlight);
+
+  /* Superfícies */
+  --surface: var(--color-light);
+  --theme-card-bg: #ffffff; /* Branco puro para destacar os cards no fundo light */
+  --theme-header-bg: var(--color-backlight);
+  --theme-panel-bg: var(--color-dark);
+
+  /* Controles (Botões, Inputs) */
+  --theme-control-bg: #ffffff;
+  --theme-control-border: var(--color-midlight);
+  --theme-control-text: var(--color-darker);
+  --theme-control-hover: var(--color-backlight);
+
+  /** 3. Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  /** 4. Shadows */
   --shadow-sm: 0 1px 2px 0 #0000000d;
   --shadow-md: 0 4px 6px -1px #00000012, 0 2px 4px -2px #0000000d;
   --shadow-lg: 0 10px 15px -3px #00000014, 0 4px 6px -4px #0000000a;
   --shadow-xl: 0 20px 25px -5px #00000014, 0 8px 10px -6px #0000000a;
 
-  /** Dimensions & Radius */
+  /** 5. Dimensions & Radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /** Transitions */
+  /** 6. Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;
 
-  /** Layout */
+  /** 7. Layout */
   --max-width: 1140px;
   --header-height: 72px;
 }
 
 [data-theme="dark"] {
-  --color-light: #e8f7ee;
-  --color-midlight: #b8c4bb;
-  --color-dark: #663f46;
-  --color-darker: #3c362a;
-  --color-backlight: #c9d6ea;
+  /** Dark Theme Semantics */
+  --text: var(--color-light);
+  --text-muted: var(--color-midlight);
+  --border: var(--color-dark);
 
+  /* Superfícies */
+  --surface: var(--color-darker);
+  --theme-card-bg: var(--color-dark);
+  --theme-header-bg: var(--color-darker);
+  --theme-panel-bg: var(--color-darker);
+
+  /* Controles (Botões, Inputs) */
+  --theme-control-bg: var(--color-darker);
+  --theme-control-border: var(--color-dark);
+  --theme-control-text: var(--color-light);
+  --theme-control-hover: var(--color-dark);
+
+  /** Shadows (Ajustadas com mais opacidade para o tema escuro) */
   --shadow-sm: 0 1px 2px 0 #0000004d;
   --shadow-md: 0 4px 6px -1px #00000066, 0 2px 4px -2px #0000004d;
   --shadow-lg: 0 10px 15px -3px #00000080, 0 4px 6px -4px #00000066;

@@ -1,9 +1,16 @@
-import { useState } from 'react';
-import Button from '../common/Button';
-import DataTable from '../common/DataTable';
-import MetricCard from '../common/MetricCard';
-import Modal from '../common/Modal';
-import { ShieldCheck, UserPlus, PlusCircle, CheckCircle2, Building, Bed } from 'lucide-react';
+import { useState } from "react";
+import Button from "../common/Button";
+import DataTable from "../common/DataTable";
+import MetricCard from "../common/MetricCard";
+import Modal from "../common/Modal";
+import {
+  ShieldCheck,
+  UserPlus,
+  PlusCircle,
+  CheckCircle2,
+  Building,
+  Bed,
+} from "lucide-react";
 
 /**
  * AdminView (Variante Administrador - Orientado a Reuso & POO)
@@ -12,23 +19,23 @@ import { ShieldCheck, UserPlus, PlusCircle, CheckCircle2, Building, Bed } from '
 export default function AdminView({ usuario, dataManager }) {
   const [modalFuncAberto, setModalFuncAberto] = useState(false);
   const [modalQuartoAberto, setModalQuartoAberto] = useState(false);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
 
   // Form states funcionário
   const [novoFunc, setNovoFunc] = useState({
-    nome: '',
-    email: '',
-    cargo: 'Recepcionista',
-    telefone: '',
-    senha: '123'
+    nome: "",
+    email: "",
+    cargo: "Recepcionista",
+    telefone: "",
+    senha: "123",
   });
 
   // Form states quarto
   const [novoQuarto, setNovoQuarto] = useState({
-    num_quarto: '',
+    num_quarto: "",
     andar: 1,
-    tipo: 'Standard Casal',
-    diaria: '220.00'
+    tipo: "Standard Casal",
+    diaria: "220.00",
   });
 
   const funcionarios = dataManager.funcionarios;
@@ -41,9 +48,17 @@ export default function AdminView({ usuario, dataManager }) {
 
     await dataManager.adicionarFuncionario(novoFunc);
     setModalFuncAberto(false);
-    setNovoFunc({ nome: '', email: '', cargo: 'Recepcionista', telefone: '', senha: '123' });
-    setFeedback(`Funcionário(a) "${novoFunc.nome}" cadastrado(a) com sucesso como ${novoFunc.cargo}! 🎉`);
-    setTimeout(() => setFeedback(''), 4000);
+    setNovoFunc({
+      nome: "",
+      email: "",
+      cargo: "Recepcionista",
+      telefone: "",
+      senha: "123",
+    });
+    setFeedback(
+      `Funcionário(a) "${novoFunc.nome}" cadastrado(a) com sucesso como ${novoFunc.cargo}! 🎉`,
+    );
+    setTimeout(() => setFeedback(""), 4000);
   };
 
   const handleSalvarQuarto = async (e) => {
@@ -52,44 +67,59 @@ export default function AdminView({ usuario, dataManager }) {
 
     await dataManager.adicionarQuarto(novoQuarto);
     setModalQuartoAberto(false);
-    setNovoQuarto({ num_quarto: '', andar: 1, tipo: 'Standard Casal', diaria: '220.00' });
-    setFeedback(`Novo Quarto ${novoQuarto.num_quarto} (${novoQuarto.tipo}) adicionado ao inventário! 🏨`);
-    setTimeout(() => setFeedback(''), 4000);
+    setNovoQuarto({
+      num_quarto: "",
+      andar: 1,
+      tipo: "Standard Casal",
+      diaria: "220.00",
+    });
+    setFeedback(
+      `Novo Quarto ${novoQuarto.num_quarto} (${novoQuarto.tipo}) adicionado ao inventário! 🏨`,
+    );
+    setTimeout(() => setFeedback(""), 4000);
   };
 
   const colunasFuncionarios = [
     {
-      header: 'Nome',
-      accessor: 'nome',
+      header: "Nome",
+      accessor: "nome",
       render: (_, row) => (
         <div>
           <div className="font-semibold text-stone-900">{row.nome}</div>
           <div className="text-[11px] text-stone-400">{row.email}</div>
         </div>
-      )
+      ),
     },
     {
-      header: 'Cargo / Função',
-      accessor: 'cargo',
+      header: "Cargo / Função",
+      accessor: "cargo",
       render: (val) => (
         <span className="font-medium text-stone-800 bg-stone-100 px-2 py-0.5 rounded text-[11px]">
           {val}
         </span>
-      )
+      ),
     },
     {
-      header: 'Telefone',
-      accessor: (row) => row.formatarTelefone ? row.formatarTelefone() : row.telefone
+      header: "Telefone",
+      accessor: (row) =>
+        row.formatarTelefone ? row.formatarTelefone() : row.telefone,
     },
     {
-      header: 'Nível de Acesso',
-      accessor: (row) => (row.isAdmin && row.isAdmin() ? 'Acesso Total' : 'Operacional'),
+      header: "Nível de Acesso",
+      accessor: (row) =>
+        row.isAdmin && row.isAdmin() ? "Acesso Total" : "Operacional",
       render: (val) => (
-        <span className={val === 'Acesso Total' ? 'text-[#663f46] font-bold' : 'text-stone-600'}>
+        <span
+          className={
+            val === "Acesso Total"
+              ? "text-[#663f46] font-bold"
+              : "text-stone-600"
+          }
+        >
           {val}
         </span>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -107,7 +137,8 @@ export default function AdminView({ usuario, dataManager }) {
             {usuario.nome} · Administrador
           </h2>
           <p className="text-xs text-white/80 mt-1">
-            Gestão global de usuários, quadro de colaboradores e patrimônio hoteleiro.
+            Gestão global de usuários, quadro de colaboradores e patrimônio
+            hoteleiro.
           </p>
         </div>
 
@@ -154,8 +185,8 @@ export default function AdminView({ usuario, dataManager }) {
         />
         <MetricCard
           title="Unidade Hoteleira"
-          value={hotel ? `${hotel.estrelas} Estrelas` : '5 Estrelas'}
-          subtitle={hotel ? hotel.nome : 'Anfitrião Grand Hotel'}
+          value={hotel ? `${hotel.estrelas} Estrelas` : "5 Estrelas"}
+          subtitle={hotel ? hotel.nome : "Anfitrião Grand Hotel"}
           icon={ShieldCheck}
         />
       </div>
@@ -168,7 +199,8 @@ export default function AdminView({ usuario, dataManager }) {
               Quadro de Colaboradores & Cargos
             </h3>
             <p className="text-xs text-stone-500">
-              Controle de acesso por cargo (Governanta, Camareira, Recepção, Gerência e Admin)
+              Controle de acesso por cargo (Governanta, Camareira, Recepção,
+              Gerência e Admin)
             </p>
           </div>
         </div>
@@ -188,10 +220,18 @@ export default function AdminView({ usuario, dataManager }) {
         subtitle="Adicione um membro à equipe do hotel com atribuição de cargo"
         footer={
           <>
-            <Button size="sm" variant="ghost" onClick={() => setModalFuncAberto(false)}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setModalFuncAberto(false)}
+            >
               Cancelar
             </Button>
-            <Button size="sm" variant="primary" onClick={handleSalvarFuncionario}>
+            <Button
+              size="sm"
+              variant="primary"
+              onClick={handleSalvarFuncionario}
+            >
               Cadastrar Colaborador
             </Button>
           </>
@@ -199,24 +239,32 @@ export default function AdminView({ usuario, dataManager }) {
       >
         <form onSubmit={handleSalvarFuncionario} className="space-y-3 text-xs">
           <div>
-            <label className="font-medium text-stone-700 block mb-1">Nome Completo</label>
+            <label className="font-medium text-stone-700 block mb-1">
+              Nome Completo
+            </label>
             <input
               type="text"
               required
               value={novoFunc.nome}
-              onChange={(e) => setNovoFunc({ ...novoFunc, nome: e.target.value })}
+              onChange={(e) =>
+                setNovoFunc({ ...novoFunc, nome: e.target.value })
+              }
               placeholder="Ex: Roberto Dias"
               className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
             />
           </div>
 
           <div>
-            <label className="font-medium text-stone-700 block mb-1">E-mail Corporativo</label>
+            <label className="font-medium text-stone-700 block mb-1">
+              E-mail Corporativo
+            </label>
             <input
               type="email"
               required
               value={novoFunc.email}
-              onChange={(e) => setNovoFunc({ ...novoFunc, email: e.target.value })}
+              onChange={(e) =>
+                setNovoFunc({ ...novoFunc, email: e.target.value })
+              }
               placeholder="roberto@anfitrion.com"
               className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
             />
@@ -224,27 +272,37 @@ export default function AdminView({ usuario, dataManager }) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Cargo / Função</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Cargo / Função
+              </label>
               <select
                 value={novoFunc.cargo}
-                onChange={(e) => setNovoFunc({ ...novoFunc, cargo: e.target.value })}
+                onChange={(e) =>
+                  setNovoFunc({ ...novoFunc, cargo: e.target.value })
+                }
                 className="w-full p-2 border border-stone-300 rounded-lg text-stone-800 bg-white"
               >
                 <option value="Recepcionista">Recepcionista</option>
                 <option value="Governanta Chefe">Governanta Chefe</option>
                 <option value="Camareira Sênior">Camareira Sênior</option>
-                <option value="Subgerente Operacional">Subgerente Operacional</option>
+                <option value="Subgerente Operacional">
+                  Subgerente Operacional
+                </option>
                 <option value="Gerente Geral">Gerente Geral</option>
                 <option value="Administrador">Administrador</option>
               </select>
             </div>
 
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Telefone</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Telefone
+              </label>
               <input
                 type="text"
                 value={novoFunc.telefone}
-                onChange={(e) => setNovoFunc({ ...novoFunc, telefone: e.target.value })}
+                onChange={(e) =>
+                  setNovoFunc({ ...novoFunc, telefone: e.target.value })
+                }
                 placeholder="(21) 98888-0000"
                 className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
               />
@@ -261,7 +319,11 @@ export default function AdminView({ usuario, dataManager }) {
         subtitle="Adicione um novo quarto ao inventário do hotel"
         footer={
           <>
-            <Button size="sm" variant="ghost" onClick={() => setModalQuartoAberto(false)}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setModalQuartoAberto(false)}
+            >
               Cancelar
             </Button>
             <Button size="sm" variant="primary" onClick={handleSalvarQuarto}>
@@ -273,53 +335,71 @@ export default function AdminView({ usuario, dataManager }) {
         <form onSubmit={handleSalvarQuarto} className="space-y-3 text-xs">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Número do Quarto</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Número do Quarto
+              </label>
               <input
                 type="number"
                 required
                 value={novoQuarto.num_quarto}
-                onChange={(e) => setNovoQuarto({ ...novoQuarto, num_quarto: e.target.value })}
+                onChange={(e) =>
+                  setNovoQuarto({ ...novoQuarto, num_quarto: e.target.value })
+                }
                 placeholder="Ex: 305"
                 className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
               />
             </div>
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Andar</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Andar
+              </label>
               <input
                 type="number"
                 min="1"
                 max="20"
                 required
                 value={novoQuarto.andar}
-                onChange={(e) => setNovoQuarto({ ...novoQuarto, andar: e.target.value })}
+                onChange={(e) =>
+                  setNovoQuarto({ ...novoQuarto, andar: e.target.value })
+                }
                 className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
               />
             </div>
           </div>
 
           <div>
-            <label className="font-medium text-stone-700 block mb-1">Categoria</label>
+            <label className="font-medium text-stone-700 block mb-1">
+              Categoria
+            </label>
             <select
               value={novoQuarto.tipo}
-              onChange={(e) => setNovoQuarto({ ...novoQuarto, tipo: e.target.value })}
+              onChange={(e) =>
+                setNovoQuarto({ ...novoQuarto, tipo: e.target.value })
+              }
               className="w-full p-2 border border-stone-300 rounded-lg text-stone-800 bg-white"
             >
               <option value="Standard Solteiro">Standard Solteiro</option>
               <option value="Standard Casal">Standard Casal</option>
               <option value="Suíte Luxo">Suíte Luxo</option>
               <option value="Suíte Executiva">Suíte Executiva</option>
-              <option value="Suíte Master Presidencial">Suíte Master Presidencial</option>
+              <option value="Suíte Master Presidencial">
+                Suíte Master Presidencial
+              </option>
             </select>
           </div>
 
           <div>
-            <label className="font-medium text-stone-700 block mb-1">Valor da Diária (R$)</label>
+            <label className="font-medium text-stone-700 block mb-1">
+              Valor da Diária (R$)
+            </label>
             <input
               type="number"
               step="5"
               required
               value={novoQuarto.diaria}
-              onChange={(e) => setNovoQuarto({ ...novoQuarto, diaria: e.target.value })}
+              onChange={(e) =>
+                setNovoQuarto({ ...novoQuarto, diaria: e.target.value })
+              }
               placeholder="Ex: 250.00"
               className="w-full p-2 border border-stone-300 rounded-lg text-stone-800"
             />

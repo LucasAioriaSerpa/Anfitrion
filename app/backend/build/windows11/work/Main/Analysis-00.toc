@@ -283,10 +283,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\quopri.py',
    'PYMODULE'),
-  ('typing',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\typing.py',
-   'PYMODULE'),
   ('contextlib',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\contextlib.py',
@@ -1723,10 +1719,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_distutils_hack\\override.py',
    'PYMODULE'),
-  ('_py_abc',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_py_abc.py',
-   'PYMODULE'),
   ('stringprep',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\stringprep.py',
@@ -1734,6 +1726,10 @@
   ('tracemalloc',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_py_abc.py',
    'PYMODULE'),
   ('api.App',
    'C:\\Users\\Marcos '
@@ -1750,6 +1746,42 @@
   ('api.features.auth_routes',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_routes.py',
+   'PYMODULE'),
+  ('api.features.auth_context',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_context.py',
+   'PYMODULE'),
+  ('itsdangerous',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\__init__.py',
+   'PYMODULE'),
+  ('itsdangerous.url_safe',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\url_safe.py',
+   'PYMODULE'),
+  ('itsdangerous._json',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\_json.py',
+   'PYMODULE'),
+  ('itsdangerous.timed',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\timed.py',
+   'PYMODULE'),
+  ('itsdangerous.signer',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\signer.py',
+   'PYMODULE'),
+  ('itsdangerous.serializer',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\serializer.py',
+   'PYMODULE'),
+  ('itsdangerous.exc',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\exc.py',
+   'PYMODULE'),
+  ('itsdangerous.encoding',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\encoding.py',
    'PYMODULE'),
   ('api.factories.user_factory',
    'C:\\Users\\Marcos '
@@ -1814,22 +1846,6 @@
   ('classes.Funcionario',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\classes\\Funcionario.py',
-   'PYMODULE'),
-  ('sqlite3',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\__init__.py',
-   'PYMODULE'),
-  ('sqlite3.dump',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\dump.py',
-   'PYMODULE'),
-  ('sqlite3.__main__',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\__main__.py',
-   'PYMODULE'),
-  ('sqlite3.dbapi2',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\dbapi2.py',
    'PYMODULE'),
   ('api.features.reserva_routes',
    'C:\\Users\\Marcos '
@@ -2252,38 +2268,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask\\json\\tag.py',
    'PYMODULE'),
-  ('itsdangerous',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\__init__.py',
-   'PYMODULE'),
-  ('itsdangerous.url_safe',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\url_safe.py',
-   'PYMODULE'),
-  ('itsdangerous._json',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\_json.py',
-   'PYMODULE'),
-  ('itsdangerous.timed',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\timed.py',
-   'PYMODULE'),
-  ('itsdangerous.signer',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\signer.py',
-   'PYMODULE'),
-  ('itsdangerous.serializer',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\serializer.py',
-   'PYMODULE'),
-  ('itsdangerous.exc',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\exc.py',
-   'PYMODULE'),
-  ('itsdangerous.encoding',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous\\encoding.py',
-   'PYMODULE'),
   ('click.testing',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click\\testing.py',
@@ -2416,6 +2400,22 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\database\\setup_db.py',
    'PYMODULE'),
+  ('sqlite3',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\dump.py',
+   'PYMODULE'),
+  ('sqlite3.__main__',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\__main__.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sqlite3\\dbapi2.py',
+   'PYMODULE'),
   ('database',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\database\\__init__.py',
@@ -2471,6 +2471,10 @@
   ('_strptime',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_strptime.py',
+   'PYMODULE'),
+  ('typing',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\typing.py',
    'PYMODULE')],
  [('python313.dll',
    'C:\\Users\\Marcos '
@@ -2536,10 +2540,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_wmi.pyd',
    'EXTENSION'),
-  ('_sqlite3.pyd',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_sqlite3.pyd',
-   'EXTENSION'),
   ('_uuid.pyd',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_uuid.pyd',
@@ -2547,6 +2547,10 @@
   ('markupsafe\\_speedups.cp313-win_amd64.pyd',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\markupsafe\\_speedups.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('_sqlite3.pyd',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_sqlite3.pyd',
    'EXTENSION'),
   ('VCRUNTIME140.dll',
    'C:\\Users\\Marcos '
@@ -2574,17 +2578,25 @@
    'BINARY')],
  [],
  [],
- [('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
+ [('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
    'C:\\Users\\Marcos '
@@ -2594,198 +2606,138 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\RECORD',
    'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'DATA'),
   ('setuptools\\_vendor\\jaraco\\text\\Lorem ipsum.txt',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\Lorem '
    'ipsum.txt',
    'DATA'),
-  ('click-8.2.1.dist-info\\RECORD',
+  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\entry_points.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\entry_points.txt',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\RECORD',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\REQUESTED',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\REQUESTED',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
    'DATA'),
   ('itsdangerous-2.2.0.dist-info\\METADATA',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
    'DATA'),
-  ('werkzeug-3.1.3.dist-info\\WHEEL',
+  ('click-8.2.1.dist-info\\METADATA',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\WHEEL',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\METADATA',
+   'DATA'),
+  ('click-8.2.1.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\RECORD',
    'DATA'),
   ('flask-3.1.3.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\INSTALLER',
    'DATA'),
-  ('click-8.2.1.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('click-8.2.1.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\METADATA',
-   'DATA'),
-  ('click-8.2.1.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\INSTALLER',
-   'DATA'),
   ('werkzeug-3.1.3.dist-info\\LICENSE.txt',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\WHEEL',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\top_level.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\top_level.txt',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
    'DATA'),
   ('click-8.2.1.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\WHEEL',
    'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+  ('click-8.2.1.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
   ('MarkupSafe-3.0.2.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\WHEEL',
    'DATA'),
-  ('flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+  ('flask-3.1.3.dist-info\\METADATA',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\METADATA',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\WHEEL',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\RECORD',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\top_level.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\top_level.txt',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\REQUESTED',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\REQUESTED',
    'DATA'),
   ('flask-3.1.3.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\WHEEL',
    'DATA'),
-  ('flask-3.1.3.dist-info\\METADATA',
+  ('flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\METADATA',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('click-8.2.1.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\entry_points.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\entry_points.txt',
    'DATA'),
   ('base_library.zip',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\build\\windows11\\work\\Main\\base_library.zip',
    'DATA')],
- [('locale',
+ [('sre_compile',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\locale.py',
-   'PYMODULE'),
-  ('posixpath',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\posixpath.py',
-   'PYMODULE'),
-  ('abc',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\abc.py',
-   'PYMODULE'),
-  ('copyreg',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\copyreg.py',
-   'PYMODULE'),
-  ('weakref',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\weakref.py',
-   'PYMODULE'),
-  ('stat',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\stat.py',
-   'PYMODULE'),
-  ('io',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\io.py',
-   'PYMODULE'),
-  ('sre_parse',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sre_parse.py',
-   'PYMODULE'),
-  ('heapq',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\heapq.py',
-   'PYMODULE'),
-  ('collections',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\collections\\__init__.py',
-   'PYMODULE'),
-  ('genericpath',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\genericpath.py',
-   'PYMODULE'),
-  ('keyword',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\keyword.py',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sre_compile.py',
    'PYMODULE'),
   ('types',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\types.py',
    'PYMODULE'),
-  ('_weakrefset',
+  ('_collections_abc',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_weakrefset.py',
-   'PYMODULE'),
-  ('traceback',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\traceback.py',
-   'PYMODULE'),
-  ('codecs',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\codecs.py',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_collections_abc.py',
    'PYMODULE'),
   ('encodings.zlib_codec',
    'C:\\Users\\Marcos '
@@ -3275,13 +3227,37 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\__init__.py',
    'PYMODULE'),
-  ('sre_compile',
+  ('reprlib',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sre_compile.py',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\reprlib.py',
+   'PYMODULE'),
+  ('warnings',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\warnings.py',
+   'PYMODULE'),
+  ('genericpath',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\genericpath.py',
+   'PYMODULE'),
+  ('sre_parse',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sre_parse.py',
    'PYMODULE'),
   ('operator',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\operator.py',
+   'PYMODULE'),
+  ('locale',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\locale.py',
+   'PYMODULE'),
+  ('enum',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\enum.py',
+   'PYMODULE'),
+  ('abc',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\abc.py',
    'PYMODULE'),
   ('re._parser',
    'C:\\Users\\Marcos '
@@ -3303,37 +3279,65 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\re\\__init__.py',
    'PYMODULE'),
+  ('posixpath',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\posixpath.py',
+   'PYMODULE'),
+  ('copyreg',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\copyreg.py',
+   'PYMODULE'),
+  ('codecs',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\codecs.py',
+   'PYMODULE'),
+  ('keyword',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\keyword.py',
+   'PYMODULE'),
+  ('collections',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\collections\\__init__.py',
+   'PYMODULE'),
+  ('traceback',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\traceback.py',
+   'PYMODULE'),
   ('linecache',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\linecache.py',
-   'PYMODULE'),
-  ('enum',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\enum.py',
-   'PYMODULE'),
-  ('ntpath',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\ntpath.py',
-   'PYMODULE'),
-  ('warnings',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\warnings.py',
-   'PYMODULE'),
-  ('reprlib',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\reprlib.py',
    'PYMODULE'),
   ('sre_constants',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\sre_constants.py',
    'PYMODULE'),
+  ('_weakrefset',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_weakrefset.py',
+   'PYMODULE'),
+  ('weakref',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\weakref.py',
+   'PYMODULE'),
+  ('ntpath',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\ntpath.py',
+   'PYMODULE'),
+  ('io',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\io.py',
+   'PYMODULE'),
+  ('heapq',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\heapq.py',
+   'PYMODULE'),
   ('functools',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\functools.py',
    'PYMODULE'),
-  ('_collections_abc',
+  ('stat',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_collections_abc.py',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\stat.py',
    'PYMODULE'),
   ('os',
    'C:\\Users\\Marcos '

@@ -1,34 +1,38 @@
-import { useState } from "react";
+import { useEffect, useSyncExternalStore, useState } from "react";
 import Auth from "./pages/Auth";
-import Rooms from "./pages/Rooms";
-import Wip from "./pages/Wip";
 import { criarUsuario } from "./models";
-import { clearAccessToken } from "./services/apiService";
-
-function getLandingView(usuario) {
-  if (!usuario || !usuario.isFuncionario || !usuario.isFuncionario()) {
-    return "wip";
-  }
-
-  const cargo = (usuario.cargo || "").toLowerCase();
-  return cargo.includes("recep") ? "rooms" : "wip";
-}
+import { logout } from "./services/apiService";
+import RoleViewFactory from "./components/views/RoleViewFactory";
+import Header from "./components/layout/Header";
+import { dataManager } from "./services/dataManager";
 
 function App() {
-  const [viewMode, setViewMode] = useState(() => {
+  const [userRaw, setUserRaw] = useState(() => {
     try {
       const savedUser = localStorage.getItem("anfitrion_user");
-      return savedUser
-        ? getLandingView(criarUsuario(JSON.parse(savedUser)))
-        : "auth";
+      return savedUser ? JSON.parse(savedUser) : null;
     } catch {
-      return "auth";
+      return null;
     }
   });
+  const [activeViewRole, setActiveViewRole] = useState("auto");
+
+  useSyncExternalStore(
+    dataManager.subscribe.bind(dataManager),
+    () => dataManager.version,
+    () => 0,
+  );
+
+  useEffect(() => {
+    dataManager.init();
+    const handleGlobalLogout = () => setUserRaw(null);
+    window.addEventListener("anfitrion:logout", handleGlobalLogout);
+    return () =>
+      window.removeEventListener("anfitrion:logout", handleGlobalLogout);
+  }, []);
 
   const handleEnterDashboard = (userRaw) => {
-    const usuarioModel = criarUsuario(userRaw);
-    setViewMode(getLandingView(usuarioModel));
+    setUserRaw(userRaw);
     try {
       localStorage.setItem("anfitrion_user", JSON.stringify(userRaw));
     } catch {
@@ -36,22 +40,32 @@ function App() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("anfitrion_user");
-    clearAccessToken();
-    setViewMode("auth");
-  };
-
-  // MODO AUTENTICAÇÃO: Preserva 100% o layout e CSS original do Login & Cadastro
-  if (viewMode === "auth") {
+  if (!userRaw) {
     return <Auth onEnterDashboard={handleEnterDashboard} />;
   }
 
-  if (viewMode === "rooms") {
-    return <Rooms onLogout={handleLogout} />;
-  }
+  const usuario = criarUsuario(userRaw);
+  if (!usuario) return <Auth onEnterDashboard={handleEnterDashboard} />;
 
-  return <Wip />;
+  return (
+    <div className="min-h-screen bg-[#f8faf9]">
+      <Header
+        usuario={usuario}
+        activeViewRole={activeViewRole}
+        onSelectViewRole={setActiveViewRole}
+        canSelectViewRole={usuario.isAdmin?.() === true}
+        onGoToAuth={logout}
+        onLogout={logout}
+      />
+      <main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <RoleViewFactory
+          usuario={usuario}
+          dataManager={dataManager}
+          overrideRole={activeViewRole}
+        />
+      </main>
+    </div>
+  );
 }
 
 export default App;

@@ -31,10 +31,12 @@ try:
     from utils.Loggers import Logger
     from config.Config import Config
     from database.setup_db import init_db
+    from private.cypher import Cypher
 except ImportError:
     from app.backend.utils.Loggers import Logger
     from app.backend.config.Config import Config
     from app.backend.database.setup_db import init_db
+    from app.backend.private.cypher import Cypher
 
 log = Logger()
 
@@ -504,7 +506,7 @@ def seed_database(db_path=None, force=False):
     for f in data["funcionarios"]:
         cursor.execute(
             "INSERT OR IGNORE INTO hospede (nome, email, senha, telefone) VALUES (?, ?, ?, ?)",
-            (f["nome"], f["email"], f["senha"], f["telefone"])
+            (f["nome"], f["email"], Cypher.hash_password(f["senha"]), f["telefone"])
         )
         cursor.execute("SELECT id_hospede FROM hospede WHERE email = ?", (f["email"],))
         id_hosp = cursor.fetchone()[0]
@@ -520,7 +522,7 @@ def seed_database(db_path=None, force=False):
     for h in data["hospedes"]:
         cursor.execute(
             "INSERT OR IGNORE INTO hospede (nome, email, senha, telefone) VALUES (?, ?, ?, ?)",
-            (h["nome"], h["email"], h["senha"], h["telefone"])
+            (h["nome"], h["email"], Cypher.hash_password(h["senha"]), h["telefone"])
         )
         cursor.execute("SELECT id_hospede FROM hospede WHERE email = ?", (h["email"],))
         hospede_email_map[h["email"]] = cursor.fetchone()[0]

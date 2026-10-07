@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import "../style/App.css";
-import "../style/Auth.css";
-import logoAnfitrion from "../assets/logo-Anfitrion.png";
-import { clearAccessToken, quartoApi } from "../services/apiService";
+import { useCallback, useEffect, useState } from "react";
+import "../../style/App.css";
+import "../../style/Auth.css";
+import logoAnfitrion from "../../assets/logo-Anfitrion.png";
+import { logout, quartoApi } from "../../services/apiService";
 
 const STATUSES = ["Limpo", "Disponível", "Bloqueado", "Ocupado", "Sujo"];
 
@@ -22,7 +22,6 @@ function Rooms({ onLogout }) {
   const [sessionUser] = useState(() => {
     const storedUser = localStorage.getItem("anfitrion_user");
     if (!storedUser) return null;
-
     try {
       return JSON.parse(storedUser);
     } catch {
@@ -32,23 +31,7 @@ function Rooms({ onLogout }) {
   const userEmail = sessionUser?.email || "";
   const roomsStorageKey = `anfitrion_quartos_${sessionUser?.id_hotel || "sem-hotel"}`;
 
-  const generateSampleRooms = () => {
-    const sample = [];
-    for (let floor = 1; floor <= 3; floor++) {
-      for (let i = 1; i <= 4; i++) {
-        const num = floor * 100 + i;
-        sample.push({
-          id_quarto: num,
-          num_quarto: num,
-          descricao: `Standard · ${floor}º andar`,
-          status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
-        });
-      }
-    }
-    return sample;
-  };
-
-  const fetchRooms = async () => {
+  const fetchRooms = useCallback(async () => {
     try {
       const res = await quartoApi.getAll();
       if (res.ok && res.data?.success) {
@@ -75,12 +58,27 @@ function Rooms({ onLogout }) {
       // ignora erro de parse
     }
 
-    setRooms(generateSampleRooms());
-  };
+    const sample = [];
+    for (let floor = 1; floor <= 3; floor++) {
+      for (let i = 1; i <= 4; i++) {
+        const num = floor * 100 + i;
+        sample.push({
+          id_quarto: num,
+          num_quarto: num,
+          descricao: `Standard · ${floor}º andar`,
+          status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
+        });
+      }
+    }
+    setRooms(sample);
+  }, [roomsStorageKey]);
 
   useEffect(() => {
-    fetchRooms();
-  }, []);
+    const loadRooms = window.setTimeout(() => {
+      void fetchRooms();
+    }, 0);
+    return () => window.clearTimeout(loadRooms);
+  }, [fetchRooms]);
 
   const openEdit = (room) => {
     setEditing(room.id_quarto ?? room.id);
@@ -110,9 +108,7 @@ function Rooms({ onLogout }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("anfitrion_user");
-    localStorage.removeItem(roomsStorageKey);
-    clearAccessToken();
+    logout();
     if (onLogout) {
       onLogout();
     }
@@ -120,29 +116,6 @@ function Rooms({ onLogout }) {
 
   return (
     <div className="rooms-page">
-      <header className="rooms-header">
-        <div className="brand-block">
-          <div className="brand-logo">
-            <img
-              src={logoAnfitrion}
-              alt="Logo Anfitrião"
-              className="brand-logo-image"
-            />
-          </div>
-          <div className="brand-title">Quartos</div>
-        </div>
-
-        <div className="header-actions">
-          <span className="header-email">{userEmail || "Funcionário"}</span>
-          <div className="header-avatar" aria-label="Usuário">
-            <UserIcon />
-          </div>
-          <button type="button" className="header-menu" aria-label="Menu">
-            ☰
-          </button>
-        </div>
-      </header>
-
       <main className="rooms-main">
         <div className="rooms-toolbar">
           <div className="rooms-title-wrap">

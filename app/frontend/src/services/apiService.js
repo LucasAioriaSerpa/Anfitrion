@@ -13,16 +13,35 @@ import { allMockUsers } from "../data/mockData.js";
 
 const BASE_URL = import.meta.env.VITE_API_URL || "/api";
 const ACCESS_TOKEN_KEY = "anfitrion_access_token";
-
-console.log(BASE_URL);
+const USER_KEY = "anfitrion_user";
+const ROOMS_STORAGE_PREFIX = "anfitrion_quartos_";
+const LEGACY_CACHE_KEYS = [
+  "anfitrion_quartos_db",
+  "anfitrion_reservas_db",
+  "anfitrion_registered_users",
+];
 
 export function clearAccessToken() {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 }
 
+export function logout() {
+  localStorage.removeItem(USER_KEY);
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+
+  Object.keys(localStorage)
+    .filter((key) => key.startsWith(ROOMS_STORAGE_PREFIX))
+    .forEach((key) => localStorage.removeItem(key));
+  LEGACY_CACHE_KEYS.forEach((key) => localStorage.removeItem(key));
+
+  window.dispatchEvent(new CustomEvent("anfitrion:logout"));
+}
+
 function saveAccessToken(token) {
   if (token) {
     localStorage.setItem(ACCESS_TOKEN_KEY, token);
+  } else {
+    clearAccessToken();
   }
 }
 
@@ -55,6 +74,9 @@ async function request(endpoint, options = {}) {
 
   try {
     const response = await fetch(url, config);
+    if (response.status === 401 && !endpoint.startsWith("/auth/")) {
+      logout();
+    }
     const contentType = response.headers.get("content-type") || "";
     let data = null;
 
@@ -200,6 +222,8 @@ export const authApi = {
       .toLowerCase();
     const senha = String(credentials.senha || "");
 
+    clearAccessToken();
+
     // Tenta primeiro no backend real
     try {
       const res = await request("/auth/login", {
@@ -342,7 +366,7 @@ export const authApi = {
     try {
       await request("/auth/logout", { method: "POST" });
     } finally {
-      clearAccessToken();
+      logout();
     }
   },
 };

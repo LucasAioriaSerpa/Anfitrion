@@ -43,6 +43,10 @@ class Config(metaclass=Singleton):
     AUTH_SECRET = os.getenv("ANFITRION_AUTH_SECRET", "anfitrion-development-secret")
     AUTH_TOKEN_MAX_AGE = 60 * 60 * 8
     AUTH_TOKEN_SALT = "anfitrion-auth"
+    AUTH_QUERY_ENABLED = os.getenv("ANFITRION_AUTH_QUERY_ENABLED", "true").lower() == "true"
+    ALGORITHM = "sha256"
+    ITERATIONS = 600_000
+    SALT_BYTES = 16
 
     def __init__(self) -> None:
         app_dir = self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__))))
@@ -65,6 +69,10 @@ class Config(metaclass=Singleton):
             "AUTH_SECRET": self.AUTH_SECRET,
             "AUTH_TOKEN_MAX_AGE": self.AUTH_TOKEN_MAX_AGE,
             "AUTH_TOKEN_SALT": self.AUTH_TOKEN_SALT,
+            "AUTH_QUERY_ENABLED": self.AUTH_QUERY_ENABLED,
+            "ALGORITHM": self.ALGORITHM,
+            "ITERATIONS": self.ITERATIONS,
+            "SALT_BYTES": self.SALT_BYTES,
             "IS_RUNNING": True,
             "STATS": {
                 "total_hospedes": 0,
@@ -80,10 +88,8 @@ class Config(metaclass=Singleton):
     def get(self, var_class: str) -> str | int | float | None:
         """Obtém uma variável constante ou compartilhada com segurança entre threads."""
         with self._lock:
-            if var_class in self._shared_store:
-                return self._shared_store[var_class]
-            if hasattr(self, var_class):
-                return getattr(self, var_class)
+            if var_class in self._shared_store: return self._shared_store[var_class]
+            if hasattr(self, var_class): return getattr(self, var_class)
             self.__log.log_warning(f"[ Config.py ] - Variável <{var_class}> não encontrada!")
             return None
 

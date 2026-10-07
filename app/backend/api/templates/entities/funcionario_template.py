@@ -2,6 +2,11 @@ from typing import Any
 
 from ..crud_template import CrudTemplate
 
+try:
+    from private.cypher import Cypher
+except ImportError:
+    from app.backend.private.cypher import Cypher
+
 
 class FuncionarioCrudTemplate(CrudTemplate):
     """Implementação Concreta do Template Method para a entidade Funcionário."""
@@ -42,7 +47,7 @@ class FuncionarioCrudTemplate(CrudTemplate):
                 user_payload = {
                     "nome": data.get("nome"),
                     "email": email,
-                    "senha": data.get("senha"),
+                    "senha": Cypher.hash_password(str(data.get("senha"))),
                     "telefone": data.get("telefone", "")
                 }
                 new_hospede_id = self._db.create("hospede", user_payload)

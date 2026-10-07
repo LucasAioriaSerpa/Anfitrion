@@ -11,7 +11,37 @@ import {
   allMockUsers,
   mockHoteis,
 } from "../data/mockData.js";
-import { quartoApi, reservaApi } from "./apiService.js";
+import {
+  funcionarioApi,
+  hotelApi,
+  hospedeApi,
+  quartoApi,
+  reservaApi,
+} from "./apiService.js";
+
+function responseList(response) {
+  return response?.ok &&
+    response.data?.success &&
+    Array.isArray(response.data.data)
+    ? response.data.data
+    : null;
+}
+
+function backendUnavailable(response) {
+  return Boolean(response?.error) || response?.status >= 500;
+}
+
+function normalizeReservation(record) {
+  return {
+    ...record,
+    data_checkin: record.data_checkin ?? record.check_in ?? "",
+    data_checkout: record.data_checkout ?? record.check_out ?? "",
+    valor_total: record.valor_total ?? 0,
+    cafe_da_manha: Boolean(record.cafe_da_manha || record.taxa_cafe_manha),
+    almoco: Boolean(record.almoco || record.taxa_almoco),
+    pet: Boolean(record.pet || record.taxa_pet),
+  };
+}
 
 /**
  * DataManager (Padrão Singleton / Facade & Observer OO)
@@ -26,6 +56,7 @@ class HotelDataManager {
     this._funcionarios = [];
     this._hospedes = [];
     this._initialized = false;
+    this._version = 0;
   }
 
   // Observer Pattern para reatividade do React
@@ -35,6 +66,7 @@ class HotelDataManager {
   }
 
   _notify() {
+    this._version += 1;
     for (const listener of this._listeners) {
       try {
         listener(this);
@@ -42,6 +74,10 @@ class HotelDataManager {
         console.error("Erro no listener do DataManager:", err);
       }
     }
+  }
+
+  get version() {
+    return this._version;
   }
 
   async init() {
@@ -52,49 +88,43 @@ class HotelDataManager {
     if (this._initialized) return;
 
     try {
+      const [
+        hotelResponse,
+        quartoResponse,
+        reservaResponse,
+        funcionarioResponse,
+        hospedeResponse,
+      ] = await Promise.all([
+        hotelApi.getAll(),
+        quartoApi.getAll(),
+        reservaApi.getAll(),
+        funcionarioApi.getAll(),
+        hospedeApi.getAll(),
+      ]);
+
+      const hotelList = responseList(hotelResponse);
+      const quartoList = responseList(quartoResponse);
+      const reservaList = responseList(reservaResponse);
+      const funcionarioList = responseList(funcionarioResponse);
+      const hospedeList = responseList(hospedeResponse);
+
       // 1. Hotel
-      const hotelRaw = mockHoteis[0];
+      const hotelRaw = hotelList?.[0] || mockHoteis[0];
       this._hotel = new Hotel(hotelRaw);
 
-      // 2. Quartos do Storage ou API
-      let rawQuartos = [];
-      const savedQuartos = localStorage.getItem("anfitrion_quartos_db");
-      if (savedQuartos) {
-        try {
-          rawQuartos = JSON.parse(savedQuartos);
-        } catch {
-          rawQuartos = initialQuartos;
-        }
-      } else {
-        const res = await quartoApi.getAll();
-        if (res.ok && Array.isArray(res.data) && res.data.length > 0) {
-          rawQuartos = res.data;
-        } else {
-          rawQuartos = initialQuartos;
-        }
-        localStorage.setItem(
-          "anfitrion_quartos_db",
-          JSON.stringify(rawQuartos),
-        );
-      }
+      // 2. A API e a fonte principal; cache/mock somente cobre indisponibilidade.
+      const rawQuartos =
+        quartoList ||
+        (backendUnavailable(quartoResponse) ? initialQuartos : []);
       this._quartos = rawQuartos.map((q) => new Quarto(q));
 
       // 3. Usuários (Funcionários e Hóspedes)
-      let rawUsers = [];
-      const savedUsers = localStorage.getItem("anfitrion_registered_users");
-      if (savedUsers) {
-        try {
-          rawUsers = JSON.parse(savedUsers);
-        } catch {
-          rawUsers = allMockUsers;
-        }
-      } else {
-        rawUsers = allMockUsers;
-        localStorage.setItem(
-          "anfitrion_registered_users",
-          JSON.stringify(rawUsers),
-        );
-      }
+      const rawUsers =
+        funcionarioList || hospedeList
+          ? [...(funcionarioList || []), ...(hospedeList || [])]
+          : backendUnavailable(funcionarioResponse)
+            ? allMockUsers
+            : [];
 
       this._funcionarios = rawUsers
         .filter((u) => u.role === "funcionario" || u.cargo)
@@ -105,29 +135,12 @@ class HotelDataManager {
         .map((u) => new Hospede(u));
 
       // 4. Reservas
-      let rawReservas = [];
-      const savedReservas = localStorage.getItem("anfitrion_reservas_db");
-      if (savedReservas) {
-        try {
-          rawReservas = JSON.parse(savedReservas);
-        } catch {
-          rawReservas = initialReservas;
-        }
-      } else {
-        const res = await reservaApi.getAll();
-        if (res.ok && Array.isArray(res.data) && res.data.length > 0) {
-          rawReservas = res.data;
-        } else {
-          rawReservas = initialReservas;
-        }
-        localStorage.setItem(
-          "anfitrion_reservas_db",
-          JSON.stringify(rawReservas),
-        );
-      }
+      const rawReservas =
+        reservaList ||
+        (backendUnavailable(reservaResponse) ? initialReservas : []);
 
       this._reservas = rawReservas.map((r) => {
-        const resObj = new Reserva(r);
+        const resObj = new Reserva(normalizeReservation(r));
         resObj.quarto = this._quartos.find((q) => q.id === resObj.idQuarto);
         resObj.hospede = this._hospedes.find((h) => h.id === resObj.idHospede);
         return resObj;
@@ -199,15 +212,16 @@ class HotelDataManager {
     const quarto = this._quartos.find((q) => q.id === idQuarto);
     if (!quarto) return false;
 
+    try {
+      const response = await quartoApi.update(idQuarto, { status: novoStatus });
+      if (!response.ok && !backendUnavailable(response)) return false;
+    } catch {
+      return false;
+    }
+
     quarto.status = novoStatus;
     this._persistirQuartos();
     this._notify();
-
-    try {
-      await quartoApi.update(idQuarto, { status: novoStatus });
-    } catch {
-      /* offline fallback */
-    }
     return true;
   }
 
@@ -215,15 +229,18 @@ class HotelDataManager {
     const quarto = this._quartos.find((q) => q.id === idQuarto);
     if (!quarto) return false;
 
+    try {
+      const response = await quartoApi.update(idQuarto, {
+        diaria: Number(novaDiaria),
+      });
+      if (!response.ok && !backendUnavailable(response)) return false;
+    } catch {
+      return false;
+    }
+
     quarto.diaria = Number(novaDiaria);
     this._persistirQuartos();
     this._notify();
-
-    try {
-      await quartoApi.update(idQuarto, { diaria: Number(novaDiaria) });
-    } catch {
-      // offline fallback
-    }
     return true;
   }
 
@@ -239,20 +256,37 @@ class HotelDataManager {
     const quarto = this._quartos.find((q) => q.id === Number(idQuarto));
     const hospede = this._hospedes.find((h) => h.id === Number(idHospede));
 
-    const novaReserva = new Reserva({
-      id: Date.now(),
+    const payload = {
       id_quarto: Number(idQuarto),
       id_hospede: Number(idHospede),
-      data_checkin: dataCheckin,
-      data_checkout: dataCheckout,
-      status: "Confirmada",
-      cafe_da_manha: cafeDaManha,
-      pet: pet,
-      almoco: almoco,
-      criado_em: new Date().toISOString(),
-      quarto: quarto,
-      hospede: hospede,
-    });
+      check_in: dataCheckin,
+      check_out: dataCheckout,
+      qtd_hospedes: 1,
+      taxa_cafe_manha: cafeDaManha ? 35 : 0,
+      taxa_almoco: almoco ? 55 : 0,
+      taxa_pet: pet ? 70 : 0,
+      taxa_refeicao: 0,
+    };
+
+    let response;
+    try {
+      response = await reservaApi.create(payload);
+      if (!response.ok && !backendUnavailable(response)) return null;
+    } catch {
+      return null;
+    }
+
+    const novaReserva = new Reserva(
+      normalizeReservation(
+        response?.data?.data || {
+          ...payload,
+          id: Date.now(),
+          status: "Confirmada",
+        },
+      ),
+    );
+    novaReserva.quarto = quarto;
+    novaReserva.hospede = hospede;
 
     novaReserva.recalcularTotal(quarto ? quarto.diaria : 150);
 
@@ -265,18 +299,15 @@ class HotelDataManager {
     this._persistirReservas();
     this._notify();
 
-    try {
-      await reservaApi.create(novaReserva.toDict());
-    } catch {
-      // offline fallback
-    }
-
     return novaReserva;
   }
 
   async cancelarReserva(idReserva) {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
+
+    const response = await reservaApi.delete(idReserva);
+    if (!response.ok) return false;
 
     reserva.status = "Cancelada";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
@@ -323,38 +354,35 @@ class HotelDataManager {
   }
 
   async adicionarFuncionario(dados) {
-    const novoFunc = new Funcionario({
-      id: Date.now(),
-      id_funcionario: Date.now(),
-      id_hospede: Date.now(),
+    const response = await funcionarioApi.create({
       nome: dados.nome,
       email: dados.email,
       senha: dados.senha || "123",
       telefone: dados.telefone || "",
       cargo: dados.cargo,
-      id_hotel: 1,
     });
+    if (!response.ok || !response.data?.success) return null;
+
+    const novoFunc = new Funcionario(response.data.data);
 
     this._funcionarios.push(novoFunc);
-    this._persistirUsuarios();
     this._notify();
     return novoFunc;
   }
 
   async adicionarQuarto(dados) {
-    const novoQuarto = new Quarto({
-      id: Date.now(),
-      id_quarto: Date.now(),
-      id_hotel: 1,
+    const response = await quartoApi.create({
       tipo: dados.tipo,
       status: "Disponível",
       andar: Number(dados.andar),
       num_quarto: Number(dados.num_quarto),
       diaria: Number(dados.diaria),
     });
+    if (!response.ok || !response.data?.success) return null;
+
+    const novoQuarto = new Quarto(response.data.data);
 
     this._quartos.push(novoQuarto);
-    this._persistirQuartos();
     this._notify();
     return novoQuarto;
   }

@@ -46,6 +46,16 @@ class Main:
             except Exception: self.__log.log_error(f"[ Main.py ] - Tabela não encontrada ou inacessível | <{table}>"); return False
         return True
 
+    def __seed_if_empty(self) -> None:
+        data_tables = ("quarto", "funcionario", "hospede", "reserva")
+        if any(self.__db.read(table, {}) for table in data_tables): return
+        try:
+            from database.mock.seed_mock_data import seed_database
+            seed_database()
+            self.__log.log_success("[ Main.py ] - Banco vazio populado com dados mock")
+        except Exception as e:
+            self.__log.log_error(f"[ Main.py ] - Erro ao popular banco vazio: {str(e)}")
+
     def __get_rate_of_occupancy(
         self,
         hoteis: list[dict[Any, Any]],
@@ -151,8 +161,7 @@ class Main:
         {'-'*(maiorValor + 4)}
     |>
     • Última execução: {stats.get('ultima_execucao_main')}
-|>
-                    """
+|>"""
                 )
         except Exception as e: self.__log.log_error(f"[ MAIN ] - Erro no processamento de rotinas em background: {str(e)}")
 
@@ -166,6 +175,8 @@ class Main:
             except Exception as e:
                 self.__log.log_error(f"[ Main.py ] - Erro ao realizar setup do banco: {str(e)}")
                 return None
+
+            self.__seed_if_empty()
         
         sleep_interval = float(self.__config.get("MAIN_SLEEP_INTERVAL") or 3.0)
         self.__log.log_success("[ MAIN ] - Thread MAIN de processamento pesado iniciada!")
@@ -191,7 +202,7 @@ if "__main__" == __name__:
     flask.start()
 
     try: 
-        while True: time.sleep(1)
+        while True: time.sleep(1) #? 1 segundo de espera
     except KeyboardInterrupt:
         log.log_info("[ Main.py ] - Finalizando aplicação...")
         Config().set("IS_RUNNING", False)

@@ -4,12 +4,14 @@ try:
     from manager.Database import Database
     from config.Config import Config
     from utils.Loggers import Logger
+    from private.cypher import Cypher
     from api.factories.user_factory import userFactory
     from api.features.auth_context import current_user, filter_records, issue_access_token, require_auth
 except ImportError or ModuleNotFoundErro:
     from app.backend.manager.Database import Database
     from app.backend.config.Config import Config
     from app.backend.utils.Loggers import Logger
+    from app.backend.private.cypher import Cypher
     from app.backend.api.factories.user_factory import userFactory
     from app.backend.api.features.auth_context import current_user, filter_records, issue_access_token, require_auth
 
@@ -62,9 +64,15 @@ def login():
         return jsonify({"success": False, "message": "Credenciais inválidas"}), 401
 
     user = hospedes[0]
-    if user.get("senha") != senha:
+    stored_password = str(user.get("senha", ""))
+    password_matches = Cypher.verify_password(senha, stored_password)
+    legacy_password = not stored_password.startswith("sha256$")
+    if not password_matches and not (legacy_password and stored_password == senha):
         log.log_warning(f"[ auth_routes ] - Senha incorreta para: {email}")
         return jsonify({"success": False, "message": "Credenciais inválidas"}), 401
+
+    if legacy_password:
+        db.update("hospede", {"senha": Cypher.hash_password(senha)}, {"id_hospede": user["id_hospede"]})
 
     funcionarios = db.read("funcionario", {"id_hospede": user["id_hospede"]})
     role = "hospede"
@@ -92,7 +100,7 @@ def login():
     return jsonify({
         "success": True,
         "message": "Login realizado com sucesso!",
-        "access_token": issue_access_token(user_data) if role == "funcionario" else None,
+        "access_token": issue_access_token(user_data),
         "user": user_data,
     }), 200
 
@@ -114,11 +122,12 @@ def register():
     existing = db.read("hospede", {"email": email})
     if existing: return jsonify({"success": False, "message": "Este e-mail já está cadastrado"}), 409
 
+    hashed_password = Cypher.hash_password(senha)
     user_obj = userFactory.registrar_user({
         "role": role,
         "nome": nome,
         "email": email,
-        "senha": senha,
+        "senha": hashed_password,
         "telefone": telefone,
         "cargo": data.get("cargo", "Recepcionista"),
         "id_hotel": data.get("id_hotel", 1)
@@ -130,7 +139,7 @@ def register():
     new_hospede_id = db.create("hospede", {
         "nome": nome,
         "email": email,
-        "senha": senha,
+        "senha": hashed_password,
         "telefone": telefone
     })
 

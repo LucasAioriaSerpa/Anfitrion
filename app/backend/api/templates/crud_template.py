@@ -224,7 +224,12 @@ class CrudTemplate(ABC):
 
     def sanitize_filters(self, filters: dict[str, Any]) -> dict[str, Any]:
         """Sanitiza filtros de consulta removendo valores vazios ou não mapeados."""
-        return {k: v for k, v in filters.items() if v is not None and v != ""}
+        auth_parameters = {"access_token", "email", "login", "senha"}
+        return {
+            key: value
+            for key, value in filters.items()
+            if value not in (None, "") and key not in auth_parameters
+        }
 
     # =========================================================================
     # OPERAÇÕES DE BANCO (Implementação padrão utilizando o Database Singleton)

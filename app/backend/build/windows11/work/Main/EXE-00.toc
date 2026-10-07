@@ -146,10 +146,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_wmi.pyd',
    'EXTENSION'),
-  ('_sqlite3.pyd',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_sqlite3.pyd',
-   'EXTENSION'),
   ('_uuid.pyd',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_uuid.pyd',
@@ -157,6 +153,10 @@
   ('markupsafe\\_speedups.cp313-win_amd64.pyd',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\markupsafe\\_speedups.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('_sqlite3.pyd',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\_sqlite3.pyd',
    'EXTENSION'),
   ('VCRUNTIME140.dll',
    'C:\\Users\\Marcos '
@@ -182,10 +182,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\DLLs\\sqlite3.dll',
    'BINARY'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
-   'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
@@ -193,6 +189,18 @@
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
    'C:\\Users\\Marcos '
@@ -202,130 +210,122 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\RECORD',
    'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
-   'DATA'),
   ('setuptools\\_vendor\\jaraco\\text\\Lorem ipsum.txt',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\Lorem '
    'ipsum.txt',
    'DATA'),
-  ('click-8.2.1.dist-info\\RECORD',
+  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\entry_points.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\entry_points.txt',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\RECORD',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('flask-3.1.3.dist-info\\REQUESTED',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\REQUESTED',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
    'DATA'),
   ('itsdangerous-2.2.0.dist-info\\METADATA',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
    'DATA'),
-  ('werkzeug-3.1.3.dist-info\\WHEEL',
+  ('click-8.2.1.dist-info\\METADATA',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\WHEEL',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\METADATA',
+   'DATA'),
+  ('click-8.2.1.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\RECORD',
    'DATA'),
   ('flask-3.1.3.dist-info\\INSTALLER',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\INSTALLER',
    'DATA'),
-  ('click-8.2.1.dist-info\\licenses\\LICENSE.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('click-8.2.1.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\METADATA',
-   'DATA'),
-  ('click-8.2.1.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\INSTALLER',
-   'DATA'),
   ('werkzeug-3.1.3.dist-info\\LICENSE.txt',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\WHEEL',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\METADATA',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\top_level.txt',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\top_level.txt',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\INSTALLER',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\RECORD',
-   'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
    'DATA'),
   ('click-8.2.1.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\WHEEL',
    'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+  ('click-8.2.1.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\licenses\\LICENSE.txt',
    'DATA'),
   ('MarkupSafe-3.0.2.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\WHEEL',
    'DATA'),
-  ('flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+  ('flask-3.1.3.dist-info\\METADATA',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\METADATA',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\WHEEL',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\RECORD',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\top_level.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\top_level.txt',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\RECORD',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\REQUESTED',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\REQUESTED',
    'DATA'),
   ('flask-3.1.3.dist-info\\WHEEL',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\WHEEL',
    'DATA'),
-  ('flask-3.1.3.dist-info\\METADATA',
+  ('flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
    'C:\\Users\\Marcos '
-   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\METADATA',
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('click-8.2.1.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click-8.2.1.dist-info\\INSTALLER',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\WHEEL',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\METADATA',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('flask-3.1.3.dist-info\\entry_points.txt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\flask-3.1.3.dist-info\\entry_points.txt',
    'DATA'),
   ('base_library.zip',
    'C:\\Users\\Marcos '
@@ -334,7 +334,7 @@
  [],
  False,
  False,
- 1790972756,
+ 1791332592,
  [('run.exe',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',

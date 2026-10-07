@@ -1,7 +1,8 @@
 import { useState } from "react";
-import "../style/Auth.css";
+import { authApi, logout } from "../services/apiService";
 import logoAnfitrion from "../assets/logo-Anfitrion.png";
-import { authApi, clearAccessToken } from "../services/apiService";
+import ThemeToggle from "../components/common/ThemeToggle";
+import "../style/Auth.css";
 
 function AuthFuncionario({ onEnterDashboard }) {
   const [formData, setFormData] = useState({
@@ -48,8 +49,7 @@ function AuthFuncionario({ onEnterDashboard }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("anfitrion_user");
-    clearAccessToken();
+    logout();
     setUsuarioLogado(null);
     setMensagem("Sessão encerrada com sucesso.");
     setTimeout(() => setMensagem(""), 4000);
@@ -153,6 +153,9 @@ function AuthFuncionario({ onEnterDashboard }) {
 
   return (
     <div id="auth-funcionario-container" className="login-container">
+      <div className="auth-theme-control">
+        <ThemeToggle />
+      </div>
       {/* Lado Esquerdo - Logo e Tagline */}
       <div id="auth-left-section" className="login-left">
         <div className="logo-section">

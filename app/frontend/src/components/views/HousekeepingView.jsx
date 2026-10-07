@@ -1,18 +1,24 @@
-import { useState } from 'react';
-import Card from '../common/Card';
-import Button from '../common/Button';
-import StatusIndicator from '../common/StatusIndicator';
-import MetricCard from '../common/MetricCard';
-import { Sparkles, CheckCircle2, AlertTriangle, ShieldCheck, RefreshCw } from 'lucide-react';
+import { useState } from "react";
+import Card from "../common/Card";
+import Button from "../common/Button";
+import StatusIndicator from "../common/StatusIndicator";
+import MetricCard from "../common/MetricCard";
+import {
+  Sparkles,
+  CheckCircle2,
+  AlertTriangle,
+  ShieldCheck,
+  RefreshCw,
+} from "lucide-react";
 
 /**
  * HousekeepingView (Variante Governança & Camareira - Orientado a Reuso & POO)
  * Focado no ciclo operacional de higienização, liberação de quartos e checklist.
  */
 export default function HousekeepingView({ usuario, dataManager }) {
-  const [andarFiltro, setAndarFiltro] = useState('todos');
-  const [statusFiltro, setStatusFiltro] = useState('todos');
-  const [feedbackMsg, setFeedbackMsg] = useState('');
+  const [andarFiltro, setAndarFiltro] = useState("todos");
+  const [statusFiltro, setStatusFiltro] = useState("todos");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   const quartos = dataManager.quartos;
 
@@ -24,15 +30,18 @@ export default function HousekeepingView({ usuario, dataManager }) {
 
   const handleMudarStatus = async (quarto, novoStatus) => {
     await dataManager.atualizarStatusQuarto(quarto.id, novoStatus);
-    setFeedbackMsg(`Status do Quarto ${quarto.numQuarto} atualizado para "${novoStatus}"! ✨`);
-    setTimeout(() => setFeedbackMsg(''), 4000);
+    setFeedbackMsg(
+      `Status do Quarto ${quarto.numQuarto} atualizado para "${novoStatus}"! ✨`,
+    );
+    setTimeout(() => setFeedbackMsg(""), 4000);
   };
 
   const quartosFiltrados = quartos.filter((q) => {
-    if (andarFiltro !== 'todos' && q.andar !== Number(andarFiltro)) return false;
-    if (statusFiltro === 'limpeza' && !q.isEmLimpeza()) return false;
-    if (statusFiltro === 'disponivel' && !q.isDisponivel()) return false;
-    if (statusFiltro === 'ocupado' && !q.isOcupado()) return false;
+    if (andarFiltro !== "todos" && q.andar !== Number(andarFiltro))
+      return false;
+    if (statusFiltro === "limpeza" && !q.isEmLimpeza()) return false;
+    if (statusFiltro === "disponivel" && !q.isDisponivel()) return false;
+    if (statusFiltro === "ocupado" && !q.isOcupado()) return false;
     return true;
   });
 
@@ -48,7 +57,8 @@ export default function HousekeepingView({ usuario, dataManager }) {
             {usuario.cargo} · {usuario.nome}
           </h2>
           <p className="text-xs text-stone-600 mt-1">
-            Gerenciamento e ciclo de limpeza dos quartos do Anfitrião Grand Hotel.
+            Gerenciamento e ciclo de limpeza dos quartos do Anfitrião Grand
+            Hotel.
           </p>
         </div>
 
@@ -109,16 +119,18 @@ export default function HousekeepingView({ usuario, dataManager }) {
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <span className="text-stone-500 font-medium">Andar:</span>
             <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-lg">
-              {['todos', '1', '2', '3'].map((andar) => (
+              {["todos", "1", "2", "3"].map((andar) => (
                 <button
                   key={andar}
                   type="button"
                   onClick={() => setAndarFiltro(andar)}
                   className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${
-                    andarFiltro === andar ? 'bg-white text-stone-900 shadow-2xs' : 'text-stone-600 hover:text-stone-900'
+                    andarFiltro === andar
+                      ? "bg-white text-stone-900 shadow-2xs"
+                      : "text-stone-600 hover:text-stone-900"
                   }`}
                 >
-                  {andar === 'todos' ? 'Todos' : `${andar}º Andar`}
+                  {andar === "todos" ? "Todos" : `${andar}º Andar`}
                 </button>
               ))}
             </div>
@@ -126,17 +138,19 @@ export default function HousekeepingView({ usuario, dataManager }) {
             <span className="text-stone-500 font-medium ml-2">Status:</span>
             <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-lg">
               {[
-                { id: 'todos', label: 'Todos' },
-                { id: 'limpeza', label: 'Em Limpeza' },
-                { id: 'disponivel', label: 'Disponível' },
-                { id: 'ocupado', label: 'Ocupado' }
+                { id: "todos", label: "Todos" },
+                { id: "limpeza", label: "Em Limpeza" },
+                { id: "disponivel", label: "Disponível" },
+                { id: "ocupado", label: "Ocupado" },
               ].map((st) => (
                 <button
                   key={st.id}
                   type="button"
                   onClick={() => setStatusFiltro(st.id)}
                   className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${
-                    statusFiltro === st.id ? 'bg-white text-stone-900 shadow-2xs' : 'text-stone-600 hover:text-stone-900'
+                    statusFiltro === st.id
+                      ? "bg-white text-stone-900 shadow-2xs"
+                      : "text-stone-600 hover:text-stone-900"
                   }`}
                 >
                   {st.label}
@@ -149,7 +163,11 @@ export default function HousekeepingView({ usuario, dataManager }) {
         {/* Grid de Quartos para Ação Imediata da Camareira */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {quartosFiltrados.map((quarto) => (
-            <Card key={quarto.id} variant="default" className="flex flex-col justify-between">
+            <Card
+              key={quarto.id}
+              variant="default"
+              className="flex flex-col justify-between"
+            >
               <Card.Header action={<StatusIndicator status={quarto.status} />}>
                 <Card.Title>Quarto {quarto.numQuarto}</Card.Title>
                 <Card.Description>
@@ -177,7 +195,7 @@ export default function HousekeepingView({ usuario, dataManager }) {
                       size="sm"
                       variant="primary"
                       className="w-full text-xs"
-                      onClick={() => handleMudarStatus(quarto, 'Disponível')}
+                      onClick={() => handleMudarStatus(quarto, "Disponível")}
                     >
                       ✓ Marcar como Higienizado (Liberar)
                     </Button>
@@ -187,7 +205,7 @@ export default function HousekeepingView({ usuario, dataManager }) {
                         size="sm"
                         variant="secondary"
                         className="w-1/2 text-xs"
-                        onClick={() => handleMudarStatus(quarto, 'Em Limpeza')}
+                        onClick={() => handleMudarStatus(quarto, "Em Limpeza")}
                       >
                         Iniciar Limpeza
                       </Button>
@@ -195,19 +213,21 @@ export default function HousekeepingView({ usuario, dataManager }) {
                         size="sm"
                         variant="outline"
                         className="w-1/2 text-xs"
-                        onClick={() => handleMudarStatus(quarto, 'Manutenção')}
+                        onClick={() => handleMudarStatus(quarto, "Manutenção")}
                       >
                         Reparo
                       </Button>
                     </div>
                   ) : (
                     <div className="w-full flex items-center justify-between">
-                      <span className="text-[11px] text-stone-500">Hóspede no quarto</span>
+                      <span className="text-[11px] text-stone-500">
+                        Hóspede no quarto
+                      </span>
                       <Button
                         size="sm"
                         variant="secondary"
                         className="text-xs"
-                        onClick={() => handleMudarStatus(quarto, 'Em Limpeza')}
+                        onClick={() => handleMudarStatus(quarto, "Em Limpeza")}
                       >
                         Solicitar Limpeza
                       </Button>

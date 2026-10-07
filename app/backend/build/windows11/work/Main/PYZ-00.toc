@@ -204,6 +204,10 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\__init__.py',
    'PYMODULE'),
+  ('api.features.auth_context',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_context.py',
+   'PYMODULE'),
   ('api.features.auth_routes',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_routes.py',

@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import Card from '../common/Card';
-import Button from '../common/Button';
-import Modal from '../common/Modal';
-import StatusIndicator from '../common/StatusIndicator';
-import MetricCard from '../common/MetricCard';
-import { Bed, Calendar, CheckCircle2, Coffee, ShieldCheck } from 'lucide-react';
+import { useState } from "react";
+import Card from "../common/Card";
+import Button from "../common/Button";
+import Modal from "../common/Modal";
+import StatusIndicator from "../common/StatusIndicator";
+import MetricCard from "../common/MetricCard";
+import { Bed, Calendar, CheckCircle2, Coffee, ShieldCheck } from "lucide-react";
 
 /**
  * GuestView (Variante Hóspede - Orientado a Reuso & POO)
@@ -13,16 +13,18 @@ import { Bed, Calendar, CheckCircle2, Coffee, ShieldCheck } from 'lucide-react';
 export default function GuestView({ usuario, dataManager }) {
   const [quartoSelecionado, setQuartoSelecionado] = useState(null);
   const [modalReservaAberto, setModalReservaAberto] = useState(false);
-  const [sucessoMsg, setSucessoMsg] = useState('');
-  const [filtroTipo, setFiltroTipo] = useState('todos');
+  const [sucessoMsg, setSucessoMsg] = useState("");
+  const [filtroTipo, setFiltroTipo] = useState("todos");
 
   // Form states de reserva (com inicializadores de estado puro para conformidade com regras React)
-  const [hoje] = useState(() => new Date().toISOString().split('T')[0]);
-  const [checkin, setCheckin] = useState(() => new Date().toISOString().split('T')[0]);
+  const [hoje] = useState(() => new Date().toISOString().split("T")[0]);
+  const [checkin, setCheckin] = useState(
+    () => new Date().toISOString().split("T")[0],
+  );
   const [checkout, setCheckout] = useState(() => {
     const d = new Date();
     d.setDate(d.getDate() + 2);
-    return d.toISOString().split('T')[0];
+    return d.toISOString().split("T")[0];
   });
   const [cafeDaManha, setCafeDaManha] = useState(true);
   const [almoco, setAlmoco] = useState(false);
@@ -35,7 +37,7 @@ export default function GuestView({ usuario, dataManager }) {
   // Filtro
   const quartosDisponiveis = quartos.filter((q) => {
     if (!q.isDisponivel()) return false;
-    if (filtroTipo === 'todos') return true;
+    if (filtroTipo === "todos") return true;
     return q.tipo.toLowerCase().includes(filtroTipo.toLowerCase());
   });
 
@@ -49,7 +51,10 @@ export default function GuestView({ usuario, dataManager }) {
     if (!quartoSelecionado) return { noites: 1, total: 0 };
     const entrada = new Date(checkin);
     const saida = new Date(checkout);
-    const noites = Math.max(1, Math.ceil((saida - entrada) / (1000 * 3600 * 24)));
+    const noites = Math.max(
+      1,
+      Math.ceil((saida - entrada) / (1000 * 3600 * 24)),
+    );
     let total = quartoSelecionado.diaria * noites;
     if (cafeDaManha) total += 35 * noites;
     if (almoco) total += 55 * noites;
@@ -67,16 +72,18 @@ export default function GuestView({ usuario, dataManager }) {
       dataCheckout: checkout,
       cafeDaManha,
       pet,
-      almoco
+      almoco,
     });
 
     setModalReservaAberto(false);
-    setSucessoMsg(`Reserva confirmada no Quarto ${quartoSelecionado.numQuarto} (${quartoSelecionado.tipo})! Bom descanso! 🎉`);
-    setTimeout(() => setSucessoMsg(''), 5000);
+    setSucessoMsg(
+      `Reserva confirmada no Quarto ${quartoSelecionado.numQuarto} (${quartoSelecionado.tipo})! Bom descanso! 🎉`,
+    );
+    setTimeout(() => setSucessoMsg(""), 5000);
   };
 
   const handleCancelarReserva = async (idReserva) => {
-    if (window.confirm('Deseja realmente cancelar esta reserva?')) {
+    if (window.confirm("Deseja realmente cancelar esta reserva?")) {
       await dataManager.cancelarReserva(idReserva);
     }
   };
@@ -89,15 +96,28 @@ export default function GuestView({ usuario, dataManager }) {
       <div className="bg-[#e8f7ee] border border-[#b8c4bb]/40 rounded-2xl p-6 text-[#3c362a] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-serif font-bold tracking-tight text-stone-900">
-            Olá, {usuario.getPrimeiroNome ? usuario.getPrimeiroNome() : usuario.nome}!
+            Olá,{" "}
+            {usuario.getPrimeiroNome ? usuario.getPrimeiroNome() : usuario.nome}
+            !
           </h2>
           <p className="text-xs text-stone-600 mt-1">
-            Seja muito bem-vindo ao Anfitrião Grand Hotel & Resort. Selecione sua acomodação ou acompanhe suas estadias.
+            Seja muito bem-vindo ao Anfitrião Grand Hotel & Resort. Selecione
+            sua acomodação ou acompanhe suas estadias.
           </p>
         </div>
         <div className="text-xs text-stone-600 space-y-1 shrink-0">
-          <div>• Telefone: <strong className="text-stone-800">{usuario.formatarTelefone ? usuario.formatarTelefone() : usuario.telefone}</strong></div>
-          <div>• E-mail: <strong className="text-stone-800">{usuario.email}</strong></div>
+          <div>
+            • Telefone:{" "}
+            <strong className="text-stone-800">
+              {usuario.formatarTelefone
+                ? usuario.formatarTelefone()
+                : usuario.telefone}
+            </strong>
+          </div>
+          <div>
+            • E-mail:{" "}
+            <strong className="text-stone-800">{usuario.email}</strong>
+          </div>
         </div>
       </div>
 
@@ -144,17 +164,29 @@ export default function GuestView({ usuario, dataManager }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {minhasReservas.map((res) => {
-              const q = res.quarto || quartos.find((item) => item.id === res.idQuarto);
+              const q =
+                res.quarto || quartos.find((item) => item.id === res.idQuarto);
               return (
-                <Card key={res.id} variant="default" className="flex flex-col justify-between">
-                  <Card.Header
-                    action={<StatusIndicator status={res.status} />}
-                  >
+                <Card
+                  key={res.id}
+                  variant="default"
+                  className="flex flex-col justify-between"
+                >
+                  <Card.Header action={<StatusIndicator status={res.status} />}>
                     <Card.Title>
-                      {q ? `Quarto ${q.numQuarto} - ${q.tipo}` : `Quarto #${res.idQuarto}`}
+                      {q
+                        ? `Quarto ${q.numQuarto} - ${q.tipo}`
+                        : `Quarto #${res.idQuarto}`}
                     </Card.Title>
                     <Card.Description>
-                      Check-in: {res.formatarCheckin ? res.formatarCheckin() : res.dataCheckin} até {res.formatarCheckout ? res.formatarCheckout() : res.dataCheckout}
+                      Check-in:{" "}
+                      {res.formatarCheckin
+                        ? res.formatarCheckin()
+                        : res.dataCheckin}{" "}
+                      até{" "}
+                      {res.formatarCheckout
+                        ? res.formatarCheckout()
+                        : res.dataCheckout}
                     </Card.Description>
                   </Card.Header>
 
@@ -162,22 +194,29 @@ export default function GuestView({ usuario, dataManager }) {
                     <div className="space-y-2 text-xs text-stone-600">
                       <div className="flex justify-between">
                         <span>Duração:</span>
-                        <strong className="text-stone-800">{res.calcularNoites ? res.calcularNoites() : 1} noite(s)</strong>
+                        <strong className="text-stone-800">
+                          {res.calcularNoites ? res.calcularNoites() : 1}{" "}
+                          noite(s)
+                        </strong>
                       </div>
                       <div className="flex justify-between">
                         <span>Serviços Adicionais:</span>
                         <span>
                           {[
-                            res.cafeDaManha ? 'Café da manhã' : null,
-                            res.almoco ? 'Almoço buffet' : null,
-                            res.pet ? 'Acomodação Pet' : null
-                          ].filter(Boolean).join(', ') || 'Sem adicionais'}
+                            res.cafeDaManha ? "Café da manhã" : null,
+                            res.almoco ? "Almoço buffet" : null,
+                            res.pet ? "Acomodação Pet" : null,
+                          ]
+                            .filter(Boolean)
+                            .join(", ") || "Sem adicionais"}
                         </span>
                       </div>
                       <div className="flex justify-between pt-2 border-t border-stone-100 text-sm font-semibold text-stone-900">
                         <span>Total:</span>
                         <span className="text-[#663f46] font-bold">
-                          {res.formatarTotal ? res.formatarTotal() : `R$ ${res.valorTotal}`}
+                          {res.formatarTotal
+                            ? res.formatarTotal()
+                            : `R$ ${res.valorTotal}`}
                         </span>
                       </div>
                     </div>
@@ -185,7 +224,9 @@ export default function GuestView({ usuario, dataManager }) {
 
                   {res.isAtiva && res.isAtiva() && (
                     <Card.Footer>
-                      <span className="text-[11px] text-stone-500">Cancelamento gratuito até 24h antes</span>
+                      <span className="text-[11px] text-stone-500">
+                        Cancelamento gratuito até 24h antes
+                      </span>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -216,29 +257,33 @@ export default function GuestView({ usuario, dataManager }) {
           </div>
 
           <div className="flex items-center gap-1 p-1 bg-stone-100 rounded-lg text-xs">
-            {['todos', 'standard', 'luxo', 'executiva', 'master'].map((tipo) => (
-              <button
-                key={tipo}
-                type="button"
-                onClick={() => setFiltroTipo(tipo)}
-                className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${
-                  filtroTipo === tipo
-                    ? 'bg-white text-stone-900 shadow-2xs'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
-              </button>
-            ))}
+            {["todos", "standard", "luxo", "executiva", "master"].map(
+              (tipo) => (
+                <button
+                  key={tipo}
+                  type="button"
+                  onClick={() => setFiltroTipo(tipo)}
+                  className={`px-3 py-1 rounded font-medium transition-colors cursor-pointer ${
+                    filtroTipo === tipo
+                      ? "bg-white text-stone-900 shadow-2xs"
+                      : "text-stone-600 hover:text-stone-900"
+                  }`}
+                >
+                  {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
+                </button>
+              ),
+            )}
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {quartosDisponiveis.map((quarto) => (
-            <Card key={quarto.id} variant="default" className="flex flex-col justify-between">
-              <Card.Header
-                action={<StatusIndicator status={quarto.status} />}
-              >
+            <Card
+              key={quarto.id}
+              variant="default"
+              className="flex flex-col justify-between"
+            >
+              <Card.Header action={<StatusIndicator status={quarto.status} />}>
                 <Card.Title>Quarto {quarto.numQuarto}</Card.Title>
                 <Card.Description>
                   {quarto.tipo} · {quarto.andar}º Andar
@@ -262,16 +307,22 @@ export default function GuestView({ usuario, dataManager }) {
                     <span className="text-xs text-stone-500">Diária:</span>
                     <div className="text-right">
                       <span className="text-lg font-serif font-bold text-stone-900">
-                        {quarto.formatarDiaria ? quarto.formatarDiaria() : `R$ ${quarto.diaria}`}
+                        {quarto.formatarDiaria
+                          ? quarto.formatarDiaria()
+                          : `R$ ${quarto.diaria}`}
                       </span>
-                      <span className="text-[11px] text-stone-400 block">/noite</span>
+                      <span className="text-[11px] text-stone-400 block">
+                        /noite
+                      </span>
                     </div>
                   </div>
                 </div>
               </Card.Body>
 
               <Card.Footer>
-                <span className="text-[11px] text-emerald-800 font-medium">✓ Pronto para hospedagem</span>
+                <span className="text-[11px] text-emerald-800 font-medium">
+                  ✓ Pronto para hospedagem
+                </span>
                 <Button
                   size="sm"
                   variant="primary"
@@ -289,15 +340,36 @@ export default function GuestView({ usuario, dataManager }) {
       <Modal
         isOpen={modalReservaAberto}
         onClose={() => setModalReservaAberto(false)}
-        title={quartoSelecionado ? `Reservar Quarto ${quartoSelecionado.numQuarto}` : 'Nova Reserva'}
-        subtitle={quartoSelecionado ? `${quartoSelecionado.tipo} · ${quartoSelecionado.andar}º Andar` : ''}
+        title={
+          quartoSelecionado
+            ? `Reservar Quarto ${quartoSelecionado.numQuarto}`
+            : "Nova Reserva"
+        }
+        subtitle={
+          quartoSelecionado
+            ? `${quartoSelecionado.tipo} · ${quartoSelecionado.andar}º Andar`
+            : ""
+        }
         footer={
           <>
-            <Button variant="ghost" size="sm" onClick={() => setModalReservaAberto(false)}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setModalReservaAberto(false)}
+            >
               Voltar
             </Button>
-            <Button variant="primary" size="sm" onClick={handleConfirmarReserva}>
-              Confirmar Reserva ({new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)})
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={handleConfirmarReserva}
+            >
+              Confirmar Reserva (
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(total)}
+              )
             </Button>
           </>
         }
@@ -305,7 +377,9 @@ export default function GuestView({ usuario, dataManager }) {
         <div className="space-y-4 text-xs">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Data de Check-in</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Data de Check-in
+              </label>
               <input
                 type="date"
                 value={checkin}
@@ -315,7 +389,9 @@ export default function GuestView({ usuario, dataManager }) {
               />
             </div>
             <div>
-              <label className="font-medium text-stone-700 block mb-1">Data de Check-out</label>
+              <label className="font-medium text-stone-700 block mb-1">
+                Data de Check-out
+              </label>
               <input
                 type="date"
                 value={checkout}
@@ -327,8 +403,10 @@ export default function GuestView({ usuario, dataManager }) {
           </div>
 
           <div className="p-3 bg-stone-50 rounded-xl space-y-2 border border-stone-200">
-            <span className="font-semibold text-stone-800 block">Personalize sua Hospedagem:</span>
-            
+            <span className="font-semibold text-stone-800 block">
+              Personalize sua Hospedagem:
+            </span>
+
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -336,7 +414,9 @@ export default function GuestView({ usuario, dataManager }) {
                 onChange={(e) => setCafeDaManha(e.target.checked)}
                 className="rounded text-[#663f46]"
               />
-              <span className="text-stone-700">Café da Manhã Colonial (+ R$ 35/noite)</span>
+              <span className="text-stone-700">
+                Café da Manhã Colonial (+ R$ 35/noite)
+              </span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -346,7 +426,9 @@ export default function GuestView({ usuario, dataManager }) {
                 onChange={(e) => setAlmoco(e.target.checked)}
                 className="rounded text-[#663f46]"
               />
-              <span className="text-stone-700">Almoço Executivo Buffet (+ R$ 55/noite)</span>
+              <span className="text-stone-700">
+                Almoço Executivo Buffet (+ R$ 55/noite)
+              </span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -356,7 +438,9 @@ export default function GuestView({ usuario, dataManager }) {
                 onChange={(e) => setPet(e.target.checked)}
                 className="rounded text-[#663f46]"
               />
-              <span className="text-stone-700">Hospedagem Pet Friendly (+ R$ 70 taxa única)</span>
+              <span className="text-stone-700">
+                Hospedagem Pet Friendly (+ R$ 70 taxa única)
+              </span>
             </label>
           </div>
 
@@ -367,12 +451,17 @@ export default function GuestView({ usuario, dataManager }) {
             </div>
             <div className="flex justify-between text-stone-700">
               <span>Diária do quarto:</span>
-              <span className="font-medium">{quartoSelecionado ? quartoSelecionado.formatarDiaria() : '-'}</span>
+              <span className="font-medium">
+                {quartoSelecionado ? quartoSelecionado.formatarDiaria() : "-"}
+              </span>
             </div>
             <div className="flex justify-between text-stone-900 font-bold text-sm pt-1 border-t border-[#b8c4bb]/50">
               <span>Valor Total Previsto:</span>
               <span className="text-[#663f46]">
-                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}
+                {new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(total)}
               </span>
             </div>
           </div>

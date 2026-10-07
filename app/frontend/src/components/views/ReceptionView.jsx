@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import Button from '../common/Button';
-import DataTable from '../common/DataTable';
-import StatusIndicator from '../common/StatusIndicator';
-import MetricCard from '../common/MetricCard';
-import Modal from '../common/Modal';
-import { LogIn, LogOut, CheckCircle2, UserCheck, KeyRound } from 'lucide-react';
+import { useState } from "react";
+import Button from "../common/Button";
+import DataTable from "../common/DataTable";
+import StatusIndicator from "../common/StatusIndicator";
+import MetricCard from "../common/MetricCard";
+import Modal from "../common/Modal";
+import { LogIn, LogOut, CheckCircle2, UserCheck, KeyRound } from "lucide-react";
 
 /**
  * ReceptionView (Variante Recepção & Balcão - Orientado a Reuso & POO)
  * Focado nas operações de entrada, saída, conferência de reservas e chaves.
  */
 export default function ReceptionView({ usuario, dataManager }) {
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
   const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
   const [reservaSelecionada, setReservaSelecionada] = useState(null);
 
@@ -25,73 +25,90 @@ export default function ReceptionView({ usuario, dataManager }) {
 
   const handleCheckin = async (reserva) => {
     await dataManager.realizarCheckin(reserva.id);
-    setFeedback(`Check-in realizado com sucesso para a Reserva #${reserva.id}! Quarto entregue. 🔑`);
-    setTimeout(() => setFeedback(''), 4500);
+    setFeedback(
+      `Check-in realizado com sucesso para a Reserva #${reserva.id}! Quarto entregue. 🔑`,
+    );
+    setTimeout(() => setFeedback(""), 4500);
   };
 
   const handleCheckout = async (reserva) => {
     await dataManager.realizarCheckout(reserva.id);
-    setFeedback(`Check-out finalizado para a Reserva #${reserva.id}. Quarto liberado e enviado para higienização. ✨`);
-    setTimeout(() => setFeedback(''), 4500);
+    setFeedback(
+      `Check-out finalizado para a Reserva #${reserva.id}. Quarto liberado e enviado para higienização. ✨`,
+    );
+    setTimeout(() => setFeedback(""), 4500);
   };
 
   // Colunas do componente DataTable Reutilizável
   const colunas = [
     {
-      header: 'Reserva',
-      accessor: 'id',
-      render: (val) => <span className="font-semibold text-stone-900 font-mono">#{val}</span>
+      header: "Reserva",
+      accessor: "id",
+      render: (val) => (
+        <span className="font-semibold text-stone-900 font-mono">#{val}</span>
+      ),
     },
     {
-      header: 'Hóspede',
+      header: "Hóspede",
       accessor: (row) => row.hospede?.nome || `Hóspede #${row.idHospede}`,
       render: (_, row) => {
-        const h = row.hospede || hospedes.find((item) => item.id === row.idHospede);
+        const h =
+          row.hospede || hospedes.find((item) => item.id === row.idHospede);
         return (
           <div>
-            <div className="font-medium text-stone-900">{h ? h.nome : `Hóspede #${row.idHospede}`}</div>
-            <div className="text-[11px] text-stone-400">{h ? h.email : '-'}</div>
+            <div className="font-medium text-stone-900">
+              {h ? h.nome : `Hóspede #${row.idHospede}`}
+            </div>
+            <div className="text-[11px] text-stone-400">
+              {h ? h.email : "-"}
+            </div>
           </div>
         );
-      }
+      },
     },
     {
-      header: 'Quarto',
+      header: "Quarto",
       accessor: (row) => row.quarto?.numQuarto || row.idQuarto,
       render: (_, row) => {
-        const q = row.quarto || quartos.find((item) => item.id === row.idQuarto);
+        const q =
+          row.quarto || quartos.find((item) => item.id === row.idQuarto);
         return (
           <div>
-            <span className="font-semibold text-stone-800">Quarto {q ? q.numQuarto : row.idQuarto}</span>
-            <span className="text-[11px] text-stone-400 block">{q ? q.tipo : ''}</span>
+            <span className="font-semibold text-stone-800">
+              Quarto {q ? q.numQuarto : row.idQuarto}
+            </span>
+            <span className="text-[11px] text-stone-400 block">
+              {q ? q.tipo : ""}
+            </span>
           </div>
         );
-      }
+      },
     },
     {
-      header: 'Período',
+      header: "Período",
       accessor: (row) => `${row.dataCheckin} a ${row.dataCheckout}`,
       render: (_, row) => (
         <span className="text-stone-600">
-          {row.formatarCheckin ? row.formatarCheckin() : row.dataCheckin} → {row.formatarCheckout ? row.formatarCheckout() : row.dataCheckout}
+          {row.formatarCheckin ? row.formatarCheckin() : row.dataCheckin} →{" "}
+          {row.formatarCheckout ? row.formatarCheckout() : row.dataCheckout}
         </span>
-      )
+      ),
     },
     {
-      header: 'Status',
-      accessor: 'status',
-      render: (val) => <StatusIndicator status={val} />
+      header: "Status",
+      accessor: "status",
+      render: (val) => <StatusIndicator status={val} />,
     },
     {
-      header: 'Total',
-      accessor: 'valorTotal',
-      align: 'right',
+      header: "Total",
+      accessor: "valorTotal",
+      align: "right",
       render: (_, row) => (
         <span className="font-semibold text-stone-900 font-serif">
           {row.formatarTotal ? row.formatarTotal() : `R$ ${row.valorTotal}`}
         </span>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -106,7 +123,8 @@ export default function ReceptionView({ usuario, dataManager }) {
             Recepção · {usuario.nome}
           </h2>
           <p className="text-xs text-stone-600 mt-1">
-            Realize check-ins imediatos, confira chegadas e partidas de hóspedes.
+            Realize check-ins imediatos, confira chegadas e partidas de
+            hóspedes.
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -115,7 +133,9 @@ export default function ReceptionView({ usuario, dataManager }) {
             variant="espresso"
             icon={KeyRound}
             onClick={() => {
-              const r = reservas.find((item) => item.isAtiva() && !item.isCheckinRealizado());
+              const r = reservas.find(
+                (item) => item.isAtiva() && !item.isCheckinRealizado(),
+              );
               if (r) {
                 setReservaSelecionada(r);
                 setModalDetalhesAberto(true);
@@ -164,7 +184,8 @@ export default function ReceptionView({ usuario, dataManager }) {
               Controle de Estadias & Hóspedes
             </h3>
             <p className="text-xs text-stone-500">
-              Utilize as ações de balcão para registrar entrada e saída com liberação automática de limpeza
+              Utilize as ações de balcão para registrar entrada e saída com
+              liberação automática de limpeza
             </p>
           </div>
         </div>
@@ -219,10 +240,18 @@ export default function ReceptionView({ usuario, dataManager }) {
       <Modal
         isOpen={modalDetalhesAberto}
         onClose={() => setModalDetalhesAberto(false)}
-        title={reservaSelecionada ? `Reserva #${reservaSelecionada.id}` : 'Ficha da Reserva'}
+        title={
+          reservaSelecionada
+            ? `Reserva #${reservaSelecionada.id}`
+            : "Ficha da Reserva"
+        }
         subtitle="Registro de hospedagem e faturamento"
         footer={
-          <Button size="sm" variant="ghost" onClick={() => setModalDetalhesAberto(false)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => setModalDetalhesAberto(false)}
+          >
             Fechar Ficha
           </Button>
         }
@@ -236,30 +265,42 @@ export default function ReceptionView({ usuario, dataManager }) {
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">Entrada (Check-in):</span>
-                <strong className="text-stone-900">{reservaSelecionada.dataCheckin}</strong>
+                <strong className="text-stone-900">
+                  {reservaSelecionada.dataCheckin}
+                </strong>
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">Saída (Check-out):</span>
-                <strong className="text-stone-900">{reservaSelecionada.dataCheckout}</strong>
+                <strong className="text-stone-900">
+                  {reservaSelecionada.dataCheckout}
+                </strong>
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">Noites calculadas:</span>
-                <span className="text-stone-900">{reservaSelecionada.calcularNoites()} noite(s)</span>
+                <span className="text-stone-900">
+                  {reservaSelecionada.calcularNoites()} noite(s)
+                </span>
               </div>
             </div>
 
             <div className="p-3 bg-[#e8f7ee] rounded-xl border border-[#b8c4bb]/50 space-y-1">
               <div className="flex justify-between text-stone-700">
                 <span>Café da manhã:</span>
-                <span>{reservaSelecionada.cafeDaManha ? 'Incluso (+ R$ 35/dia)' : 'Não'}</span>
+                <span>
+                  {reservaSelecionada.cafeDaManha
+                    ? "Incluso (+ R$ 35/dia)"
+                    : "Não"}
+                </span>
               </div>
               <div className="flex justify-between text-stone-700">
                 <span>Almoço buffet:</span>
-                <span>{reservaSelecionada.almoco ? 'Incluso (+ R$ 55/dia)' : 'Não'}</span>
+                <span>
+                  {reservaSelecionada.almoco ? "Incluso (+ R$ 55/dia)" : "Não"}
+                </span>
               </div>
               <div className="flex justify-between text-stone-700">
                 <span>Pet Friendly:</span>
-                <span>{reservaSelecionada.pet ? 'Sim (+ R$ 70)' : 'Não'}</span>
+                <span>{reservaSelecionada.pet ? "Sim (+ R$ 70)" : "Não"}</span>
               </div>
               <div className="flex justify-between text-stone-900 font-bold text-sm pt-2 border-t border-[#b8c4bb]/60">
                 <span>Faturamento Total:</span>

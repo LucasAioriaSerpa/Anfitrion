@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import Button from '../common/Button';
-import DataTable from '../common/DataTable';
-import MetricCard from '../common/MetricCard';
-import StatusIndicator from '../common/StatusIndicator';
-import Modal from '../common/Modal';
-import { TrendingUp, DollarSign, BedDouble, Users, CheckCircle2, Edit3 } from 'lucide-react';
+import { useState } from "react";
+import Button from "../common/Button";
+import DataTable from "../common/DataTable";
+import MetricCard from "../common/MetricCard";
+import StatusIndicator from "../common/StatusIndicator";
+import Modal from "../common/Modal";
+import {
+  TrendingUp,
+  DollarSign,
+  BedDouble,
+  Users,
+  CheckCircle2,
+  Edit3,
+} from "lucide-react";
 
 /**
  * ManagerView (Variante Gerência Geral & Subgerência - Orientado a Reuso & POO)
@@ -12,8 +19,8 @@ import { TrendingUp, DollarSign, BedDouble, Users, CheckCircle2, Edit3 } from 'l
  */
 export default function ManagerView({ usuario, dataManager }) {
   const [quartoEmEdicao, setQuartoEmEdicao] = useState(null);
-  const [novaDiaria, setNovaDiaria] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [novaDiaria, setNovaDiaria] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const quartos = dataManager.quartos;
   const reservas = dataManager.reservas;
@@ -21,7 +28,10 @@ export default function ManagerView({ usuario, dataManager }) {
 
   // Lógica OO: cálculo de ocupação e receita
   const taxaOcupacao = hotel ? hotel.calcularTaxaOcupacao(quartos) : 0;
-  const faturamentoEstimado = reservas.reduce((acc, r) => acc + (r.valorTotal || 0), 0);
+  const faturamentoEstimado = reservas.reduce(
+    (acc, r) => acc + (r.valorTotal || 0),
+    0,
+  );
   const totalHospedes = dataManager.hospedes.length;
 
   const handleSalvarDiaria = async () => {
@@ -29,41 +39,49 @@ export default function ManagerView({ usuario, dataManager }) {
 
     await dataManager.atualizarDiariaQuarto(quartoEmEdicao.id, novaDiaria);
     setQuartoEmEdicao(null);
-    setFeedback(`Diária do Quarto ${quartoEmEdicao.numQuarto} atualizada com sucesso para R$ ${novaDiaria}!`);
-    setTimeout(() => setFeedback(''), 4000);
+    setFeedback(
+      `Diária do Quarto ${quartoEmEdicao.numQuarto} atualizada com sucesso para R$ ${novaDiaria}!`,
+    );
+    setTimeout(() => setFeedback(""), 4000);
   };
 
   const colunasQuartos = [
     {
-      header: 'Número',
-      accessor: 'numQuarto',
-      render: (val) => <span className="font-semibold text-stone-900 font-mono">Quarto {val}</span>
+      header: "Número",
+      accessor: "numQuarto",
+      render: (val) => (
+        <span className="font-semibold text-stone-900 font-mono">
+          Quarto {val}
+        </span>
+      ),
     },
     {
-      header: 'Categoria',
-      accessor: 'tipo',
-      render: (val) => <span className="text-stone-800 font-medium">{val}</span>
+      header: "Categoria",
+      accessor: "tipo",
+      render: (val) => (
+        <span className="text-stone-800 font-medium">{val}</span>
+      ),
     },
     {
-      header: 'Andar',
-      accessor: 'andar',
-      render: (val) => <span>{val}º Andar</span>
+      header: "Andar",
+      accessor: "andar",
+      render: (val) => <span>{val}º Andar</span>,
     },
     {
-      header: 'Status',
-      accessor: 'status',
-      render: (val) => <StatusIndicator status={val} />
+      header: "Status",
+      accessor: "status",
+      render: (val) => <StatusIndicator status={val} />,
     },
     {
-      header: 'Tarifa Vigente',
-      accessor: 'diaria',
-      align: 'right',
+      header: "Tarifa Vigente",
+      accessor: "diaria",
+      align: "right",
       render: (_, row) => (
         <span className="font-semibold text-stone-900 font-serif">
           {row.formatarDiaria ? row.formatarDiaria() : `R$ ${row.diaria}`}
         </span>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -82,8 +100,12 @@ export default function ManagerView({ usuario, dataManager }) {
           </p>
         </div>
         <div className="text-right text-xs">
-          <span className="text-white font-medium block">{hotel ? hotel.nome : 'Anfitrião'}</span>
-          <span className="text-[#b8c4bb]/70">{hotel ? hotel.getLocalizacao() : 'Copacabana, RJ'}</span>
+          <span className="text-white font-medium block">
+            {hotel ? hotel.nome : "Anfitrião"}
+          </span>
+          <span className="text-[#b8c4bb]/70">
+            {hotel ? hotel.getLocalizacao() : "Copacabana, RJ"}
+          </span>
         </div>
       </div>
 
@@ -101,18 +123,21 @@ export default function ManagerView({ usuario, dataManager }) {
           value={`${taxaOcupacao}%`}
           subtitle="Capacidade do hotel em uso"
           icon={TrendingUp}
-          trend={{ text: 'Alta temporada', positive: true }}
+          trend={{ text: "Alta temporada", positive: true }}
         />
         <MetricCard
           title="Receita Contratada"
-          value={new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(faturamentoEstimado)}
+          value={new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(faturamentoEstimado)}
           subtitle="Total acumulado em reservas"
           icon={DollarSign}
         />
         <MetricCard
           title="Inventário de Quartos"
           value={quartos.length}
-          subtitle={`${quartos.filter(q => q.isDisponivel()).length} prontos para venda`}
+          subtitle={`${quartos.filter((q) => q.isDisponivel()).length} prontos para venda`}
           icon={BedDouble}
         />
         <MetricCard
@@ -161,11 +186,23 @@ export default function ManagerView({ usuario, dataManager }) {
       <Modal
         isOpen={Boolean(quartoEmEdicao)}
         onClose={() => setQuartoEmEdicao(null)}
-        title={quartoEmEdicao ? `Ajustar Tarifa: Quarto ${quartoEmEdicao.numQuarto}` : 'Ajustar Diária'}
-        subtitle={quartoEmEdicao ? `${quartoEmEdicao.tipo} · ${quartoEmEdicao.andar}º Andar` : ''}
+        title={
+          quartoEmEdicao
+            ? `Ajustar Tarifa: Quarto ${quartoEmEdicao.numQuarto}`
+            : "Ajustar Diária"
+        }
+        subtitle={
+          quartoEmEdicao
+            ? `${quartoEmEdicao.tipo} · ${quartoEmEdicao.andar}º Andar`
+            : ""
+        }
         footer={
           <>
-            <Button size="sm" variant="ghost" onClick={() => setQuartoEmEdicao(null)}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setQuartoEmEdicao(null)}
+            >
               Cancelar
             </Button>
             <Button size="sm" variant="primary" onClick={handleSalvarDiaria}>

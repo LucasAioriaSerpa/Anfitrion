@@ -1,35 +1,26 @@
-/* Reset Global */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 /* Login Container - Dois Lados */
 .login-container {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-color: #fff;
+  background-color: var(--surface);
   overflow: hidden;
 }
 
 /* Lado Esquerdo - Logo e Tagline */
 .login-left {
   flex: 1;
-  background: linear-gradient(135deg, #6b3e3e 0%, #8b5a5a 100%);
+  /* Utilizando as cores da paleta para o gradiente */
+  background: linear-gradient(
+    135deg,
+    var(--color-dark) 0%,
+    var(--theme-panel-bg) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  color: white;
+  color: var(--color-light);
   height: 100%;
   width: 100%;
 }
@@ -49,16 +40,18 @@ html, body, #root {
   margin: 0 auto 2rem;
   border: 3px solid rgba(255, 255, 255, 0.3);
 }
+
 .logo-img {
   width: 300px;
   height: 300px;
   object-fit: contain;
 }
+
 .logo-circle h1 {
   font-size: 2.5rem;
   margin: 0;
   font-weight: bold;
-  color: white;
+  color: var(--color-light);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -71,14 +64,15 @@ html, body, #root {
   font-style: italic;
   line-height: 1.6;
   margin: 0;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-light);
+  opacity: 0.95;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Lado Direito - Formulário */
 .login-right {
   flex: 1;
-  background-color: #f0f0f0;
+  background-color: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,12 +83,19 @@ html, body, #root {
 }
 
 .login-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--theme-card-bg);
+  border-radius: var(--radius-lg); /* Usando token de radius */
   padding: 3rem 2.5rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-xl); /* Usando token de sombra */
+}
+
+.auth-theme-control {
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  z-index: 2;
 }
 
 .login-header {
@@ -102,23 +103,23 @@ html, body, #root {
 }
 
 .login-header h2 {
-  color: #6b3e3e;
+  color: var(--text); /* Remapeado de #6b3e3e */
   margin: 0 0 0.5rem 0;
   font-size: 1.8rem;
 }
 
 .login-header .subtitle {
-  color: #999;
+  color: var(--text-muted); /* Remapeado de #999 */
   font-size: 0.95rem;
   margin: 0;
 }
 
-/* Mensagens */
+/* Mensagens (mantidas fixas pois representam estados globais de sucesso/erro) */
 .sucesso {
   background-color: #d4edda;
   color: #155724;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin-bottom: 1.5rem;
   border-left: 4px solid #28a745;
   font-size: 0.95rem;
@@ -128,7 +129,7 @@ html, body, #root {
   background-color: #f8d7da;
   color: #721c24;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin-bottom: 1.5rem;
   border-left: 4px solid #f5222d;
   font-size: 0.95rem;
@@ -148,56 +149,57 @@ html, body, #root {
 
 .form-group label {
   margin-bottom: 0.6rem;
-  color: #333;
+  color: var(--text); /* Remapeado de #333 */
   font-weight: 600;
   font-size: 0.95rem;
 }
 
 .form-group input {
   padding: 0.85rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
+  border: 2px solid var(--theme-control-border); /* Remapeado de #ddd */
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
-  font-family: inherit;
-  transition: all 0.3s;
-  background-color: #fafafa;
-  color: #000;
+  font-family: var(--font-sans); /* Usando token de fonte */
+  transition: all var(--transition-normal);
+  background-color: var(--theme-control-bg); /* Remapeado de #fafafa */
+  color: var(--theme-control-text); /* Remapeado de #000 */
 }
 
 .form-group input::placeholder {
-  color: #bbb;
+  color: var(--text-muted); /* Remapeado de #bbb */
 }
 
 .form-group input::selection {
-  background-color: #6b3e3e;
-  color: #fff;
+  background-color: var(--color-dark);
+  color: var(--color-light);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #6b3e3e;
-  background-color: #fff;
-  box-shadow: 0 0 8px rgba(107, 62, 62, 0.15);
+  border-color: var(--color-dark);
+  background-color: var(--theme-control-bg);
+  /* Sombra customizada com a cor escura e opacidade */
+  box-shadow: 0 0 8px rgba(102, 63, 70, 0.15);
 }
 
 /* Botão Entrar */
 .btn-entrar {
   padding: 0.95rem 1.5rem;
-  background-color: #6b3e3e;
-  color: white;
+  background-color: var(--color-dark); /* Remapeado de #6b3e3e */
+  color: var(--color-light);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--transition-normal);
   margin-top: 0.5rem;
 }
 
 .btn-entrar:hover {
-  background-color: #8b4545;
+  background-color: var(--color-darker); /* Escurece no hover */
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(107, 62, 62, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-entrar:active {
@@ -209,31 +211,36 @@ html, body, #root {
   text-align: center;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border); /* Remapeado de #eee */
 }
 
 .link-btn {
   background: none;
   border: none;
-  color: #6b3e3e;
+  color: var(--color-dark);
   cursor: pointer;
   text-decoration: underline;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color var(--transition-fast);
 }
 
 .link-btn:hover {
-  color: #8b4545;
+  color: var(--color-darker);
 }
 
-/* Aviso de exclusividade para hóspedes */
+/* Aviso de exclusividade para hóspedes (mantido mais amarelado para estado de warning) */
 .auth-notice {
-  background-color: #fff9e6;
+  background-color: rgba(
+    212,
+    136,
+    6,
+    0.1
+  ); /* Adaptado para transparência funcionar bem no Dark Mode */
   border-left: 4px solid #d48806;
-  color: #874d00;
+  color: var(--text); /* Adapta à cor do texto do tema */
   padding: 0.85rem 1rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
   line-height: 1.45;
   margin-bottom: 1.25rem;
@@ -242,7 +249,7 @@ html, body, #root {
 .auth-notice strong {
   display: block;
   margin-bottom: 0.2rem;
-  color: #613400;
+  color: #d48806;
 }
 
 /* Badges de Perfil */
@@ -251,21 +258,22 @@ html, body, #root {
   padding: 0.25rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
+/* Adaptados com transparência para lerem bem tanto no Light quanto no Dark Mode */
 .role-badge-hospede {
-  background-color: #e6f7ff;
+  background-color: rgba(9, 109, 217, 0.1);
   color: #096dd9;
-  border: 1px solid #91d5ff;
+  border: 1px solid rgba(9, 109, 217, 0.3);
 }
 
 .role-badge-funcionario {
-  background-color: #f6ffed;
+  background-color: rgba(56, 158, 13, 0.1);
   color: #389e0d;
-  border: 1px solid #b7eb8f;
+  border: 1px solid rgba(56, 158, 13, 0.3);
 }
 
 /* Card de Usuário Logado */
@@ -278,34 +286,38 @@ html, body, #root {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6b3e3e 0%, #8b5a5a 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--color-dark) 0%,
+    var(--theme-panel-bg) 100%
+  );
+  color: var(--color-light);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0 auto 1rem;
-  box-shadow: 0 4px 12px rgba(107, 62, 62, 0.25);
+  box-shadow: var(--shadow-md);
 }
 
 .user-session-name {
-  color: #333;
+  color: var(--text);
   font-size: 1.35rem;
   font-weight: 600;
   margin-bottom: 0.35rem;
 }
 
 .user-session-email {
-  color: #777;
+  color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
 }
 
 .user-details-list {
-  background-color: #fafafa;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  background-color: var(--theme-control-bg); /* Remapeado de #fafafa */
+  border: 1px solid var(--border); /* Remapeado de #eee */
+  border-radius: var(--radius-sm);
   padding: 1rem;
   margin: 1.25rem 0;
   text-align: left;
@@ -322,46 +334,46 @@ html, body, #root {
 }
 
 .user-details-label {
-  color: #888;
+  color: var(--text-muted); /* Remapeado de #888 */
 }
 
 .user-details-value {
-  color: #333;
+  color: var(--text); /* Remapeado de #333 */
   font-weight: 600;
 }
 
 .btn-sair {
   width: 100%;
   padding: 0.85rem;
-  background-color: #fff;
-  border: 2px solid #6b3e3e;
-  color: #6b3e3e;
-  border-radius: 6px;
+  background-color: transparent;
+  border: 2px solid var(--color-dark); /* Remapeado de #6b3e3e */
+  color: var(--color-dark);
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--transition-normal);
 }
 
 .btn-sair:hover {
-  background-color: #6b3e3e;
-  color: #fff;
+  background-color: var(--color-dark);
+  color: var(--color-light);
 }
 
 /* Acesso rápido para testes (Demonstração) */
 .quick-test-box {
   margin-top: 1.25rem;
   padding: 0.85rem;
-  background-color: #fafafa;
-  border: 1px dashed #d9d9d9;
-  border-radius: 8px;
+  background-color: var(--theme-control-bg); /* Remapeado de #fafafa */
+  border: 1px dashed var(--theme-control-border); /* Remapeado de #d9d9d9 */
+  border-radius: var(--radius-md);
   text-align: left;
 }
 
 .quick-test-title {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #888;
+  color: var(--text-muted); /* Remapeado de #888 */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0.5rem;
@@ -374,26 +386,26 @@ html, body, #root {
 }
 
 .quick-test-chip {
-  background: white;
-  border: 1px solid #d9d9d9;
+  background: var(--theme-card-bg); /* Remapeado de white */
+  border: 1px solid var(--theme-control-border); /* Remapeado de #d9d9d9 */
   border-radius: 4px;
   padding: 0.3rem 0.55rem;
   font-size: 0.76rem;
-  color: #555;
+  color: var(--text); /* Remapeado de #555 */
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
 .quick-test-chip:hover {
-  border-color: #6b3e3e;
-  color: #6b3e3e;
-  background-color: #fff8f8;
+  border-color: var(--color-dark);
+  color: var(--color-dark);
+  background-color: var(--theme-control-hover);
 }
 
-/* Responsivo */
+/* Responsivo (sem alterações de cores) */
 @media (max-width: 1024px) {
   .login-container {
     flex-direction: column;
