@@ -6,7 +6,7 @@ try:
     from utils.Loggers import Logger
     from private.cypher import Cypher
     from api.factories.user_factory import userFactory
-    from app.backend.api.auth.auth_context import current_user, filter_records, issue_access_token, require_auth
+    from api.auth.auth_context import current_user, filter_records, issue_access_token, require_auth
 except ImportError or ModuleNotFoundErro:
     from app.backend.manager.Database import Database
     from app.backend.config.Config import Config
