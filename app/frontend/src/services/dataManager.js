@@ -34,8 +34,8 @@ function backendUnavailable(response) {
 function normalizeReservation(record) {
   return {
     ...record,
-    data_checkin: record.data_checkin ?? record.check_in ?? "",
-    data_checkout: record.data_checkout ?? record.check_out ?? "",
+    check_in: record.check_in ?? record.data_checkin ?? "",
+    check_out: record.check_out ?? record.data_checkout ?? "",
     valor_total: record.valor_total ?? 0,
     cafe_da_manha: Boolean(record.cafe_da_manha || record.taxa_cafe_manha),
     almoco: Boolean(record.almoco || record.taxa_almoco),
@@ -80,12 +80,23 @@ class HotelDataManager {
     return this._version;
   }
 
-  async init() {
-    return this.inicializar();
+  async init(force = false) {
+    return this.inicializar(force);
   }
 
-  async inicializar() {
-    if (this._initialized) return;
+  reset() {
+    this._hotel = null;
+    this._quartos = [];
+    this._reservas = [];
+    this._funcionarios = [];
+    this._hospedes = [];
+    this._initialized = false;
+    this._notify();
+  }
+
+  async inicializar(force = false) {
+    if (this._initialized && !force) return;
+    if (force) this.reset();
 
     try {
       const [
@@ -325,6 +336,15 @@ class HotelDataManager {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
 
+    try {
+      const response = await reservaApi.update(idReserva, {
+        status: "Check-in Realizado",
+      });
+      if (!response.ok && !backendUnavailable(response)) return false;
+    } catch {
+      return false;
+    }
+
     reserva.status = "Check-in Realizado";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
     if (quarto) {
@@ -340,6 +360,15 @@ class HotelDataManager {
   async realizarCheckout(idReserva) {
     const reserva = this._reservas.find((r) => r.id === idReserva);
     if (!reserva) return false;
+
+    try {
+      const response = await reservaApi.update(idReserva, {
+        status: "Check-out Finalizado",
+      });
+      if (!response.ok && !backendUnavailable(response)) return false;
+    } catch {
+      return false;
+    }
 
     reserva.status = "Check-out Finalizado";
     const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);

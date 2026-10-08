@@ -23,7 +23,7 @@ export default function DataTable({
 
     return data.filter((item) => {
       return searchKeys.some((key) => {
-        // Suporta tanto métodos de classe POO quanto propriedades
+        //? Suporta tanto métodos de classe POO quanto propriedades
         const val = typeof item[key] === "function" ? item[key]() : item[key];
         if (val === undefined || val === null) return false;
         return String(val).toLowerCase().includes(term);

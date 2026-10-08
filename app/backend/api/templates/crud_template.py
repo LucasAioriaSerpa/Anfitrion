@@ -135,14 +135,15 @@ class CrudTemplate(ABC):
             if not existing:
                 self._log.log_warning(f"[ {self.entity_name}Template ] - ID {entity_id} não encontrado para update")
                 return self.format_response(data=None, status=404, message=f"{self.entity_name.capitalize()} não encontrado", success=False)
-
+            
             validated_data = self.validate_payload(payload, is_update=True)
             prepared_data = self.before_save(validated_data, is_update=True)
-
+            if not prepared_data: raise ValueError("Nenhum campo válido informado para atualização")
+            
             self.execute_update(validated_id, prepared_data)
             updated_record = self.execute_select_by_id(validated_id)
-            if not updated_record:
-                raise RuntimeError(f"Registro atualizado em {self.table_name}, mas falha ao recuperar por ID: {validated_id}")
+            if not updated_record: raise RuntimeError(f"Registro atualizado em {self.table_name}, mas falha ao recuperar por ID: {validated_id}")
+            
             processed_record = self.after_save(updated_record, is_update=True)
 
             self._log.log_success(f"[ {self.entity_name}Template ] - {self.entity_name} ID: {entity_id} atualizado com sucesso")

@@ -1,10 +1,9 @@
-import GuestView from "./GuestView";
-import HousekeepingView from "./HousekeepingView";
-import ReceptionView from "./ReceptionView";
-import ManagerView from "./ManagerView";
 import AdminView from "./AdminView";
-import WipView from "./WipView";
+import ManagerView from "./ManagerView";
+import HousekeepingView from "./HousekeepingView";
+import GuestView from "./GuestView";
 import RoomsView from "./RoomsView";
+//* remover caso for utilizado a view WIP *\\ import WipView from "./WipView";
 
 /**
  * RoleViewFactory (Padrão Strategy & Factory OO)
@@ -29,28 +28,28 @@ export default function RoleViewFactory({
     strategyKey = "hospede";
   }
 
-  // Mapeamento polimórfico de componentes (Strategy Map)
+  //? Mapeamento polimórfico de componentes (Strategy Map)
   switch (strategyKey) {
     case "admin":
-      //TODO: COLOCAR AS PAGINAS CORRESPONDENTES ) return <AdminView usuario={usuario} dataManager={dataManager} />;
-      return <WipView />;
+      return <AdminView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "manager":
-      //TODO: COLOCAR AS PAGINAS CORRESPONDENTES ) return <ManagerView usuario={usuario} dataManager={dataManager} />;
-      return <WipView />;
+      return <ManagerView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "reception":
-      //TODO: COLOCAR AS PAGINAS CORRESPONDENTES ) return <ReceptionView usuario={usuario} dataManager={dataManager} />;
-      return <RoomsView />;
+      // TODO: TRANSFORMAR O <RoomsView> em o novo <ReceptionView>! \\  return <ReceptionView usuario={usuario} dataManager={dataManager} />;
+      return <RoomsView usuario={usuario} dataManager={dataManager} />;
 
     case "housekeeping":
     case "staff":
-      //TODO: COLOCAR AS PAGINAS CORRESPONDENTES ) return <HousekeepingView usuario={usuario} dataManager={dataManager} />;
-      return <WipView />;
+      return <HousekeepingView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "hospede":
     default:
-      //TODO: COLOCAR AS PAGINAS CORRESPONDENTES ) return <GuestView usuario={usuario} dataManager={dataManager} />;
-      return <WipView />;
+      return <GuestView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
   }
 }

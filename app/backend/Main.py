@@ -48,13 +48,12 @@ class Main:
 
     def __seed_if_empty(self) -> None:
         data_tables = ("quarto", "funcionario", "hospede", "reserva")
-        if any(self.__db.read(table, {}) for table in data_tables): return
+        if any(self.__db.read(table, {}) for table in data_tables): self.__log.log_info("[ Main.py ] - Banco já está populado com dados mock!"); return
         try:
             from database.mock.seed_mock_data import seed_database
             seed_database()
-            self.__log.log_success("[ Main.py ] - Banco vazio populado com dados mock")
-        except Exception as e:
-            self.__log.log_error(f"[ Main.py ] - Erro ao popular banco vazio: {str(e)}")
+        except Exception as e: self.__log.log_error(f"[ Main.py ] - Erro ao popular banco vazio: {str(e)}")
+        finally: self.__log.log_success("[ Main.py ] - Banco vazio populado com dados mock")
 
     def __get_rate_of_occupancy(
         self,
@@ -175,8 +174,8 @@ class Main:
             except Exception as e:
                 self.__log.log_error(f"[ Main.py ] - Erro ao realizar setup do banco: {str(e)}")
                 return None
-
-            self.__seed_if_empty()
+        
+        self.__seed_if_empty()
         
         sleep_interval = float(self.__config.get("MAIN_SLEEP_INTERVAL") or 3.0)
         self.__log.log_success("[ MAIN ] - Thread MAIN de processamento pesado iniciada!")

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { useEffect } from "react";
+import { X } from "lucide-react";
 
 /**
  * Modal Dialog Reutilizável (OO & Acessibilidade)
@@ -8,24 +8,24 @@ export default function Modal({
   isOpen,
   onClose,
   title,
-  subtitle = '',
+  subtitle = "",
   children,
   footer = null,
-  maxWidth = 'max-w-lg'
+  maxWidth = "max-w-lg",
 }) {
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === "Escape" && isOpen) {
         onClose();
       }
     }
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
     }
     return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
 
@@ -63,9 +63,7 @@ export default function Modal({
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto space-y-4">
-          {children}
-        </div>
+        <div className="p-6 overflow-y-auto space-y-4">{children}</div>
 
         {/* Footer */}
         {footer && (

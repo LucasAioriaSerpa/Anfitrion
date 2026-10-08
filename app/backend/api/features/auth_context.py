@@ -138,8 +138,7 @@ def record_hotel_id(entity: str, record: dict[str, Any]) -> int | None:
 
 def can_access_record(entity: str, record: dict[str, Any], user: dict[str, Any]) -> bool:
     if user.get("role") == "hospede":
-        if entity == "quarto":
-            return str(record.get("status", "")).lower() == "disponível" or str(record.get("status", "")).lower() == "disponivel"
+        if entity == "quarto": return True
         if entity == "hotel": return True
         if entity in {"hospede", "reserva"}:
             return int(record.get("id_hospede", 0)) == int(user.get("id_hospede", 0))
@@ -158,7 +157,9 @@ def payload_belongs_to_hotel(entity: str, payload: dict[str, Any], user: dict[st
         if entity != "reserva" or int(payload.get("id_hospede", 0)) != int(user.get("id_hospede", 0)):
             return False
         quartos = _db.read("quarto", {"id_quarto": payload.get("id_quarto")})
-        return bool(quartos) and can_access_record("quarto", quartos[0], user)
+        if not quartos: return False
+        status = str(quartos[0].get("status", "")).strip().lower()
+        return status in {"disponível", "disponivel"}
 
     if not is_employee(user): return False
 

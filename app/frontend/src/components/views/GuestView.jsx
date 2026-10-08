@@ -41,6 +41,11 @@ export default function GuestView({ usuario, dataManager }) {
     return q.tipo.toLowerCase().includes(filtroTipo.toLowerCase());
   });
 
+  const quartosFiltrados = quartos.filter((q) => {
+    if (filtroTipo === "todos") return true;
+    return q.tipo.toLowerCase().includes(filtroTipo.toLowerCase());
+  });
+
   const abrirModalReserva = (quarto) => {
     setQuartoSelecionado(quarto);
     setModalReservaAberto(true);
@@ -165,7 +170,10 @@ export default function GuestView({ usuario, dataManager }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {minhasReservas.map((res) => {
               const q =
-                res.quarto || quartos.find((item) => item.id === res.idQuarto);
+                res.quarto ||
+                quartos.find(
+                  (item) => Number(item.id) === Number(res.idQuarto),
+                );
               return (
                 <Card
                   key={res.id}
@@ -277,62 +285,75 @@ export default function GuestView({ usuario, dataManager }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {quartosDisponiveis.map((quarto) => (
-            <Card
-              key={quarto.id}
-              variant="default"
-              className="flex flex-col justify-between"
-            >
-              <Card.Header action={<StatusIndicator status={quarto.status} />}>
-                <Card.Title>Quarto {quarto.numQuarto}</Card.Title>
-                <Card.Description>
-                  {quarto.tipo} · {quarto.andar}º Andar
-                </Card.Description>
-              </Card.Header>
+          {quartosFiltrados.map((quarto) => {
+            const disponivel = quarto.isDisponivel();
 
-              <Card.Body>
-                <div className="space-y-3">
-                  <div className="text-xs text-stone-600 space-y-1">
-                    <div className="flex items-center gap-1.5">
-                      <Bed className="w-3.5 h-3.5 text-stone-400" />
-                      <span>Cama king-size, ar split & TV smart 50"</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Coffee className="w-3.5 h-3.5 text-stone-400" />
-                      <span>Frigobar e cafeteira cortesia</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-stone-100 flex items-baseline justify-between">
-                    <span className="text-xs text-stone-500">Diária:</span>
-                    <div className="text-right">
-                      <span className="text-lg font-serif font-bold text-stone-900">
-                        {quarto.formatarDiaria
-                          ? quarto.formatarDiaria()
-                          : `R$ ${quarto.diaria}`}
-                      </span>
-                      <span className="text-[11px] text-stone-400 block">
-                        /noite
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Card.Body>
-
-              <Card.Footer>
-                <span className="text-[11px] text-emerald-800 font-medium">
-                  ✓ Pronto para hospedagem
-                </span>
-                <Button
-                  size="sm"
-                  variant="primary"
-                  onClick={() => abrirModalReserva(quarto)}
+            return (
+              <Card
+                key={quarto.id}
+                variant="default"
+                className="flex flex-col justify-between"
+              >
+                <Card.Header
+                  action={<StatusIndicator status={quarto.status} />}
                 >
-                  Reservar Agora
-                </Button>
-              </Card.Footer>
-            </Card>
-          ))}
+                  <Card.Title>Quarto {quarto.numQuarto}</Card.Title>
+                  <Card.Description>
+                    {quarto.tipo} · {quarto.andar}º Andar
+                  </Card.Description>
+                </Card.Header>
+
+                <Card.Body>
+                  <div className="space-y-3">
+                    <div className="text-xs text-stone-600 space-y-1">
+                      <div className="flex items-center gap-1.5">
+                        <Bed className="w-3.5 h-3.5 text-stone-400" />
+                        <span>Cama king-size, ar split & TV smart 50"</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Coffee className="w-3.5 h-3.5 text-stone-400" />
+                        <span>Frigobar e cafeteira cortesia</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-stone-100 flex items-baseline justify-between">
+                      <span className="text-xs text-stone-500">Diária:</span>
+                      <div className="text-right">
+                        <span className="text-lg font-serif font-bold text-stone-900">
+                          {quarto.formatarDiaria
+                            ? quarto.formatarDiaria()
+                            : `R$ ${quarto.diaria}`}
+                        </span>
+                        <span className="text-[11px] text-stone-400 block">
+                          /noite
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Card.Body>
+
+                <Card.Footer>
+                  <span
+                    className={`text-[11px] font-medium ${
+                      disponivel ? "text-emerald-800" : "text-stone-500"
+                    }`}
+                  >
+                    {disponivel
+                      ? "✓ Pronto para hospedagem"
+                      : "Indisponível no momento"}
+                  </span>
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    disabled={!disponivel}
+                    onClick={() => abrirModalReserva(quarto)}
+                  >
+                    Reservar Agora
+                  </Button>
+                </Card.Footer>
+              </Card>
+            );
+          })}
         </div>
       </div>
 

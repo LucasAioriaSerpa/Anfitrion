@@ -7,25 +7,25 @@ export class Reserva {
     id_reserva = null,
     id_quarto = null,
     id_hospede = null,
-    data_checkin = '',
-    data_checkout = '',
+    check_in = "",
+    check_out = "",
     valor_total = 0.0,
-    status = 'Confirmada',
+    status = "Confirmada",
     cafe_da_manha = false,
     pet = false,
     almoco = false,
     criado_em = null,
     // Propriedades anexadas opcionais para enriquecer exibições
     quarto = null,
-    hospede = null
+    hospede = null,
   } = {}) {
     this._id = id ?? id_reserva;
     this._idQuarto = Number(id_quarto);
     this._idHospede = Number(id_hospede);
-    this._dataCheckin = data_checkin;
-    this._dataCheckout = data_checkout;
+    this._dataCheckin = check_in;
+    this._dataCheckout = check_out;
     this._valorTotal = Number(valor_total) || 0.0;
-    this._status = status || 'Confirmada';
+    this._status = status || "Confirmada";
     this._cafeDaManha = Boolean(cafe_da_manha);
     this._pet = Boolean(pet);
     this._almoco = Boolean(almoco);
@@ -115,44 +115,50 @@ export class Reserva {
 
   isAtiva() {
     const s = this._status.toLowerCase();
-    return s.includes('confirmad') || s.includes('check-in') || s.includes('em andamento');
+    return (
+      s.includes("confirmad") ||
+      s.includes("check-in") ||
+      s.includes("em andamento")
+    );
   }
 
   isCheckinRealizado() {
-    return this._status.toLowerCase().includes('check-in');
+    return this._status.toLowerCase().includes("check-in");
   }
 
   isFinalizada() {
     const s = this._status.toLowerCase();
-    return s.includes('check-out') || s.includes('conclu') || s.includes('finaliz');
+    return (
+      s.includes("check-out") || s.includes("conclu") || s.includes("finaliz")
+    );
   }
 
   isCancelada() {
-    return this._status.toLowerCase().includes('cancel');
+    return this._status.toLowerCase().includes("cancel");
   }
 
   formatarCheckin() {
-    if (!this._dataCheckin) return '-';
+    if (!this._dataCheckin) return "-";
     try {
-      return new Date(this._dataCheckin).toLocaleDateString('pt-BR');
+      return new Date(this._dataCheckin).toLocaleDateString("pt-BR");
     } catch {
       return this._dataCheckin;
     }
   }
 
   formatarCheckout() {
-    if (!this._dataCheckout) return '-';
+    if (!this._dataCheckout) return "-";
     try {
-      return new Date(this._dataCheckout).toLocaleDateString('pt-BR');
+      return new Date(this._dataCheckout).toLocaleDateString("pt-BR");
     } catch {
       return this._dataCheckout;
     }
   }
 
   formatarTotal() {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     }).format(this._valorTotal);
   }
 
@@ -162,14 +168,14 @@ export class Reserva {
       id_reserva: this._id,
       id_quarto: this._idQuarto,
       id_hospede: this._idHospede,
-      data_checkin: this._dataCheckin,
-      data_checkout: this._dataCheckout,
+      check_in: this._dataCheckin,
+      check_out: this._dataCheckout,
       valor_total: this._valorTotal,
       status: this._status,
       cafe_da_manha: this._cafeDaManha,
       pet: this._pet,
       almoco: this._almoco,
-      criado_em: this._criadoEm
+      criado_em: this._criadoEm,
     };
   }
 

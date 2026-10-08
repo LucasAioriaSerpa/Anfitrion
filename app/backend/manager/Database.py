@@ -75,6 +75,8 @@ class Database(metaclass=Singleton):
         return reading
 
     def update(self, table: str, data: dict, conditions: dict) -> bool:
+        if not data: raise ValueError(f"Update em <{table}> sem campos para atualizar")
+        if not conditions: raise ValueError(f"Update em <{table}> sem condições")
         set_value = ", ".join([f"{col}=?" for col in data.keys()])
         condition = " AND ".join([f"{col}=?" for col in conditions.keys()])
         values = tuple(data.values()) + tuple(conditions.values())

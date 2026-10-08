@@ -57,8 +57,8 @@ export const mockReservas = (mockData.reservas || []).map((reserva) => {
     ...reserva,
     id_quarto: quarto?.id_quarto || null,
     id_hospede: hospede?.id_hospede || null,
-    data_checkin: reserva.check_in,
-    data_checkout: reserva.check_out,
+    check_in: reserva.check_in,
+    check_out: reserva.check_out,
     valor_total:
       diaria * noites +
       taxaCafe * noites +

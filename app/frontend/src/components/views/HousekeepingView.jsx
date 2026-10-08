@@ -67,7 +67,7 @@ export default function HousekeepingView({ usuario, dataManager }) {
             variant="outline"
             size="sm"
             icon={RefreshCw}
-            onClick={() => dataManager.inicializar()}
+            onClick={() => dataManager.inicializar(true)}
           >
             Sincronizar Andares
           </Button>
