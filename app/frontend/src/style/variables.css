@@ -22,6 +22,15 @@
   --theme-control-border: var(--color-midlight);
   --theme-control-text: var(--color-darker);
   --theme-control-hover: var(--color-backlight);
+  --theme-page-text: var(--color-darker);
+  --theme-surface-muted: var(--color-midlight);
+  --theme-surface-strong: var(--color-dark);
+  --theme-on-strong: var(--color-light);
+  --theme-focus: var(--color-backlight);
+  --theme-success-bg: var(--color-light);
+  --theme-success-text: var(--color-darker);
+  --theme-danger-bg: var(--color-midlight);
+  --theme-danger-text: var(--color-darker);
 
   /** 3. Typography */
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
@@ -67,6 +76,15 @@
   --theme-control-border: var(--color-dark);
   --theme-control-text: var(--color-light);
   --theme-control-hover: var(--color-dark);
+  --theme-page-text: var(--color-light);
+  --theme-surface-muted: var(--color-dark);
+  --theme-surface-strong: var(--color-darker);
+  --theme-on-strong: var(--color-light);
+  --theme-focus: var(--color-backlight);
+  --theme-success-bg: var(--color-dark);
+  --theme-success-text: var(--color-light);
+  --theme-danger-bg: var(--color-dark);
+  --theme-danger-text: var(--color-light);
 
   /** Shadows (Ajustadas com mais opacidade para o tema escuro) */
   --shadow-sm: 0 1px 2px 0 #0000004d;

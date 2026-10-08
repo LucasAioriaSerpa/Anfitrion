@@ -92,3 +92,76 @@ select,
 textarea {
   font: inherit;
 }
+
+/* Shared theme bridge for Tailwind-based views. */
+[data-theme="light"] .bg-white,
+[data-theme="light"] .bg-stone-50 {
+  background-color: var(--theme-card-bg) !important;
+}
+
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-stone-50,
+[data-theme="dark"] .bg-stone-100 {
+  background-color: var(--theme-card-bg) !important;
+}
+
+[data-theme="dark"] .bg-\[\#f8faf9\],
+[data-theme="dark"] .bg-\[\#e8f7ee\],
+[data-theme="dark"] .bg-\[\#f4f3ec\],
+[data-theme="dark"] .bg-\[\#c9d6ea\]\/30 {
+  background-color: var(--theme-card-bg) !important;
+}
+
+[data-theme="dark"] .bg-\[\#663f46\],
+[data-theme="dark"] .bg-\[\#3c362a\] {
+  background-color: var(--theme-panel-bg) !important;
+}
+
+[data-theme="dark"] .text-\[\#3c362a\],
+[data-theme="dark"] .text-\[\#663f46\] {
+  color: var(--theme-page-text) !important;
+}
+
+[data-theme="dark"] .text-stone-900,
+[data-theme="dark"] .text-stone-800,
+[data-theme="dark"] .text-stone-700,
+[data-theme="dark"] .text-stone-600,
+[data-theme="dark"] .text-stone-500 {
+  color: var(--theme-page-text) !important;
+}
+
+[data-theme="dark"] .text-stone-400,
+[data-theme="dark"] .text-stone-300 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .border-stone-100,
+[data-theme="dark"] .border-stone-200,
+[data-theme="dark"] .border-stone-300 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .placeholder\:text-stone-400::placeholder {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .bg-emerald-50 {
+  background-color: var(--theme-success-bg) !important;
+}
+
+[data-theme="dark"] .text-emerald-800,
+[data-theme="dark"] .text-emerald-900 {
+  color: var(--theme-success-text) !important;
+}
+
+[data-theme="dark"] .bg-rose-50,
+[data-theme="dark"] .bg-red-50 {
+  background-color: var(--theme-danger-bg) !important;
+}
+
+[data-theme="dark"] .text-rose-700,
+[data-theme="dark"] .text-rose-800,
+[data-theme="dark"] .text-red-700,
+[data-theme="dark"] .text-red-800 {
+  color: var(--theme-danger-text) !important;
+}

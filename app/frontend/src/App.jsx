@@ -24,12 +24,20 @@ function App() {
   );
 
   useEffect(() => {
-    dataManager.init();
     const handleGlobalLogout = () => setUserRaw(null);
     window.addEventListener("anfitrion:logout", handleGlobalLogout);
     return () =>
       window.removeEventListener("anfitrion:logout", handleGlobalLogout);
   }, []);
+
+  useEffect(() => {
+    if (!userRaw) {
+      dataManager.reset();
+      return;
+    }
+
+    void dataManager.init(true);
+  }, [userRaw]);
 
   const handleEnterDashboard = (userRaw) => {
     setUserRaw(userRaw);

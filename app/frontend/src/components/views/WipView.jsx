@@ -1,4 +1,3 @@
-import { logout } from "../../services/apiService";
 import "../../style/wip.css";
 
 export default function WipView() {
@@ -8,9 +7,6 @@ export default function WipView() {
         <h1>WIP!</h1>
         <p>Ainda está em desenvolvimento!</p>
       </div>
-      <button type="button" className="wip-logout-button" onClick={logout}>
-        Sair
-      </button>
     </main>
   );
 }

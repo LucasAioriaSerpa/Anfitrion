@@ -1,20 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import "../../style/App.css";
 import "../../style/Auth.css";
-import logoAnfitrion from "../../assets/logo-Anfitrion.png";
-import { logout, quartoApi } from "../../services/apiService";
+import { quartoApi } from "../../services/apiService";
 
 const STATUSES = ["Limpo", "Disponível", "Bloqueado", "Ocupado", "Sujo"];
 
-function UserIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="user-icon">
-      <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z" />
-    </svg>
-  );
-}
-
-function Rooms({ onLogout }) {
+function Rooms() {
   const [rooms, setRooms] = useState([]);
   const [editing, setEditing] = useState(null);
   const [newStatus, setNewStatus] = useState("");
@@ -28,7 +19,6 @@ function Rooms({ onLogout }) {
       return null;
     }
   });
-  const userEmail = sessionUser?.email || "";
   const roomsStorageKey = `anfitrion_quartos_${sessionUser?.id_hotel || "sem-hotel"}`;
 
   const fetchRooms = useCallback(async () => {
@@ -107,13 +97,6 @@ function Rooms({ onLogout }) {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    if (onLogout) {
-      onLogout();
-    }
-  };
-
   return (
     <div className="rooms-page">
       <main className="rooms-main">
@@ -122,14 +105,6 @@ function Rooms({ onLogout }) {
             <h1>Quartos</h1>
             <p>Controle de check-in, check-out, limpeza e acompanhantes</p>
           </div>
-          <button
-            type="button"
-            className="refresh-button"
-            onClick={handleLogout}
-            style={{ background: "#7b2d2d" }}
-          >
-            Sair
-          </button>
         </div>
 
         {erro && <div className="rooms-error">{erro}</div>}

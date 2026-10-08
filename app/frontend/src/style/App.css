@@ -1,8 +1,9 @@
 /* Rooms page styling */
+
 .rooms-page {
   min-height: 100vh;
-  background: var(--surface);
   color: var(--text);
+  border: none;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -26,7 +27,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #4c2d2d;
+  background: var(--theme-surface-strong);
   border: 3px solid rgba(255, 255, 255, 0.4);
   display: grid;
   place-items: center;
@@ -44,7 +45,7 @@
 .brand-title {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #3d2b2b;
+  color: var(--theme-page-text);
   letter-spacing: 0.5px;
 }
 
@@ -56,7 +57,7 @@
 
 .header-email {
   font-size: 1.05rem;
-  color: #4a2d2d;
+  color: var(--theme-page-text);
   font-weight: 500;
 }
 
@@ -64,8 +65,8 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #5d3f46;
-  color: white;
+  background: var(--color-dark);
+  color: var(--theme-on-strong);
   display: grid;
   place-items: center;
   font-weight: 700;
@@ -87,11 +88,13 @@
   font-size: 2.1rem;
   line-height: 1;
   cursor: pointer;
-  color: #4a2d2d;
+  color: var(--theme-page-text);
 }
 
 .rooms-main {
   background: var(--theme-panel-bg);
+  border: none;
+  border-radius: var(--radius-lg);
   margin: 22px 22px 0;
   padding: 26px 24px 30px;
   min-height: calc(100vh - 120px);
@@ -107,14 +110,14 @@
 
 .rooms-title-wrap h1 {
   margin: 0;
-  color: #f5ece8;
+  color: var(--theme-on-strong);
   font-size: 2.3rem;
   font-weight: 700;
 }
 
 .rooms-title-wrap p {
   margin: 6px 0 0;
-  color: #f0d8d5;
+  color: var(--color-midlight);
   font-size: 1.1rem;
 }
 
@@ -153,15 +156,16 @@
 }
 
 .refresh-button {
-  background: #e7e7e4;
+  background: var(--theme-control-bg);
   padding: 8px 16px;
   font-size: 0.95rem;
-  color: #2f1a1a;
+  color: var(--theme-control-text);
+  outline: 0.2rem solid var(--theme-control-border);
 }
 
 .rooms-error {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--theme-danger-bg);
+  color: var(--theme-danger-text);
   padding: 12px 14px;
   border-radius: 8px;
   margin-bottom: 16px;
@@ -174,7 +178,7 @@
 }
 
 .room-card {
-  background: rgba(238, 238, 238, 0.9);
+  background: var(--theme-card-bg);
   border-radius: 10px;
   padding: 16px 18px 18px;
   min-height: 220px;
@@ -194,25 +198,25 @@
 .room-number {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #2d2626;
+  color: var(--theme-page-text);
 }
 
 .room-status {
   font-size: 1.05rem;
-  color: #4a3d3d;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
 .room-description {
   font-size: 1rem;
-  color: #555;
+  color: var(--text-muted);
   margin-bottom: 18px;
 }
 
 .edit-button,
 .save-button {
-  background: #dfeee3;
-  color: #1d3127;
+  background: var(--color-midlight);
+  color: var(--color-darker);
   width: 100%;
   padding: 12px 14px;
   font-size: 1.05rem;
@@ -226,12 +230,14 @@
 }
 
 .room-editor select {
+  appearance: none;
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--theme-control-border);
   border-radius: 8px;
   font-size: 1rem;
-  color: #2d2626;
+  color: var(--theme-control-text);
+  background: var(--theme-control-bg);
 }
 
 .editor-actions {
@@ -240,8 +246,9 @@
 }
 
 .cancel-button {
-  background: #f1eceb;
-  color: #2d2626;
+  background: var(--theme-control-hover);
+  color: var(--theme-control-text);
+  outline: 0.1rem solid var(--theme-control-text);
   padding: 11px 12px;
   font-size: 0.95rem;
   flex: 1;

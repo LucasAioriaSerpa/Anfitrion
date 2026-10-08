@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1vh;
+  color: var(--text);
 }
 
 .wip-title h1 {
@@ -34,19 +35,4 @@
   margin: 0;
   font-size: 1rem;
   line-height: 1.5;
-}
-
-.wip-logout-button {
-  background-color: var(--color-brand-wine);
-  color: var(--color-light);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
-.wip-logout-button:hover {
-  background-color: var(--color-brand-wine-dark);
-  color: var(--color-light);
-  transition: background-color var(--transition-fast);
 }
