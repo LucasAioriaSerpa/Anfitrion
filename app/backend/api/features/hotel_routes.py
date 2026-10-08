@@ -3,11 +3,11 @@ from flask import Blueprint, request, jsonify
 try:
     from api.templates.entities.hotel_template import HotelCrudTemplate
     from utils.Loggers import Logger
-    from api.features.auth_context import current_user, require_auth, scope_list_response, scope_record_response
+    from app.backend.api.auth.auth_context import current_user, require_auth, scope_list_response, scope_record_response
 except ImportError or ModuleNotFoundError:
     from app.backend.api.templates.entities.hotel_template import HotelCrudTemplate
     from app.backend.utils.Loggers import Logger
-    from app.backend.api.features.auth_context import current_user, require_auth, scope_list_response, scope_record_response
+    from app.backend.api.auth.auth_context import current_user, require_auth, scope_list_response, scope_record_response
 
 hotel_bp = Blueprint("hotel", __name__, url_prefix="/api/hotel")
 hotel_crud = HotelCrudTemplate()

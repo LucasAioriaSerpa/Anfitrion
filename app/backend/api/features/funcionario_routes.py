@@ -3,11 +3,11 @@ from flask import Blueprint, request, jsonify
 try:
     from api.templates.entities.funcionario_template import FuncionarioCrudTemplate
     from utils.Loggers import Logger
-    from api.features.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
+    from api.auth.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
 except ImportError or ModuleNotFoundErro:
     from app.backend.api.templates.entities.funcionario_template import FuncionarioCrudTemplate
     from app.backend.utils.Loggers import Logger
-    from app.backend.api.features.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
+    from app.backend.api.auth.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
 
 funcionario_bp = Blueprint("funcionario", __name__, url_prefix="/api/funcionario")
 funcionario_crud = FuncionarioCrudTemplate()
