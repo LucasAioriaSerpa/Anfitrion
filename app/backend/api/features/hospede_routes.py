@@ -2,10 +2,10 @@ from flask import Blueprint, request, jsonify
 
 try:
     from api.auth.auth_context import current_user, require_auth, scope_list_response, scope_record_response
-    from api.templates.entities.hospede_template import HospedeCrudTemplate
+    from api.templates.entities_crud.hospede_template import HospedeCrudTemplate
     from utils.Loggers import Logger
 except ImportError or ModuleNotFoundErro:
-    from app.backend.api.templates.entities.hospede_template import HospedeCrudTemplate
+    from app.backend.api.templates.entities_crud.hospede_template import HospedeCrudTemplate
     from app.backend.utils.Loggers import Logger
     from app.backend.api.auth.auth_context import current_user, require_auth, scope_list_response, scope_record_response
 

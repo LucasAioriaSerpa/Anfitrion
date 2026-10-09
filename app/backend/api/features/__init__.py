@@ -3,7 +3,7 @@ from .hotel_routes import hotel_bp
 from .quarto_routes import quarto_bp
 from .funcionario_routes import funcionario_bp
 from .reserva_routes import reserva_bp
-from ..auth.auth_routes import auth_bp
+from .auth_routes import auth_bp
 
 __all__ = [
     "hospede_bp",

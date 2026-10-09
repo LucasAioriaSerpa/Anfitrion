@@ -1,5 +1,5 @@
 from .crud_template import CrudTemplate
-from .entities import (
+from .entities_crud import (
     HospedeCrudTemplate,
     HotelCrudTemplate,
     QuartoCrudTemplate,
