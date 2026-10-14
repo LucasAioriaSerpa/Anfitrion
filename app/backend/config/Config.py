@@ -1,6 +1,5 @@
 
 import os, sys
-# import dotenv as py_env
 from typing import Any
 from threading import Lock
 
@@ -23,8 +22,16 @@ class Config(metaclass=Singleton):
 
     if getattr(sys, 'frozen', False): ROOT_DIR = getattr(sys, '_MEIPASS', _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))))
     else: ROOT_DIR = _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__))) #* Diretório raiz do backend (/app/backend)
-
+    
+    app_dir = _OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.dirname(_OS_PATH.abspath(__file__)))) #* /app
+    db_dir = _OS_PATH.join(app_dir, "database") #* /app/database
+    if not _OS_PATH.exists(db_dir): os.makedirs(db_dir, exist_ok=True)
+    
+    ASSETS_DIR = _OS_PATH.join(ROOT_DIR, "assets")
+    FAVICON_FILE = "favicon.ico"
+    LOGO_ANFITRION = "logo-Anfitrion.png"
     DB_NAME = "db_anfitrion.db"
+    DATABASE_DIR = _OS_PATH.join(db_dir, DB_NAME)
     FLASK_HOST = "0.0.0.0"
     FLASK_PORT = 5000
     FLASK_DEBUG = True
@@ -49,12 +56,10 @@ class Config(metaclass=Singleton):
     SALT_BYTES = 16
 
     def __init__(self) -> None:
-        app_dir = self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.dirname(self._OS_PATH.abspath(__file__))))
-        db_dir = self._OS_PATH.join(app_dir, "database") #* /app/database
-        if not self._OS_PATH.exists(db_dir): os.makedirs(db_dir, exist_ok=True)
-        self.DATABASE_DIR = self._OS_PATH.join(db_dir, self.DB_NAME)
-
         self._shared_store: dict = {
+            "ASSETS_DIR": self.ASSETS_DIR,
+            "FAVICON_FILE": self.FAVICON_FILE,
+            "LOGO_ANFITRION": self.LOGO_ANFITRION,
             "DATABASE_DIR": self.DATABASE_DIR,
             "DB_NAME": self.DB_NAME,
             "FLASK_HOST": self.FLASK_HOST,
@@ -75,17 +80,20 @@ class Config(metaclass=Singleton):
             "SALT_BYTES": self.SALT_BYTES,
             "IS_RUNNING": True,
             "STATS": {
+                "quartos_disponiveis": 0,
+                "quartos_ocupados": 0,
+                "taxa_ocupacao": 0,
+                "taxa_ocupacao_por_hotel": [{}],
                 "total_hospedes": 0,
                 "total_hoteis": 0,
                 "total_quartos": 0,
                 "total_reservas": 0,
-                "taxa_ocupacao": 0.0,
-                "ultima_execucao_main": None
+                "ultima_execucao_main": ""
             },
             "BACKGROUND_TASKS_COUNTER": 0
         }
 
-    def get(self, var_class: str) -> str | int | float | None:
+    def get(self, var_class: str) -> str | int | float | list[Any] | dict[Any, Any] | None:
         """Obtém uma variável constante ou compartilhada com segurança entre threads."""
         with self._lock:
             if var_class in self._shared_store: return self._shared_store[var_class]

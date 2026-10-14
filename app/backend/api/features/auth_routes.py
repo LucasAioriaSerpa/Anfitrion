@@ -176,12 +176,19 @@ def get_stats():
     quartos = db.read("quarto", {"id_hotel": hotel_id})
     reservas = filter_records("reserva", db.read("reserva", {}), user)
     hospedes = filter_records("hospede", db.read("hospede", {}), user)
+    stats_config = config.get("STATS")
+    stats_global = stats_config if isinstance(stats_config, dict) else {}
+    hotel = stats_global["taxa_ocupacao_por_hotel"][hotel_id]
     stats = {
+        "total_usuarios": len(hospedes) + len(funcionarios),
         "total_hospedes": len(hospedes),
         "total_funcionarios": len(funcionarios),
-        "total_hoteis": 1,
-        "total_quartos": len(quartos),
+        "total_hotel": {
+            "nome": hotel["nome"],
+            "quartos_ocupados": hotel["quartos_ocupados"],
+            "taxa_ocupacao": hotel["taxa_ocupacao"],
+            "total_quartos": len(quartos),
+        },
         "total_reservas": len(reservas),
-        "total_usuarios": len(hospedes) + len(funcionarios),
     }
     return jsonify({"success": True, "stats": stats}), 200

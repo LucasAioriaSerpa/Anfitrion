@@ -1,5 +1,5 @@
 import sys, os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, send_from_directory
 
 if getattr(sys, 'frozen', False): BASE_DIR = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
 else: BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -33,6 +33,7 @@ class App:
     - Executado em uma Thread dedicada iniciada por Main.py.
     - Atende às requisições do frontend React com CRUDs e autenticação através de Blueprints.
     """
+    
     __log = Logger()
     __config = Config()
 
@@ -41,7 +42,21 @@ class App:
         self.app = Flask(__name__)
         self._configure_cors()
         self._register_routes()
+        self._configure_favicon()
         self._register_blueprints()
+
+    def _configure_favicon(self):
+        """Configura favicon da API"""
+        @self.app.route('/favicon.ico')
+        def favicon():
+            assets_dir = self.__config.get("ASSETS_DIR")
+            if isinstance(assets_dir, (str, bytes, os.PathLike)): directory = os.fspath(assets_dir)
+            else: directory = os.path.join(self.app.root_path, "static")
+            return send_from_directory(
+                directory=directory,
+                path="favicon.ico",
+                mimetype="image/vng.microsoft.icon"
+            )
 
     def _configure_cors(self):
         """Configura cabeçalhos CORS para permitir comunicação com o frontend React."""
@@ -53,15 +68,13 @@ class App:
             return response
 
         @self.app.route("/<path:path>", methods=["OPTIONS"])
-        def handle_options(path):
-            return jsonify(status="ok"), 200
+        def handle_options(path): return jsonify(status="ok"), 200
 
     def _register_routes(self):
         self.__log.log_info("[ FLASK ] - Registrando rotas base")
 
         @self.app.route("/")
-        def index():
-            return self.__index()
+        def index(): return self.__index()
 
         @self.app.route("/api")
         @self.app.route("/api/")
@@ -109,7 +122,11 @@ class App:
 
     def run(self):
         host = str(self.__config.get("FLASK_HOST") or "0.0.0.0")
-        port = int(self.__config.get("FLASK_PORT") or 5000)
+        configured_port = self.__config.get("FLASK_PORT")
+        port = 5000
+        if isinstance(configured_port, (str, int, float)):
+            try: port = int(configured_port)
+            except (TypeError, ValueError) as Error: raise Error
         debug = bool(self.__config.get("FLASK_DEBUG") or False)
         self.__log.log_info(f"[ FLASK ] - Inicializando e rodando FLASK em http://{host}:{port}")
         self.app.run(debug=debug, use_reloader=False, host=host, port=port)

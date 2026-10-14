@@ -29,7 +29,6 @@ class Modificador:
             "descricao": self.descricao,
         }
 
-
 class TarifaCalculationTemplate(ABC):
     """
     Design Pattern: TEMPLATE METHOD

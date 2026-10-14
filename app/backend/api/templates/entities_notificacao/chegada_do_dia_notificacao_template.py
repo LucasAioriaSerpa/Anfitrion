@@ -30,14 +30,11 @@ class ChegadaDoDiaNotificacao(NotificacaoTemplate):
         chegadas.sort(key=lambda c: c["num_quarto"])
         return {**ctx, "data": data, "chegadas": chegadas}
 
-    def should_notify(self, ctx):
-        return bool(ctx["chegadas"])
+    def should_notify(self, ctx): return bool(ctx["chegadas"])
 
-    def reference(self, ctx):
-        return f"chegadas:{ctx['id_hotel']}:{ctx['data']}"
+    def reference(self, ctx): return f"chegadas:{ctx['id_hotel']}:{ctx['data']}"
 
-    def resolve_recipients(self, ctx):
-        return self.staff_of_hotel(int(ctx["id_hotel"]), self.CARGOS)
+    def resolve_recipients(self, ctx): return self.staff_of_hotel(int(ctx["id_hotel"]), self.CARGOS)
 
     def build_message(self, ctx):
         linhas = "\n".join(

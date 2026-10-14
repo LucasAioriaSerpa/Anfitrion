@@ -54,9 +54,15 @@ def init_db(db_path: Optional[str] = None) -> bool:
         hotel_count = cursor.execute("SELECT COUNT(*) FROM hotel").fetchone()[0]
         if hotel_count == 0:
             cursor.execute("""--sql
-            INSERT INTO hotel (cnpj, franquia, nome, endereso, qtd_quartos)
-            VALUES (?, ?, ?, ?, ?)
-            """, ("00.000.000/0001-00", "Anfitrião", "Hotel Padrão", "Endereço padrão do sistema", 0))
+            INSERT INTO hotel (
+                cnpj,
+                franquia,
+                nome,
+                endereso,
+                qtd_quartos
+            ) VALUES (?, ?, ?, ?, ?)
+            """, ("00.000.000/0001-00", "Anfitrião", "Hotel Padrão", "Endereço padrão do sistema", 0)
+            )
 
         #? Tabela quarto
         cursor.execute("""--sql

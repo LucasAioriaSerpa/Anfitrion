@@ -388,7 +388,7 @@ def seed_database(db_path=None, force=False):
     init_db(str(db_path))
 
     log.log_info(f"[ Seed ] - Conectando ao banco SQLite: {db_path}")
-    conn = sqlite3.connect(str(db_path))
+    conn = sqlite3.connect(str(db_path), factory=sqlite3.Connection)
     cursor = conn.cursor()
     cursor.execute("PRAGMA foreign_keys = ON;")
 

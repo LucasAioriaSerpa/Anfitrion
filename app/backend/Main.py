@@ -113,6 +113,7 @@ class Main:
             #? 1. Checa reservas concluídas para liberar quartos
             reservas = self.__db.read("reserva", {})
             quartos = self.__db.read("quarto", {})
+            funcionarios = self.__db.read("funcionario", {})
             hospedes = self.__db.read("hospede", {})
             hoteis = self.__db.read("hotel", {})
 
@@ -129,7 +130,8 @@ class Main:
             taxas_ocupacao_hoteis = self.__get_rate_of_occupancy(hoteis, quartos, quartos_ocupados_ids)
 
             stats = {
-                "total_hospedes": len(hospedes),
+                "total_funcionarios": len(funcionarios),
+                "total_hospedes": len(hospedes) - len(funcionarios),
                 "total_hoteis": len(hoteis),
                 "total_quartos": total_quartos,
                 "quartos_ocupados": quartos_ocupados_count,
@@ -177,7 +179,8 @@ class Main:
         
         self.__seed_if_empty()
         
-        sleep_interval = float(self.__config.get("MAIN_SLEEP_INTERVAL") or 3.0)
+        configured_interval = self.__config.get("MAIN_SLEEP_INTERVAL")
+        sleep_interval = float(configured_interval) if isinstance(configured_interval, (str, int, float)) else 3.0
         self.__log.log_success("[ MAIN ] - Thread MAIN de processamento pesado iniciada!")
 
         while bool(self.__config.get("IS_RUNNING")):
