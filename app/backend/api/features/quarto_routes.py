@@ -5,9 +5,9 @@ try:
     from api.templates.entities_crud.quarto_template import QuartoCrudTemplate
     from utils.Loggers import Logger
 except ImportError or ModuleNotFoundErro:
+    from app.backend.api.auth.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
     from app.backend.api.templates.entities_crud.quarto_template import QuartoCrudTemplate
     from app.backend.utils.Loggers import Logger
-    from app.backend.api.auth.auth_context import current_user, payload_belongs_to_hotel, require_auth, scope_list_response, scope_record_response
 
 quarto_bp = Blueprint("quarto", __name__, url_prefix="/api/quarto")
 quarto_crud = QuartoCrudTemplate()

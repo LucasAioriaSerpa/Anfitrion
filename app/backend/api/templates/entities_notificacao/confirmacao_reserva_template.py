@@ -1,5 +1,3 @@
-from datetime import date
-from typing import Any
 
 from ..notificacao_template import NotificacaoTemplate
 
@@ -14,11 +12,9 @@ class ConfirmacaoReservaNotificacao(NotificacaoTemplate):
         hospede = self.get_one("hospede", "id_hospede", reserva["id_hospede"])
         return {**ctx, "reserva": reserva, "quarto": quarto, "hospede": hospede, "id_hotel": quarto["id_hotel"]}
 
-    def reference(self, ctx):
-        return f"reserva:{ctx['reserva']['id_reserva']}:confirmacao"
+    def reference(self, ctx): return f"reserva:{ctx['reserva']['id_reserva']}:confirmacao"
 
-    def resolve_recipients(self, ctx):
-        return [self.recipient_from_hospede(ctx["hospede"], ctx["id_hotel"])]
+    def resolve_recipients(self, ctx): return [self.recipient_from_hospede(ctx["hospede"], ctx["id_hotel"])]
 
     def build_message(self, ctx):
         reserva, quarto = ctx["reserva"], ctx["quarto"]

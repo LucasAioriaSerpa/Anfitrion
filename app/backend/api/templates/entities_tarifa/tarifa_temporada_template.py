@@ -22,21 +22,15 @@ class TarifaTemporadaTemplate(TarifaCalculationTemplate):
         alta = baixa = 0
         for i in range(noites):
             mes = (check_in + timedelta(days=i)).month
-            if mes in self.MESES_ALTA:
-                alta += 1
-            elif mes in self.MESES_BAIXA:
-                baixa += 1
-        if not alta and not baixa:
-            return Modificador(descricao="Temporada regular: sem ajuste")
+            if mes in self.MESES_ALTA: alta += 1
+            elif mes in self.MESES_BAIXA: baixa += 1
+        if not alta and not baixa: return Modificador(descricao="Temporada regular: sem ajuste")
 
         valor = diaria * (alta * self.PERCENTUAL_ALTA + baixa * self.PERCENTUAL_BAIXA) / 100
         partes = []
-        if alta:
-            partes.append(f"{alta} noite(s) em alta temporada ({self.PERCENTUAL_ALTA:+.0f}%)")
-        if baixa:
-            partes.append(f"{baixa} noite(s) em baixa temporada ({self.PERCENTUAL_BAIXA:+.0f}%)")
+        if alta: partes.append(f"{alta} noite(s) em alta temporada ({self.PERCENTUAL_ALTA:+.0f}%)")
+        if baixa: partes.append(f"{baixa} noite(s) em baixa temporada ({self.PERCENTUAL_BAIXA:+.0f}%)")
         percentual = (valor / valor_base * 100) if valor_base else 0.0
         return Modificador(valor=round(valor, 2), percentual=percentual, descricao="; ".join(partes))
 
-    def calculate_discount(self, valor_diarias, noites, reserva, quarto, hospede) -> Modificador:
-        return Modificador.nenhum()
+    def calculate_discount(self, valor_diarias, noites, reserva, quarto, hospede) -> Modificador: return Modificador.nenhum()

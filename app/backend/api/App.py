@@ -40,9 +40,9 @@ class App:
     def __init__(self) -> None:
         self.__log.log_info("[ FLASK ] - Inicializando <App>")
         self.app = Flask(__name__)
+        self._configure_favicon()
         self._configure_cors()
         self._register_routes()
-        self._configure_favicon()
         self._register_blueprints()
 
     def _configure_favicon(self):
@@ -75,7 +75,7 @@ class App:
 
         @self.app.route("/")
         def index(): return self.__index()
-
+        
         @self.app.route("/api")
         @self.app.route("/api/")
         def api_root():

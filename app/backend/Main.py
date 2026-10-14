@@ -198,11 +198,11 @@ if "__main__" == __name__:
     except Exception as e:
         log.log_error(f"[ Main.py ] - Erro ao configurar as Threads: {str(e)}")
         exit(1)
-
+    
     log.log_success("[ Main.py ] - Threads configuradas com sucesso!")
     main.start()
     flask.start()
-
+    
     try: 
         while True: time.sleep(1) #? 1 segundo de espera
     except KeyboardInterrupt:

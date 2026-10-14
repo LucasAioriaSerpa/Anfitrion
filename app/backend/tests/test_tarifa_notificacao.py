@@ -114,7 +114,7 @@ def _install_fakes():
 
 _install_fakes()
 
-from api.templates.entities_tarifa import get_tarifa_template, listar_politicas  # noqa: E402
+from api.templates.entities_tarifa import get_tarifa_template, listar_politicas
 from api.templates.entities_notificacao.confirmacao_reserva_template import ConfirmacaoReservaNotificacao
 from api.templates.entities_notificacao.quarto_para_limpeza_template import QuartoParaLimpezaNotificacao
 from api.templates.entities_notificacao.manutencao_template import ManutencaoNotificacao

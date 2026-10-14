@@ -16,13 +16,11 @@ class TarifaFidelidadeTemplate(TarifaCalculationTemplate):
 
     def calculate_discount(self, valor_diarias, noites, reserva, quarto, hospede) -> Modificador:
         id_hospede = (hospede or {}).get("id_hospede") or reserva.get("id_hospede")
-        if not id_hospede:
-            return Modificador(descricao="Hóspede não informado: sem desconto de fidelidade")
+        if not id_hospede: return Modificador(descricao="Hóspede não informado: sem desconto de fidelidade")
 
         estadias = self.count_previous_stays(int(id_hospede), reserva)
         for minimo, nivel, percentual in self.NIVEIS:
-            if estadias >= minimo:
-                return self.percent_of(valor_diarias, percentual, f"Fidelidade {nivel} ({estadias} estadias anteriores)")
+            if estadias >= minimo: return self.percent_of(valor_diarias, percentual, f"Fidelidade {nivel} ({estadias} estadias anteriores)")
         return Modificador(descricao=f"Standard ({estadias} estadias anteriores): sem desconto")
 
     def count_previous_stays(self, id_hospede: int, reserva: dict[str, Any]) -> int:

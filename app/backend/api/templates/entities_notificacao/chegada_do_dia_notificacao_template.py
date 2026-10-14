@@ -13,14 +13,12 @@ class ChegadaDoDiaNotificacao(NotificacaoTemplate):
     CARGOS = ("recep",)
 
     def prepare_context(self, ctx):
-        if ctx.get("id_hotel") is None:
-            raise ValueError("id_hotel é obrigatório")
+        if ctx.get("id_hotel") is None: raise ValueError("id_hotel é obrigatório")
         data = str(ctx.get("data") or date.today().isoformat())[:10]
         quartos = {q["id_quarto"]: q for q in self._db.read("quarto", {"id_hotel": ctx["id_hotel"]}) if q}
         chegadas = []
         for reserva in self._db.read("reserva", {"check_in": data}):
-            if not reserva or reserva["id_quarto"] not in quartos:
-                continue
+            if not reserva or reserva["id_quarto"] not in quartos: continue
             hospedes = [h for h in self._db.read("hospede", {"id_hospede": reserva["id_hospede"]}) if h]
             chegadas.append({
                 "num_quarto": quartos[reserva["id_quarto"]]["num_quarto"],

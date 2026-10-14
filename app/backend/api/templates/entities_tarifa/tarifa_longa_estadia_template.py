@@ -13,6 +13,5 @@ class TarifaLongaEstadiaTemplate(TarifaCalculationTemplate):
 
     def calculate_discount(self, valor_diarias, noites, reserva, quarto, hospede) -> Modificador:
         for minimo, percentual in self.FAIXAS:
-            if noites >= minimo:
-                return self.percent_of(valor_diarias, percentual, f"Longa estadia ({noites} noites)")
+            if noites >= minimo: return self.percent_of(valor_diarias, percentual, f"Longa estadia ({noites} noites)")
         return Modificador(descricao=f"{noites} noite(s): abaixo do mínimo de 7 para desconto")

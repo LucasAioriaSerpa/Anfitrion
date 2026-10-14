@@ -95,18 +95,22 @@ class Config(metaclass=Singleton):
 
     def get(self, var_class: str) -> str | int | float | list[Any] | dict[Any, Any] | None:
         """Obtém uma variável constante ou compartilhada com segurança entre threads."""
-        with self._lock:
+        self._lock.acquire()
+        try:
             if var_class in self._shared_store: return self._shared_store[var_class]
             if hasattr(self, var_class): return getattr(self, var_class)
             self.__log.log_warning(f"[ Config.py ] - Variável <{var_class}> não encontrada!")
             return None
+        finally: self._lock.release()
 
     def set(self, var_class: str, new_value: Any) -> None:
         """Define ou atualiza uma variável compartilhada entre threads com thread safety."""
-        with self._lock:
+        self._lock.acquire()
+        try:
             self._shared_store[var_class] = new_value
             setattr(self, var_class, new_value)
             self.__log.log_info(f"[ Config.py ] - Variável <{var_class}> atualizada entre threads")
+        finally: self._lock.release()
 
 DATABASE_DIR = Config().DATABASE_DIR
 

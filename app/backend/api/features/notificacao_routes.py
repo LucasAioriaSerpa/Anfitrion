@@ -3,15 +3,15 @@ from typing import Any
 from flask import Blueprint, request, jsonify
 
 try:
-    from api.auth.auth_context import current_user, require_auth
-    from api.auth.cargo_guard import CARGOS_RECEPCAO, require_cargo
     from api.templates.entities_notificacao import ChegadaDoDiaNotificacao
+    from api.auth.cargo_guard import CARGOS_RECEPCAO, require_cargo
+    from api.auth.auth_context import current_user, require_auth
     from manager.Database import Database
     from utils.Loggers import Logger
 except ImportError:
-    from app.backend.api.auth.auth_context import current_user, require_auth
-    from app.backend.api.auth.cargo_guard import CARGOS_RECEPCAO, require_cargo
     from app.backend.api.templates.entities_notificacao import ChegadaDoDiaNotificacao
+    from app.backend.api.auth.cargo_guard import CARGOS_RECEPCAO, require_cargo
+    from app.backend.api.auth.auth_context import current_user, require_auth
     from app.backend.manager.Database import Database
     from app.backend.utils.Loggers import Logger
 

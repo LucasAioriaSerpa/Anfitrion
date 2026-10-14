@@ -15,11 +15,8 @@ except ImportError or ModuleNotFoundErro:
     from app.backend.api.factories.user_factory import userFactory
     from app.backend.api.auth.auth_context import current_user, filter_records, issue_access_token, require_auth
 
-try:
-    from database.setup_db import init_db
-except ImportError:
-    from app.backend.database.setup_db import init_db
-
+try: from database.setup_db import init_db
+except ImportError: from app.backend.database.setup_db import init_db
 
 init_db()
 
@@ -27,7 +24,6 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 db = Database()
 config = Config()
 log = Logger()
-
 
 def resolve_hotel_id(fallback_value: int = 1) -> int:
     """Retorna um hotel válido da base, evitando FK inválida em cadastros de funcionários."""
@@ -42,7 +38,6 @@ def resolve_hotel_id(fallback_value: int = 1) -> int:
         "qtd_quartos": 0,
     })
     return int(default_hotel_id or fallback_value)
-
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
@@ -71,8 +66,7 @@ def login():
         log.log_warning(f"[ auth_routes ] - Senha incorreta para: {email}")
         return jsonify({"success": False, "message": "Credenciais inválidas"}), 401
 
-    if legacy_password:
-        db.update("hospede", {"senha": Cypher.hash_password(senha)}, {"id_hospede": user["id_hospede"]})
+    if legacy_password: db.update("hospede", {"senha": Cypher.hash_password(senha)}, {"id_hospede": user["id_hospede"]})
 
     funcionarios = db.read("funcionario", {"id_hospede": user["id_hospede"]})
     role = "hospede"
@@ -82,8 +76,7 @@ def login():
         role = "funcionario"
         funcionario_data = funcionarios[0]
 
-    if funcionario_data and requested_role != "hospede":
-        role = "funcionario"
+    if funcionario_data and requested_role != "hospede": role = "funcionario"
 
     user_data = {
         "id_hospede": user["id_hospede"],
@@ -118,7 +111,7 @@ def register():
 
     role = requested_role or "hospede"
 
-    # Verifica se já existe
+    #? Verifica se já existe
     existing = db.read("hospede", {"email": email})
     if existing: return jsonify({"success": False, "message": "Este e-mail já está cadastrado"}), 409
 
@@ -133,8 +126,7 @@ def register():
         "id_hotel": data.get("id_hotel", 1)
     })
 
-    if not user_obj:
-        return jsonify({"success": False, "message": "Falha ao criar entidade de usuário"}), 500
+    if not user_obj: return jsonify({"success": False, "message": "Falha ao criar entidade de usuário"}), 500
 
     new_hospede_id = db.create("hospede", {
         "nome": nome,

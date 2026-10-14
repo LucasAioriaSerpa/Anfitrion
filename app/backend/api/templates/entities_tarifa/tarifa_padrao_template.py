@@ -1,8 +1,5 @@
-from datetime import timedelta
-from typing import Any
 
 from ..tarifa_template import Modificador, TarifaCalculationTemplate
-
 
 class TarifaPadraoTemplate(TarifaCalculationTemplate):
     """Tarifa de balcão: diária x noites + adicionais, sem desconto."""
