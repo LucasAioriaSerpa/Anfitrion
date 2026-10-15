@@ -70,6 +70,7 @@ export const mockReservas = (mockData.reservas || []).map((reserva) => {
     cafe_da_manha: taxaCafe > 0,
     pet: taxaPet > 0,
     almoco: taxaAlmoco > 0,
+    jantar: taxaJantar > 0,
     quarto,
     hospede,
   };

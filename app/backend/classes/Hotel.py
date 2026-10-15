@@ -28,7 +28,7 @@ class Hotel:
             case "cnpj": return self.cnpj
             case "franquia": return self.franquia
             case "nome": return self.nome
-            case "endereso" | "endereco": return self.endereso
+            case "endereso": return self.endereso
             case "qtd_quartos": return self.qtd_quartos
             case "criado_em": return self.criado_em
             case _: return None
@@ -39,7 +39,7 @@ class Hotel:
             case "cnpj": self.cnpj = str(newValue)
             case "franquia": self.franquia = str(newValue)
             case "nome": self.nome = str(newValue)
-            case "endereso" | "endereco": self.endereso = str(newValue)
+            case "endereso": self.endereso = str(newValue)
             case "qtd_quartos": self.qtd_quartos = int(newValue)
             case "criado_em": self.criado_em = str(newValue)
             case _: return ValueError
@@ -52,7 +52,6 @@ class Hotel:
             "franquia": self.franquia,
             "nome": self.nome,
             "endereso": self.endereso,
-            "endereco": self.endereso,
             "qtd_quartos": self.qtd_quartos,
             "criado_em": self.criado_em
         }
@@ -64,7 +63,7 @@ class Hotel:
             cnpj=data.get("cnpj", ""),
             franquia=data.get("franquia", ""),
             nome=data.get("nome", ""),
-            endereso=data.get("endereso") or data.get("endereco", ""),
+            endereso=data.get("endereso", ""),
             qtd_quartos=data.get("qtd_quartos", 0),
             criado_em=data.get("criado_em")
         )

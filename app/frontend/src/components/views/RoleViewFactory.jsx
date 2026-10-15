@@ -1,7 +1,7 @@
 // import AdminView from "./AdminView";
 // import ManagerView from "./ManagerView";
 // import HousekeepingView from "./HousekeepingView";
-// import GuestView from "./GuestView";
+import GuestView from "./GuestView";
 import RoomsView from "./RoomsView";
 import WipView from "./WipView";
 
@@ -49,7 +49,7 @@ export default function RoleViewFactory({
 
     case "hospede":
     default:
-      //  return <GuestView usuario={usuario} dataManager={dataManager} />;
-      return <WipView usuario={usuario} dataManager={dataManager} />;
+      return <GuestView usuario={usuario} dataManager={dataManager} />;
+      //  return <WipView usuario={usuario} dataManager={dataManager} />;
   }
 }

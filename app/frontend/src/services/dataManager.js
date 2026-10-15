@@ -31,14 +31,39 @@ function backendUnavailable(response) {
   return Boolean(response?.error) || response?.status >= 500;
 }
 
+const TAXA_CAFE = 35;
+const TAXA_ALMOCO = 55;
+const TAXA_JANTAR = 65;
+const TAXA_PET = 70;
+
+function taxasDaReserva({
+  cafeDaManha = false,
+  almoco = false,
+  jantar = false,
+  pet = false,
+}) {
+  return {
+    taxa_cafe_manha: cafeDaManha ? TAXA_CAFE : 0,
+    taxa_almoco: almoco ? TAXA_ALMOCO : 0,
+    taxa_jantar: jantar ? TAXA_JANTAR : 0,
+    taxa_pet: pet ? TAXA_PET : 0,
+    cafe_da_manha: Boolean(cafeDaManha),
+    almoco: Boolean(almoco),
+    jantar: Boolean(jantar),
+    pet: Boolean(pet),
+  };
+}
+
 function normalizeReservation(record) {
   return {
     ...record,
     check_in: record.check_in ?? record.data_checkin ?? "",
     check_out: record.check_out ?? record.data_checkout ?? "",
     valor_total: record.valor_total ?? 0,
+    qtd_hospedes: Number(record.qtd_hospedes) || 1,
     cafe_da_manha: Boolean(record.cafe_da_manha || record.taxa_cafe_manha),
     almoco: Boolean(record.almoco || record.taxa_almoco),
+    jantar: Boolean(record.jantar || record.taxa_jantar),
     pet: Boolean(record.pet || record.taxa_pet),
   };
 }
@@ -51,6 +76,7 @@ class HotelDataManager {
   constructor() {
     this._listeners = new Set();
     this._hotel = null;
+    this._hoteis = [];
     this._quartos = [];
     this._reservas = [];
     this._funcionarios = [];
@@ -86,6 +112,7 @@ class HotelDataManager {
 
   reset() {
     this._hotel = null;
+    this._hoteis = [];
     this._quartos = [];
     this._reservas = [];
     this._funcionarios = [];
@@ -119,11 +146,17 @@ class HotelDataManager {
       const funcionarioList = responseList(funcionarioResponse);
       const hospedeList = responseList(hospedeResponse);
 
-      // 1. Hotel
-      const hotelRaw = hotelList?.[0] || mockHoteis[0];
-      this._hotel = new Hotel(hotelRaw);
+      // 1. Hotéis (catálogo completo para o hóspede escolher)
+      const rawHoteis =
+        hotelList && hotelList.length
+          ? hotelList
+          : backendUnavailable(hotelResponse)
+            ? mockHoteis
+            : [];
+      this._hoteis = rawHoteis.map((h) => new Hotel(h));
+      this._hotel = this._hoteis[0] || null;
 
-      // 2. A API e a fonte principal; cache/mock somente cobre indisponibilidade.
+      // 2. A API é a fonte principal; cache/mock somente cobre indisponibilidade.
       const rawQuartos =
         quartoList ||
         (backendUnavailable(quartoResponse) ? initialQuartos : []);
@@ -150,18 +183,14 @@ class HotelDataManager {
         reservaList ||
         (backendUnavailable(reservaResponse) ? initialReservas : []);
 
-      this._reservas = rawReservas.map((r) => {
-        const resObj = new Reserva(normalizeReservation(r));
-        resObj.quarto = this._quartos.find((q) => q.id === resObj.idQuarto);
-        resObj.hospede = this._hospedes.find((h) => h.id === resObj.idHospede);
-        return resObj;
-      });
+      this._reservas = rawReservas.map((r) => this._montarReserva(r));
 
       this._initialized = true;
       this._notify();
     } catch (e) {
       console.warn("Fallback na inicialização do DataManager:", e);
-      this._hotel = new Hotel(mockHoteis[0]);
+      this._hoteis = mockHoteis.map((h) => new Hotel(h));
+      this._hotel = this._hoteis[0] || null;
       this._quartos = initialQuartos.map((q) => new Quarto(q));
       this._reservas = initialReservas.map((r) => new Reserva(r));
       this._funcionarios = allMockUsers
@@ -175,9 +204,49 @@ class HotelDataManager {
     }
   }
 
+  _montarReserva(record) {
+    const resObj = new Reserva(normalizeReservation(record));
+    resObj.quarto = this._quartos.find(
+      (q) => Number(q.id) === Number(resObj.idQuarto),
+    );
+    resObj.hospede = this._hospedes.find(
+      (h) => Number(h.id) === Number(resObj.idHospede),
+    );
+    return resObj;
+  }
+
+  async _recarregarQuartosEReservas() {
+    try {
+      const [quartoResponse, reservaResponse] = await Promise.all([
+        quartoApi.getAll(),
+        reservaApi.getAll(),
+      ]);
+
+      const quartoList = responseList(quartoResponse);
+      const reservaList = responseList(reservaResponse);
+
+      if (quartoList) {
+        this._quartos = quartoList.map((q) => new Quarto(q));
+      }
+      if (reservaList) {
+        this._reservas = reservaList.map((r) => this._montarReserva(r));
+      }
+    } catch (e) {
+      console.warn("Falha ao recarregar quartos e reservas:", e);
+    }
+  }
+
   // Getters POO
+  get inicializado() {
+    return this._initialized;
+  }
+
   get hotel() {
     return this._hotel;
+  }
+
+  get hoteis() {
+    return [...this._hoteis];
   }
 
   get quartos() {
@@ -260,76 +329,146 @@ class HotelDataManager {
     idHospede,
     dataCheckin,
     dataCheckout,
-    cafeDaManha,
-    pet,
-    almoco,
+    qtdHospedes = 1,
+    cafeDaManha = false,
+    almoco = false,
+    jantar = false,
+    pet = false,
   }) {
-    const quarto = this._quartos.find((q) => q.id === Number(idQuarto));
-    const hospede = this._hospedes.find((h) => h.id === Number(idHospede));
-
+    const extras = taxasDaReserva({ cafeDaManha, almoco, jantar, pet });
     const payload = {
       id_quarto: Number(idQuarto),
       id_hospede: Number(idHospede),
       check_in: dataCheckin,
       check_out: dataCheckout,
-      qtd_hospedes: 1,
-      taxa_cafe_manha: cafeDaManha ? 35 : 0,
-      taxa_almoco: almoco ? 55 : 0,
-      taxa_pet: pet ? 70 : 0,
-      taxa_refeicao: 0,
+      qtd_hospedes: Number(qtdHospedes) || 1,
+      ...extras,
     };
 
     let response;
     try {
       response = await reservaApi.create(payload);
-      if (!response.ok && !backendUnavailable(response)) return null;
     } catch {
-      return null;
+      return { ok: false, message: "Não foi possível conectar ao servidor.", reserva: null };
     }
 
-    const novaReserva = new Reserva(
-      normalizeReservation(
-        response?.data?.data || {
-          ...payload,
-          id: Date.now(),
-          status: "Confirmada",
-        },
-      ),
-    );
-    novaReserva.quarto = quarto;
-    novaReserva.hospede = hospede;
+    if (!response.ok && !backendUnavailable(response)) {
+      return {
+        ok: false,
+        message: response.data?.message || "Não foi possível criar a reserva.",
+        reserva: null,
+      };
+    }
 
-    novaReserva.recalcularTotal(quarto ? quarto.diaria : 150);
+    await this._recarregarQuartosEReservas();
 
-    this._reservas.unshift(novaReserva);
-    if (quarto) {
-      quarto.status = "Ocupado";
-      this._persistirQuartos();
+    if (!response.ok) {
+      const quarto = this._quartos.find((q) => Number(q.id) === Number(idQuarto));
+      const hospede = this._hospedes.find((h) => Number(h.id) === Number(idHospede));
+      const novaReserva = this._montarReserva({
+        ...payload,
+        id: Date.now(),
+        status: "Confirmada",
+      });
+      novaReserva.quarto = quarto;
+      novaReserva.hospede = hospede;
+      novaReserva.recalcularTotal(quarto ? quarto.diaria : 150);
+      this._reservas.unshift(novaReserva);
+      if (quarto) quarto.status = "Ocupado";
+    }
+
+    this._persistirQuartos();
+    this._persistirReservas();
+    this._notify();
+
+    const reserva =
+      this._reservas.find((r) => Number(r.idQuarto) === Number(idQuarto)) ||
+      null;
+    return { ok: true, message: "Reserva criada com sucesso.", reserva };
+  }
+
+  async atualizarReserva(idReserva, {
+    dataCheckin,
+    dataCheckout,
+    qtdHospedes = 1,
+    cafeDaManha = false,
+    almoco = false,
+    jantar = false,
+    pet = false,
+  }) {
+    const extras = taxasDaReserva({ cafeDaManha, almoco, jantar, pet });
+    const payload = {
+      check_in: dataCheckin,
+      check_out: dataCheckout,
+      qtd_hospedes: Number(qtdHospedes) || 1,
+      ...extras,
+    };
+
+    let response;
+    try {
+      response = await reservaApi.update(idReserva, payload);
+    } catch {
+      return { ok: false, message: "Não foi possível conectar ao servidor." };
+    }
+
+    if (!response.ok && !backendUnavailable(response)) {
+      return {
+        ok: false,
+        message: response.data?.message || "Não foi possível atualizar a reserva.",
+      };
+    }
+
+    await this._recarregarQuartosEReservas();
+
+    if (!response.ok) {
+      const reserva = this._reservas.find(
+        (r) => Number(r.id) === Number(idReserva),
+      );
+      if (reserva) {
+        reserva.dataCheckin = dataCheckin;
+        reserva.dataCheckout = dataCheckout;
+        reserva.qtdHospedes = qtdHospedes;
+        reserva.cafeDaManha = cafeDaManha;
+        reserva.almoco = almoco;
+        reserva.jantar = jantar;
+        reserva.pet = pet;
+        reserva.recalcularTotal(reserva.quarto?.diaria ?? 150);
+      }
     }
 
     this._persistirReservas();
     this._notify();
+    return { ok: true, message: "Reserva atualizada com sucesso." };
+  }
 
-    return novaReserva;
+  async excluirReserva(idReserva) {
+    const response = await reservaApi.delete(idReserva);
+    if (!response.ok && !backendUnavailable(response)) {
+      return {
+        ok: false,
+        message: response.data?.message || "Não foi possível excluir a reserva.",
+      };
+    }
+
+    if (!response.ok) {
+      const reserva = this._reservas.find((r) => Number(r.id) === Number(idReserva));
+      if (reserva) {
+        const quarto = this._quartos.find((q) => Number(q.id) === Number(reserva.idQuarto));
+        if (quarto) quarto.status = "Disponível";
+      }
+    }
+
+    this._reservas = this._reservas.filter((r) => Number(r.id) !== Number(idReserva));
+    await this._recarregarQuartosEReservas();
+    this._persistirQuartos();
+    this._persistirReservas();
+    this._notify();
+    return { ok: true, message: "Reserva excluída. O quarto voltou a ficar disponível." };
   }
 
   async cancelarReserva(idReserva) {
-    const reserva = this._reservas.find((r) => r.id === idReserva);
-    if (!reserva) return false;
-
-    const response = await reservaApi.delete(idReserva);
-    if (!response.ok) return false;
-
-    reserva.status = "Cancelada";
-    const quarto = this._quartos.find((q) => q.id === reserva.idQuarto);
-    if (quarto) {
-      quarto.status = "Disponível";
-      this._persistirQuartos();
-    }
-
-    this._persistirReservas();
-    this._notify();
-    return true;
+    const result = await this.excluirReserva(idReserva);
+    return result.ok;
   }
 
   async realizarCheckin(idReserva) {

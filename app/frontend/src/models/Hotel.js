@@ -6,24 +6,29 @@ export class Hotel {
     id = null,
     id_hotel = null,
     nome = 'Anfitrião Grand Hotel & Resort',
-    endereco = 'Av. Atlântica, 1702',
-    cidade = 'Rio de Janeiro',
-    estado = 'RJ',
-    total_quartos = 30,
+    endereso = '',
+    franquia = 'Anfitrião Hotéis & Resorts',
+    cidade = '',
+    estado = '',
+    total_quartos = 0,
+    qtd_quartos = 0,
     estrelas = 5,
-    telefone = '(21) 2548-7000',
-    email = 'contato@anfitrion.com',
+    telefone = '',
+    email = '',
+    cnpj = '',
     criado_em = null
   } = {}) {
     this._id = id ?? id_hotel;
     this._nome = nome;
-    this._endereco = endereco;
+    this._endereso = endereso || '';
+    this._franquia = franquia || '';
     this._cidade = cidade;
     this._estado = estado;
-    this._totalQuartos = Number(total_quartos) || 30;
+    this._totalQuartos = Number(qtd_quartos || total_quartos) || 0;
     this._estrelas = Number(estrelas) || 5;
     this._telefone = telefone;
     this._email = email;
+    this._cnpj = cnpj || '';
     this._criadoEm = criado_em || new Date().toISOString();
   }
 
@@ -35,8 +40,8 @@ export class Hotel {
     return this._nome;
   }
 
-  get endereco() {
-    return this._endereco;
+  get endereso() {
+    return this._endereso;
   }
 
   get cidade() {
@@ -63,12 +68,24 @@ export class Hotel {
     return this._email;
   }
 
+  get franquia() {
+    return this._franquia;
+  }
+
+  get cnpj() {
+    return this._cnpj;
+  }
+
   getLocalizacao() {
-    return `${this._cidade}, ${this._estado}`;
+    if (this._cidade && this._estado) return `${this._cidade}, ${this._estado}`;
+    return this._endereso || "Localização não informada";
   }
 
   getEnderecoCompleto() {
-    return `${this._endereco} - ${this._cidade}, ${this._estado}`;
+    if (this._cidade && this._estado && this._endereso) {
+      return `${this._endereso} - ${this._cidade}, ${this._estado}`;
+    }
+    return this._endereso || this.getLocalizacao();
   }
 
   /**
@@ -86,7 +103,10 @@ export class Hotel {
       id: this._id,
       id_hotel: this._id,
       nome: this._nome,
-      endereco: this._endereco,
+      endereso: this._endereso,
+      franquia: this._franquia,
+      cnpj: this._cnpj,
+      qtd_quartos: this._totalQuartos,
       cidade: this._cidade,
       estado: this._estado,
       total_quartos: this._totalQuartos,

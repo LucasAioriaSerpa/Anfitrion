@@ -299,6 +299,12 @@ export default function ReceptionView({ usuario, dataManager }) {
                 </span>
               </div>
               <div className="flex justify-between text-stone-700">
+                <span>Jantar:</span>
+                <span>
+                  {reservaSelecionada.jantar ? "Incluso (+ R$ 65/dia)" : "Não"}
+                </span>
+              </div>
+              <div className="flex justify-between text-stone-700">
                 <span>Pet Friendly:</span>
                 <span>{reservaSelecionada.pet ? "Sim (+ R$ 70)" : "Não"}</span>
               </div>

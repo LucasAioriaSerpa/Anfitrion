@@ -20,7 +20,7 @@ class HotelCrudTemplate(CrudTemplate):
             for field in required:
                 if data.get(field) is None or data.get(field) == "":
                     raise ValueError(f"O campo '{field}' é obrigatório para cadastrar um hotel")
-            if not data.get("endereso") and not data.get("endereco"):
+            if not data.get("endereso"):
                 raise ValueError("O campo 'endereso' é obrigatório")
 
         payload = {}
@@ -32,8 +32,6 @@ class HotelCrudTemplate(CrudTemplate):
             payload["nome"] = str(data["nome"]).strip()
         if "endereso" in data:
             payload["endereso"] = str(data["endereso"]).strip()
-        elif "endereco" in data:
-            payload["endereso"] = str(data["endereco"]).strip()
         if "qtd_quartos" in data:
             try:
                 payload["qtd_quartos"] = int(data["qtd_quartos"])

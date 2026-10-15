@@ -25,6 +25,16 @@ class ReservaCrudTemplate(CrudTemplate):
         if "check_out" in data:     payload["check_out"]    = str(data["check_out"]).strip()
         if "qtd_hospedes" in data:  payload["qtd_hospedes"] = int(data["qtd_hospedes"])
 
+        taxas_por_flag = {
+            "cafe_da_manha": ("taxa_cafe_manha", 35.0),
+            "almoco": ("taxa_almoco", 55.0),
+            "jantar": ("taxa_jantar", 65.0),
+            "pet": ("taxa_pet", 70.0),
+        }
+        for flag, (fee, amount) in taxas_por_flag.items():
+            if flag in data and fee not in data:
+                data[fee] = amount if data[flag] else 0.0
+
         for fee in ["taxa_pet", "taxa_refeicao", "taxa_cafe_manha", "taxa_almoco", "taxa_jantar"]:
             if fee in data:     payload[fee] = float(data[fee] or 0.0)
             elif not is_update: payload[fee] = 0.0
@@ -56,6 +66,7 @@ class ReservaCrudTemplate(CrudTemplate):
         try:
             quartos = self._db.read("quarto", {"id_quarto": rec["id_quarto"]})
             if quartos:
+                rec["id_hotel"] = quartos[0].get("id_hotel")
                 rec["quarto_tipo"] = quartos[0].get("tipo")
                 rec["quarto_numero"] = quartos[0].get("num_quarto")
                 rec["quarto_diaria"] = quartos[0].get("diaria")
