@@ -22,8 +22,8 @@
     - [ ] Tela 1: Catálogo de Quartos & Acomodações
     - [ ] Tela 2: Relatório Operacional de Ocupação
   - Matheus Pereira Siqueira
-    - [ ] Tela - 1
-    - [ ] Tela - 2
+    - [ ] Tela - Criar Quartos
+    - [ ] Tela - Modificar/Deletar Quartos
 - [x] Criar a partir de 3 tabelas no banco (hospede, funcionario, hotel, quarto, reserva)
 - [x] Desenvolver um exemplo de como planejaram a variabilidade
 
