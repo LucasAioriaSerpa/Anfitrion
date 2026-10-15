@@ -1,237 +1,283 @@
 import { useState } from "react";
 import Button from "../common/Button";
-import DataTable from "../common/DataTable";
-import MetricCard from "../common/MetricCard";
-import StatusIndicator from "../common/StatusIndicator";
 import Modal from "../common/Modal";
-import {
-  TrendingUp,
-  DollarSign,
-  BedDouble,
-  Users,
-  CheckCircle2,
-  Edit3,
-} from "lucide-react";
+import { quartoApi } from "../../services/apiService";
+import "../../style/App.css";
+import "../../style/Auth.css";
 
-/**
- * ManagerView (Variante Gerência Geral & Subgerência - Orientado a Reuso & POO)
- * Focado na gestão estratégica, taxa de ocupação, receitas e gestão de tarifas.
- */
-export default function ManagerView({ usuario, dataManager }) {
-  const [quartoEmEdicao, setQuartoEmEdicao] = useState(null);
-  const [novaDiaria, setNovaDiaria] = useState("");
-  const [feedback, setFeedback] = useState("");
+const STATUSES = ["Limpo", "Disponível", "Bloqueado", "Ocupado", "Sujo"];
 
+export default function ManagerView({ dataManager }) {
+  const [editing, setEditing] = useState(null);
+  const [newStatus, setNewStatus] = useState("");
+  const [erro, setErro] = useState("");
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [newRoom, setNewRoom] = useState({
+    num_quarto: "",
+    andar: "1",
+    tipo: "",
+    diaria: "",
+  });
   const quartos = dataManager.quartos;
-  const reservas = dataManager.reservas;
-  const hotel = dataManager.hotel;
+  const roomBeingEdited = quartos.find((room) => room.id === editing);
 
-  // Lógica OO: cálculo de ocupação e receita
-  const taxaOcupacao = hotel ? hotel.calcularTaxaOcupacao(quartos) : 0;
-  const faturamentoEstimado = reservas.reduce(
-    (acc, r) => acc + (r.valorTotal || 0),
-    0,
-  );
-  const totalHospedes = dataManager.hospedes.length;
-
-  const handleSalvarDiaria = async () => {
-    if (!quartoEmEdicao || !novaDiaria) return;
-
-    await dataManager.atualizarDiariaQuarto(quartoEmEdicao.id, novaDiaria);
-    setQuartoEmEdicao(null);
-    setFeedback(
-      `Diária do Quarto ${quartoEmEdicao.numQuarto} atualizada com sucesso para R$ ${novaDiaria}!`,
-    );
-    setTimeout(() => setFeedback(""), 4000);
+  const openEdit = (room) => {
+    setErro("");
+    setEditing(room.id);
+    setNewStatus(room.status);
   };
 
-  const colunasQuartos = [
-    {
-      header: "Número",
-      accessor: "numQuarto",
-      render: (val) => (
-        <span className="font-semibold text-stone-900 font-mono">
-          Quarto {val}
-        </span>
-      ),
-    },
-    {
-      header: "Categoria",
-      accessor: "tipo",
-      render: (val) => (
-        <span className="text-stone-800 font-medium">{val}</span>
-      ),
-    },
-    {
-      header: "Andar",
-      accessor: "andar",
-      render: (val) => <span>{val}º Andar</span>,
-    },
-    {
-      header: "Status",
-      accessor: "status",
-      render: (val) => <StatusIndicator status={val} />,
-    },
-    {
-      header: "Tarifa Vigente",
-      accessor: "diaria",
-      align: "right",
-      render: (_, row) => (
-        <span className="font-semibold text-stone-900 font-serif">
-          {row.formatarDiaria ? row.formatarDiaria() : `R$ ${row.diaria}`}
-        </span>
-      ),
-    },
-  ];
+  const saveStatus = async (room) => {
+    const updated = await dataManager.atualizarStatusQuarto(room.id, newStatus);
+    if (!updated) {
+      setErro("Falha ao atualizar status do quarto.");
+      return;
+    }
+
+    setEditing(null);
+    setErro("");
+  };
+
+  const deleteRoom = async (room) => {
+    if (!window.confirm(`Deseja excluir o quarto Nº ${room.numQuarto}?`)) {
+      return;
+    }
+
+    setErro("");
+    try {
+      const response = await quartoApi.delete(room.id);
+      if (!response.ok || !response.data?.success) {
+        setErro(
+          response.data?.message || response.error || "Falha ao excluir quarto.",
+        );
+        return;
+      }
+
+      setEditing(null);
+      await dataManager.init(true);
+    } catch (error) {
+      setErro(error.message || "Erro ao conectar com servidor.");
+    }
+  };
+
+  const createRoom = async (event) => {
+    event.preventDefault();
+    setErro("");
+
+    try {
+      const createdRoom = await dataManager.adicionarQuarto(newRoom);
+      if (!createdRoom) {
+        setErro("Falha ao criar quarto.");
+        return;
+      }
+
+      setNewRoom({ num_quarto: "", andar: "1", tipo: "", diaria: "" });
+      setShowCreateForm(false);
+    } catch (error) {
+      setErro(error.message || "Erro ao conectar com servidor.");
+    }
+  };
 
   return (
-    <div className="space-y-8">
-      {/* Banner da Gerência */}
-      <div className="bg-[#3c362a] text-[#b8c4bb] rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <span className="text-[11px] uppercase tracking-wider font-bold text-[#b8c4bb]/70 block mb-1">
-            Gestão Estratégica & Desempenho
-          </span>
-          <h2 className="text-xl font-serif font-bold text-white">
-            {usuario.cargo} · {usuario.nome}
-          </h2>
-          <p className="text-xs text-[#b8c4bb]/80 mt-1">
-            Controle de tarifas, ocupação hoteleira e faturamento consolidado.
-          </p>
-        </div>
-        <div className="text-right text-xs">
-          <span className="text-white font-medium block">
-            {hotel ? hotel.nome : "Anfitrião"}
-          </span>
-          <span className="text-[#b8c4bb]/70">
-            {hotel ? hotel.getLocalizacao() : "Copacabana, RJ"}
-          </span>
-        </div>
-      </div>
-
-      {feedback && (
-        <div className="p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>{feedback}</span>
-        </div>
-      )}
-
-      {/* KPIs Gerenciais */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard
-          title="Taxa de Ocupação"
-          value={`${taxaOcupacao}%`}
-          subtitle="Capacidade do hotel em uso"
-          icon={TrendingUp}
-          trend={{ text: "Alta temporada", positive: true }}
-        />
-        <MetricCard
-          title="Receita Contratada"
-          value={new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(faturamentoEstimado)}
-          subtitle="Total acumulado em reservas"
-          icon={DollarSign}
-        />
-        <MetricCard
-          title="Inventário de Quartos"
-          value={quartos.length}
-          subtitle={`${quartos.filter((q) => q.isDisponivel()).length} prontos para venda`}
-          icon={BedDouble}
-        />
-        <MetricCard
-          title="Hóspedes Cadastrados"
-          value={totalHospedes}
-          subtitle="Base de clientes fidelizados"
-          icon={Users}
-        />
-      </div>
-
-      {/* Gestão de Tarifas e Tabela de Quartos */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="font-serif font-bold text-base text-stone-900">
-              Gestão de Tarifas por Acomodação
-            </h3>
-            <p className="text-xs text-stone-500">
-              Ajuste preços de diárias conforme demanda e sazonalidade
-            </p>
+    <div className="rooms-page">
+      <main className="rooms-main">
+        <div className="rooms-toolbar">
+          <div className="rooms-title-wrap">
+            <h1>Quartos</h1>
+            <p>Controle de check-in, check-out, limpeza e acompanhantes</p>
           </div>
         </div>
 
-        <DataTable
-          data={quartos}
-          columns={colunasQuartos}
-          searchPlaceholder="Filtrar quartos por número, categoria ou status..."
-          actions={(quarto) => (
-            <Button
-              size="sm"
-              variant="outline"
-              className="text-xs px-2.5 py-1"
-              icon={Edit3}
-              onClick={() => {
-                setQuartoEmEdicao(quarto);
-                setNovaDiaria(String(quarto.diaria));
-              }}
-            >
-              Ajustar Diária
-            </Button>
-          )}
-        />
-      </div>
-
-      {/* Modal Reutilizável de Ajuste de Diária */}
-      <Modal
-        isOpen={Boolean(quartoEmEdicao)}
-        onClose={() => setQuartoEmEdicao(null)}
-        title={
-          quartoEmEdicao
-            ? `Ajustar Tarifa: Quarto ${quartoEmEdicao.numQuarto}`
-            : "Ajustar Diária"
-        }
-        subtitle={
-          quartoEmEdicao
-            ? `${quartoEmEdicao.tipo} · ${quartoEmEdicao.andar}º Andar`
-            : ""
-        }
-        footer={
-          <>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => setQuartoEmEdicao(null)}
-            >
-              Cancelar
-            </Button>
-            <Button size="sm" variant="primary" onClick={handleSalvarDiaria}>
-              Salvar Nova Tarifa
-            </Button>
-          </>
-        }
-      >
-        {quartoEmEdicao && (
-          <div className="space-y-3 text-xs">
-            <div>
-              <label className="font-medium text-stone-700 block mb-1">
-                Nova Diária Padrão (R$)
-              </label>
-              <input
-                type="number"
-                step="5"
-                value={novaDiaria}
-                onChange={(e) => setNovaDiaria(e.target.value)}
-                className="w-full p-2.5 border border-stone-300 rounded-lg text-stone-900 font-mono text-sm"
-                placeholder="Ex: 280.00"
-              />
-              <span className="text-[11px] text-stone-500 mt-1 block">
-                Valor anterior: {quartoEmEdicao.formatarDiaria()}
-              </span>
-            </div>
-          </div>
+        {erro && !showCreateForm && !editing && (
+          <div className="rooms-error">{erro}</div>
         )}
-      </Modal>
+
+        <div className="rooms-actions flex items-center gap-3">
+          <button
+            type="button"
+            className="refresh-button"
+            onClick={() => void dataManager.init(true)}
+          >
+            Atualizar
+          </button>
+          <button
+            type="button"
+            className="refresh-button"
+            onClick={() => {
+              setErro("");
+              setShowCreateForm(true);
+            }}
+          >
+            Criar
+          </button>
+        </div>
+
+        <Modal
+          isOpen={showCreateForm}
+          onClose={() => setShowCreateForm(false)}
+          title="Criar quarto"
+          subtitle="Informe os dados da nova acomodação."
+          footer={
+            <>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => setShowCreateForm(false)}
+              >
+                Cancelar
+              </Button>
+              <Button
+                type="submit"
+                form="manager-create-room-form"
+                size="sm"
+                variant="primary"
+              >
+                Salvar quarto
+              </Button>
+            </>
+          }
+        >
+          <form
+            id="manager-create-room-form"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+            onSubmit={createRoom}
+          >
+            {erro && <div className="rooms-error sm:col-span-2">{erro}</div>}
+            <label className="text-sm font-medium text-stone-700">
+              Número do quarto
+              <input
+                className="mt-1 w-full rounded border border-stone-300 p-2"
+                type="number"
+                min="1"
+                required
+                value={newRoom.num_quarto}
+                onChange={(event) =>
+                  setNewRoom({ ...newRoom, num_quarto: event.target.value })
+                }
+              />
+            </label>
+            <label className="text-sm font-medium text-stone-700">
+              Andar
+              <input
+                className="mt-1 w-full rounded border border-stone-300 p-2"
+                type="number"
+                min="1"
+                required
+                value={newRoom.andar}
+                onChange={(event) =>
+                  setNewRoom({ ...newRoom, andar: event.target.value })
+                }
+              />
+            </label>
+            <label className="text-sm font-medium text-stone-700">
+              Tipo
+              <input
+                className="mt-1 w-full rounded border border-stone-300 p-2"
+                type="text"
+                required
+                value={newRoom.tipo}
+                onChange={(event) =>
+                  setNewRoom({ ...newRoom, tipo: event.target.value })
+                }
+              />
+            </label>
+            <label className="text-sm font-medium text-stone-700">
+              Diária (R$)
+              <input
+                className="mt-1 w-full rounded border border-stone-300 p-2"
+                type="number"
+                min="0.01"
+                step="0.01"
+                required
+                value={newRoom.diaria}
+                onChange={(event) =>
+                  setNewRoom({ ...newRoom, diaria: event.target.value })
+                }
+              />
+            </label>
+          </form>
+        </Modal>
+
+        <div className="room-grid">
+          {quartos.map((room) => (
+            <div key={room.id} className="room-card">
+              <div className="room-card-header">
+                <div className="room-number">Nº {room.numQuarto}</div>
+                <div className="room-status">{room.status}</div>
+              </div>
+              <div className="room-description">
+                {room.tipo} · {room.andar}º andar
+              </div>
+
+              <button
+                type="button"
+                className="edit-button"
+                onClick={() => openEdit(room)}
+              >
+                Editar
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <Modal
+          isOpen={Boolean(roomBeingEdited)}
+          onClose={() => {
+            setEditing(null);
+            setErro("");
+          }}
+          title={`Editar quarto ${roomBeingEdited?.numQuarto ?? ""}`}
+          subtitle={`${roomBeingEdited?.tipo ?? ""} · ${roomBeingEdited?.andar ?? ""}º andar`}
+          footer={
+            <>
+              <Button
+                size="sm"
+                variant="danger"
+                onClick={() => {
+                  if (roomBeingEdited) void deleteRoom(roomBeingEdited);
+                }}
+              >
+                Excluir quarto
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => {
+                  setEditing(null);
+                  setErro("");
+                }}
+              >
+                Cancelar
+              </Button>
+              <Button
+                size="sm"
+                variant="primary"
+                onClick={() => {
+                  if (roomBeingEdited) void saveStatus(roomBeingEdited);
+                }}
+              >
+                Salvar
+              </Button>
+            </>
+          }
+        >
+          {erro && <div className="rooms-error">{erro}</div>}
+          <label className="text-sm font-medium text-stone-700">
+            Status
+            <select
+              className="mt-1 w-full rounded border border-stone-300 p-2"
+              value={newStatus}
+              onChange={(event) => setNewStatus(event.target.value)}
+            >
+              {STATUSES.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </label>
+        </Modal>
+      </main>
     </div>
   );
 }
