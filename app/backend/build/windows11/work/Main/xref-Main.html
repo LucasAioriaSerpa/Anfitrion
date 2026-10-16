@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>modulegraph cross reference for Main.py, pyi_rth_inspect.py, pyi_rth_multiprocessing.py, pyi_rth_pkgutil.py, pyi_rth_setuptools.py</title>
+    <title>modulegraph cross reference for Main.py, pyi_rth_cryptography_openssl.py, pyi_rth_inspect.py, pyi_rth_multiprocessing.py, pyi_rth_pkgutil.py, pyi_rth_setuptools.py</title>
     <style>
       .node { padding: 0.5em 0 0.5em; border-top: thin grey dotted; }
       .moduletype { font: smaller italic }
@@ -11,7 +11,7 @@
     </style>
   </head>
   <body>
-    <h1>modulegraph cross reference for Main.py, pyi_rth_inspect.py, pyi_rth_multiprocessing.py, pyi_rth_pkgutil.py, pyi_rth_setuptools.py</h1>
+    <h1>modulegraph cross reference for Main.py, pyi_rth_cryptography_openssl.py, pyi_rth_inspect.py, pyi_rth_multiprocessing.py, pyi_rth_pkgutil.py, pyi_rth_setuptools.py</h1>
 
 <div class="node">
   <a name="Main.py"></a>
@@ -28,6 +28,7 @@ imports:
  &#8226;   <a href="#config.Config">config.Config</a>
  &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#database">database</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#datetime">datetime</a>
  &#8226;   <a href="#encodings">encodings</a>
@@ -165,6 +166,7 @@ imports:
  &#8226;   <a href="#operator">operator</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#pyi_rth_cryptography_openssl.py">pyi_rth_cryptography_openssl.py</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
  &#8226;   <a href="#pyi_rth_multiprocessing.py">pyi_rth_multiprocessing.py</a>
  &#8226;   <a href="#pyi_rth_pkgutil.py">pyi_rth_pkgutil.py</a>
@@ -188,6 +190,23 @@ imports:
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
  &#8226;   <a href="#warnings">warnings</a>
  &#8226;   <a href="#weakref">weakref</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pyi_rth_cryptography_openssl.py"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_cryptography_openssl.py" type="text/plain"><tt>pyi_rth_cryptography_openssl.py</tt></a>
+<span class="moduletype">Script</span>  <div class="import">
+imports:
+    <a href="#os">os</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Main.py">Main.py</a>
 
   </div>
 
@@ -314,6 +333,8 @@ imported by:
 imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#api.App">api.App</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
  &#8226;   <a href="#api.factories.entities.funcionario_factory">api.factories.entities.funcionario_factory</a>
  &#8226;   <a href="#api.factories.entities.hospede_factory">api.factories.entities.hospede_factory</a>
  &#8226;   <a href="#api.factories.entities.hotel_factory">api.factories.entities.hotel_factory</a>
@@ -322,23 +343,29 @@ imported by:
  &#8226;   <a href="#api.factories.entity_factory">api.factories.entity_factory</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.factories.user_factory">api.factories.user_factory</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
  &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
  &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
  &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
  &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
  &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
  &#8226;   <a href="#classes.Funcionario">classes.Funcionario</a>
  &#8226;   <a href="#classes.Quarto">classes.Quarto</a>
  &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
 
   </div>
 
@@ -369,6 +396,11 @@ imported by:
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#configparser">configparser</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#flask.app">flask.app</a>
  &#8226;   <a href="#flask.cli">flask.cli</a>
  &#8226;   <a href="#flask.sessions">flask.sessions</a>
@@ -438,28 +470,6 @@ imported by:
  &#8226;   <a href="#werkzeug.datastructures.structures">werkzeug.datastructures.structures</a>
  &#8226;   <a href="#werkzeug.middleware.shared_data">werkzeug.middleware.shared_data</a>
  &#8226;   <a href="#werkzeug.wrappers.request">werkzeug.wrappers.request</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="'cryptography.hazmat'"></a>
-  <a target="code" href="" type="text/plain"><tt>'cryptography.hazmat'</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
-imported by:
-    <a href="#werkzeug.serving">werkzeug.serving</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="'cryptography.x509'"></a>
-  <a target="code" href="" type="text/plain"><tt>'cryptography.x509'</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
-imported by:
-    <a href="#werkzeug.serving">werkzeug.serving</a>
 
   </div>
 
@@ -557,6 +567,7 @@ imported by:
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
  &#8226;   <a href="#click._textwrap">click._textwrap</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
@@ -570,6 +581,59 @@ imported by:
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#codeop">codeop</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.__about__">cryptography.__about__</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+ &#8226;   <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl">cryptography.hazmat.backends.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings">cryptography.hazmat.bindings</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl._conditional">cryptography.hazmat.bindings.openssl._conditional</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit">cryptography.hazmat.decrepit</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers">cryptography.hazmat.decrepit.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.constant_time">cryptography.hazmat.primitives.constant_time</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.base">cryptography.hazmat.primitives.serialization.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#flask.app">flask.app</a>
  &#8226;   <a href="#flask.blueprints">flask.blueprints</a>
@@ -815,6 +879,17 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="_cffi_backend"></a>
+  <tt>_cffi_backend</tt> <span class="moduletype"><tt>C:\Users\Marcos Serpa\AppData\Local\Programs\Python\Python313\Lib\site-packages\_cffi_backend.cp313-win_amd64.pyd</tt></span>  <div class="import">
+imported by:
+    <a href="#bcrypt">bcrypt</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="_codecs"></a>
   <tt>_codecs</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
@@ -955,6 +1030,7 @@ imports:
 imported by:
     <a href="#_pyrepl.console">_pyrepl.console</a>
  &#8226;   <a href="#_pyrepl.reader">_pyrepl.reader</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#traceback">traceback</a>
 
   </div>
@@ -2479,7 +2555,30 @@ imported by:
  &#8226;   <a href="#_pyrepl.input">_pyrepl.input</a>
  &#8226;   <a href="#api.factories.entity_factory">api.factories.entity_factory</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+ &#8226;   <a href="#click.core">click.core</a>
+ &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#dotenv.variables">dotenv.variables</a>
  &#8226;   <a href="#email._policybase">email._policybase</a>
@@ -2524,6 +2623,7 @@ imported by:
 <span class="moduletype">Package</span>  <div class="import">
 imported by:
     <a href="#api.App">api.App</a>
+ &#8226;   <a href="#api.auth">api.auth</a>
  &#8226;   <a href="#api.factories">api.factories</a>
  &#8226;   <a href="#api.features">api.features</a>
  &#8226;   <a href="#api.templates">api.templates</a>
@@ -2550,6 +2650,78 @@ imports:
   <div class="import">
 imported by:
     <a href="#Main.py">Main.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.auth"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/auth/__init__.py" type="text/plain"><tt>api.auth</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#api">api</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.auth.auth_context"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/auth/auth_context.py" type="text/plain"><tt>api.auth.auth_context</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth">api.auth</a>
+ &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#itsdangerous">itsdangerous</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
+ &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
+ &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
+ &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
+ &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
+ &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
+ &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.auth.cargo_guard"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/auth/cargo_guard.py" type="text/plain"><tt>api.auth.cargo_guard</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth">api.auth</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
 
   </div>
 
@@ -2763,10 +2935,10 @@ imports:
   <div class="import">
 imported by:
     <a href="#api.factories">api.factories</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
 
   </div>
 
@@ -2804,48 +2976,23 @@ imports:
  &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
  &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
  &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
  &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
  &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.App">api.App</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
  &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
  &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
  &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
  &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
  &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="api.features.auth_context"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/features/auth_context.py" type="text/plain"><tt>api.features.auth_context</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#'app.backend'">'app.backend'</a>
- &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#config.Config">config.Config</a>
- &#8226;   <a href="#flask">flask</a>
- &#8226;   <a href="#functools">functools</a>
- &#8226;   <a href="#itsdangerous">itsdangerous</a>
- &#8226;   <a href="#manager.Database">manager.Database</a>
- &#8226;   <a href="#typing">typing</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#api.features.auth_routes">api.features.auth_routes</a>
- &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
- &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
- &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
- &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
- &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
 
   </div>
 
@@ -2857,13 +3004,14 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.factories.user_factory">api.factories.user_factory</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
  &#8226;   <a href="#config.Config">config.Config</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
   </div>
@@ -2881,9 +3029,9 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
- &#8226;   <a href="#api.templates.entities.funcionario_template">api.templates.entities.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
@@ -2902,9 +3050,9 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
@@ -2923,10 +3071,34 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
  &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.features">api.features</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.features.notificacao_routes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/features/notificacao_routes.py" type="text/plain"><tt>api.features.notificacao_routes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
+ &#8226;   <a href="#api.features">api.features</a>
+ &#8226;   <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
   </div>
@@ -2944,9 +3116,9 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
@@ -2965,10 +3137,34 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features">api.features</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
  &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.features">api.features</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.features.tarifa_routes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/features/tarifa_routes.py" type="text/plain"><tt>api.features.tarifa_routes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
+ &#8226;   <a href="#api.features">api.features</a>
+ &#8226;   <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#flask">flask</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
   </div>
@@ -2987,13 +3183,17 @@ imported by:
 imports:
     <a href="#api">api</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
+ &#8226;   <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
 
   </div>
 
@@ -3016,140 +3216,388 @@ imports:
   <div class="import">
 imported by:
     <a href="#api.templates">api.templates</a>
- &#8226;   <a href="#api.templates.entities.funcionario_template">api.templates.entities.funcionario_template</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/__init__.py" type="text/plain"><tt>api.templates.entities</tt></a>
+  <a name="api.templates.entities_crud"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/__init__.py" type="text/plain"><tt>api.templates.entities_crud</tt></a>
 <span class="moduletype">Package</span>  <div class="import">
 imports:
     <a href="#api.templates">api.templates</a>
- &#8226;   <a href="#api.templates.entities.funcionario_template">api.templates.entities.funcionario_template</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.templates">api.templates</a>
- &#8226;   <a href="#api.templates.entities.funcionario_template">api.templates.entities.funcionario_template</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities.funcionario_template"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/funcionario_template.py" type="text/plain"><tt>api.templates.entities.funcionario_template</tt></a>
+  <a name="api.templates.entities_crud.funcionario_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/funcionario_template.py" type="text/plain"><tt>api.templates.entities_crud.funcionario_template</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities.hospede_template"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/hospede_template.py" type="text/plain"><tt>api.templates.entities.hospede_template</tt></a>
+  <a name="api.templates.entities_crud.hospede_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/hospede_template.py" type="text/plain"><tt>api.templates.entities_crud.hospede_template</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities.hotel_template"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/hotel_template.py" type="text/plain"><tt>api.templates.entities.hotel_template</tt></a>
+  <a name="api.templates.entities_crud.hotel_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/hotel_template.py" type="text/plain"><tt>api.templates.entities_crud.hotel_template</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities.quarto_template"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/quarto_template.py" type="text/plain"><tt>api.templates.entities.quarto_template</tt></a>
+  <a name="api.templates.entities_crud.quarto_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/quarto_template.py" type="text/plain"><tt>api.templates.entities_crud.quarto_template</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="api.templates.entities.reserva_template"></a>
-  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities/reserva_template.py" type="text/plain"><tt>api.templates.entities.reserva_template</tt></a>
+  <a name="api.templates.entities_crud.reserva_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_crud/reserva_template.py" type="text/plain"><tt>api.templates.entities_crud.reserva_template</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'app.backend'">'app.backend'</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
  &#8226;   <a href="#typing">typing</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
- &#8226;   <a href="#api.templates.entities">api.templates.entities</a>
+ &#8226;   <a href="#api.templates.entities_crud">api.templates.entities_crud</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_notificacao"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_notificacao/__init__.py" type="text/plain"><tt>api.templates.entities_notificacao</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#api.templates">api.templates</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.chegada_do_dia_notificacao_template">api.templates.entities_notificacao.chegada_do_dia_notificacao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.confirmacao_reserva_template">api.templates.entities_notificacao.confirmacao_reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.manutencao_template">api.templates.entities_notificacao.manutencao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.quarto_para_limpeza_template">api.templates.entities_notificacao.quarto_para_limpeza_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.chegada_do_dia_notificacao_template">api.templates.entities_notificacao.chegada_do_dia_notificacao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.confirmacao_reserva_template">api.templates.entities_notificacao.confirmacao_reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.manutencao_template">api.templates.entities_notificacao.manutencao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.quarto_para_limpeza_template">api.templates.entities_notificacao.quarto_para_limpeza_template</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_notificacao.chegada_do_dia_notificacao_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_notificacao/chegada_do_dia_notificacao_template.py" type="text/plain"><tt>api.templates.entities_notificacao.chegada_do_dia_notificacao_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_notificacao.confirmacao_reserva_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_notificacao/confirmacao_reserva_template.py" type="text/plain"><tt>api.templates.entities_notificacao.confirmacao_reserva_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_notificacao.manutencao_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_notificacao/manutencao_template.py" type="text/plain"><tt>api.templates.entities_notificacao.manutencao_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_notificacao.quarto_para_limpeza_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_notificacao/quarto_para_limpeza_template.py" type="text/plain"><tt>api.templates.entities_notificacao.quarto_para_limpeza_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_tarifa"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_tarifa/__init__.py" type="text/plain"><tt>api.templates.entities_tarifa</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#api.templates">api.templates</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_fidelidade_template">api.templates.entities_tarifa.tarifa_fidelidade_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_longa_estadia_template">api.templates.entities_tarifa.tarifa_longa_estadia_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_padrao_template">api.templates.entities_tarifa.tarifa_padrao_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_temporada_template">api.templates.entities_tarifa.tarifa_temporada_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_fidelidade_template">api.templates.entities_tarifa.tarifa_fidelidade_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_longa_estadia_template">api.templates.entities_tarifa.tarifa_longa_estadia_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_padrao_template">api.templates.entities_tarifa.tarifa_padrao_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_temporada_template">api.templates.entities_tarifa.tarifa_temporada_template</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_tarifa.tarifa_fidelidade_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_tarifa/tarifa_fidelidade_template.py" type="text/plain"><tt>api.templates.entities_tarifa.tarifa_fidelidade_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_tarifa.tarifa_longa_estadia_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_tarifa/tarifa_longa_estadia_template.py" type="text/plain"><tt>api.templates.entities_tarifa.tarifa_longa_estadia_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_tarifa.tarifa_padrao_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_tarifa/tarifa_padrao_template.py" type="text/plain"><tt>api.templates.entities_tarifa.tarifa_padrao_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.entities_tarifa.tarifa_temporada_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/entities_tarifa/tarifa_temporada_template.py" type="text/plain"><tt>api.templates.entities_tarifa.tarifa_temporada_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.notificacao_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/notificacao_template.py" type="text/plain"><tt>api.templates.notificacao_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#api.templates">api.templates</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_notificacao">api.templates.entities_notificacao</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.chegada_do_dia_notificacao_template">api.templates.entities_notificacao.chegada_do_dia_notificacao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.confirmacao_reserva_template">api.templates.entities_notificacao.confirmacao_reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.manutencao_template">api.templates.entities_notificacao.manutencao_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.quarto_para_limpeza_template">api.templates.entities_notificacao.quarto_para_limpeza_template</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="api.templates.tarifa_template"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/api/templates/tarifa_template.py" type="text/plain"><tt>api.templates.tarifa_template</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#api.templates">api.templates</a>
+ &#8226;   <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.templates.entities_tarifa">api.templates.entities_tarifa</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_fidelidade_template">api.templates.entities_tarifa.tarifa_fidelidade_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_longa_estadia_template">api.templates.entities_tarifa.tarifa_longa_estadia_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_padrao_template">api.templates.entities_tarifa.tarifa_padrao_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_temporada_template">api.templates.entities_tarifa.tarifa_temporada_template</a>
 
   </div>
 
@@ -3190,6 +3638,7 @@ imported by:
  &#8226;   <a href="#gzip">gzip</a>
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#setuptools._vendor.backports.tarfile">setuptools._vendor.backports.tarfile</a>
@@ -4280,10 +4729,67 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="bcrypt"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/bcrypt/__init__.py" type="text/plain"><tt>bcrypt</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#_cffi_backend">_cffi_backend</a>
+ &#8226;   <a href="#bcrypt._bcrypt">bcrypt._bcrypt</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#bcrypt._bcrypt">bcrypt._bcrypt</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="bcrypt._bcrypt"></a>
+  <tt>bcrypt._bcrypt</tt> <span class="moduletype"><tt>C:\Users\Marcos Serpa\AppData\Local\Programs\Python\Python313\Lib\site-packages\bcrypt\_bcrypt.pyd</tt></span>  <div class="import">
+imports:
+    <a href="#bcrypt">bcrypt</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#bcrypt">bcrypt</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="bdb"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/bdb.py" type="text/plain"><tt>bdb</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#fnmatch">fnmatch</a>
+ &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#linecache">linecache</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#reprlib">reprlib</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pdb">pdb</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="binascii"></a>
   <tt>binascii</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
     <a href="#base64">base64</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#email._encoded_words">email._encoded_words</a>
  &#8226;   <a href="#email.base64mime">email.base64mime</a>
  &#8226;   <a href="#email.contentmanager">email.contentmanager</a>
@@ -4617,6 +5123,7 @@ imported by:
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
  &#8226;   <a href="#click._textwrap">click._textwrap</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
@@ -4647,7 +5154,6 @@ imports:
  &#8226;   <a href="#click">click</a>
  &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#codecs">codecs</a>
- &#8226;   <a href="#colorama">colorama</a>
  &#8226;   <a href="#errno">errno</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#locale">locale</a>
@@ -4663,6 +5169,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#click._termui_impl">click._termui_impl</a>
+ &#8226;   <a href="#click._textwrap">click._textwrap</a>
  &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#click.exceptions">click.exceptions</a>
  &#8226;   <a href="#click.formatting">click.formatting</a>
@@ -4724,6 +5231,7 @@ imports:
     <a href="#'collections.abc'">'collections.abc'</a>
  &#8226;   <a href="#__future__">__future__</a>
  &#8226;   <a href="#click">click</a>
+ &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#contextlib">contextlib</a>
  &#8226;   <a href="#textwrap">textwrap</a>
 
@@ -4731,6 +5239,26 @@ imports:
   <div class="import">
 imported by:
     <a href="#click.formatting">click.formatting</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="click._utils"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/click/_utils.py" type="text/plain"><tt>click._utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#click">click</a>
+ &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#click.core">click.core</a>
+ &#8226;   <a href="#click.parser">click.parser</a>
 
   </div>
 
@@ -4747,6 +5275,7 @@ imports:
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#ctypes">ctypes</a>
  &#8226;   <a href="#ctypes.wintypes">ctypes.wintypes</a>
+ &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#msvcrt">msvcrt</a>
  &#8226;   <a href="#sys">sys</a>
@@ -4770,7 +5299,9 @@ imported by:
 imports:
     <a href="#'collections.abc'">'collections.abc'</a>
  &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
  &#8226;   <a href="#click">click</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
  &#8226;   <a href="#click.exceptions">click.exceptions</a>
  &#8226;   <a href="#click.formatting">click.formatting</a>
@@ -4792,6 +5323,7 @@ imports:
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#typing_extensions">typing_extensions</a>
  &#8226;   <a href="#warnings">warnings</a>
 
   </div>
@@ -4850,6 +5382,7 @@ imports:
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.globals">click.globals</a>
  &#8226;   <a href="#click.utils">click.utils</a>
+ &#8226;   <a href="#difflib">difflib</a>
  &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#typing">typing</a>
 
@@ -4927,11 +5460,11 @@ imports:
     <a href="#'collections.abc'">'collections.abc'</a>
  &#8226;   <a href="#__future__">__future__</a>
  &#8226;   <a href="#click">click</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.exceptions">click.exceptions</a>
  &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
  &#8226;   <a href="#collections">collections</a>
- &#8226;   <a href="#difflib">difflib</a>
  &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#warnings">warnings</a>
@@ -4964,6 +5497,7 @@ imports:
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#typing_extensions">typing_extensions</a>
 
   </div>
   <div class="import">
@@ -4996,6 +5530,8 @@ imports:
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#itertools">itertools</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#typing">typing</a>
 
@@ -5027,12 +5563,14 @@ imports:
  &#8226;   <a href="#contextlib">contextlib</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#shlex">shlex</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#tempfile">tempfile</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
 
   </div>
   <div class="import">
@@ -5050,6 +5588,7 @@ imported by:
 imports:
     <a href="#'collections.abc'">'collections.abc'</a>
  &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
  &#8226;   <a href="#click">click</a>
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click.core">click.core</a>
@@ -5091,6 +5630,7 @@ imports:
  &#8226;   <a href="#click.globals">click.globals</a>
  &#8226;   <a href="#errno">errno</a>
  &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#gettext">gettext</a>
  &#8226;   <a href="#glob">glob</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#re">re</a>
@@ -5098,6 +5638,7 @@ imports:
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#typing_extensions">typing_extensions</a>
+ &#8226;   <a href="#warnings">warnings</a>
 
   </div>
   <div class="import">
@@ -5111,6 +5652,25 @@ imported by:
  &#8226;   <a href="#click.termui">click.termui</a>
  &#8226;   <a href="#click.testing">click.testing</a>
  &#8226;   <a href="#click.types">click.types</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cmd"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/cmd.py" type="text/plain"><tt>cmd</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#inspect">inspect</a>
+ &#8226;   <a href="#readline">readline</a>
+ &#8226;   <a href="#string">string</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pdb">pdb</a>
 
   </div>
 
@@ -5134,6 +5694,7 @@ imported by:
     <a href="#_pyrepl.console">_pyrepl.console</a>
  &#8226;   <a href="#_pyrepl.simple_interact">_pyrepl.simple_interact</a>
  &#8226;   <a href="#flask.cli">flask.cli</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#sqlite3.__main__">sqlite3.__main__</a>
  &#8226;   <a href="#werkzeug.debug.console">werkzeug.debug.console</a>
 
@@ -5303,6 +5864,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#code">code</a>
+ &#8226;   <a href="#pdb">pdb</a>
 
   </div>
 
@@ -5422,8 +5984,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#click._compat">click._compat</a>
- &#8226;   <a href="#colorama">colorama</a>
+    <a href="#colorama">colorama</a>
  &#8226;   <a href="#colorama.ansi">colorama.ansi</a>
  &#8226;   <a href="#colorama.ansitowin32">colorama.ansitowin32</a>
  &#8226;   <a href="#colorama.initialise">colorama.initialise</a>
@@ -5675,11 +6236,13 @@ imports:
 imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#api.App">api.App</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#manager.Database">manager.Database</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
 
   </div>
 
@@ -5736,6 +6299,7 @@ imported by:
  &#8226;   <a href="#_threading_local">_threading_local</a>
  &#8226;   <a href="#ast">ast</a>
  &#8226;   <a href="#asyncio.staggered">asyncio.staggered</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#blinker.base">blinker.base</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
  &#8226;   <a href="#click._textwrap">click._textwrap</a>
@@ -5757,6 +6321,7 @@ imported by:
  &#8226;   <a href="#jinja2.compiler">jinja2.compiler</a>
  &#8226;   <a href="#packaging._manylinux">packaging._manylinux</a>
  &#8226;   <a href="#packaging._tokenizer">packaging._tokenizer</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#setuptools._distutils.command.build_ext">setuptools._distutils.command.build_ext</a>
  &#8226;   <a href="#setuptools._distutils.command.check">setuptools._distutils.command.check</a>
  &#8226;   <a href="#setuptools._distutils.compilers.C.msvc">setuptools._distutils.compilers.C.msvc</a>
@@ -5874,11 +6439,1462 @@ imported by:
 
 <div class="node">
   <a name="cryptography"></a>
-  <a target="code" href="" type="text/plain"><tt>cryptography</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/__init__.py" type="text/plain"><tt>cryptography</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#_cffi_backend">_cffi_backend</a>
+ &#8226;   <a href="#cryptography.__about__">cryptography.__about__</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl">cryptography.hazmat.backends.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl._conditional">cryptography.hazmat.bindings.openssl._conditional</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
 imported by:
-    <a href="#flask.cli">flask.cli</a>
+    <a href="#cryptography.__about__">cryptography.__about__</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#flask.cli">flask.cli</a>
  &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.__about__"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/__about__.py" type="text/plain"><tt>cryptography.__about__</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.exceptions"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/exceptions.py" type="text/plain"><tt>cryptography.exceptions</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/__init__.py" type="text/plain"><tt>cryptography.hazmat</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings">cryptography.hazmat.bindings</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit">cryptography.hazmat.decrepit</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat._oid"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/_oid.py" type="text/plain"><tt>cryptography.hazmat._oid</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.backends"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/backends/__init__.py" type="text/plain"><tt>cryptography.hazmat.backends</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl">cryptography.hazmat.backends.openssl</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.backends.openssl"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/backends/openssl/__init__.py" type="text/plain"><tt>cryptography.hazmat.backends.openssl</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.backends.openssl.backend"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/backends/openssl/backend.py" type="text/plain"><tt>cryptography.hazmat.backends.openssl.backend</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl">cryptography.hazmat.backends.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl">cryptography.hazmat.backends.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.bindings"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/bindings/__init__.py" type="text/plain"><tt>cryptography.hazmat.bindings</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.bindings._rust"></a>
+  <tt>cryptography.hazmat.bindings._rust</tt> <span class="moduletype"><tt>C:\Users\Marcos Serpa\AppData\Local\Programs\Python\Python313\Lib\site-packages\cryptography\hazmat\bindings\_rust.pyd</tt></span>  <div class="import">
+imports:
+    <a href="#cryptography.hazmat.bindings">cryptography.hazmat.bindings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.base">cryptography.hazmat.primitives.serialization.base</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.bindings.openssl"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/bindings/openssl/__init__.py" type="text/plain"><tt>cryptography.hazmat.bindings.openssl</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings">cryptography.hazmat.bindings</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl._conditional">cryptography.hazmat.bindings.openssl._conditional</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.bindings.openssl._conditional"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/bindings/openssl/_conditional.py" type="text/plain"><tt>cryptography.hazmat.bindings.openssl._conditional</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.bindings.openssl.binding"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/bindings/openssl/binding.py" type="text/plain"><tt>cryptography.hazmat.bindings.openssl.binding</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl._conditional">cryptography.hazmat.bindings.openssl._conditional</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#types">types</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl">cryptography.hazmat.bindings.openssl</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.decrepit"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/decrepit/__init__.py" type="text/plain"><tt>cryptography.hazmat.decrepit</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.decrepit.ciphers">cryptography.hazmat.decrepit.ciphers</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.decrepit.ciphers"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/decrepit/ciphers/__init__.py" type="text/plain"><tt>cryptography.hazmat.decrepit.ciphers</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit">cryptography.hazmat.decrepit</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.decrepit.ciphers.algorithms"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/decrepit/ciphers/algorithms.py" type="text/plain"><tt>cryptography.hazmat.decrepit.ciphers.algorithms</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers">cryptography.hazmat.decrepit.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.decrepit.ciphers.modes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/decrepit/ciphers/modes.py" type="text/plain"><tt>cryptography.hazmat.decrepit.ciphers.modes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers">cryptography.hazmat.decrepit.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/__init__.py" type="text/plain"><tt>cryptography.hazmat.primitives</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat">cryptography.hazmat</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.constant_time">cryptography.hazmat.primitives.constant_time</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.constant_time">cryptography.hazmat.primitives.constant_time</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives._asymmetric"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/_asymmetric.py" type="text/plain"><tt>cryptography.hazmat.primitives._asymmetric</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives._cipheralgorithm"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/_cipheralgorithm.py" type="text/plain"><tt>cryptography.hazmat.primitives._cipheralgorithm</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives._modes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/_modes.py" type="text/plain"><tt>cryptography.hazmat.primitives._modes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives._serialization"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/_serialization.py" type="text/plain"><tt>cryptography.hazmat.primitives._serialization</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/__init__.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.dh"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/dh.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.dh</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.dsa"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/dsa.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.dsa</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.ec"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/ec.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.ec</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.ed25519"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/ed25519.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.ed25519</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.ed448"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/ed448.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.ed448</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.mldsa"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/mldsa.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.mldsa</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.mlkem"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/mlkem.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.mlkem</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.padding"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/padding.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.padding</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.rsa"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/rsa.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.rsa</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._asymmetric">cryptography.hazmat.primitives._asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#math">math</a>
+ &#8226;   <a href="#random">random</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.types"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/types.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.types</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.utils"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/utils.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.x25519"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/x25519.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.x25519</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.asymmetric.x448"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/asymmetric/x448.py" type="text/plain"><tt>cryptography.hazmat.primitives.asymmetric.x448</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.ciphers"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/ciphers/__init__.py" type="text/plain"><tt>cryptography.hazmat.primitives.ciphers</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.ciphers.algorithms"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/ciphers/algorithms.py" type="text/plain"><tt>cryptography.hazmat.primitives.ciphers.algorithms</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.ciphers.base"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/ciphers/base.py" type="text/plain"><tt>cryptography.hazmat.primitives.ciphers.base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.ciphers.modes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/ciphers/modes.py" type="text/plain"><tt>cryptography.hazmat.primitives.ciphers.modes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.constant_time"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/constant_time.py" type="text/plain"><tt>cryptography.hazmat.primitives.constant_time</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#hmac">hmac</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.hashes"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/hashes.py" type="text/plain"><tt>cryptography.hazmat.primitives.hashes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.serialization"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/serialization/__init__.py" type="text/plain"><tt>cryptography.hazmat.primitives.serialization</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.base">cryptography.hazmat.primitives.serialization.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.base">cryptography.hazmat.primitives.serialization.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.serialization.base"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/serialization/base.py" type="text/plain"><tt>cryptography.hazmat.primitives.serialization.base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.hazmat.primitives.serialization.ssh"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/hazmat/primitives/serialization/ssh.py" type="text/plain"><tt>cryptography.hazmat.primitives.serialization.ssh</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#bcrypt">bcrypt</a>
+ &#8226;   <a href="#binascii">binascii</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.utils">cryptography.hazmat.primitives.asymmetric.utils</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers">cryptography.hazmat.primitives.ciphers</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.utils"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/utils.py" type="text/plain"><tt>cryptography.utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#types">types</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.modes">cryptography.hazmat.decrepit.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._cipheralgorithm">cryptography.hazmat.primitives._cipheralgorithm</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._modes">cryptography.hazmat.primitives._modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dh">cryptography.hazmat.primitives.asymmetric.dh</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.algorithms">cryptography.hazmat.primitives.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.modes">cryptography.hazmat.primitives.ciphers.modes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/__init__.py" type="text/plain"><tt>cryptography.x509</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.base"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/base.py" type="text/plain"><tt>cryptography.x509.base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed25519">cryptography.hazmat.primitives.asymmetric.ed25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ed448">cryptography.hazmat.primitives.asymmetric.ed448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mldsa">cryptography.hazmat.primitives.asymmetric.mldsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.mlkem">cryptography.hazmat.primitives.asymmetric.mlkem</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.padding">cryptography.hazmat.primitives.asymmetric.padding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x25519">cryptography.hazmat.primitives.asymmetric.x25519</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.x448">cryptography.hazmat.primitives.asymmetric.x448</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.certificate_transparency"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/certificate_transparency.py" type="text/plain"><tt>cryptography.x509.certificate_transparency</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.extensions"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/extensions.py" type="text/plain"><tt>cryptography.x509.extensions</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives._serialization">cryptography.hazmat.primitives._serialization</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.constant_time">cryptography.hazmat.primitives.constant_time</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.certificate_transparency">cryptography.x509.certificate_transparency</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#hashlib">hashlib</a>
+ &#8226;   <a href="#ipaddress">ipaddress</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.general_name"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/general_name.py" type="text/plain"><tt>cryptography.x509.general_name</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#abc">abc</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#email.utils">email.utils</a>
+ &#8226;   <a href="#ipaddress">ipaddress</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.name"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/name.py" type="text/plain"><tt>cryptography.x509.name</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'collections.abc'">'collections.abc'</a>
+ &#8226;   <a href="#__future__">__future__</a>
+ &#8226;   <a href="#binascii">binascii</a>
+ &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.oid"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/oid.py" type="text/plain"><tt>cryptography.x509.oid</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat._oid">cryptography.hazmat._oid</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#werkzeug.serving">werkzeug.serving</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="cryptography.x509.verification"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/site-packages/cryptography/x509/verification.py" type="text/plain"><tt>cryptography.x509.verification</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings._rust">cryptography.hazmat.bindings._rust</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#typing">typing</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#cryptography.x509">cryptography.x509</a>
 
   </div>
 
@@ -6145,14 +8161,54 @@ imported by:
   <a name="database"></a>
   <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/database/__init__.py" type="text/plain"><tt>database</tt></a>
 <span class="moduletype">Package</span>  <div class="import">
+imported by:
+    <a href="#Main.py">Main.py</a>
+ &#8226;   <a href="#database.mock">database.mock</a>
+ &#8226;   <a href="#database.setup_db">database.setup_db</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="database.mock"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/database/mock/__init__.py" type="text/plain"><tt>database.mock</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
 imports:
-    <a href="#database.setup_db">database.setup_db</a>
+    <a href="#database">database</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="database.mock.seed_mock_data"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/database/mock/seed_mock_data.py" type="text/plain"><tt>database.mock.seed_mock_data</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#database.mock">database.mock</a>
+ &#8226;   <a href="#database.setup_db">database.setup_db</a>
+ &#8226;   <a href="#json">json</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
+ &#8226;   <a href="#sqlite3">sqlite3</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#utils.Loggers">utils.Loggers</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#Main.py">Main.py</a>
- &#8226;   <a href="#database.setup_db">database.setup_db</a>
+ &#8226;   <a href="#database.mock">database.mock</a>
 
   </div>
 
@@ -6176,7 +8232,7 @@ imports:
 imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
- &#8226;   <a href="#database">database</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
 
   </div>
 
@@ -6206,6 +8262,8 @@ imported by:
  &#8226;   <a href="#_pyrepl.historical_reader">_pyrepl.historical_reader</a>
  &#8226;   <a href="#_pyrepl.reader">_pyrepl.reader</a>
  &#8226;   <a href="#_pyrepl.readline">_pyrepl.readline</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
  &#8226;   <a href="#flask.json.provider">flask.json.provider</a>
  &#8226;   <a href="#packaging._tokenizer">packaging._tokenizer</a>
  &#8226;   <a href="#pprint">pprint</a>
@@ -6233,8 +8291,15 @@ imports:
 imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#_strptime">_strptime</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.chegada_do_dia_notificacao_template">api.templates.entities_notificacao.chegada_do_dia_notificacao_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_fidelidade_template">api.templates.entities_tarifa.tarifa_fidelidade_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_longa_estadia_template">api.templates.entities_tarifa.tarifa_longa_estadia_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_temporada_template">api.templates.entities_tarifa.tarifa_temporada_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
  &#8226;   <a href="#calendar">calendar</a>
  &#8226;   <a href="#click.types">click.types</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
  &#8226;   <a href="#email.utils">email.utils</a>
  &#8226;   <a href="#flask.app">flask.app</a>
  &#8226;   <a href="#flask.blueprints">flask.blueprints</a>
@@ -6305,7 +8370,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#click.parser">click.parser</a>
+    <a href="#click.exceptions">click.exceptions</a>
  &#8226;   <a href="#difflib">difflib</a>
  &#8226;   <a href="#unittest.case">unittest.case</a>
  &#8226;   <a href="#werkzeug.routing.exceptions">werkzeug.routing.exceptions</a>
@@ -6331,6 +8396,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#inspect">inspect</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#setuptools.depends">setuptools.depends</a>
 
   </div>
@@ -6964,7 +9030,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#email._header_value_parser">email._header_value_parser</a>
+    <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#email._header_value_parser">email._header_value_parser</a>
  &#8226;   <a href="#email._policybase">email._policybase</a>
  &#8226;   <a href="#email.generator">email.generator</a>
  &#8226;   <a href="#email.headerregistry">email.headerregistry</a>
@@ -9504,8 +11571,11 @@ imported by:
  &#8226;   <a href="#asyncio.sslproto">asyncio.sslproto</a>
  &#8226;   <a href="#asyncio.timeouts">asyncio.timeouts</a>
  &#8226;   <a href="#calendar">calendar</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.types">click.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
  &#8226;   <a href="#http">http</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#jinja2.utils">jinja2.utils</a>
@@ -9603,13 +11673,16 @@ imports:
   <div class="import">
 imported by:
     <a href="#api.App">api.App</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
  &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
  &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
  &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
  &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
  &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
  &#8226;   <a href="#flask">flask</a>
  &#8226;   <a href="#flask.app">flask.app</a>
  &#8226;   <a href="#flask.blueprints">flask.blueprints</a>
@@ -10334,7 +12407,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#glob">glob</a>
+    <a href="#bdb">bdb</a>
+ &#8226;   <a href="#glob">glob</a>
  &#8226;   <a href="#jinja2.bccache">jinja2.bccache</a>
  &#8226;   <a href="#setuptools._distutils.filelist">setuptools._distutils.filelist</a>
  &#8226;   <a href="#setuptools.discovery">setuptools.discovery</a>
@@ -10413,7 +12487,8 @@ imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#_pyrepl.simple_interact">_pyrepl.simple_interact</a>
  &#8226;   <a href="#_pyrepl.utils">_pyrepl.utils</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
  &#8226;   <a href="#asyncio.format_helpers">asyncio.format_helpers</a>
  &#8226;   <a href="#asyncio.runners">asyncio.runners</a>
  &#8226;   <a href="#asyncio.selector_events">asyncio.selector_events</a>
@@ -10624,6 +12699,7 @@ imports:
 imported by:
     <a href="#argparse">argparse</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
+ &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
  &#8226;   <a href="#click.exceptions">click.exceptions</a>
@@ -10632,6 +12708,7 @@ imported by:
  &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
  &#8226;   <a href="#click.termui">click.termui</a>
  &#8226;   <a href="#click.types">click.types</a>
+ &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#getopt">getopt</a>
  &#8226;   <a href="#jinja2.ext">jinja2.ext</a>
 
@@ -10661,6 +12738,7 @@ imported by:
     <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#pathlib._abc">pathlib._abc</a>
  &#8226;   <a href="#pathlib._local">pathlib._local</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#setuptools._distutils.command.sdist">setuptools._distutils.command.sdist</a>
  &#8226;   <a href="#setuptools.command.bdist_wheel">setuptools.command.bdist_wheel</a>
  &#8226;   <a href="#setuptools.config.expand">setuptools.config.expand</a>
@@ -10733,11 +12811,13 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#flask.sessions">flask.sessions</a>
+    <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#flask.sessions">flask.sessions</a>
  &#8226;   <a href="#hmac">hmac</a>
  &#8226;   <a href="#itsdangerous.signer">itsdangerous.signer</a>
  &#8226;   <a href="#jinja2.bccache">jinja2.bccache</a>
  &#8226;   <a href="#jinja2.loaders">jinja2.loaders</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#setuptools._vendor.wheel.wheelfile">setuptools._vendor.wheel.wheelfile</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
@@ -10786,8 +12866,10 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#itsdangerous.signer">itsdangerous.signer</a>
+    <a href="#cryptography.hazmat.primitives.constant_time">cryptography.hazmat.primitives.constant_time</a>
+ &#8226;   <a href="#itsdangerous.signer">itsdangerous.signer</a>
  &#8226;   <a href="#multiprocessing.connection">multiprocessing.connection</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
  &#8226;   <a href="#secrets">secrets</a>
  &#8226;   <a href="#werkzeug.security">werkzeug.security</a>
 
@@ -11574,11 +13656,13 @@ imported by:
  &#8226;   <a href="#asyncio.coroutines">asyncio.coroutines</a>
  &#8226;   <a href="#asyncio.format_helpers">asyncio.format_helpers</a>
  &#8226;   <a href="#asyncio.tasks">asyncio.tasks</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#blinker._utilities">blinker._utilities</a>
  &#8226;   <a href="#blinker.base">blinker.base</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
  &#8226;   <a href="#click.termui">click.termui</a>
+ &#8226;   <a href="#cmd">cmd</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#flask.app">flask.app</a>
  &#8226;   <a href="#flask.cli">flask.cli</a>
@@ -11587,6 +13671,7 @@ imported by:
  &#8226;   <a href="#jinja2.async_utils">jinja2.async_utils</a>
  &#8226;   <a href="#jinja2.filters">jinja2.filters</a>
  &#8226;   <a href="#jinja2.nodes">jinja2.nodes</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
@@ -11663,6 +13748,7 @@ imported by:
  &#8226;   <a href="#multiprocessing.reduction">multiprocessing.reduction</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#pathlib._local">pathlib._local</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#pydoc">pydoc</a>
@@ -11720,7 +13806,9 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#urllib.parse">urllib.parse</a>
+    <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#urllib.parse">urllib.parse</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
 
   </div>
@@ -11770,6 +13858,7 @@ imported by:
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#packaging.specifiers">packaging.specifiers</a>
  &#8226;   <a href="#pathlib._local">pathlib._local</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#random">random</a>
@@ -11833,7 +13922,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#api.features.auth_context">api.features.auth_context</a>
+    <a href="#api.auth.auth_context">api.auth.auth_context</a>
  &#8226;   <a href="#flask.sessions">flask.sessions</a>
  &#8226;   <a href="#itsdangerous._json">itsdangerous._json</a>
  &#8226;   <a href="#itsdangerous.encoding">itsdangerous.encoding</a>
@@ -12725,7 +14814,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#flask.config">flask.config</a>
+    <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
+ &#8226;   <a href="#flask.config">flask.config</a>
  &#8226;   <a href="#flask.json">flask.json</a>
  &#8226;   <a href="#flask.json.provider">flask.json.provider</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
@@ -12838,7 +14928,9 @@ imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#_pyrepl.console">_pyrepl.console</a>
  &#8226;   <a href="#asyncio.base_tasks">asyncio.base_tasks</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#tracemalloc">tracemalloc</a>
  &#8226;   <a href="#warnings">warnings</a>
@@ -12984,9 +15076,14 @@ imports:
   <div class="import">
 imported by:
     <a href="#Main.py">Main.py</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
  &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
 
   </div>
 
@@ -13087,6 +15184,7 @@ imported by:
  &#8226;   <a href="#asyncio.tasks">asyncio.tasks</a>
  &#8226;   <a href="#asyncio.windows_events">asyncio.windows_events</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
  &#8226;   <a href="#fractions">fractions</a>
  &#8226;   <a href="#jinja2.filters">jinja2.filters</a>
  &#8226;   <a href="#random">random</a>
@@ -14239,11 +16337,13 @@ imported by:
  &#8226;   <a href="#asyncio.selector_events">asyncio.selector_events</a>
  &#8226;   <a href="#asyncio.unix_events">asyncio.unix_events</a>
  &#8226;   <a href="#asyncio.windows_utils">asyncio.windows_utils</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#bz2">bz2</a>
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
+ &#8226;   <a href="#click.termui">click.termui</a>
  &#8226;   <a href="#click.testing">click.testing</a>
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
@@ -14253,11 +16353,14 @@ imported by:
  &#8226;   <a href="#config.Config">config.Config</a>
  &#8226;   <a href="#configparser">configparser</a>
  &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
  &#8226;   <a href="#ctypes">ctypes</a>
  &#8226;   <a href="#ctypes._aix">ctypes._aix</a>
  &#8226;   <a href="#ctypes.macholib.dyld">ctypes.macholib.dyld</a>
  &#8226;   <a href="#ctypes.util">ctypes.util</a>
  &#8226;   <a href="#curses">curses</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#dotenv.main">dotenv.main</a>
  &#8226;   <a href="#email.utils">email.utils</a>
@@ -14317,11 +16420,13 @@ imported by:
  &#8226;   <a href="#packaging._manylinux">packaging._manylinux</a>
  &#8226;   <a href="#packaging.markers">packaging.markers</a>
  &#8226;   <a href="#pathlib._local">pathlib._local</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pyi_rth_cryptography_openssl.py">pyi_rth_cryptography_openssl.py</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
  &#8226;   <a href="#pyi_rth_setuptools.py">pyi_rth_setuptools.py</a>
  &#8226;   <a href="#random">random</a>
@@ -14841,6 +16946,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#click._termui_impl">click._termui_impl</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#dotenv.main">dotenv.main</a>
  &#8226;   <a href="#flask.sansio.scaffold">flask.sansio.scaffold</a>
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
@@ -14914,6 +17020,51 @@ imports:
   <div class="import">
 imported by:
     <a href="#pathlib">pathlib</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pdb"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/AppData/Local/Programs/Python/Python313/Lib/pdb.py" type="text/plain"><tt>pdb</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#_colorize">_colorize</a>
+ &#8226;   <a href="#argparse">argparse</a>
+ &#8226;   <a href="#bdb">bdb</a>
+ &#8226;   <a href="#cmd">cmd</a>
+ &#8226;   <a href="#code">code</a>
+ &#8226;   <a href="#codeop">codeop</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#dis">dis</a>
+ &#8226;   <a href="#glob">glob</a>
+ &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#itertools">itertools</a>
+ &#8226;   <a href="#linecache">linecache</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pdb">pdb</a>
+ &#8226;   <a href="#pprint">pprint</a>
+ &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#readline">readline</a>
+ &#8226;   <a href="#rlcompleter">rlcompleter</a>
+ &#8226;   <a href="#runpy">runpy</a>
+ &#8226;   <a href="#shlex">shlex</a>
+ &#8226;   <a href="#signal">signal</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#textwrap">textwrap</a>
+ &#8226;   <a href="#token">token</a>
+ &#8226;   <a href="#tokenize">tokenize</a>
+ &#8226;   <a href="#traceback">traceback</a>
+ &#8226;   <a href="#types">types</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#click.testing">click.testing</a>
+ &#8226;   <a href="#pdb">pdb</a>
 
   </div>
 
@@ -15102,11 +17253,47 @@ imports:
 imported by:
     <a href="#jinja2.ext">jinja2.ext</a>
  &#8226;   <a href="#jinja2.utils">jinja2.utils</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#setuptools._distutils.dist">setuptools._distutils.dist</a>
  &#8226;   <a href="#unittest.case">unittest.case</a>
  &#8226;   <a href="#unittest.mock">unittest.mock</a>
  &#8226;   <a href="#werkzeug.routing.map">werkzeug.routing.map</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="private"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/private/__init__.py" type="text/plain"><tt>private</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imported by:
+    <a href="#private.cypher">private.cypher</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="private.cypher"></a>
+  <a target="code" href="///C:/Users/Marcos%20Serpa/Documents/GitHub/Anfitrion/app/backend/private/cypher.py" type="text/plain"><tt>private.cypher</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#'app.backend'">'app.backend'</a>
+ &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#hashlib">hashlib</a>
+ &#8226;   <a href="#hmac">hmac</a>
+ &#8226;   <a href="#private">private</a>
+ &#8226;   <a href="#secrets">secrets</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.features.auth_routes">api.features.auth_routes</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
 
   </div>
 
@@ -15201,6 +17388,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#_sitebuiltins">_sitebuiltins</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#werkzeug.debug.repr">werkzeug.debug.repr</a>
 
   </div>
@@ -15351,6 +17539,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#click._compat">click._compat</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
  &#8226;   <a href="#email.generator">email.generator</a>
  &#8226;   <a href="#email.utils">email.utils</a>
  &#8226;   <a href="#jinja2.filters">jinja2.filters</a>
@@ -15398,9 +17587,12 @@ imported by:
  &#8226;   <a href="#base64">base64</a>
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
+ &#8226;   <a href="#click.termui">click.termui</a>
  &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#colorama.ansitowin32">colorama.ansitowin32</a>
  &#8226;   <a href="#configparser">configparser</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#csv">csv</a>
  &#8226;   <a href="#ctypes._aix">ctypes._aix</a>
  &#8226;   <a href="#ctypes.macholib.dylib">ctypes.macholib.dylib</a>
@@ -15454,6 +17646,7 @@ imported by:
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
  &#8226;   <a href="#packaging.utils">packaging.utils</a>
  &#8226;   <a href="#packaging.version">packaging.version</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
@@ -15630,8 +17823,10 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>readline</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#code">code</a>
+    <a href="#cmd">cmd</a>
+ &#8226;   <a href="#code">code</a>
  &#8226;   <a href="#flask.cli">flask.cli</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#rlcompleter">rlcompleter</a>
  &#8226;   <a href="#site">site</a>
  &#8226;   <a href="#sqlite3.__main__">sqlite3.__main__</a>
@@ -15658,6 +17853,7 @@ imported by:
  &#8226;   <a href="#asyncio.base_futures">asyncio.base_futures</a>
  &#8226;   <a href="#asyncio.base_tasks">asyncio.base_tasks</a>
  &#8226;   <a href="#asyncio.format_helpers">asyncio.format_helpers</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#collections">collections</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#functools">functools</a>
@@ -15697,6 +17893,7 @@ imports:
 imported by:
     <a href="#_pyrepl.readline">_pyrepl.readline</a>
  &#8226;   <a href="#flask.cli">flask.cli</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#site">site</a>
 
   </div>
@@ -15720,6 +17917,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#multiprocessing.spawn">multiprocessing.spawn</a>
+ &#8226;   <a href="#pdb">pdb</a>
 
   </div>
 
@@ -15738,6 +17936,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#multiprocessing.shared_memory">multiprocessing.shared_memory</a>
+ &#8226;   <a href="#private.cypher">private.cypher</a>
  &#8226;   <a href="#werkzeug.security">werkzeug.security</a>
 
   </div>
@@ -19568,6 +21767,7 @@ imported by:
     <a href="#click._termui_impl">click._termui_impl</a>
  &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
  &#8226;   <a href="#click.testing">click.testing</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#setuptools.dist">setuptools.dist</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
 
@@ -19650,6 +21850,7 @@ imported by:
  &#8226;   <a href="#multiprocessing.process">multiprocessing.process</a>
  &#8226;   <a href="#multiprocessing.resource_sharer">multiprocessing.resource_sharer</a>
  &#8226;   <a href="#multiprocessing.resource_tracker">multiprocessing.resource_tracker</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#unittest.signals">unittest.signals</a>
  &#8226;   <a href="#werkzeug._reloader">werkzeug._reloader</a>
@@ -19788,7 +21989,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#database.setup_db">database.setup_db</a>
+    <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
+ &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#manager.Database">manager.Database</a>
  &#8226;   <a href="#sqlite3">sqlite3</a>
  &#8226;   <a href="#sqlite3.__main__">sqlite3.__main__</a>
@@ -20023,7 +22225,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#email._encoded_words">email._encoded_words</a>
+    <a href="#cmd">cmd</a>
+ &#8226;   <a href="#email._encoded_words">email._encoded_words</a>
  &#8226;   <a href="#email._header_value_parser">email._header_value_parser</a>
  &#8226;   <a href="#email.quoprimime">email.quoprimime</a>
  &#8226;   <a href="#itsdangerous.encoding">itsdangerous.encoding</a>
@@ -20196,6 +22399,7 @@ imported by:
  &#8226;   <a href="#asyncio.windows_events">asyncio.windows_events</a>
  &#8226;   <a href="#asyncio.windows_utils">asyncio.windows_utils</a>
  &#8226;   <a href="#base64">base64</a>
+ &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#blinker.base">blinker.base</a>
  &#8226;   <a href="#calendar">calendar</a>
  &#8226;   <a href="#click._compat">click._compat</a>
@@ -20206,6 +22410,7 @@ imported by:
  &#8226;   <a href="#click.testing">click.testing</a>
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
+ &#8226;   <a href="#cmd">cmd</a>
  &#8226;   <a href="#code">code</a>
  &#8226;   <a href="#codecs">codecs</a>
  &#8226;   <a href="#collections">collections</a>
@@ -20215,11 +22420,15 @@ imported by:
  &#8226;   <a href="#config.Config">config.Config</a>
  &#8226;   <a href="#configparser">configparser</a>
  &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#ctypes">ctypes</a>
  &#8226;   <a href="#ctypes._aix">ctypes._aix</a>
  &#8226;   <a href="#ctypes._endian">ctypes._endian</a>
  &#8226;   <a href="#ctypes.util">ctypes.util</a>
  &#8226;   <a href="#curses">curses</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#decimal">decimal</a>
  &#8226;   <a href="#dis">dis</a>
@@ -20288,6 +22497,7 @@ imported by:
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
  &#8226;   <a href="#packaging.version">packaging.version</a>
  &#8226;   <a href="#pathlib._local">pathlib._local</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
@@ -20295,6 +22505,7 @@ imported by:
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pyi_rth_cryptography_openssl.py">pyi_rth_cryptography_openssl.py</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
  &#8226;   <a href="#pyi_rth_multiprocessing.py">pyi_rth_multiprocessing.py</a>
  &#8226;   <a href="#quopri">quopri</a>
@@ -20558,6 +22769,7 @@ imported by:
  &#8226;   <a href="#importlib.metadata">importlib.metadata</a>
  &#8226;   <a href="#importlib.metadata._adapters">importlib.metadata._adapters</a>
  &#8226;   <a href="#jinja2.filters">jinja2.filters</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#setuptools._core_metadata">setuptools._core_metadata</a>
  &#8226;   <a href="#setuptools._vendor.importlib_metadata">setuptools._vendor.importlib_metadata</a>
@@ -20609,6 +22821,7 @@ imported by:
  &#8226;   <a href="#concurrent.futures.process">concurrent.futures.process</a>
  &#8226;   <a href="#concurrent.futures.thread">concurrent.futures.thread</a>
  &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
  &#8226;   <a href="#http.cookiejar">http.cookiejar</a>
  &#8226;   <a href="#importlib.util">importlib.util</a>
  &#8226;   <a href="#jinja2.utils">jinja2.utils</a>
@@ -20715,6 +22928,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imported by:
     <a href="#inspect">inspect</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#tokenize">tokenize</a>
 
   </div>
@@ -20745,6 +22959,7 @@ imported by:
  &#8226;   <a href="#importlib._bootstrap_external">importlib._bootstrap_external</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#linecache">linecache</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#setuptools._distutils.core">setuptools._distutils.core</a>
  &#8226;   <a href="#setuptools._imp">setuptools._imp</a>
@@ -20889,6 +23104,7 @@ imported by:
  &#8226;   <a href="#multiprocessing.process">multiprocessing.process</a>
  &#8226;   <a href="#multiprocessing.queues">multiprocessing.queues</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#site">site</a>
@@ -20986,6 +23202,8 @@ imported by:
  &#8226;   <a href="#configparser">configparser</a>
  &#8226;   <a href="#contextlib">contextlib</a>
  &#8226;   <a href="#copy">copy</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
  &#8226;   <a href="#csv">csv</a>
  &#8226;   <a href="#ctypes">ctypes</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
@@ -21016,6 +23234,7 @@ imported by:
  &#8226;   <a href="#multiprocessing.queues">multiprocessing.queues</a>
  &#8226;   <a href="#multiprocessing.shared_memory">multiprocessing.shared_memory</a>
  &#8226;   <a href="#multiprocessing.spawn">multiprocessing.spawn</a>
+ &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#pprint">pprint</a>
@@ -21083,6 +23302,8 @@ imported by:
  &#8226;   <a href="#_pyrepl.trace">_pyrepl.trace</a>
  &#8226;   <a href="#_pyrepl.unix_console">_pyrepl.unix_console</a>
  &#8226;   <a href="#_pyrepl.windows_console">_pyrepl.windows_console</a>
+ &#8226;   <a href="#api.auth.auth_context">api.auth.auth_context</a>
+ &#8226;   <a href="#api.auth.cargo_guard">api.auth.cargo_guard</a>
  &#8226;   <a href="#api.factories.entities.funcionario_factory">api.factories.entities.funcionario_factory</a>
  &#8226;   <a href="#api.factories.entities.hospede_factory">api.factories.entities.hospede_factory</a>
  &#8226;   <a href="#api.factories.entities.hotel_factory">api.factories.entities.hotel_factory</a>
@@ -21091,18 +23312,26 @@ imported by:
  &#8226;   <a href="#api.factories.entity_factory">api.factories.entity_factory</a>
  &#8226;   <a href="#api.factories.model_factory">api.factories.model_factory</a>
  &#8226;   <a href="#api.factories.user_factory">api.factories.user_factory</a>
- &#8226;   <a href="#api.features.auth_context">api.features.auth_context</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
- &#8226;   <a href="#api.templates.entities.funcionario_template">api.templates.entities.funcionario_template</a>
- &#8226;   <a href="#api.templates.entities.hospede_template">api.templates.entities.hospede_template</a>
- &#8226;   <a href="#api.templates.entities.hotel_template">api.templates.entities.hotel_template</a>
- &#8226;   <a href="#api.templates.entities.quarto_template">api.templates.entities.quarto_template</a>
- &#8226;   <a href="#api.templates.entities.reserva_template">api.templates.entities.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.funcionario_template">api.templates.entities_crud.funcionario_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hospede_template">api.templates.entities_crud.hospede_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.hotel_template">api.templates.entities_crud.hotel_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.quarto_template">api.templates.entities_crud.quarto_template</a>
+ &#8226;   <a href="#api.templates.entities_crud.reserva_template">api.templates.entities_crud.reserva_template</a>
+ &#8226;   <a href="#api.templates.entities_notificacao.chegada_do_dia_notificacao_template">api.templates.entities_notificacao.chegada_do_dia_notificacao_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_fidelidade_template">api.templates.entities_tarifa.tarifa_fidelidade_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_longa_estadia_template">api.templates.entities_tarifa.tarifa_longa_estadia_template</a>
+ &#8226;   <a href="#api.templates.entities_tarifa.tarifa_temporada_template">api.templates.entities_tarifa.tarifa_temporada_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
  &#8226;   <a href="#asyncio.timeouts">asyncio.timeouts</a>
  &#8226;   <a href="#blinker._utilities">blinker._utilities</a>
  &#8226;   <a href="#blinker.base">blinker.base</a>
  &#8226;   <a href="#click._compat">click._compat</a>
  &#8226;   <a href="#click._termui_impl">click._termui_impl</a>
+ &#8226;   <a href="#click._utils">click._utils</a>
  &#8226;   <a href="#click._winconsole">click._winconsole</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
@@ -21115,6 +23344,21 @@ imported by:
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#cryptography.exceptions">cryptography.exceptions</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.bindings.openssl.binding">cryptography.hazmat.bindings.openssl.binding</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.dsa">cryptography.hazmat.primitives.asymmetric.dsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.ec">cryptography.hazmat.primitives.asymmetric.ec</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.types">cryptography.hazmat.primitives.asymmetric.types</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.ciphers.base">cryptography.hazmat.primitives.ciphers.base</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509.base">cryptography.x509.base</a>
+ &#8226;   <a href="#cryptography.x509.extensions">cryptography.x509.extensions</a>
+ &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
+ &#8226;   <a href="#cryptography.x509.verification">cryptography.x509.verification</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#dotenv">dotenv</a>
  &#8226;   <a href="#dotenv.main">dotenv.main</a>
@@ -21336,7 +23580,9 @@ imports:
   <div class="import">
 imported by:
     <a href="#click._winconsole">click._winconsole</a>
+ &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.decorators">click.decorators</a>
+ &#8226;   <a href="#click.shell_completion">click.shell_completion</a>
  &#8226;   <a href="#click.types">click.types</a>
  &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#flask.config">flask.config</a>
@@ -21901,10 +24147,15 @@ imported by:
  &#8226;   <a href="#api.features.funcionario_routes">api.features.funcionario_routes</a>
  &#8226;   <a href="#api.features.hospede_routes">api.features.hospede_routes</a>
  &#8226;   <a href="#api.features.hotel_routes">api.features.hotel_routes</a>
+ &#8226;   <a href="#api.features.notificacao_routes">api.features.notificacao_routes</a>
  &#8226;   <a href="#api.features.quarto_routes">api.features.quarto_routes</a>
  &#8226;   <a href="#api.features.reserva_routes">api.features.reserva_routes</a>
+ &#8226;   <a href="#api.features.tarifa_routes">api.features.tarifa_routes</a>
  &#8226;   <a href="#api.templates.crud_template">api.templates.crud_template</a>
+ &#8226;   <a href="#api.templates.notificacao_template">api.templates.notificacao_template</a>
+ &#8226;   <a href="#api.templates.tarifa_template">api.templates.tarifa_template</a>
  &#8226;   <a href="#config.Config">config.Config</a>
+ &#8226;   <a href="#database.mock.seed_mock_data">database.mock.seed_mock_data</a>
  &#8226;   <a href="#database.setup_db">database.setup_db</a>
  &#8226;   <a href="#manager.Database">manager.Database</a>
 
@@ -21995,7 +24246,13 @@ imported by:
  &#8226;   <a href="#click">click</a>
  &#8226;   <a href="#click.core">click.core</a>
  &#8226;   <a href="#click.parser">click.parser</a>
+ &#8226;   <a href="#click.testing">click.testing</a>
+ &#8226;   <a href="#click.utils">click.utils</a>
  &#8226;   <a href="#codeop">codeop</a>
+ &#8226;   <a href="#cryptography.hazmat.decrepit.ciphers.algorithms">cryptography.hazmat.decrepit.ciphers.algorithms</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization.ssh">cryptography.hazmat.primitives.serialization.ssh</a>
+ &#8226;   <a href="#cryptography.utils">cryptography.utils</a>
+ &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#ctypes">ctypes</a>
  &#8226;   <a href="#email.utils">email.utils</a>
  &#8226;   <a href="#enum">enum</a>
@@ -23279,11 +25536,17 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#'_typeshed.wsgi'">'_typeshed.wsgi'</a>
- &#8226;   <a href="#'cryptography.hazmat'">'cryptography.hazmat'</a>
- &#8226;   <a href="#'cryptography.x509'">'cryptography.x509'</a>
  &#8226;   <a href="#__future__">__future__</a>
  &#8226;   <a href="#atexit">atexit</a>
  &#8226;   <a href="#cryptography">cryptography</a>
+ &#8226;   <a href="#cryptography.hazmat.backends">cryptography.hazmat.backends</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives">cryptography.hazmat.primitives</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric">cryptography.hazmat.primitives.asymmetric</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.asymmetric.rsa">cryptography.hazmat.primitives.asymmetric.rsa</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.hashes">cryptography.hazmat.primitives.hashes</a>
+ &#8226;   <a href="#cryptography.hazmat.primitives.serialization">cryptography.hazmat.primitives.serialization</a>
+ &#8226;   <a href="#cryptography.x509">cryptography.x509</a>
+ &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
  &#8226;   <a href="#datetime">datetime</a>
  &#8226;   <a href="#errno">errno</a>
  &#8226;   <a href="#http.server">http.server</a>

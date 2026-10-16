@@ -13,17 +13,17 @@
 
 - [ ] Minimo de 2 telas (CRUD) por integrante com a devida conexão com o banco de dados
   - Alyson Ferreira de Souza
-    - [ ] FUNCIONARIOS (CADASTRO FEITO PELO ADMINISTRADOR)
+    - [x] HOSPEDE CADASTRO
     - [x] MUDAR STATUS DO QUARTO (GOVERNANTA)
   - Flavia Cristina Fagundes
-    - [ ] RESERVA (PELO HÓSPEDE)
-    - [ ] HÓSPEDE - MUDAR RESERVA
+    - [x] RESERVA (PELO HÓSPEDE)
+    - [x] HÓSPEDE - MUDAR RESERVA
   - Lucas Aioria Serpa
-    - [ ] Tela 1: Catálogo de Quartos & Acomodações
-    - [ ] Tela 2: Relatório Operacional de Ocupação
+    - [x] FUNCIONARIO CADASTRO (PELO STAFF/ADMIN)
+    - [ ] ***
   - Matheus Pereira Siqueira
-    - [ ] Tela - Criar Quartos
-    - [ ] Tela - Modificar/Deletar Quartos
+    - [x] Tela - Criar Quartos
+    - [x] Tela - Modificar/Deletar Quartos
 - [x] Criar a partir de 3 tabelas no banco (hospede, funcionario, hotel, quarto, reserva)
 - [x] Desenvolver um exemplo de como planejaram a variabilidade
 

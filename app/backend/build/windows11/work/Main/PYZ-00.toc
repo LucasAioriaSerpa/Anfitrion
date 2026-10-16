@@ -160,6 +160,18 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\App.py',
    'PYMODULE'),
+  ('api.auth',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\auth\\__init__.py',
+   'PYMODULE'),
+  ('api.auth.auth_context',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\auth\\auth_context.py',
+   'PYMODULE'),
+  ('api.auth.cargo_guard',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\auth\\cargo_guard.py',
+   'PYMODULE'),
   ('api.factories',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\factories\\__init__.py',
@@ -204,10 +216,6 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\__init__.py',
    'PYMODULE'),
-  ('api.features.auth_context',
-   'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_context.py',
-   'PYMODULE'),
   ('api.features.auth_routes',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\auth_routes.py',
@@ -224,6 +232,10 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\hotel_routes.py',
    'PYMODULE'),
+  ('api.features.notificacao_routes',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\notificacao_routes.py',
+   'PYMODULE'),
   ('api.features.quarto_routes',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\quarto_routes.py',
@@ -231,6 +243,10 @@
   ('api.features.reserva_routes',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\reserva_routes.py',
+   'PYMODULE'),
+  ('api.features.tarifa_routes',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\features\\tarifa_routes.py',
    'PYMODULE'),
   ('api.templates',
    'C:\\Users\\Marcos '
@@ -240,29 +256,77 @@
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\crud_template.py',
    'PYMODULE'),
-  ('api.templates.entities',
+  ('api.templates.entities_crud',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\__init__.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\__init__.py',
    'PYMODULE'),
-  ('api.templates.entities.funcionario_template',
+  ('api.templates.entities_crud.funcionario_template',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\funcionario_template.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\funcionario_template.py',
    'PYMODULE'),
-  ('api.templates.entities.hospede_template',
+  ('api.templates.entities_crud.hospede_template',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\hospede_template.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\hospede_template.py',
    'PYMODULE'),
-  ('api.templates.entities.hotel_template',
+  ('api.templates.entities_crud.hotel_template',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\hotel_template.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\hotel_template.py',
    'PYMODULE'),
-  ('api.templates.entities.quarto_template',
+  ('api.templates.entities_crud.quarto_template',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\quarto_template.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\quarto_template.py',
    'PYMODULE'),
-  ('api.templates.entities.reserva_template',
+  ('api.templates.entities_crud.reserva_template',
    'C:\\Users\\Marcos '
-   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities\\reserva_template.py',
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_crud\\reserva_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_notificacao',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_notificacao\\__init__.py',
+   'PYMODULE'),
+  ('api.templates.entities_notificacao.chegada_do_dia_notificacao_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_notificacao\\chegada_do_dia_notificacao_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_notificacao.confirmacao_reserva_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_notificacao\\confirmacao_reserva_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_notificacao.manutencao_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_notificacao\\manutencao_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_notificacao.quarto_para_limpeza_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_notificacao\\quarto_para_limpeza_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_tarifa',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_tarifa\\__init__.py',
+   'PYMODULE'),
+  ('api.templates.entities_tarifa.tarifa_fidelidade_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_tarifa\\tarifa_fidelidade_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_tarifa.tarifa_longa_estadia_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_tarifa\\tarifa_longa_estadia_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_tarifa.tarifa_padrao_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_tarifa\\tarifa_padrao_template.py',
+   'PYMODULE'),
+  ('api.templates.entities_tarifa.tarifa_temporada_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\entities_tarifa\\tarifa_temporada_template.py',
+   'PYMODULE'),
+  ('api.templates.notificacao_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\notificacao_template.py',
+   'PYMODULE'),
+  ('api.templates.tarifa_template',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\api\\templates\\tarifa_template.py',
    'PYMODULE'),
   ('argparse',
    'C:\\Users\\Marcos '
@@ -404,6 +468,14 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\base64.py',
    'PYMODULE'),
+  ('bcrypt',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\bcrypt\\__init__.py',
+   'PYMODULE'),
+  ('bdb',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\bdb.py',
+   'PYMODULE'),
   ('bisect',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\bisect.py',
@@ -468,6 +540,10 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click\\_textwrap.py',
    'PYMODULE'),
+  ('click._utils',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click\\_utils.py',
+   'PYMODULE'),
   ('click._winconsole',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click\\_winconsole.py',
@@ -515,6 +591,10 @@
   ('click.utils',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\click\\utils.py',
+   'PYMODULE'),
+  ('cmd',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\cmd.py',
    'PYMODULE'),
   ('code',
    'C:\\Users\\Marcos '
@@ -592,6 +672,218 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\copy.py',
    'PYMODULE'),
+  ('cryptography',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.__about__',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\__about__.py',
+   'PYMODULE'),
+  ('cryptography.exceptions',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\exceptions.py',
+   'PYMODULE'),
+  ('cryptography.hazmat',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat._oid',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\_oid.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.backends',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\backends\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.backends.openssl',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\backends\\openssl\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.backends.openssl.backend',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\backends\\openssl\\backend.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.bindings',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\bindings\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.bindings.openssl',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\bindings\\openssl\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.bindings.openssl._conditional',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\bindings\\openssl\\_conditional.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.bindings.openssl.binding',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\bindings\\openssl\\binding.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.decrepit',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\decrepit\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.decrepit.ciphers',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\decrepit\\ciphers\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.decrepit.ciphers.algorithms',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\decrepit\\ciphers\\algorithms.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.decrepit.ciphers.modes',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\decrepit\\ciphers\\modes.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives._asymmetric',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\_asymmetric.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives._cipheralgorithm',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\_cipheralgorithm.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives._modes',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\_modes.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives._serialization',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\_serialization.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.dh',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\dh.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.dsa',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\dsa.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.ec',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\ec.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.ed25519',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\ed25519.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.ed448',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\ed448.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.mldsa',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\mldsa.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.mlkem',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\mlkem.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.padding',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\padding.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.rsa',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\rsa.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.types',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\types.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.utils',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\utils.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.x25519',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\x25519.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.asymmetric.x448',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\asymmetric\\x448.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.ciphers',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\ciphers\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.ciphers.algorithms',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\ciphers\\algorithms.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.ciphers.base',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\ciphers\\base.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.ciphers.modes',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\ciphers\\modes.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.constant_time',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\constant_time.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.hashes',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\hashes.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.serialization',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\serialization\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.serialization.base',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\serialization\\base.py',
+   'PYMODULE'),
+  ('cryptography.hazmat.primitives.serialization.ssh',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\hazmat\\primitives\\serialization\\ssh.py',
+   'PYMODULE'),
+  ('cryptography.utils',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\utils.py',
+   'PYMODULE'),
+  ('cryptography.x509',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\__init__.py',
+   'PYMODULE'),
+  ('cryptography.x509.base',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\base.py',
+   'PYMODULE'),
+  ('cryptography.x509.certificate_transparency',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\certificate_transparency.py',
+   'PYMODULE'),
+  ('cryptography.x509.extensions',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\extensions.py',
+   'PYMODULE'),
+  ('cryptography.x509.general_name',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\general_name.py',
+   'PYMODULE'),
+  ('cryptography.x509.name',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\name.py',
+   'PYMODULE'),
+  ('cryptography.x509.oid',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\oid.py',
+   'PYMODULE'),
+  ('cryptography.x509.verification',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\cryptography\\x509\\verification.py',
+   'PYMODULE'),
   ('csv',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\csv.py',
@@ -643,6 +935,14 @@
   ('database',
    'C:\\Users\\Marcos '
    'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\database\\__init__.py',
+   'PYMODULE'),
+  ('database.mock',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\database\\mock\\__init__.py',
+   'PYMODULE'),
+  ('database.mock.seed_mock_data',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\database\\mock\\seed_mock_data.py',
    'PYMODULE'),
   ('database.setup_db',
    'C:\\Users\\Marcos '
@@ -1373,6 +1673,10 @@
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py',
    'PYMODULE'),
+  ('pdb',
+   'C:\\Users\\Marcos '
+   'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pdb.py',
+   'PYMODULE'),
   ('pickle',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pickle.py',
@@ -1388,6 +1692,14 @@
   ('pprint',
    'C:\\Users\\Marcos '
    'Serpa\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pprint.py',
+   'PYMODULE'),
+  ('private',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\private\\__init__.py',
+   'PYMODULE'),
+  ('private.cypher',
+   'C:\\Users\\Marcos '
+   'Serpa\\Documents\\GitHub\\Anfitrion\\app\\backend\\private\\cypher.py',
    'PYMODULE'),
   ('py_compile',
    'C:\\Users\\Marcos '

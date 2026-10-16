@@ -7,10 +7,10 @@ class Logger:
 
     #* Códigos ANSI para cores
     __COLORS = {
-        "INFO": "\033[94m",     #?      Azul
+        "ERROR": "\033[91m",    #!      Vermelho
         "SUCCESS": "\033[92m",  #*      Verde
         "WARNING": "\033[93m",  #TODO   Amarelo
-        "ERROR": "\033[91m",    #!      Vermelho
+        "INFO": "\033[94m",     #?      Azul
         "RESET": "\033[0m"
     }
 

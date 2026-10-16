@@ -1,9 +1,9 @@
-// import AdminView from "./AdminView";
+import AdminView from "./AdminView";
 import ManagerView from "./ManagerView";
-// import HousekeepingView from "./HousekeepingView";
+import HousekeepingView from "./HousekeepingView";
 import GuestView from "./GuestView";
 import RoomsView from "./RoomsView";
-import WipView from "./WipView";
+// import WipView from "./WipView";
 
 /**
  * RoleViewFactory (Padrão Strategy & Factory OO)
@@ -31,8 +31,8 @@ export default function RoleViewFactory({
   //? Mapeamento polimórfico de componentes (Strategy Map)
   switch (strategyKey) {
     case "admin":
-      //  return <AdminView usuario={usuario} dataManager={dataManager} />;
-      return <WipView usuario={usuario} dataManager={dataManager} />;
+      return <AdminView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "manager":
       return <ManagerView dataManager={dataManager} />;
@@ -43,12 +43,12 @@ export default function RoleViewFactory({
 
     case "housekeeping":
     case "staff":
-      //  return <HousekeepingView usuario={usuario} dataManager={dataManager} />;
-      return <WipView usuario={usuario} dataManager={dataManager} />;
+      return <HousekeepingView usuario={usuario} dataManager={dataManager} />;
+    // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "hospede":
     default:
       return <GuestView usuario={usuario} dataManager={dataManager} />;
-      //  return <WipView usuario={usuario} dataManager={dataManager} />;
+    //  return <WipView usuario={usuario} dataManager={dataManager} />;
   }
 }
