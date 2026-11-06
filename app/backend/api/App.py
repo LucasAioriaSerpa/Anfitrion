@@ -15,7 +15,8 @@ try:
         reserva_bp,
         auth_bp,
         notificacao_bp,
-        tarifa_bp
+        tarifa_bp,
+        generated_bp
     )
 except ImportError:
     from app.backend.config.Config import Config
@@ -28,7 +29,8 @@ except ImportError:
         reserva_bp,
         auth_bp,
         notificacao_bp,
-        tarifa_bp
+        tarifa_bp,
+        generated_bp
     )
 
 class App:
@@ -106,7 +108,8 @@ class App:
             ("reserva", reserva_bp),
             ("auth", auth_bp),
             ("notificacao", notificacao_bp),
-            ("tarifa", tarifa_bp)
+            ("tarifa", tarifa_bp),
+            ("database_first", generated_bp),
         ]
 
         for name, bp in blueprints:

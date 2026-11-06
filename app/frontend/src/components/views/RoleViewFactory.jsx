@@ -3,6 +3,7 @@ import ManagerView from "./ManagerView";
 import HousekeepingView from "./HousekeepingView";
 import GuestView from "./GuestView";
 import RoomsView from "./RoomsView";
+import GeneratedCrudView from "./GeneratedCrudView";
 // import WipView from "./WipView";
 
 /**
@@ -31,7 +32,12 @@ export default function RoleViewFactory({
   //? Mapeamento polimórfico de componentes (Strategy Map)
   switch (strategyKey) {
     case "admin":
-      return <AdminView usuario={usuario} dataManager={dataManager} />;
+      return (
+        <div className="space-y-8">
+          <AdminView usuario={usuario} dataManager={dataManager} />
+          <GeneratedCrudView />
+        </div>
+      );
     // return <WipView usuario={usuario} dataManager={dataManager} />;
 
     case "manager":

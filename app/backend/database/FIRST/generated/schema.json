@@ -1,0 +1,412 @@
+{
+  "format_version": 1,
+  "source": "db_anfitrion.db",
+  "tables": [
+    {
+      "name": "funcionario",
+      "class_name": "Funcionario",
+      "primary_key": "id_funcionario",
+      "columns": [
+        {
+          "name": "id_funcionario",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": true,
+          "primary_key": true,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "id_hospede",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "id_hotel",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "cargo",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "id_hotel",
+          "references_table": "hotel",
+          "references_column": "id_hotel"
+        },
+        {
+          "column": "id_hospede",
+          "references_table": "hospede",
+          "references_column": "id_hospede"
+        }
+      ],
+      "generated_resource": true
+    },
+    {
+      "name": "hospede",
+      "class_name": "Hospede",
+      "primary_key": "id_hospede",
+      "columns": [
+        {
+          "name": "id_hospede",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": true,
+          "primary_key": true,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "nome",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "email",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "senha",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "telefone",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "criado_em",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": true,
+          "primary_key": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": true
+        }
+      ],
+      "foreign_keys": [],
+      "generated_resource": true
+    },
+    {
+      "name": "hotel",
+      "class_name": "Hotel",
+      "primary_key": "id_hotel",
+      "columns": [
+        {
+          "name": "id_hotel",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": true,
+          "primary_key": true,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "cnpj",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "franquia",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "nome",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "endereso",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "qtd_quartos",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "criado_em",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": true,
+          "primary_key": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": true
+        }
+      ],
+      "foreign_keys": [],
+      "generated_resource": true
+    },
+    {
+      "name": "quarto",
+      "class_name": "Quarto",
+      "primary_key": "id_quarto",
+      "columns": [
+        {
+          "name": "id_quarto",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": true,
+          "primary_key": true,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "id_hotel",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "tipo",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "status",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": "'Disponível'",
+          "generated": false
+        },
+        {
+          "name": "andar",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "num_quarto",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "diaria",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "criado_em",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": true,
+          "primary_key": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": true
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "id_hotel",
+          "references_table": "hotel",
+          "references_column": "id_hotel"
+        }
+      ],
+      "generated_resource": true
+    },
+    {
+      "name": "reserva",
+      "class_name": "Reserva",
+      "primary_key": "id_reserva",
+      "columns": [
+        {
+          "name": "id_reserva",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": true,
+          "primary_key": true,
+          "default": null,
+          "generated": true
+        },
+        {
+          "name": "id_quarto",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "id_hospede",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "check_in",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "check_out",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "qtd_hospedes",
+          "sqlite_type": "INTEGER",
+          "python_type": "int",
+          "nullable": false,
+          "primary_key": false,
+          "default": null,
+          "generated": false
+        },
+        {
+          "name": "criado_em",
+          "sqlite_type": "TEXT",
+          "python_type": "str",
+          "nullable": true,
+          "primary_key": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": true
+        },
+        {
+          "name": "taxa_pet",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": true,
+          "primary_key": false,
+          "default": "0.0",
+          "generated": false
+        },
+        {
+          "name": "taxa_refeicao",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": true,
+          "primary_key": false,
+          "default": "0.0",
+          "generated": false
+        },
+        {
+          "name": "taxa_cafe_manha",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": true,
+          "primary_key": false,
+          "default": "0.0",
+          "generated": false
+        },
+        {
+          "name": "taxa_almoco",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": true,
+          "primary_key": false,
+          "default": "0.0",
+          "generated": false
+        },
+        {
+          "name": "taxa_jantar",
+          "sqlite_type": "REAL",
+          "python_type": "float",
+          "nullable": true,
+          "primary_key": false,
+          "default": "0.0",
+          "generated": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "id_hospede",
+          "references_table": "hospede",
+          "references_column": "id_hospede"
+        },
+        {
+          "column": "id_quarto",
+          "references_table": "quarto",
+          "references_column": "id_quarto"
+        }
+      ],
+      "generated_resource": true
+    }
+  ]
+}

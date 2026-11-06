@@ -177,6 +177,25 @@ export const reservaApi = {
   delete: (id) => request(`/reserva/${id}`, { method: "DELETE" }),
 };
 
+export const generatedApi = {
+  getSchema: () => request("/generated/schema"),
+  getAll: (resource) => request(`/generated/${encodeURIComponent(resource)}`),
+  create: (resource, data) =>
+    request(`/generated/${encodeURIComponent(resource)}`, {
+      method: "POST",
+      body: data,
+    }),
+  update: (resource, id, data) =>
+    request(`/generated/${encodeURIComponent(resource)}/${id}`, {
+      method: "PUT",
+      body: data,
+    }),
+  delete: (resource, id) =>
+    request(`/generated/${encodeURIComponent(resource)}/${id}`, {
+      method: "DELETE",
+    }),
+};
+
 // ==========================================
 // SEED INICIAL E ARMAZENAMENTO LOCAL (FALLBACK SE FLASK ESTIVER OFFLINE)
 // ==========================================
@@ -377,5 +396,6 @@ export default {
   quarto: quartoApi,
   funcionario: funcionarioApi,
   reserva: reservaApi,
+  generated: generatedApi,
   auth: authApi,
 };
